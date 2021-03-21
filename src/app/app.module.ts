@@ -13,10 +13,18 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoaderInterceptorService } from './_interceptors/loader-interceptor.service';
 import { ErrorInterceptorService } from './_interceptors/error-interceptor.service';
 import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
+import { EsportsHomeComponent } from './pages/esports/esports-home/esports-home.component';
+import { EsportsShopComponent } from './pages/esports/esports-shop/esports-shop.component';
+import { BarcraftHomeComponent } from './pages/barcraft/barcraft-home/barcraft-home.component';
+import { BarcraftShopComponent } from './pages/barcraft/barcraft-shop/barcraft-shop.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    EsportsHomeComponent,
+    EsportsShopComponent,
+    BarcraftHomeComponent,
+    BarcraftShopComponent,
   ],
   imports: [
     BrowserModule,

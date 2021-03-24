@@ -18,16 +18,37 @@ export class ProductService {
      const url = `${this.productUrl}?page=${page}&size=${size}`;
       return this.httpClient.get<ProductInfo[]>(url).pipe(
         tap(data => {
-
+        // LOGOVANJE
         })
       );
+   }
+
+   // "new" -> SORT BY NEW PRODUCTS
+   // "highToLow" -> SORT BY HIGH PRICE TO LOW
+   // "lowToHigh" -> SORT BY LOW PRICE TO HIGH
+   // "sold" -> SORT BY MOST SOLD
+   getAllSortedProducts(sortType : string) : Observable<ProductInfo[]>{
+      const url = `${this.productUrl}/sortBy/${sortType}`;
+      return this.httpClient.get<ProductInfo[]>(url).pipe(tap(data => {
+        // LOGOVANJE
+      }));
+   }
+
+   // 0 -> TOPS
+   // 1 -> BOTTOMS
+   // 2 -> GEAR
+   getAllSortedProductsInCategory(categoryType : number , sortType : string) : Observable<ProductInfo[]>{
+     const url = `${this.productUrl}/sortBy/${categoryType}/${sortType}`;
+     return this.httpClient.get<ProductInfo[]>(url).pipe(tap(data => {
+       // LOGOVANJE
+     }));
    }
 
    getProductsInCategory(categoryType : number , page: number, size: number) : Observable<any> {
       const url = `${this.categoryUrl}/${categoryType}?page=${page}&size=${size}`;
       return this.httpClient.get(url).pipe(
         tap(data => {
-
+          // LOGOVANJE
         })
       );
    }
@@ -36,7 +57,6 @@ export class ProductService {
       const url = `${this.productUrl}/${productId}`;
       return this.httpClient.get<ProductInfo>(url).pipe(
         catchError(error => {
-
           return of(new ProductInfo());
         })
       );
@@ -46,7 +66,7 @@ export class ProductService {
      const url = `${this.productAdminUrl}/new`;
      return this.httpClient.post<ProductInfo>(url , productInfo)
      .pipe(tap(data => {
-
+        // LOGOVANJE
      }));
    }
 
@@ -54,7 +74,7 @@ export class ProductService {
      const url = `${this.productAdminUrl}/${productInfo.productId}/edit`;
      return this.httpClient.put<ProductInfo>(url , productInfo)
      .pipe(tap(data => {
-
+        // LOGOVANJE
      }));
    }
 

@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Cart } from '../models/Cart';
 import { Item } from '../models/Item';
+import { OrderForm } from '../models/OrderForm';
 import { ProductInOrder } from '../models/ProductInOrder';
 import { JwtResponse } from '../response/JwtResponse';
 import { UserService } from './user.service';
@@ -173,6 +174,10 @@ export class CartService {
       return this.httpClient.post(url, null).pipe();
     }
 
+    checkoutWithoutLoggingIn(orderForm : OrderForm) : Observable<String>{
+      const url = `${this.cartUrl}/guestCheckout`;
+      return this.httpClient.post<String>(url , orderForm).pipe();
+    }
 
     storeLocalCart() {
         this.cookieService.set('cart', JSON.stringify(this.localMap));

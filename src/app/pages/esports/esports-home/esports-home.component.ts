@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-esports-home',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EsportsHomeComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(config: NgbCarouselConfig) { 
+	  config.showNavigationArrows = false;
+	  config.interval = 2500;
+	  config.pauseOnFocus = false;
+	  config.pauseOnHover = false;
+	  config.wrap = true;
   }
 
+  ngOnInit(): void {}
 }

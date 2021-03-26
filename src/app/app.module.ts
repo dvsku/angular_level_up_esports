@@ -17,6 +17,13 @@ import { EsportsHomeComponent } from './pages/esports/esports-home/esports-home.
 import { EsportsShopComponent } from './pages/esports/esports-shop/esports-shop.component';
 import { BarcraftHomeComponent } from './pages/barcraft/barcraft-home/barcraft-home.component';
 import { BarcraftShopComponent } from './pages/barcraft/barcraft-shop/barcraft-shop.component';
+import { EsportsHeaderComponent } from './parts/esports/esports-header/esports-header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { EsportsFooterComponent } from './parts/esports/esports-footer/esports-footer.component';
+import { ShopItemComponent } from './parts/common/shop-item/shop-item.component';
+import { ShopItemDeckComponent } from './parts/common/shop-item-deck/shop-item-deck.component';
+import { SignUpComponent } from './pages/esports/sign-up/sign-up.component';
+import { SignInComponent } from './pages/esports/sign-in/sign-in.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +32,12 @@ import { BarcraftShopComponent } from './pages/barcraft/barcraft-shop/barcraft-s
     EsportsShopComponent,
     BarcraftHomeComponent,
     BarcraftShopComponent,
+    EsportsHeaderComponent,
+    EsportsFooterComponent,
+    ShopItemComponent,
+    ShopItemDeckComponent,
+    SignUpComponent,
+    SignInComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +47,8 @@ import { BarcraftShopComponent } from './pages/barcraft/barcraft-shop/barcraft-s
     HttpClientModule,
     ToastrModule.forRoot(),
     NgbModule,
-    DragDropModule
+    DragDropModule,
+    FontAwesomeModule
   ],
   providers: [CookieService ,
     {provide : HTTP_INTERCEPTORS , useClass : JwtInterceptorService , multi : true},

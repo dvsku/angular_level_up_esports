@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./esports-shop.component.sass']
 })
 export class EsportsShopComponent implements OnInit {
+  public isTopsCollapsed: boolean = true;
+  public isBottomsCollapsed: boolean = true;
 
   constructor() { }
 

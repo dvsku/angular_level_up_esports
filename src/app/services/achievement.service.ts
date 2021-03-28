@@ -10,51 +10,42 @@ import { Achievement } from '../models/Achievement';
 export class AchievementService {
 
   private achievementUrl = `http://localhost:8080/api/achievement`;
-  private adminAchievementUrl = `http://localhost:8080/api/admin/achievement`;
+  private achievementAdminUrl = `http://localhost:8080/api/admin/achievement`;
 
-  constructor(private httpClient : HttpClient) {
+  constructor(private httpClient : HttpClient) { }
 
-  }
-
-  public getAllAchievements() : Observable<Achievement[]> {
-      const url = `${this.achievementUrl}/list`;
-      return this.httpClient.get<Achievement[]>(url).pipe(tap(data =>{
-      // logovanje
-    }));
-  }
-
-  public getAchievementById(id : number) : Observable<Achievement>{
+  public getOneAchievement(id : number) : Observable<Achievement>{
     const url = `${this.achievementUrl}/${id}`;
     return this.httpClient.get<Achievement>(url).pipe(tap(data =>{
-      // logovanje
+      // LOGOVANJE
     }));
   }
 
-  public getAllAchievementsByCategory(categoryType : number) : Observable<Achievement[]>{
-    const url = `${this.achievementUrl}/list/${categoryType}`;
-    return this.httpClient.get<Achievement[]>(url).pipe(tap(data =>{
-       // logovanje
+  public getAllAchievementsForCategory(categoryNumber : number) : Observable<Achievement[]>{
+    const url = `${this.achievementUrl}/category/${categoryNumber}`;
+    return this.httpClient.get<Achievement[]>(url).pipe(tap(data => {
+      // LOGOVANJE
     }));
   }
 
-  public addNewAchievement(achievement : Achievement) : Observable<Achievement>{
-    const url = `${this.adminAchievementUrl}/new`;
+  public addNewAchievementInCategory(categoryNumber : number , achievement : Achievement) : Observable<Achievement>{
+    const url = `${this.achievementAdminUrl}/new/category/${categoryNumber}`;
     return this.httpClient.post<Achievement>(url , achievement).pipe(tap(data => {
-       // logovanje
+      // LOGOVANJE
     }));
   }
 
-  public editExistingAchievement(achievement : Achievement , achievementId : number) : Observable<Achievement>{
-    const url = `${this.adminAchievementUrl}/${achievementId}/edit`;
+  public editExistingAchievement(id : number , achievement : Achievement) : Observable<Achievement>{
+    const url = `${this.achievementAdminUrl}/${id}/edit`;
     return this.httpClient.put<Achievement>(url , achievement).pipe(tap(data => {
-       // logovanje
+      // LOGOVANJE
     }));
   }
 
-  public deleteExistingAchievement(achievementId : number) : Observable<any>{
-    const url = `${this.adminAchievementUrl}/${achievementId}`;
-    return this.httpClient.delete<any>(url).pipe(tap(data => {
-       // logovanje
+  public deleteExistingAchievement(id : number) : Observable<any>{
+    const url = `${this.achievementAdminUrl}/${id}`;
+    return this.httpClient.delete<any>(url).pipe(tap(data =>{
+      console.log(data);
     }));
   }
 }

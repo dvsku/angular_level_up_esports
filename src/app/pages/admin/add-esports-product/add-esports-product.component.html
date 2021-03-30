@@ -1,0 +1,81 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit(form)" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h3 class="fw-700">ADD PRODUCT</h3>
+            <div class="form-group">
+                <button type="submit" class="standard-btn standard-btn-primary">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <nav ngbNav #nav="ngbNav" class="nav-tabs">
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>General</a>
+                    <ng-template ngbNavContent>
+                        <div class="form-group">
+                            <label for="productName">Name</label>
+                            <input [(ngModel)]="product.productName" type="text" class="form-control" id="productName" name="productName" placeholder="Name" required #productName="ngModel">
+                            <div *ngIf="productName.invalid && (productName.dirty ||productName.touched)">
+                                <small *ngIf="productName.errors.required">Name is required.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Description</label>
+                            <textarea class="form-control text-left" id="productDescription" name="productDescription" placeholder="Description" [(ngModel)]="product.productDescription"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Price (RSD)</label>
+                            <input [(ngModel)]="product.productPrice" type="number" class="form-control" id="productPrice" name="productPrice" placeholder="Name" required #productPrice="ngModel" (ngModelChange)="product.productPrice=$event">
+                            <div *ngIf="productPrice.invalid && (productPrice.dirty ||productPrice.touched)">
+                                <small *ngIf="productPrice.errors.required">Price is required.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="productStatus">Status</label>
+                            <select class="custom-select" id="productStatus" name="productStatus" required [(ngModel)]="product.productStatus">
+                                <option [ngValue]=0>Available</option>
+                                <option [ngValue]=1>Unavailable</option>
+                            </select>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>Images</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" (click)='addImageInput()' class="standard-btn standard-btn-primary btn-block">Add</button>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <app-images-form-group [images]='product.productInfoIcons'></app-images-form-group>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>Sizes</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <button type="button" class="standard-btn standard-btn-primary btn-block">Add</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</form>

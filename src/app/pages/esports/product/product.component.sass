@@ -1,0 +1,37 @@
+@import '~bootstrap/scss/bootstrap'
+
+.image-main
+    max-height: 31.25rem
+
+.image-select 
+    max-height: 3.125rem
+    cursor: pointer
+
+.container
+    @include media-breakpoint-only(xl)
+        max-width: 80%
+
+.size
+    min-width: 1.875rem
+    min-height: 1.875rem
+    text-align: center
+    margin-right: .3125rem
+    user-select: none
+    background-color: #11abe2
+    color: #FFF
+    line-height: 1.875rem
+
+.size:hover
+    background-color: darken(#11abe2, 10)
+    cursor: pointer
+
+.size.active
+    background-color: darken(#11abe2, 10)
+
+hr 
+  border: 0
+  clear: both
+  display: block    
+  width: 100%    
+  background-color: rgba(0, 0, 0, 0.1)
+  height: .0625rem

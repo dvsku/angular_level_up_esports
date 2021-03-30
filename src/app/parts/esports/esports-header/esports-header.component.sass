@@ -1,0 +1,66 @@
+@import '~bootstrap/scss/bootstrap'
+@import '../../../../_variables'
+
+.bg-header 
+    background-color: $c-header-bg
+
+
+
+.navbar-toggler-icon
+    display: flex
+    align-items: center
+    justify-content: center
+
+.wrapper-images
+    border-left: 1px solid black
+
+.shop-item-image, .game-image
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px
+
+.shop-item-image
+    margin-right: 2.1875rem
+    
+.game-image
+    margin-right: 1.875rem
+
+.wrapper-shop-items
+    display: flex
+    flex-direction: row
+
+.wrapper-games
+    display: flex
+    flex-direction: row
+
+.header-link
+    color: $fc-black
+    text-decoration: none
+    user-select: none
+
+.header-link:hover
+    cursor: pointer
+    color: $c-link-hover
+
+.navbar-brand
+    max-width: 3.125rem
+    max-height: 3.125rem
+    @include media-breakpoint-down(md)
+        position: fixed
+        top: .25rem
+        left: 50%
+
+.navbar-collapse-details
+    background-color: transparent
+    ul
+        margin: 0
+    @include media-breakpoint-up(lg)
+        background-color: $c-body-bg
+        position: fixed
+        top: 4.125rem
+        left: 0
+        width: 100vw
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px
+
+p.title
+    line-height: 1.2rem
+    span
+        display: table

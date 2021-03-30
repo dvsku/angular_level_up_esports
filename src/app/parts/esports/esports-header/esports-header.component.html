@@ -1,0 +1,84 @@
+<nav class="navbar fixed-top navbar-expand-lg bg-header ">
+    <button class="navbar-toggler" type="button" (click)="toggleMenu()">
+        <fa-icon [icon]="faBars" class="navbar-toggler-icon"></fa-icon>
+    </button>
+    <a class="navbar-brand" routerLink="/esports"><img src="https://via.placeholder.com/40/FFFFFF/000000"></a>
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse px-5">
+      <div class="navbar-nav">
+        <a class="nav-link" (click)="toggleShop()">SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon></a>
+        <div [ngbCollapse]="isShopCollapsed" class="navbar-collapse-details">
+            <div class="row py-0 px-3 py-lg-4 px-lg-5">
+				<div class="col-3">
+					<p class="title fw-800 fc-blue d-none d-lg-block">MERCH <span class="fc-black">ORIGINALS</span></p>
+					<ul class="list-unstyled">
+						<li class="text-left"><a class="header-link">TOPS</a></li>
+						<li class="text-left"><a class="header-link">BOTTOMS</a></li>
+					</ul>
+				</div>
+				<div class="col-9 wrapper-images d-none d-lg-block">
+					<div class="row pb-2 pt-4 pl-5">
+						<div class="wrapper-shop-items">
+							<img class="shop-item-image" src="https://via.placeholder.com/200x250/FFFFFF/000000">
+							<img class="shop-item-image" src="https://via.placeholder.com/200x250/FFFFFF/000000">
+							<img class="shop-item-image" src="https://via.placeholder.com/200x250/FFFFFF/000000">
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+		<a class="nav-link" (click)="toggleTeams()">TEAMS <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon></a>
+		<div [ngbCollapse]="isTeamsCollapsed" class="navbar-collapse-details">
+            <div class="row py-0 px-3 py-lg-4 px-lg-5">
+				<div class="col-3 col-lg-4 col-xl-3">
+					<p class="title fw-800 fc-blue d-none d-lg-block">TEAMS <span class="fc-black">AND ACHIEVEMENTS</span></p>
+					<ul class="list-unstyled">
+						<li class="text-left"><a class="header-link">CONTENT CREATORS</a></li>
+						<li class="text-left"><a class="header-link">DOTA 2</a></li>
+						<li class="text-left"><a class="header-link">COUNTER-STRIKE: GLOBAL OFFENSIVE</a></li>
+						<li class="text-left"><a class="header-link">LEAGUE OF LEGENDS</a></li>
+						<li class="text-left"><a class="header-link">WARCRAFT III</a></li>
+						<li class="text-left"><a class="header-link">FORTNITE</a></li>
+						<li class="text-left"><a class="header-link">HEROES OF THE STORM</a></li>
+						<li class="text-left"><a class="header-link">HEARTHSTONE</a></li>
+					</ul>
+				</div>
+				<div class="col-9 col-lg-8 col-xl-8 wrapper-images d-none d-lg-block">
+					<div class="row pb-2 pt-4 pl-5">
+						<div class="wrapper-games">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+						</div>
+					</div>
+					<div class="row pb-2 pt-4 pl-5">
+						<div class="wrapper-games">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+							<img class="game-image" src="https://via.placeholder.com/125/FFFFFF/000000">
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+        <a class="nav-link">BOOTCAMP</a>
+        <a class="nav-link">GAMING AREA</a>
+        <a class="nav-link" href="#">PARTNERS</a>
+      </div>
+      <div class="navbar-nav ml-auto">
+        <a *ngIf="currentUser === undefined || currentUser === null; else notSignedIn" class="nav-link" routerLink="/auth/signin">SIGN IN</a>
+		<a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup">SIGN UP</a>
+		<ng-template #notSignedIn>
+			<div ngbDropdown class="d-inline-block">
+				<a class="nav-link" id="self-dropdown" ngbDropdownToggle>{{currentUser.name.toUpperCase()}} <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon></a>
+				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="self-dropdown">
+				  <a ngbDropdownItem class="dropdown-item" routerLink="/dashboard">Dashboard</a>
+				  <div class="dropdown-divider"></div>
+				  <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/">Sign Out</a>
+				</div>
+			  </div>  
+		</ng-template>
+      </div>
+    </div>
+</nav>

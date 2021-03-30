@@ -24,9 +24,9 @@ export class UserService {
     cookieService.set('currentUser' , memo);
    }
 
-   get currentUserValue() {
-    return this.currentUserSubject.value;
-}
+    get currentUserValue() {
+      return this.currentUserSubject.value;
+    }
 
    login(loginForm) : Observable<JwtResponse>{
         const url = `http://localhost:8080/api/auth/login`;

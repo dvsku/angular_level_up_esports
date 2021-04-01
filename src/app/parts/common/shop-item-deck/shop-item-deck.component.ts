@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ProductInfo } from 'src/app/models/ProductInfo';
 
 @Component({
   selector: 'app-shop-item-deck',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./shop-item-deck.component.sass']
 })
 export class ShopItemDeckComponent implements OnInit {
+
+  @Input("products")
+  products: ProductInfo[];
 
   constructor() { }
 

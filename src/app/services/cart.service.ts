@@ -10,6 +10,7 @@ import { Item } from '../models/Item';
 import { OrderForm } from '../models/OrderForm';
 import { ProductInOrder } from '../models/ProductInOrder';
 import { JwtResponse } from '../response/JwtResponse';
+import { CartNotifyService } from './cart-notify.service';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -30,6 +31,7 @@ export class CartService {
   constructor(private httpClient : HttpClient ,
     private toastrService : ToastrService,
     private cookieService : CookieService,
+	private cartNotifyService: CartNotifyService,
     private userService : UserService) {
       this.itemSubject = new BehaviorSubject<Item[]>(null);
       this.items = this.itemSubject.asObservable();
@@ -72,65 +74,71 @@ export class CartService {
        }
      }
 
-     addItem(productInOrder) : Observable<boolean> {
+	addItem(productInOrder) : Observable<boolean> {
         let flag : Boolean;
         let currentPosition : string;
-        if(!this.currentUser){
-          if(this.cookieService.check('cart')){
-            this.localMap = JSON.parse(this.cookieService.get('cart'));
-          }
-          if(productInOrder.categoryType === 0){
-            if(!this.localMap[productInOrder.productId]){
-              this.localMap[productInOrder.productId] = productInOrder;
-            }
-            else{
-              for(var key of Object.keys(this.localMap)){
-              if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
-                && this.localMap[key].productSize === productInOrder.productSize){
-                  this.localMap[key].count += productInOrder.count;
-                  flag = true;
-                }else{
-                  currentPosition = key;
-                }
-            }
-            if(!flag){
-              this.localMap[+currentPosition + 1] = productInOrder;
-            }
-          }
-          }else{
-            if(!this.localMap[productInOrder.productId]){
-              this.localMap[productInOrder.productId] = productInOrder;
-            }
-            else{
-              for(var key of Object.keys(this.localMap)){
-              if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
-                && this.localMap[key].productName === productInOrder.productName){
-                  this.localMap[key].count += productInOrder.count;
-                  flag = true;
-                }else{
-                  currentPosition = key;
-                }
-            }
-            if(!flag){
-              this.localMap[+currentPosition + 1] = productInOrder;
-            }
-            }
-          }
-          flag = false;
-          this.cookieService.set('cart' , JSON.stringify(this.localMap));
-          this.toastrService.success('Successfully added item to cart.');
-          return of(true);
-        }else{
-          const url = `${this.cartUrl}/add`
-          return this.httpClient.post<boolean>(url , {
-            'quantity' : productInOrder.count,
-            'productId' : productInOrder.productId,
-            'productSize' : productInOrder.productSize
-          }).pipe(tap(data => {
-            this.toastrService.success('Successfully added item to cart.');
-          }))
-          };
+        if(!this.currentUser) {
+          	if(this.cookieService.check('cart')) {
+            	this.localMap = JSON.parse(this.cookieService.get('cart'));
+          	}
+          	if(productInOrder.categoryType === 0) {
+				if(!this.localMap[productInOrder.productId]) {
+				this.localMap[productInOrder.productId] = productInOrder;
+				}
+				else {
+					for(var key of Object.keys(this.localMap)) {
+						if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
+							&& this.localMap[key].productSize === productInOrder.productSize) {
+							this.localMap[key].count += productInOrder.count;
+							flag = true;
+						}
+						else {
+							currentPosition = key;
+						}
+					}
+					if(!flag) {
+						this.localMap[+currentPosition + 1] = productInOrder;
+					}
+				}
+          	}
+			else {
+				if(!this.localMap[productInOrder.productId]){
+				this.localMap[productInOrder.productId] = productInOrder;
+				}
+				else{
+					for(var key of Object.keys(this.localMap)){
+						if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
+							&& this.localMap[key].productName === productInOrder.productName){
+							this.localMap[key].count += productInOrder.count;
+							flag = true;
+						}
+						else {
+							currentPosition = key;
+						}
+					}
+					if(!flag) {
+						this.localMap[+currentPosition + 1] = productInOrder;
+					}
+				}
+          	}
+          	flag = false;
+          	this.cookieService.set('cart' , JSON.stringify(this.localMap));
+          	this.toastrService.success('Successfully added item to cart.');
+			this.cartNotifyService.notify(null);
+          	return of(true);
         }
+		else {
+          	const url = `${this.cartUrl}/add`
+          	return this.httpClient.post<boolean>(url , {
+				'quantity' : productInOrder.count,
+				'productId' : productInOrder.productId,
+				'productSize' : productInOrder.productSize
+          	}).pipe(tap(data => {
+        		this.toastrService.success('Successfully added item to cart.');
+				this.cartNotifyService.notify(null);
+          	}))
+        };
+    }
 
      update(productInOrder) : Observable<ProductInOrder>{
        if(this.currentUser){
@@ -139,34 +147,39 @@ export class CartService {
        }
      }
 
-     remove(productInOrder) : Observable<any>{
-       if(!this.currentUser){
-         if(productInOrder.categoryType === 0){
-          for(var key of Object.keys(this.localMap)){
-            if(this.localMap[key].productId === productInOrder.productId && this.localMap[key].productSize === productInOrder.productSize){
-              delete this.localMap[key];
-            }
-          };
-         }else{
-           for(var key of Object.keys(this.localMap)){
-             if(this.localMap[key].productId === productInOrder.productId){
-               delete this.localMap[key];
-             }
-           };
-         }
-         this.toastrService.info('Item removed from cart');
-         return of(null);
-       }else{
-         let url = '';
-         if(productInOrder.productSize !== null){
-           url = `${this.cartUrl}/${productInOrder.productId}/${productInOrder.productSize}`;
-         }else{
-          url = `${this.cartUrl}/${productInOrder.productId}`;
-         }
-         return this.httpClient.delete(url).pipe(tap(data => {
-          this.toastrService.info('Item removed from cart');
-         }));
-       }
+    remove(productInOrder) : Observable<any>{
+       	if(!this.currentUser){
+        	if(productInOrder.categoryType === 0){
+				for(var key of Object.keys(this.localMap)){
+					if(this.localMap[key].productId === productInOrder.productId && this.localMap[key].productSize === productInOrder.productSize){
+						delete this.localMap[key];
+					}
+				};
+         	}
+			else {
+				for(var key of Object.keys(this.localMap)){
+					if(this.localMap[key].productId === productInOrder.productId){
+						delete this.localMap[key];
+					}
+				};
+         	}
+			this.toastrService.info('Item removed from cart');
+			this.cartNotifyService.notify(null);
+			return of(null);
+       	}
+	   	else {
+         	let url = '';
+         	if(productInOrder.productSize !== null) {
+           		url = `${this.cartUrl}/${productInOrder.productId}/${productInOrder.productSize}`;
+         	}
+			else {
+          		url = `${this.cartUrl}/${productInOrder.productId}`;
+         	}
+         	return this.httpClient.delete(url).pipe(tap(data => {
+          		this.toastrService.info('Item removed from cart');
+				this.cartNotifyService.notify(null);
+         	}));
+       	}
      }
 
      checkout(): Observable<any> {

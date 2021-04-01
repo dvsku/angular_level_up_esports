@@ -1,10 +1,10 @@
 <div class="shop-item-container">
     
-    <img class="shop-item-image" src="https://via.placeholder.com/500x500/FF0000/000000" >
+    <img class="shop-item-image" src="{{product?.productInfoIcons[0].productIcon}}" >
     <div class="shop-item-name fw-500">
-        TEST NAME
+        <a routerLink="/esports/shop/product/{{product?.productId}}">{{product?.productName}}</a>
     </div>
     <div class="shop-item-price">
-        $60
+        {{product?.productPrice}} RSD
     </div>
 </div>

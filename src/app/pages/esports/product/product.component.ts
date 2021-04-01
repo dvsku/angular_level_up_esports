@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ProductInfo } from 'src/app/models/ProductInfo';
+import { ProductInOrder } from 'src/app/models/ProductInOrder';
+import { CartService } from 'src/app/services/cart.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product',
@@ -9,11 +13,27 @@ import { ActivatedRoute } from '@angular/router';
 export class ProductComponent implements OnInit {
 
   count: number = 1;
+  product: ProductInfo;
 
-  constructor(private activeRoute : ActivatedRoute) { }
+  constructor(private productService: ProductService, private cartService: CartService, private activeRoute : ActivatedRoute) { }
 
-  ngOnInit(): void {
-    const id = this.activeRoute.snapshot.paramMap.get('id');
-  }
+  	ngOnInit(): void {
+    	const id = +this.activeRoute.snapshot.paramMap.get('id');
+    	this.productService.getProductDetail(id).subscribe(prod => {
+      		this.product = prod;
+    	})
+  	}
+
+  	addToCart() {
+		this.cartService.addItem(new ProductInOrder(this.product, this.count, "M")).subscribe(result => {
+			if(!result) {
+				console.log("Add to cart failed: " + result);
+				throw new Error();
+			}
+		})
+  	}
+
+	
+
 
 }

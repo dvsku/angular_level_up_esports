@@ -31,6 +31,7 @@ import { ImagesFormGroupComponent } from './parts/common/images-form-group/image
 import { ImageInputComponent } from './parts/common/image-input/image-input.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
+import { CartNotifyService } from './services/cart-notify.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,7 @@ import { EsportsProductsComponent } from './pages/admin/esports-products/esports
     FontAwesomeModule,
     ImageCropperModule
   ],
-  providers: [CookieService ,
+  providers: [CookieService, CartNotifyService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
     { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true}

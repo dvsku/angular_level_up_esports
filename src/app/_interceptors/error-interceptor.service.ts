@@ -18,7 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
       catchError(err => {
           if(err.status === 401){
             this.userService.logout();
-            this.router.navigate(['/']);
+            //this.router.navigate(['/']);
           }
 
           const error = err.error || err.statusText;

@@ -4,12 +4,15 @@
 .bg-header 
     background-color: $c-header-bg
 
-
-
 .navbar-toggler-icon
     display: flex
     align-items: center
     justify-content: center
+
+.navbar-collapse
+     @include media-breakpoint-down(md)
+        max-height: 40vh
+        overflow-y: scroll
 
 .wrapper-images
     border-left: 1px solid black
@@ -48,6 +51,13 @@
         top: .25rem
         left: 50%
 
+.navbar-toggler
+    padding: 0
+    @include media-breakpoint-down(md)
+        position: fixed
+        top: 1.0625rem
+        left: 1.5rem
+
 .navbar-collapse-details
     background-color: transparent
     ul
@@ -64,3 +74,18 @@ p.title
     line-height: 1.2rem
     span
         display: table
+
+.navbar
+    min-height: 4.125rem
+
+.dropdown-menu
+    @include media-breakpoint-up(md)
+        min-width: 320px
+    
+#sign-in-dropdown
+    @include media-breakpoint-down(lg)
+        background-color: transparent
+        border: 0
+
+.sign-in-invalid
+    color: #831818

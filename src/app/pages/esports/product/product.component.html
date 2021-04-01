@@ -24,8 +24,8 @@
                     </div>
                     <div class="col-12 col-md-6 bg-white py-5">
                         <div class="d-flex flex-column flex-wrap">
-                            <h2>PRODUCT NAME</h2>
-                            <h5>$65</h5>
+                            <h2>{{product?.productName}}</h2>
+                            <h5>{{product?.productPrice}} RSD</h5>
                             <hr/>
                             <div class="d-flex flex-row flex-wrap align-items-center">
                                 <div class="size">S</div>
@@ -38,7 +38,7 @@
                                 <div class="d-inline-block mx-3">{{count}}</div>
                                 <div class="round-btn lvl-btn-primary">+</div>
                             </div>
-                            <button class="lvl-btn lvl-btn-primary">add to cart</button>
+                            <button class="lvl-btn lvl-btn-primary" (click)="addToCart()">add to cart</button>
                         </div>
                     </div>
                 </div>

@@ -29,7 +29,7 @@ export class ImagesFormGroupComponent implements OnInit {
 	ngAfterViewInit(): void {}
 
 	imageCropped(event: ImageCroppedEvent) {
-		this.images.push(new ProductIcon(event.base64, 0));
+		this.images.push(new ProductIcon(null, event.base64, 0));
 	}
 
 	resizeImage(imageBase64: string) {

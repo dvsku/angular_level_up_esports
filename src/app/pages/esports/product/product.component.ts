@@ -11,11 +11,10 @@ import { ProductService } from 'src/app/services/product.service';
   styleUrls: ['./product.component.sass']
 })
 export class ProductComponent implements OnInit {
+  	count: number = 1;
+  	product: ProductInfo;
 
-  count: number = 1;
-  product: ProductInfo;
-
-  constructor(private productService: ProductService, private cartService: CartService, private activeRoute : ActivatedRoute) { }
+  	constructor(private productService: ProductService, private cartService: CartService, private activeRoute : ActivatedRoute) { }
 
   	ngOnInit(): void {
     	const id = +this.activeRoute.snapshot.paramMap.get('id');
@@ -25,15 +24,6 @@ export class ProductComponent implements OnInit {
   	}
 
   	addToCart() {
-		this.cartService.addItem(new ProductInOrder(this.product, this.count, "M")).subscribe(result => {
-			if(!result) {
-				console.log("Add to cart failed: " + result);
-				throw new Error();
-			}
-		})
+		this.cartService.addProductToCart(new ProductInOrder(this.product, this.count, "M"));
   	}
-
-	
-
-
 }

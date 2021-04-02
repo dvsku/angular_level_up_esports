@@ -29,9 +29,6 @@ export class EsportsHeaderComponent implements OnInit {
 
 	cart: ProductInOrder[];
 
-	updateSubscription: Subscription;
-	private updateTerms = new Subject<ProductInOrder>();
-
 	model: any = {
 		username: '',
 		password: '',
@@ -50,20 +47,9 @@ export class EsportsHeaderComponent implements OnInit {
 		});
 		this.getCart();
 		this.cartNotifyService.obs.subscribe(() => this.getCart());
-		this.updateSubscription = this.updateTerms.pipe(
-			debounceTime(300), 
-			switchMap((productInOrder: ProductInOrder) => this.cartService.update(productInOrder)))
-			.subscribe(prod => {
-				if (!prod) { throw new Error(); }
-			},
-				_ => console.log('Update Item Failed')
-			);
 	}
 
 	ngOnDestroy(): void {
-		if(!this.currentUser){
-		  this.cartService.storeLocalCart();
-		}
 		this.currentUserSubscription.unsubscribe();
 	}
 
@@ -72,33 +58,20 @@ export class EsportsHeaderComponent implements OnInit {
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 
 	getCart() {
-		this.cartService.getCart().subscribe(cart => {
-			this.cart = cart;
-		})
+		this.cart = this.cartService.getCart();
 	}
 
 	removeFromCart(product: ProductInOrder) {
-		this.cartService.remove(product).subscribe(data => {
-			console.log("Item removed.")
-		},
-		error => {
-			console.log("Failed to remove item.")
-		})
+		this.cartService.removeProductFromCart(product);
 	}
 
 	increaseCount(product: ProductInOrder){
 		product.count++;
-		if(this.currentUser) {
-			this.updateTerms.next(product);
-		}
 	}
   
 	decreaseCount(product: ProductInOrder){
 		if(product.count > 0) {
 			product.count--;
-			if(this.currentUser) {
-				this.updateTerms.next(product);
-			}
 		}
 	}
 

@@ -17,190 +17,64 @@ import { UserService } from './user.service';
   providedIn: 'root'
 })
 export class CartService {
+	private cartUrl = `http://localhost:8080/api/cart`;
+  	cartProducts: ProductInOrder[];
 
-  private cartUrl = `http://localhost:8080/api/cart`;
-  localMap = {};
+  	constructor(private httpClient: HttpClient, private toastrService: ToastrService, private cookieService: CookieService,
+		private cartNotifyService: CartNotifyService) {
 
-  private itemSubject : BehaviorSubject<Item[]>;
-  private totalSubject : BehaviorSubject<number>;
-  public items : Observable<Item[]>;
-  public total : Observable<number>;
-
-  private currentUser : JwtResponse;
-
-  constructor(private httpClient : HttpClient ,
-    private toastrService : ToastrService,
-    private cookieService : CookieService,
-	private cartNotifyService: CartNotifyService,
-    private userService : UserService) {
-      this.itemSubject = new BehaviorSubject<Item[]>(null);
-      this.items = this.itemSubject.asObservable();
-      this.totalSubject = new BehaviorSubject<number>(null);
-      this.total = this.totalSubject.asObservable();
-      this.userService.currentUser.subscribe(data => {
-        this.currentUser = data;
-      });
-     }
-
-     private getLocalCart() : ProductInOrder[]{
-        if(this.cookieService.check('cart')){
-          this.localMap = JSON.parse(this.cookieService.get('cart'));
-          return Object.values(this.localMap);
-        }else{
-          this.localMap = {};
-          return [];
-        }
-     }
-
-     getCart() : Observable<ProductInOrder[]> {
-       const localCart = this.getLocalCart();
-       if(this.currentUser){
-         if(localCart.length > 0){
-           return this.httpClient.post<Cart>(this.cartUrl , localCart).pipe(
-             tap(data => {
-               this.clearLocalStorage();
-             }),
-             map(data => data.products),
-             catchError(error => of([]))
-           );
-         }else{
-           return this.httpClient.get<Cart>(this.cartUrl).pipe(
-             map(data => data.products),
-             catchError(error => of([]))
-           );
-         }
-       }else{
-         return of(localCart);
-       }
-     }
-
-	addItem(productInOrder) : Observable<boolean> {
-        let flag : Boolean;
-        let currentPosition : string;
-        if(!this.currentUser) {
-          	if(this.cookieService.check('cart')) {
-            	this.localMap = JSON.parse(this.cookieService.get('cart'));
-          	}
-          	if(productInOrder.categoryType === 0) {
-				if(!this.localMap[productInOrder.productId]) {
-				this.localMap[productInOrder.productId] = productInOrder;
-				}
-				else {
-					for(var key of Object.keys(this.localMap)) {
-						if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
-							&& this.localMap[key].productSize === productInOrder.productSize) {
-							this.localMap[key].count += productInOrder.count;
-							flag = true;
-						}
-						else {
-							currentPosition = key;
-						}
-					}
-					if(!flag) {
-						this.localMap[+currentPosition + 1] = productInOrder;
-					}
-				}
-          	}
-			else {
-				if(!this.localMap[productInOrder.productId]){
-				this.localMap[productInOrder.productId] = productInOrder;
-				}
-				else{
-					for(var key of Object.keys(this.localMap)){
-						if(this.localMap[key] && this.localMap[key].productId === productInOrder.productId
-							&& this.localMap[key].productName === productInOrder.productName){
-							this.localMap[key].count += productInOrder.count;
-							flag = true;
-						}
-						else {
-							currentPosition = key;
-						}
-					}
-					if(!flag) {
-						this.localMap[+currentPosition + 1] = productInOrder;
-					}
-				}
-          	}
-          	flag = false;
-          	this.cookieService.set('cart' , JSON.stringify(this.localMap));
-          	this.toastrService.success('Successfully added item to cart.');
-			this.cartNotifyService.notify(null);
-          	return of(true);
-        }
-		else {
-          	const url = `${this.cartUrl}/add`
-          	return this.httpClient.post<boolean>(url , {
-				'quantity' : productInOrder.count,
-				'productId' : productInOrder.productId,
-				'productSize' : productInOrder.productSize
-          	}).pipe(tap(data => {
-        		this.toastrService.success('Successfully added item to cart.');
-				this.cartNotifyService.notify(null);
-          	}))
-        };
     }
 
-     update(productInOrder) : Observable<ProductInOrder>{
-       if(this.currentUser){
-         const url = `${this.cartUrl}/${productInOrder.productId}`;
-         return this.httpClient.put<ProductInOrder>(url , productInOrder.count);
-       }
-     }
+	getCart() : ProductInOrder[] {
+		if(this.cookieService.check('cart')) {
+			this.cartProducts = JSON.parse(this.cookieService.get('cart'));
+		}
+		else {
+			this.cartProducts = [];
+		}
+		return this.cartProducts;
+	}
 
-    remove(productInOrder) : Observable<any>{
-       	if(!this.currentUser){
-        	if(productInOrder.categoryType === 0){
-				for(var key of Object.keys(this.localMap)){
-					if(this.localMap[key].productId === productInOrder.productId && this.localMap[key].productSize === productInOrder.productSize){
-						delete this.localMap[key];
-					}
-				};
-         	}
-			else {
-				for(var key of Object.keys(this.localMap)){
-					if(this.localMap[key].productId === productInOrder.productId){
-						delete this.localMap[key];
-					}
-				};
-         	}
+	addProductToCart(product: ProductInOrder) {
+		if(this.cookieService.check('cart')) {
+			this.cartProducts = JSON.parse(this.cookieService.get('cart'));
+		}
+		let index = this.cartProducts.findIndex(x => x.productId === product.productId && x.productSize === product.productSize);
+		if(index !== -1) {
+			this.cartProducts[index].count += product.count;
+		}
+		else {
+			this.cartProducts.push(product);
+		}
+		this.cookieService.set('cart', JSON.stringify(this.cartProducts));
+		this.toastrService.success('Successfully added item to cart.');
+		this.cartNotifyService.notify(null);
+	}
+
+	removeProductFromCart(product: ProductInOrder) {
+		if(this.cookieService.check('cart')) {
+			this.cartProducts = JSON.parse(this.cookieService.get('cart'));
+		}
+		let index = this.cartProducts.findIndex(x => x.productId === product.productId && x.productSize === product.productSize);
+		if(index !== -1) {
+			this.cartProducts.splice(index, 1);
+			this.cookieService.set('cart', JSON.stringify(this.cartProducts));
 			this.toastrService.info('Item removed from cart');
 			this.cartNotifyService.notify(null);
-			return of(null);
-       	}
-	   	else {
-         	let url = '';
-         	if(productInOrder.productSize !== null) {
-           		url = `${this.cartUrl}/${productInOrder.productId}/${productInOrder.productSize}`;
-         	}
-			else {
-          		url = `${this.cartUrl}/${productInOrder.productId}`;
-         	}
-         	return this.httpClient.delete(url).pipe(tap(data => {
-          		this.toastrService.info('Item removed from cart');
-				this.cartNotifyService.notify(null);
-         	}));
-       	}
-     }
+		}
+		else {
+			console.log("Failed to remove item from cart.")
+		}
+	}
 
-     checkout(): Observable<any> {
-      const url = `${this.cartUrl}/checkout`;
-      return this.httpClient.post(url, null).pipe();
+	clearCart() {
+		this.cookieService.delete('cart');
+		this.cartProducts = [];
+		this.cartNotifyService.notify(null);
+	}
+
+    checkout(): Observable<any> {
+      	const url = `${this.cartUrl}/checkout`;
+      	return this.httpClient.post(url, null).pipe();
     }
-
-    checkoutWithoutLoggingIn(orderForm : OrderForm) : Observable<String>{
-      const url = `${this.cartUrl}/guestCheckout`;
-      return this.httpClient.post<String>(url , orderForm).pipe();
-    }
-
-    storeLocalCart() {
-        this.cookieService.set('cart', JSON.stringify(this.localMap));
-    }
-
-    clearLocalStorage() {
-          console.log('clear local cart');
-          this.cookieService.delete('cart');
-          this.localMap = {};
-    }
-
-
 }

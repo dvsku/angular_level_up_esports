@@ -8,9 +8,8 @@ export class Order{
   buyerPhone : string;
   buyerCity : string;
   buyerStreetAndNumber : string;
+  buyerZip : number;
   orderAmount : string;
   orderStatus : string;
-  createTime : string;
-  updateTime : string;
   products : ProductInOrder[];
 }

@@ -12,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./images-form-group.component.sass']
 })
 export class ImagesFormGroupComponent implements OnInit {
-	@Input("images")  
+	@Input("images")
 	images: ProductIcon[]
 
 	@ViewChild("parent", { read: ViewContainerRef })
@@ -29,7 +29,8 @@ export class ImagesFormGroupComponent implements OnInit {
 	ngAfterViewInit(): void {}
 
 	imageCropped(event: ImageCroppedEvent) {
-		this.images.push(new ProductIcon(event.base64, 0));
+    // Stavio null kao id za product icon
+		this.images.push(new ProductIcon(null , event.base64, 0));
 	}
 
 	resizeImage(imageBase64: string) {

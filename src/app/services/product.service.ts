@@ -14,13 +14,20 @@ export class ProductService {
 
   constructor(private httpClient : HttpClient) {}
 
-   getAllInPage(page : number , size : number) : Observable<ProductInfo[]>{
+   getAllUpProductsPage(page : number , size : number) : Observable<ProductInfo[]>{
      const url = `${this.productUrl}?page=${page}&size=${size}`;
       return this.httpClient.get<ProductInfo[]>(url).pipe(
         tap(data => {
         // LOGOVANJE
         })
       );
+   }
+
+   getAllProductsPage(page : number , size : number) : Observable<ProductInfo[]>{
+     const url = `${this.productUrl}/all?page=${page}&size=${size}`;
+     return this.httpClient.get<ProductInfo[]>(url).pipe(tap(data =>{
+       // LOGOVANJE
+     }));
    }
 
    // "new" -> SORT BY NEW PRODUCTS

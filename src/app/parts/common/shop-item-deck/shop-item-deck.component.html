@@ -1,10 +1,3 @@
 <div class="shop-items-container">
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
-    <app-shop-item></app-shop-item>
+    <app-shop-item *ngFor="let product of products" [product]="product"></app-shop-item>
 </div>

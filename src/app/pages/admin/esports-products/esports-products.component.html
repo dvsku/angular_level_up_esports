@@ -2,13 +2,13 @@
     <div class="col-12 d-flex flex-row justify-content-between">
         <h3 class="fw-700">ESPORTS PRODUCTS</h3>
         <div class="form-group">
-            <a class="standard-btn standard-btn-primary" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]">Add</a>
+            <a class="standard-btn standard-btn-primary" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]" skipLocationChange>Add</a>
         </div>
     </div>
 </div>
 <div class="row">
     <div class="col-12">
-        <table class="table ">
+        <table class="table">
             <thead>
                 <tr>
                     <th scope="col">Photo</th>

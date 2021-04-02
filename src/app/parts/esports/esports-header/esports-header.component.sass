@@ -10,9 +10,14 @@
     justify-content: center
 
 .navbar-collapse
-     @include media-breakpoint-down(md)
+    @include media-breakpoint-down(md)
         max-height: 40vh
         overflow-y: scroll
+
+#cartCollapse
+    max-height: 40vh
+    overflow-y: scroll
+    overflow-x: hidden
 
 .wrapper-images
     border-left: 1px solid black
@@ -35,13 +40,13 @@
     flex-direction: row
 
 .header-link
-    color: $fc-black
-    text-decoration: none
+    color: $fc-black !important
+    text-decoration: none !important
     user-select: none
 
 .header-link:hover
     cursor: pointer
-    color: $c-link-hover
+    color: $c-link-hover !important
 
 .navbar-brand
     max-width: 3.125rem
@@ -80,12 +85,10 @@ p.title
 
 .dropdown-menu
     @include media-breakpoint-up(md)
-        min-width: 320px
-    
-#sign-in-dropdown
-    @include media-breakpoint-down(lg)
-        background-color: transparent
-        border: 0
+        min-width: 20rem
 
 .sign-in-invalid
     color: #831818
+
+.quantity-buttons
+    border-radius: 50%

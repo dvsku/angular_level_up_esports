@@ -11,8 +11,8 @@
 				<div class="col-3">
 					<p class="title fw-800 fc-blue d-none d-lg-block">MERCH <span class="fc-black">ORIGINALS</span></p>
 					<ul class="list-unstyled">
-						<li class="text-left"><a class="header-link">TOPS</a></li>
-						<li class="text-left"><a class="header-link">BOTTOMS</a></li>
+						<li class="text-left"><a class="standard-link">TOPS</a></li>
+						<li class="text-left"><a class="standard-link">BOTTOMS</a></li>
 					</ul>
 				</div>
 				<div class="col-9 wrapper-images d-none d-lg-block">
@@ -32,14 +32,14 @@
 				<div class="col-3 col-lg-4 col-xl-3">
 					<p class="title fw-800 fc-blue d-none d-lg-block">TEAMS <span class="fc-black">AND ACHIEVEMENTS</span></p>
 					<ul class="list-unstyled">
-						<li class="text-left"><a class="header-link">CONTENT CREATORS</a></li>
-						<li class="text-left"><a class="header-link">DOTA 2</a></li>
-						<li class="text-left"><a class="header-link">COUNTER-STRIKE: GLOBAL OFFENSIVE</a></li>
-						<li class="text-left"><a class="header-link">LEAGUE OF LEGENDS</a></li>
-						<li class="text-left"><a class="header-link">WARCRAFT III</a></li>
-						<li class="text-left"><a class="header-link">FORTNITE</a></li>
-						<li class="text-left"><a class="header-link">HEROES OF THE STORM</a></li>
-						<li class="text-left"><a class="header-link">HEARTHSTONE</a></li>
+						<li class="text-left"><a class="standard-link">CONTENT CREATORS</a></li>
+						<li class="text-left"><a class="standard-link">DOTA 2</a></li>
+						<li class="text-left"><a class="standard-link">COUNTER-STRIKE: GLOBAL OFFENSIVE</a></li>
+						<li class="text-left"><a class="standard-link">LEAGUE OF LEGENDS</a></li>
+						<li class="text-left"><a class="standard-link">WARCRAFT III</a></li>
+						<li class="text-left"><a class="standard-link">FORTNITE</a></li>
+						<li class="text-left"><a class="standard-link">HEROES OF THE STORM</a></li>
+						<li class="text-left"><a class="standard-link">HEARTHSTONE</a></li>
 					</ul>
 				</div>
 				<div class="col-9 col-lg-8 col-xl-8 wrapper-images d-none d-lg-block">
@@ -68,8 +68,8 @@
       </div>
       <div class="navbar-nav ml-auto">
         <a class="nav-link" (click)="toggleCart()"><fa-icon [icon]="faCart" class="d-inline-block"></fa-icon> CART <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon></a>
-        <div [ngbCollapse]="isCartCollapsed" class="navbar-collapse-details">
-            <div class="row py-0 px-3 py-lg-4 px-lg-5">
+        <div id="cartCollapse" [ngbCollapse]="isCartCollapsed" class="navbar-collapse-details">
+            <div class="row py-0 px-3 pt-lg-4 pb-lg-1 px-lg-5">
 				<div class="col-12">
 					<table class="table">
 						<thead>
@@ -79,17 +79,17 @@
 							<th class="text-center" style="min-width: 115px;" scope="col">Quantity</th>
 							<th class="text-center" scope="col">Price</th>
 							<th class="text-center" scope="col">Subtotal</th>
-							<th class="text-right" scope="col">Action(s)</th>
+							<th class="text-center" scope="col">Action(s)</th>
 						</thead>
 						<tbody>
 							<tr *ngFor="let product of cart">
 								<td class="align-middle text-center" style="width: 75px;" scope="row">
-									<a routerLink="/product/{{product.productId}}">
+									<a routerLink="/esports/shop/product/{{product?.productId}}">
 										<img class="img-thumbnail product-thumbnail" src="{{product.productIcon}}" alt="{{product.productName}}">
 									</a>
 								</td>
 								<td class="align-middle product-name">
-									<a routerLink="/product/{{product.productId}}">
+									<a class="standard-link" routerLink="/esports/shop/product/{{product?.productId}}">
 										<span>{{product.productName}}</span>
 									</a>
 								</td>
@@ -97,11 +97,11 @@
 								  {{product.productSize}}
 								</td>
 								<td class="align-middle text-center">
-									<button type="button" class="standard-btn standard-btn-primary" (click)="decreaseCount(product)">-</button>
+									<button type="button" class="standard-btn standard-btn-primary quantity-buttons" (click)="decreaseCount(product)">-</button>
 									<!-- <div [ngClass]="{'btn-quantity ': validateDecreaseButton(productInOrder), 'btn-quantity-disabled ': !validateDecreaseButton(productInOrder)}" 
 										class="btn-standard" (click)="decreaseCount(productInOrder)">-</div> -->
 									<span class="mx-2">{{product.count}}</span>
-									<button type="button" class="standard-btn standard-btn-primary" (click)="increaseCount(product)">+</button>
+									<button type="button" class="standard-btn standard-btn-primary quantity-buttons" (click)="increaseCount(product)">+</button>
 									<!-- <div [ngClass]="{'btn-quantity ': validateIncreaseButton(productInOrder), 'btn-quantity-disabled ': !validateIncreaseButton(productInOrder)}" 
 										class="btn-standard" (click)="increaseCount(productInOrder)">+</div> -->
 								</td>
@@ -111,17 +111,17 @@
 								<td class="align-middle text-center">
 									{{product.productPrice * product.count}} RSD
 								</td>
-								<td class="align-middle text-right">
-									<a class="mr-2" (click)="removeFromCart(product)" routerLink="./">Remove</a>
+								<td class="align-middle text-center">
+									<a class="standard-btn standard-btn-primary" (click)="removeFromCart(product)">Remove</a>
 								</td>
 							</tr>
 						</tbody>
 					</table>
 				</div>
 			</div>
-			<div class="row">
+			<div class="row px-3 px-lg-5 pb-lg-3">
 				<div class="col-12 d-flex flex-row-reverse pb-2">
-					<a class="standard-btn standard-btn-primary mr-4">Checkout</a>
+					<a class="standard-btn standard-btn-primary">Checkout</a>
 				</div>
 			</div>
         </div>
@@ -155,9 +155,9 @@
 			<div ngbDropdown class="d-inline-block">
 				<a class="nav-link" id="self-dropdown" ngbDropdownToggle>{{currentUser.name.toUpperCase()}} <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon></a>
 				<div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="self-dropdown">
-				  <a ngbDropdownItem class="dropdown-item" routerLink="/dashboard">Dashboard</a>
-				  <div class="dropdown-divider"></div>
-				  <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">Sign Out</a>
+				  <a ngbDropdownItem class="dropdown-item" routerLink="/dashboard">DASHBOARD</a>
+				  <div class="dropdown-divider d-none d-lg-block"></div>
+				  <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">SIGN OUT</a>
 				</div>
 			  </div>  
 		</ng-template>

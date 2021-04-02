@@ -174,10 +174,26 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .dropdown-menu
-    border-radius: 0
+    border-radius: 0 !important
+    @include media-breakpoint-down(md)
+        border: 0 !important
+        background-color: transparent !important
 
 .dropdown-toggle::after 
     display: none !important
+
+.dropdown-item
+    @include media-breakpoint-down(md)
+        border: 0 !important
+        background-color: transparent !important
+
+.dropdown-item:hover, .dropdown-item:focus
+    background-color: #11ABE2 !important
+    color: $fc-white !important
+    @include media-breakpoint-down(md)
+        background-color: transparent !important
+        color: $c-link-hover !important
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CAROUSEL OVERRIDE
@@ -252,26 +268,48 @@ body
     cursor: pointer
     user-select: none
 
+.standard-link
+    color: $c-link !important
+    font-weight: 400
+    font-size: $fs-normal !important
+    text-decoration: none !important
+
+.standard-link:hover
+    color: $c-link-hover !important
+    cursor: pointer
+    user-select: none
+
+.standard-link-reverse
+    color: $fc-white !important
+    font-weight: 400
+    font-size: $fs-normal !important
+    text-decoration: none !important
+
+.standard-link-reverse:hover
+    color: $c-link-hover !important
+    cursor: pointer
+    user-select: none
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // TABLE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .table thead th
-  border-bottom: 1px solid #BBB2B5
+  border-bottom: 1px solid #BBB2B5 !important
 
 .table th
-  border-top: 1px solid #BBB2B5
+  border-top: 1px solid #BBB2B5 !important
 
 tbody tr:nth-of-type(odd)
-  background-color: darken(#FFF, 5)
-  border-top: 1px solid #BBB2B5
+  background-color: darken(#FFF, 5) !important
+  border-top: 1px solid #BBB2B5 !important
 
 tbody tr:nth-of-type(even)
-  background-color: darken(#FFF, 10)
-  border-top: 1px solid #BBB2B5
+  background-color: darken(#FFF, 10) !important
+  border-top: 1px solid #BBB2B5 !important
 
 tbody tr:last-child
-  border-bottom: 1px solid #BBB2B5
+  border-bottom: 1px solid #BBB2B5 !important
 
 .table td
-  border: 0px
+  border: 0px !important

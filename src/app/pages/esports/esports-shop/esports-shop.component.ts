@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductInfo } from 'src/app/models/ProductInfo';
+import { ProductStorageService } from 'src/app/services/product-storage.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -13,17 +14,11 @@ export class EsportsShopComponent implements OnInit {
 
   products: ProductInfo[];
 
-  constructor(private productService: ProductService) { }
+  constructor(private productStorage: ProductStorageService) { }
 
-  ngOnInit(): void {
-    this.getProducts()
-  }
-
-  getProducts() {
-    this.productService.getAllSortedProducts("new").subscribe(prods => {
-      this.products = prods;
-      console.log(this.products)
-    })
-  }
-
+	ngOnInit(): void {
+		this.productStorage.getProducts().subscribe(prods => {
+			this.products = prods;
+		})
+	}
 }

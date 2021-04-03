@@ -4,6 +4,7 @@ import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { ProductStorageService } from 'src/app/services-cache/product-storage.service';
 
 @Component({
   selector: 'app-esports-products',
@@ -11,13 +12,13 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./esports-products.component.sass']
 })
 export class EsportsProductsComponent implements OnInit {
-	allProducts: ProductInfo[];
+	products: ProductInfo[];
 	displayedProducts: ProductInfo[];
 	selectedProduct: ProductInfo;
 	ProductStatus = ProductStatus;
 	faArrowDown = faAngleDown
 
-	constructor(private productService: ProductService, private modalService: NgbModal, config: NgbModalConfig) { 
+	constructor(private productService: ProductService, private productStorage: ProductStorageService, private modalService: NgbModal, config: NgbModalConfig) { 
 		config.backdrop = 'static';
 		config.keyboard = false;
 	}
@@ -37,22 +38,22 @@ export class EsportsProductsComponent implements OnInit {
 	}
 
 	getProducts() {
-		this.productService.getAllSortedProducts("new").subscribe(data => {
-			this.allProducts = data
-			this.displayedProducts = this.allProducts;
-			//console.log(this.displayedProducts)
+		this.productStorage.getProducts().subscribe(prods => {
+			this.products = prods;
+			this.displayedProducts = this.products.filter(x => x.productStatus === ProductStatus.Available);
 		})
 	}
 
 	deleteProduct(product : ProductInfo) {
-		const index = this.allProducts.indexOf(product);
+		const index = this.products.indexOf(product);
 		if(index != -1) {
 			this.productService.deleteProduct(product).subscribe(data => {
-				this.allProducts.splice(index, 1);	
+				/* this.allProducts.splice(index, 1);	
 				const displayIndex = this.displayedProducts.indexOf(product);
 				if(displayIndex != -1) {
 					this.displayedProducts.splice(displayIndex, 1);
-				}
+				} */
+				this.productStorage.removeProduct(product)
 				//this.getPageProducts(this.pageNum, this.sizeNum)
 				//this.toastrService.success('Successfully deleted product from the list');
 			},

@@ -8,6 +8,10 @@ import { JwtResponse } from 'src/app/response/JwtResponse';
 import { CartNotifyService } from 'src/app/services/cart-notify.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
+import { ProductCategory } from 'src/app/models/ProductCategory';
+import { ProductCategoryService } from 'src/app/services/product-category.service';
+import { ProductInfo } from 'src/app/models/ProductInfo';
+import { ProductStorageService } from 'src/app/services-cache/product-storage.service';
 
 @Component({
   selector: 'app-esports-header',
@@ -28,6 +32,9 @@ export class EsportsHeaderComponent implements OnInit {
 	currentUser: JwtResponse;
 
 	cart: ProductInOrder[];
+	categories: ProductCategory[];
+	featuredProducts: ProductInfo[];
+
 
 	model: any = {
 		username: '',
@@ -36,7 +43,7 @@ export class EsportsHeaderComponent implements OnInit {
 	}
 	isInvalid: boolean = false;
 
-	constructor(private userService: UserService, private cartService: CartService, 
+	constructor(private userService: UserService, private cartService: CartService, private productCategoryService: ProductCategoryService, private productStorageService: ProductStorageService,
 		private cartNotifyService: CartNotifyService) {
 
 	}
@@ -45,6 +52,13 @@ export class EsportsHeaderComponent implements OnInit {
 		this.currentUserSubscription = this.userService.currentUser.subscribe(user => {
 			this.currentUser = user;
 		});
+		this.productCategoryService.getProductCategories().subscribe(cats => {
+			this.categories = cats;
+		})
+		this.productStorageService.getProducts().subscribe(prods => {
+			this.featuredProducts = prods.sort((a, b) => a.sold - b.sold).slice(0, 3);
+			console.log(this.featuredProducts)
+		})
 		this.getCart();
 		this.cartNotifyService.obs.subscribe(() => this.getCart());
 	}

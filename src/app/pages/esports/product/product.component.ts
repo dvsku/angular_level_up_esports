@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductInOrder } from 'src/app/models/ProductInOrder';
 import { CartService } from 'src/app/services/cart.service';
-import { ProductStorageService } from 'src/app/services/product-storage.service';
+import { ProductStorageService } from 'src/app/services-cache/product-storage.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({

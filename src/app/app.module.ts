@@ -32,7 +32,8 @@ import { ImageInputComponent } from './parts/common/image-input/image-input.comp
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
 import { CartNotifyService } from './services/cart-notify.service';
-import { ProductStorageService } from './services/product-storage.service';
+import { ProductStorageService } from './services-cache/product-storage.service';
+import { SwappableImageComponent } from './parts/common/swappable-image/swappable-image.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ProductStorageService } from './services/product-storage.service';
     ImagesFormGroupComponent,
     ImageInputComponent,
     EsportsProductsComponent,
+    SwappableImageComponent,
   ],
   imports: [
     BrowserModule,

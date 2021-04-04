@@ -28,17 +28,17 @@ export class ProductCategoryService {
     }));
   }
 
-  addNewProductCategory(productCategory : ProductCategory) : Observable<ProductCategory>{
+  addNewProductCategory(productCategory : ProductCategory) : Observable<boolean>{
     const url = `${this.categoryAdminUrl}/new`;
-    return this.httpClient.post<ProductCategory>(url , productCategory).pipe(tap(data =>{
-      // LOGOVANJE
+    return this.httpClient.post<boolean>(url , productCategory).pipe(tap(data =>{
+      console.log("Added new product category -> " + data);
     }));
   }
 
-  editExistingProductCategory(id : number , productCategory : ProductCategory) : Observable<ProductCategory>{
+  editExistingProductCategory(id : number , productCategory : ProductCategory) : Observable<boolean>{
     const url = `${this.categoryAdminUrl}/${id}/edit`;
-    return this.httpClient.put<ProductCategory>(url , productCategory).pipe(tap(data =>{
-      // LOGOVANJE
+    return this.httpClient.put<boolean>(url , productCategory).pipe(tap(data =>{
+      console.log("Edited existing product category -> " + data);
     }));
   }
 

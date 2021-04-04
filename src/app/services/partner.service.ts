@@ -28,17 +28,17 @@ export class PartnerService {
     }));
   }
 
-  public addNewPartner(partner : Partner) : Observable<Partner>{
+  public addNewPartner(partner : Partner) : Observable<boolean>{
     const url = `${this.adminPartnerUrl}/new`;
-    return this.httpClient.post<Partner>(url , partner).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.post<boolean>(url , partner).pipe(tap(data => {
+      console.log("Added new partner -> " + data);
     }));
   }
 
-  public editExistingPartner(id : number , partner : Partner) : Observable<Partner> {
+  public editExistingPartner(id : number , partner : Partner) : Observable<boolean> {
     const url = `${this.adminPartnerUrl}/${id}/edit`;
-    return this.httpClient.put<Partner>(url , partner).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.put<boolean>(url , partner).pipe(tap(data => {
+      console.log("Edited existing partner -> " + data);
     }));
   }
 

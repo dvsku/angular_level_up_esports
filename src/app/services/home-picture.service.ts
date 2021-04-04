@@ -28,17 +28,17 @@ export class HomePictureService {
     }));
   }
 
-  public addNewHomePicture(homePicture : HomeRotatingPicture) : Observable<HomeRotatingPicture>{
+  public addNewHomePicture(homePicture : HomeRotatingPicture) : Observable<boolean>{
     const url = `${this.homePictureAdminUrl}/new`;
-    return this.httpClient.post<HomeRotatingPicture>(url , homePicture).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.post<boolean>(url , homePicture).pipe(tap(data => {
+      console.log("Added new home picture -> " + data);
     }));
   }
 
-  public editExistingHomePicture(id : number , homePicture : HomeRotatingPicture) : Observable<HomeRotatingPicture>{
+  public editExistingHomePicture(id : number , homePicture : HomeRotatingPicture) : Observable<boolean>{
     const url = `${this.homePictureAdminUrl}/${id}/edit`;
-    return this.httpClient.put<HomeRotatingPicture>(url , homePicture).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.put<boolean>(url , homePicture).pipe(tap(data => {
+      console.log("Edited existing home picture -> " + data);
     }));
   }
 

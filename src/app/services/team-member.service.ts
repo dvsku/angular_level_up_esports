@@ -28,17 +28,17 @@ export class TeamMemberService {
     }));
   }
 
-  public addNewTeamMemberInCategory(categoryNumber : number , teamMember : TeamMember) : Observable<TeamMember>{
+  public addNewTeamMemberInCategory(categoryNumber : number , teamMember : TeamMember) : Observable<boolean>{
     const url = `${this.teamMemberAdminUrl}/new/category/${categoryNumber}`;
-    return this.httpClient.post<TeamMember>(url , teamMember).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.post<boolean>(url , teamMember).pipe(tap(data => {
+      console.log("Added new team member -> " + data);
     }));
   }
 
-  public editExistingTeamMember(id : number , teamMember : TeamMember) : Observable<TeamMember>{
+  public editExistingTeamMember(id : number , teamMember : TeamMember) : Observable<boolean>{
     const url = `${this.teamMemberAdminUrl}/${id}/edit`;
-    return this.httpClient.put<TeamMember>(url , teamMember).pipe(tap(data => {
-      // LOGOVANJE
+    return this.httpClient.put<boolean>(url , teamMember).pipe(tap(data => {
+      console.log("Edited existing team member -> " + data);
     }));
   }
 

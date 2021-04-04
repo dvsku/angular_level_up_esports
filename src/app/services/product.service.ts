@@ -69,19 +69,19 @@ export class ProductService {
       );
    }
 
-   createProduct(productInfo : ProductInfo) : Observable<ProductInfo>{
+   createProduct(productInfo : ProductInfo) : Observable<boolean>{
      const url = `${this.productAdminUrl}/new`;
-     return this.httpClient.post<ProductInfo>(url , productInfo)
+     return this.httpClient.post<boolean>(url , productInfo)
      .pipe(tap(data => {
-        // LOGOVANJE
+        console.log("Added new product info -> " + data);
      }));
    }
 
-   updateProduct(productInfo : ProductInfo) : Observable<ProductInfo> {
+   updateProduct(productInfo : ProductInfo) : Observable<boolean> {
      const url = `${this.productAdminUrl}/${productInfo.productId}/edit`;
-     return this.httpClient.put<ProductInfo>(url , productInfo)
+     return this.httpClient.put<boolean>(url , productInfo)
      .pipe(tap(data => {
-        // LOGOVANJE
+      console.log("Edited existing product info -> " + data);
      }));
    }
 

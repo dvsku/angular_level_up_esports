@@ -1,3 +1,4 @@
-export enum ProductStatus{
-  "Available" , "Unavailable"
+export enum ProductStatus {
+    'Available',
+    'Unavailable'
 }

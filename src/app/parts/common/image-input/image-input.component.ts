@@ -1,35 +1,27 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ImagesFormGroupComponent } from '../images-form-group/images-form-group.component';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ProductIcon } from 'src/app/models/ProductIcon';
 
 @Component({
-  selector: 'app-image-input',
-  templateUrl: './image-input.component.html',
-  styleUrls: ['./image-input.component.sass']
+    selector: 'app-image-input',
+    templateUrl: './image-input.component.html',
+    styleUrls: ['./image-input.component.sass']
 })
-export class ImageInputComponent implements OnInit {
-  _parent: ImagesFormGroupComponent;
+export class ImageInputComponent {
+    _parent: ImagesFormGroupComponent;
 
-  @ViewChild("fileInput")
-  fileInput: ElementRef;
+    @ViewChild('fileInput')
+    fileInput: ElementRef;
 
-  constructor() {}
+    openFileSelectDialog(): void {
+        this.fileInput.nativeElement.click();
+    }
 
-  ngOnInit(): void {}
-
-  openFileSelectDialog() {
-    this.fileInput.nativeElement.click();
-  }
-
-  fileSelected(event){
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-        this._parent.resizeImage(reader.result.toString());
-    };
-  }
-
-  public ngAfterViewInit(): void {}
+    fileSelected(event): void {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            this._parent.resizeImage(reader.result.toString());
+        };
+    }
 }

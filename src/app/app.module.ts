@@ -23,7 +23,6 @@ import { EsportsFooterComponent } from './parts/esports/esports-footer/esports-f
 import { ShopItemComponent } from './parts/common/shop-item/shop-item.component';
 import { ShopItemDeckComponent } from './parts/common/shop-item-deck/shop-item-deck.component';
 import { SignUpComponent } from './pages/esports/sign-up/sign-up.component';
-import { SignInComponent } from './pages/esports/sign-in/sign-in.component';
 import { ProductComponent } from './pages/esports/product/product.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AddEsportsProductComponent } from './pages/admin/add-esports-product/add-esports-product.component';
@@ -32,47 +31,51 @@ import { ImageInputComponent } from './parts/common/image-input/image-input.comp
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
 import { CartNotifyService } from './services/cart-notify.service';
-import { ProductStorageService } from './services-cache/product-storage.service';
 import { SwappableImageComponent } from './parts/common/swappable-image/swappable-image.component';
+import { ProductService } from './services/product.service';
+import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    EsportsHomeComponent,
-    EsportsShopComponent,
-    BarcraftHomeComponent,
-    BarcraftShopComponent,
-    EsportsHeaderComponent,
-    EsportsFooterComponent,
-    ShopItemComponent,
-    ShopItemDeckComponent,
-    SignUpComponent,
-    SignInComponent,
-    ProductComponent,
-    AdminDashboardComponent,
-    AddEsportsProductComponent,
-    ImagesFormGroupComponent,
-    ImageInputComponent,
-    EsportsProductsComponent,
-    SwappableImageComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    HttpClientModule,
-    ToastrModule.forRoot(),
-    NgbModule,
-    DragDropModule,
-    FontAwesomeModule,
-    ImageCropperModule
-  ],
-  providers: [CookieService, CartNotifyService, ProductStorageService,
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true},
-    { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true}
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        EsportsHomeComponent,
+        EsportsShopComponent,
+        BarcraftHomeComponent,
+        BarcraftShopComponent,
+        EsportsHeaderComponent,
+        EsportsFooterComponent,
+        ShopItemComponent,
+        ShopItemDeckComponent,
+        SignUpComponent,
+        ProductComponent,
+        AdminDashboardComponent,
+        AddEsportsProductComponent,
+        ImagesFormGroupComponent,
+        ImageInputComponent,
+        EsportsProductsComponent,
+        SwappableImageComponent,
+        EditEsportsProductComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        NgbModule,
+        DragDropModule,
+        FontAwesomeModule,
+        ImageCropperModule
+    ],
+    providers: [
+        CookieService,
+        CartNotifyService,
+        ProductService,
+        { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
+        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
+    ],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

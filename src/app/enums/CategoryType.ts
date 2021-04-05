@@ -1,3 +1,7 @@
-export enum CategoryType{
-  "ODECA","OSTALO", "PICA" , "NARGILE" , "DRUSTVENE IGRE"
- }
+export enum CategoryType {
+    'ODECA',
+    'OSTALO',
+    'PICA',
+    'NARGILE',
+    'DRUSTVENE IGRE'
+}

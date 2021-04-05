@@ -1,3 +1,5 @@
 export enum OrderStatus {
-  "New" , "Finished" , "Canceled"
+    'New',
+    'Finished',
+    'Canceled'
 }

@@ -1,6 +1,6 @@
-import { ProductInfo } from "./ProductInfo";
+import { ProductInfo } from './ProductInfo';
 
-export class Item{
-  quantity : number;
-  productInfo : ProductInfo;
+export class Item {
+    quantity: number;
+    productInfo: ProductInfo;
 }

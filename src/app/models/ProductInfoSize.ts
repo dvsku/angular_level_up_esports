@@ -1,11 +1,10 @@
-import { ProductSize } from "../enums/ProductSize";
+export class ProductInfoSize {
+    id?: number;
+    productSize?: string;
+    sizeOrder?: number;
 
-export class ProductInfoSize{
-  id? : number;
-  productSize ?: ProductSize;
-  sizeOrder ?: number;
-
-  constructor(id?: number , productSize ?: ProductSize){
-    productSize = productSize;
-  }
+    constructor(id?: number, productSize?: string) {
+        this.id = id;
+        this.productSize = productSize;
+    }
 }

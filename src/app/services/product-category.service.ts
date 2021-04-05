@@ -71,9 +71,9 @@ export class ProductCategoryService {
         );
     }
 
-    addNewProductCategory(productCategory: ProductCategory): Observable<ProductCategory> {
+    addNewProductCategory(productCategory: ProductCategory): Observable<boolean> {
         const url = `${this.categoryAdminUrl}/new`;
-        return this.httpClient.post<ProductCategory>(url, productCategory).pipe(
+        return this.httpClient.post<boolean>(url, productCategory).pipe(
             tap(() => {
                 // LOGOVANJE
             })
@@ -83,9 +83,9 @@ export class ProductCategoryService {
     editExistingProductCategory(
         id: number,
         productCategory: ProductCategory
-    ): Observable<ProductCategory> {
+    ): Observable<boolean> {
         const url = `${this.categoryAdminUrl}/${id}/edit`;
-        return this.httpClient.put<ProductCategory>(url, productCategory).pipe(
+        return this.httpClient.put<boolean>(url, productCategory).pipe(
             tap(() => {
                 // LOGOVANJE
             })

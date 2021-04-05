@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ProductCatalog } from '../models/ProductCatalog';
 
 @Injectable({
@@ -29,19 +30,25 @@ export class ProductCatalogService {
         return this.httpClient.get<ProductCatalog[]>(url);
     }
 
-    public addNewProductCatalog(
-        productCatalog: ProductCatalog
-    ): Observable<ProductCatalog> {
+    public addNewProductCatalog(productCatalog: ProductCatalog): Observable<boolean> {
         const url = `${this.adminUrl}/new`;
-        return this.httpClient.post<ProductCatalog>(url, productCatalog);
+        return this.httpClient.post<boolean>(url, productCatalog).pipe(
+            tap((data) => {
+                console.log('Added new product catalog -> ' + data);
+            })
+        );
     }
 
     public editExistingProductCatalog(
         id: number,
         productCatalog: ProductCatalog
-    ): Observable<ProductCatalog> {
+    ): Observable<boolean> {
         const url = `${this.adminUrl}/${id}/edit`;
-        return this.httpClient.put<ProductCatalog>(url, productCatalog);
+        return this.httpClient.put<boolean>(url, productCatalog).pipe(
+            tap((data) => {
+                console.log('Edited existing product catalog -> ' + data);
+            })
+        );
     }
 
     public deleteExistingProductCatalog(id: number): Observable<any> {

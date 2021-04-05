@@ -34,11 +34,11 @@ export default class TeamMemberService {
     public addNewTeamMemberInCategory(
         categoryNumber: number,
         teamMember: TeamMember
-    ): Observable<TeamMember> {
+    ): Observable<boolean> {
         const url = `${this.teamMemberAdminUrl}/new/category/${categoryNumber}`;
-        return this.httpClient.post<TeamMember>(url, teamMember).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.post<boolean>(url, teamMember).pipe(
+            tap((data) => {
+                console.log('Added new team member -> ' + data);
             })
         );
     }
@@ -46,11 +46,11 @@ export default class TeamMemberService {
     public editExistingTeamMember(
         id: number,
         teamMember: TeamMember
-    ): Observable<TeamMember> {
+    ): Observable<boolean> {
         const url = `${this.teamMemberAdminUrl}/${id}/edit`;
-        return this.httpClient.put<TeamMember>(url, teamMember).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.put<boolean>(url, teamMember).pipe(
+            tap((data) => {
+                console.log('Edited existing team member -> ' + data);
             })
         );
     }

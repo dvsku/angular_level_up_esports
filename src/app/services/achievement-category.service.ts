@@ -33,11 +33,11 @@ export class AchievementCategoryService {
 
     public addNewAchievementCategory(
         achievementCategory: AchievementCategory
-    ): Observable<AchievementCategory> {
+    ): Observable<boolean> {
         const url = `${this.achievementCategoryAdminUrl}/new`;
-        return this.httpClient.post<AchievementCategory>(url, achievementCategory).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.post<boolean>(url, achievementCategory).pipe(
+            tap((data) => {
+                console.log('Added new achievement category -> ' + data);
             })
         );
     }
@@ -45,11 +45,11 @@ export class AchievementCategoryService {
     public editExistingAchievementCategory(
         id: number,
         achievementCategory: AchievementCategory
-    ): Observable<AchievementCategory> {
+    ): Observable<boolean> {
         const url = `${this.achievementCategoryAdminUrl}/${id}/edit`;
-        return this.httpClient.put<AchievementCategory>(url, achievementCategory).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.put<boolean>(url, achievementCategory).pipe(
+            tap((data) => {
+                console.log('Edited exsting achievement category -> ' + data);
             })
         );
     }

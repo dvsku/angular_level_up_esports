@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { tap } from 'rxjs/operators';
 import { ContentCreator } from '../models/ContentCreator';
 
 @Injectable({
@@ -22,19 +23,25 @@ export class ContentCreatorService {
         return this.httpClient.get<ContentCreator>(url);
     }
 
-    public addNewContentCreator(
-        contentCreator: ContentCreator
-    ): Observable<ContentCreator> {
+    public addNewContentCreator(contentCreator: ContentCreator): Observable<boolean> {
         const url = `${this.adminUrl}/new`;
-        return this.httpClient.post<ContentCreator>(url, contentCreator);
+        return this.httpClient.post<boolean>(url, contentCreator).pipe(
+            tap((data) => {
+                console.log('Added new content creator -> ' + data);
+            })
+        );
     }
 
     public editExistingContentCreator(
         id: number,
         contentCreator: ContentCreator
-    ): Observable<ContentCreator> {
+    ): Observable<boolean> {
         const url = `${this.adminUrl}/${id}/edit`;
-        return this.httpClient.put<ContentCreator>(url, contentCreator);
+        return this.httpClient.put<boolean>(url, contentCreator).pipe(
+            tap((data) => {
+                console.log('Edited existing content creator -> ' + data);
+            })
+        );
     }
 
     public deleteExistingContentCreator(id: number): Observable<any> {

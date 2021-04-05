@@ -33,29 +33,25 @@ export class ProductCatalogCategoryService {
 
     addNewProductCatalogCategory(
         productCatalogCategory: ProductCatalogCategory
-    ): Observable<ProductCatalogCategory> {
+    ): Observable<boolean> {
         const url = `${this.catalogCategoryAdminurl}/new`;
-        return this.httpClient
-            .post<ProductCatalogCategory>(url, productCatalogCategory)
-            .pipe(
-                tap(() => {
-                    // LOGOVANJE
-                })
-            );
+        return this.httpClient.post<boolean>(url, productCatalogCategory).pipe(
+            tap((data) => {
+                console.log('Added new product catalog category -> ' + data);
+            })
+        );
     }
 
     editExistingProductCatalogCategory(
         id: number,
         productCatalogCategory: ProductCatalogCategory
-    ): Observable<ProductCatalogCategory> {
+    ): Observable<boolean> {
         const url = `${this.catalogCategoryAdminurl}/${id}/edit`;
-        return this.httpClient
-            .put<ProductCatalogCategory>(url, productCatalogCategory)
-            .pipe(
-                tap(() => {
-                    // LOGOVANJE
-                })
-            );
+        return this.httpClient.put<boolean>(url, productCatalogCategory).pipe(
+            tap((data) => {
+                console.log('Edited existing product catalog category -> ' + data);
+            })
+        );
     }
 
     deleteExistingProductCatalogCategory(id: number): Observable<any> {

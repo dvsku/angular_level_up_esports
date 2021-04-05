@@ -123,9 +123,9 @@ export class ProductService {
         return success.asObservable();
     }
 
-    private createDatabaseProduct(productInfo: ProductInfo): Observable<ProductInfo> {
+    private createDatabaseProduct(productInfo: ProductInfo): Observable<boolean> {
         const url = `${this.productAdminUrl}/new`;
-        return this.httpClient.post<ProductInfo>(url, productInfo).pipe(
+        return this.httpClient.post<boolean>(url, productInfo).pipe(
             tap(() => {
                 // LOGOVANJE
             })
@@ -161,9 +161,9 @@ export class ProductService {
         return success.asObservable();
     }
 
-    private updateDatabaseProduct(productInfo: ProductInfo): Observable<ProductInfo> {
+    private updateDatabaseProduct(productInfo: ProductInfo): Observable<boolean> {
         const url = `${this.productAdminUrl}/${productInfo.productId}/edit`;
-        return this.httpClient.put<ProductInfo>(url, productInfo).pipe(
+        return this.httpClient.put<boolean>(url, productInfo).pipe(
             tap(() => {
                 // LOGOVANJE
             })

@@ -36,11 +36,11 @@ export class AchievementService {
     public addNewAchievementInCategory(
         categoryNumber: number,
         achievement: Achievement
-    ): Observable<Achievement> {
+    ): Observable<boolean> {
         const url = `${this.achievementAdminUrl}/new/category/${categoryNumber}`;
-        return this.httpClient.post<Achievement>(url, achievement).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.post<boolean>(url, achievement).pipe(
+            tap((data) => {
+                console.log('Added new achievement in category -> ' + data);
             })
         );
     }
@@ -48,11 +48,11 @@ export class AchievementService {
     public editExistingAchievement(
         id: number,
         achievement: Achievement
-    ): Observable<Achievement> {
+    ): Observable<boolean> {
         const url = `${this.achievementAdminUrl}/${id}/edit`;
-        return this.httpClient.put<Achievement>(url, achievement).pipe(
-            tap(() => {
-                // LOGOVANJE
+        return this.httpClient.put<boolean>(url, achievement).pipe(
+            tap((data) => {
+                console.log('Edited existing achievement in category -> ' + data);
             })
         );
     }

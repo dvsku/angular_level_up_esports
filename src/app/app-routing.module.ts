@@ -8,6 +8,8 @@ import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-das
 import { AddEsportsProductComponent } from './pages/admin/add-esports-product/add-esports-product.component';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
+import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
+import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 
 const routes: Routes = [
     {
@@ -28,13 +30,21 @@ const routes: Routes = [
                 path: 'esports/edit-product/:id',
                 component: EditEsportsProductComponent,
                 outlet: 'adminOutlet'
+            },
+            {
+                path: 'esports/home-rotating-pictures',
+                component: EsportsHomeRotatingPicturesComponent,
+                outlet: 'adminOutlet'
             }
         ]
     },
     { path: 'auth/signup', component: SignUpComponent },
     { path: 'esports', component: EsportsHomeComponent },
     { path: 'esports/shop', component: EsportsShopComponent },
-    { path: 'esports/shop/product/:id', component: ProductComponent }
+    { path: 'esports/shop/product/:id', component: ProductComponent },
+    { path: 'partners', component: UnderConstructionComponent },
+    { path: 'gaming-area', component: UnderConstructionComponent },
+    { path: 'bootcamp', component: UnderConstructionComponent }
 ];
 
 @NgModule({

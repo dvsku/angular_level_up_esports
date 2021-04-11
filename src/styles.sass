@@ -5,8 +5,8 @@
 // CORE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-html 
-  height: 100%
+html
+    height: 100%
 
 body
     background: no-repeat url('/assets/bg-body.jpg') 100% / 100%
@@ -18,10 +18,10 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .ng-valid[required], .ng-valid.required
-  border: 1px solid #3a943f
+    border: 1px solid #3a943f
 
 .ng-touched.ng-invalid:not(form)
-  border: 1px solid #831818
+    border: 1px solid #831818
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LAYOUT
@@ -79,7 +79,7 @@ body
 .mt-between-sections-2
     margin-top: 10.9375rem
 
-.fw-400 
+.fw-400
     font-weight: 400
 
 .fw-500
@@ -106,15 +106,33 @@ body
 .lh-1
     line-height: 1rem
 
+.p-top-left
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+
 .h-min-100
     min-height: 100% !important
 
 .bg-white
     background-color: #FFF
 
+.carousel-inner
+    height: 100% !important
+    display: flex
+
+.carousel-item, .carousel-item.active
+    margin-top: auto
+    margin-bottom: auto
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BUTTONS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.btn-w-1
+    width: 6.25rem
 
 .lvl-btn
     display: inline-block
@@ -188,7 +206,7 @@ body
         border: 0 !important
         background-color: transparent !important
 
-.dropdown-toggle::after 
+.dropdown-toggle::after
     display: none !important
 
 .dropdown-item
@@ -203,18 +221,17 @@ body
         background-color: transparent !important
         color: $c-link-hover !important
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CAROUSEL OVERRIDE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.carousel, .carousel:hover, .carousel:focus 
+.carousel, .carousel:hover, .carousel:focus
     outline: 0
 
 .carousel-indicators
     margin-bottom: -2.5rem
 
-.carousel-indicators li 
+.carousel-indicators li
     width: 20px!important
     height: 20px !important
     border-radius: 50% !important
@@ -304,30 +321,30 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .table thead th
-  border-bottom: 1px solid #BBB2B5 !important
+    border-bottom: 1px solid #BBB2B5 !important
 
 .table th
-  border-top: 1px solid #BBB2B5 !important
+    border-top: 1px solid #BBB2B5 !important
 
 tbody tr:nth-of-type(odd)
-  background-color: darken(#FFF, 5) !important
-  border-top: 1px solid #BBB2B5 !important
+    background-color: darken(#FFF, 5) !important
+    border-top: 1px solid #BBB2B5 !important
 
 tbody tr:nth-of-type(even)
-  background-color: darken(#FFF, 10) !important
-  border-top: 1px solid #BBB2B5 !important
+    background-color: darken(#FFF, 10) !important
+    border-top: 1px solid #BBB2B5 !important
 
 tbody tr:last-child
-  border-bottom: 1px solid #BBB2B5 !important
+    border-bottom: 1px solid #BBB2B5 !important
 
 .table td
-  border: 0px !important
+    border: 0px !important
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DRAG DROP
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.drop-list 
+.drop-list
     max-width: 100%
     display: block
     background: #FFF
@@ -336,7 +353,7 @@ tbody tr:last-child
 .drop-list:empty
     min-height: 0px
 
-.drop-list-item 
+.drop-list-item
     padding: 10px 0px 10px 10px
     border-top: solid 1px #BBB2B5
     color: rgba(0, 0, 0, 0.87)
@@ -353,22 +370,22 @@ tbody tr:last-child
 .drop-list-item:first
     border-top: solid 1px #BBB2B5
 
-.drop-list-item:last-child 
+.drop-list-item:last-child
     border-bottom: solid 1px #BBB2B5
 
-.drop-placeholder 
+.drop-placeholder
     background: darken(#FFF, 10)
     border: dotted 3px #BBB2B5
     min-height: 60px
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
 
-.drop-list.cdk-drop-list-dragging .drop-list-item:not(.cdk-drag-placeholder) 
+.drop-list.cdk-drop-list-dragging .drop-list-item:not(.cdk-drag-placeholder)
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)
 
-.cdk-drag-preview 
+.cdk-drag-preview
     box-sizing: border-box
     border-radius: 4px
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12)
 
-.cdk-drag-animating 
+.cdk-drag-animating
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1)

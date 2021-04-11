@@ -1,0 +1,28 @@
+import { Component, ViewChild } from '@angular/core';
+import { RotatingPictureFormGroupComponent } from 'src/app/parts/common/rotating-picture-form-group/rotating-picture-form-group.component';
+
+@Component({
+    selector: 'app-esports-home-rotating-pictures',
+    templateUrl: './esports-home-rotating-pictures.component.html',
+    styleUrls: ['./esports-home-rotating-pictures.component.sass']
+})
+export class EsportsHomeRotatingPicturesComponent {
+    @ViewChild(RotatingPictureFormGroupComponent)
+    imagesFormGroup: RotatingPictureFormGroupComponent;
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //	IMAGES
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    addImageInput(): void {
+        this.imagesFormGroup.addImage();
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //	FORM
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    onSubmit(): void {
+        this.imagesFormGroup.updateImages();
+    }
+}

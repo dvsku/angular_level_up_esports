@@ -15,9 +15,9 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-12 col-lg-8 ml-5 container-shadow bg-white">
+                <div class="col-12 col-lg-8 ml-0 mt-5 ml-lg-5 mt-lg-0 container-shadow bg-white">
                     <div id="info-row" class="row pb-2 pt-4 mx-4">
-                        <div class="col-6 fw-500">
+                        <div class="col-12 col-lg-6 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
                             <span *ngIf='displayedProducts?.length !== 1; else prodLenOne'>
                                 SHOWING {{displayedProducts?.length}} {{category?.toUpperCase()}} RESULTS
                             </span>
@@ -27,12 +27,12 @@
                                 </span>
                             </ng-template>
                         </div>
-                        <div class="col-6 text-right">
-                            <select (change)="changeSort($event.target.value)">
-                                <option value="newest" [selected]="sort === 'newest'">Newest</option>
-                                <option value="popular" [selected]="sort === 'popular'">Popularity</option>
-                                <option value="priceAsc" [selected]="sort === 'priceAsc'">Price Ascending</option>
-                                <option value="priceDesc" [selected]="sort === 'priceDesc'">Price Descending</option>
+                        <div class="col-12 col-lg-6 d-flex flex-column justify-content-end align-items-end">
+                            <select class="form-control w-100 w-lg-75" (change)="changeSort($event.target.value)">
+                                <option value="newest" [selected]="sort === 'newest'">NEWEST</option>
+                                <option value="popular" [selected]="sort === 'popular'">POPULAR</option>
+                                <option value="priceAsc" [selected]="sort === 'priceAsc'">PRICE LOW TO HIGH</option>
+                                <option value="priceDesc" [selected]="sort === 'priceDesc'">PRICE HIGH TO LOW</option>
                             </select>
                         </div>
                     </div>

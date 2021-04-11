@@ -34,6 +34,11 @@ import { CartNotifyService } from './services/cart-notify.service';
 import { SwappableImageComponent } from './parts/common/swappable-image/swappable-image.component';
 import { ProductService } from './services/product.service';
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
+import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
+import { RotatingPictureFormGroupComponent } from './parts/common/rotating-picture-form-group/rotating-picture-form-group.component';
+import { HomePictureService } from './services/home-picture.service';
+import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
+import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 
 @NgModule({
     declarations: [
@@ -54,7 +59,10 @@ import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/
         ImageInputComponent,
         EsportsProductsComponent,
         SwappableImageComponent,
-        EditEsportsProductComponent
+        EditEsportsProductComponent,
+        EsportsHomeRotatingPicturesComponent,
+        RotatingPictureFormGroupComponent,
+        UnderConstructionComponent
     ],
     imports: [
         BrowserModule,
@@ -66,12 +74,14 @@ import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/
         NgbModule,
         DragDropModule,
         FontAwesomeModule,
-        ImageCropperModule
+        ImageCropperModule,
+        NgxBootstrapSliderModule
     ],
     providers: [
         CookieService,
         CartNotifyService,
         ProductService,
+        HomePictureService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }

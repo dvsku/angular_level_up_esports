@@ -53,24 +53,17 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
         switch (this.sort) {
             case 'newest':
                 products = products.sort((a, b) => {
-                    return (
-                        new Date(a.createTime).getTime() -
-                        new Date(b.createTime).getTime()
-                    );
+                    return new Date(a.createTime).getTime() - new Date(b.createTime).getTime();
                 });
                 break;
             case 'priceAsc':
-                products = products.sort(
-                    (a, b) => 0 - (a.productPrice > b.productPrice ? -1 : 1)
-                );
+                products = products.sort((a, b) => 0 - (a.productPrice > b.productPrice ? -1 : 1));
                 break;
             case 'priceDesc':
-                products = products.sort(
-                    (a, b) => 0 - (a.productPrice > b.productPrice ? 1 : -1)
-                );
+                products = products.sort((a, b) => 0 - (a.productPrice > b.productPrice ? 1 : -1));
                 break;
             case 'popular':
-                products = products.sort((a, b) => a.sold - b.sold);
+                products = products.sort((a, b) => 0 - (a.sold > b.sold ? 1 : -1));
                 break;
         }
         if (this.category === 'all') {
@@ -78,9 +71,7 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
         } else {
             for (const category of this.categories) {
                 if (this.category === category.categoryName.toLowerCase()) {
-                    products = products.filter(
-                        (x) => x.categoryType === category.categoryType
-                    );
+                    products = products.filter((x) => x.categoryType === category.categoryType);
                     break;
                 }
             }
@@ -115,20 +106,16 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
             this.categories = cats;
         });
 
-        this.productsSubscription = this.productService
-            .getProducts()
-            .subscribe((prods) => {
-                if (prods !== null && prods !== undefined) {
-                    this.products = prods.filter(
-                        (x) => x.productStatus === ProductStatus.Available
-                    );
-                    this.displayedProducts = this.products;
+        this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
+            if (prods !== null && prods !== undefined) {
+                this.products = prods.filter((x) => x.productStatus === ProductStatus.Available);
+                this.displayedProducts = this.products;
 
-                    this.getRouteParameters();
-                    this.setRouteParameters();
-                    this.updateShop();
-                }
-            });
+                this.getRouteParameters();
+                this.setRouteParameters();
+                this.updateShop();
+            }
+        });
     }
 
     ngOnDestroy(): void {

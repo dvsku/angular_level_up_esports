@@ -28,11 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              
               "node_modules/ngx-toastr/toastr.css",
+			  "node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css",
               "src/styles.sass"
             ],
-            "scripts": []
+            "scripts": [
+				"node_modules/bootstrap-slider/dist/bootstrap-slider.min.js"
+			]
           },
           "configurations": {
             "production": {

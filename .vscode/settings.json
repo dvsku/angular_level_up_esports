@@ -1,6 +1,12 @@
 {
 	"editor.detectIndentation": false,
-	"editor.insertSpaces": false,
+	"editor.insertSpaces": true,
+    "[html]": {
+        "editor.suggest.insertMode": "replace",
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+        "editor.formatOnSave": true
+    },
+
 	"[javascript]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 		"editor.codeActionsOnSave": {
@@ -13,13 +19,13 @@
 		"editor.codeActionsOnSave": {
 		  "source.fixAll.eslint": true
 		},
-		"editor.formatOnSave": false
+		"editor.formatOnSave": true
 	  },
 	  "[json]": {
 		"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 		"editor.codeActionsOnSave": {
 		  "source.fixAll.eslint": true
 		},
-		"editor.formatOnSave": false
+		"editor.formatOnSave": true
 	  }
 }

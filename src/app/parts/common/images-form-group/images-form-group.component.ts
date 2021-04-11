@@ -1,11 +1,4 @@
-import {
-    Component,
-    Input,
-    ViewChild,
-    ViewContainerRef,
-    ComponentFactoryResolver,
-    ElementRef
-} from '@angular/core';
+import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
 import { ProductIcon } from 'src/app/models/ProductIcon';
 import { ImageInputComponent } from '../image-input/image-input.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';

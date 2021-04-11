@@ -1,0 +1,38 @@
+<div cdkDropList class="images-list" (cdkDropListDropped)="drop($event)">
+    <ng-container #parent></ng-container>
+    <div class="image-box" *ngFor="let image of images" cdkDrag>
+        <div class="image-placeholder" *cdkDragPlaceholder></div>
+        <div class="image-box-image">
+            <img class="image" src="{{ image.picture }}" />
+        </div>
+        <div class="image-box-actions">
+            <div class="mr-2 my-2 text-right" style="width: 100px">
+                <a type="button" class="subcategory-link btn-block" (click)="removeImage(image)">Remove</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crop Image</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="height: 75vh">
+        <image-cropper
+            #cropper
+            [imageBase64]="cropperImageBase64"
+            [maintainAspectRatio]="false"
+            format="png"
+            (imageCropped)="imageCropped($event)"
+            [autoCrop]="false"
+        ></image-cropper>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary" (click)="cropper.crop(); modal.close()">
+            Save
+        </button>
+    </div>
+</ng-template>

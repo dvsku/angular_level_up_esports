@@ -9,12 +9,9 @@ import { ProductCategory } from '../models/ProductCategory';
     providedIn: 'root'
 })
 export class ProductCategoryService {
-    private categoriesSubject: BehaviorSubject<ProductCategory[]> = new BehaviorSubject<
-        ProductCategory[]
-    >(null);
-    private categoriesObs: Observable<
-        ProductCategory[]
-    > = this.categoriesSubject.asObservable();
+    private categories: ProductCategory[] = null;
+    private categoriesSubject: BehaviorSubject<ProductCategory[]> = new BehaviorSubject<ProductCategory[]>(null);
+    private categoriesObs: Observable<ProductCategory[]> = this.categoriesSubject.asObservable();
 
     private categoryUrl = `http://localhost:8080/api/productCategory`;
     private categoryAdminUrl = `http://localhost:8080/api/admin/productCategory`;
@@ -22,16 +19,13 @@ export class ProductCategoryService {
     constructor(private httpClient: HttpClient) {}
 
     getProductCategories(): Observable<ProductCategory[]> {
-        if (this.categoriesSubject.getValue() === null) {
-            const categoriesObs = this.fetchProductCategories();
-            let categories: ProductCategory[];
-
-            categoriesObs.subscribe((data) => {
-                categories = data;
+        if (this.categories === null) {
+            this.fetchProductCategories().subscribe((categories) => {
+                this.categories = categories;
+                this.categoriesSubject.next(this.categories);
+                this.categoriesObs.pipe(publishReplay(1), refCount());
+                console.log('Fetched categories from server.');
             });
-
-            this.categoriesSubject.next(categories);
-            this.categoriesObs = categoriesObs.pipe(publishReplay(1), refCount());
         }
         return this.categoriesObs;
     }
@@ -48,16 +42,16 @@ export class ProductCategoryService {
     getProductCategory(productCategoryId: number): ProductCategory {
         let category = undefined;
         if (this.categoriesObs) {
-            this.categoriesObs.subscribe((data) => {
-                if (data !== null && data !== undefined) {
-                    category = data.find((x) => x.categoryId === productCategoryId);
-                }
-                if (category === null || category === undefined) {
+            if (this.categories !== null && this.categories !== undefined) {
+                category = this.categories.find((x) => x.categoryId === productCategoryId);
+                if (category === undefined) {
+                    // SHOULD BE AWAITED BUT CATEGORIES ARE ALWAYS GONNA BE FETCHED BEFORE A SINGLE CATEGORY
+                    // IS NEEDED
                     this.fetchProductCategory(productCategoryId).subscribe((cat) => {
                         category = cat;
                     });
                 }
-            });
+            }
         }
         return category;
     }
@@ -80,10 +74,7 @@ export class ProductCategoryService {
         );
     }
 
-    editExistingProductCategory(
-        id: number,
-        productCategory: ProductCategory
-    ): Observable<boolean> {
+    editExistingProductCategory(id: number, productCategory: ProductCategory): Observable<boolean> {
         const url = `${this.categoryAdminUrl}/${id}/edit`;
         return this.httpClient.put<boolean>(url, productCategory).pipe(
             tap(() => {

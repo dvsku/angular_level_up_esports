@@ -1,1 +1,8 @@
-<img class="swappable-image img-fluid image-shadow" [src]="currentSource" (mouseenter)='onMouseEnter()' (mouseleave)='onMouseLeave()'>
+<div class="swappable-image-wrapper image-shadow position-relative">
+	<img class="swappable-image img-fluid" [src]="firstSource">
+	<img class="swappable-image img-fluid" [src]="secondSource">
+	<div class="d-flex flex-column align-items-center justify-content-center fc-white p-top-left">
+		<ng-content></ng-content>
+	</div>
+</div>
+

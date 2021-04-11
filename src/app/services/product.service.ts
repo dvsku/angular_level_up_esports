@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
-import { publishReplay, refCount, takeLast } from 'rxjs/operators';
+import { publishReplay, refCount } from 'rxjs/operators';
 import { catchError, tap } from 'rxjs/operators';
 import { ProductInfo } from '../models/ProductInfo';
 
@@ -13,20 +13,17 @@ export class ProductService {
     private categoryUrl = `http://localhost:8080/api/category`;
     private productAdminUrl = `http://localhost:8080/api/admin/product`;
 
-    private productsSubject: BehaviorSubject<ProductInfo[]> = new BehaviorSubject<
-        ProductInfo[]
-    >(null);
+    private products: ProductInfo[] = null;
+    private productsSubject: BehaviorSubject<ProductInfo[]> = new BehaviorSubject<ProductInfo[]>(this.products);
     private productsObs = this.productsSubject.asObservable();
 
     constructor(private httpClient: HttpClient) {}
 
     getProducts(): Observable<ProductInfo[]> {
-        if (this.productsSubject.getValue() === null) {
-            let products: ProductInfo[];
-            this.fetchSortedProducts('new').subscribe((prods) => {
-                products = prods;
-
-                this.productsSubject.next(products);
+        if (this.products === null) {
+            this.fetchSortedProducts('new').subscribe((products) => {
+                this.products = products;
+                this.productsSubject.next(this.products);
                 this.productsObs.pipe(publishReplay(1), refCount());
                 console.log('Fetched products from server.');
             });
@@ -49,18 +46,14 @@ export class ProductService {
 
     getProduct(productId: number): ProductInfo {
         let product = undefined;
-        if (this.productsObs) {
-            this.productsObs.subscribe((prods) => {
-                if (prods !== null && prods !== undefined) {
-                    product = prods.find((x) => x.productId === productId);
-                }
-                if (product === undefined) {
-                    this.fetchProduct(productId).subscribe((prod) => {
-                        product = prod;
-                        console.log('Fetched product from server.');
-                    });
-                }
-            });
+        if (this.products !== null && this.products !== undefined) {
+            product = this.products.find((x) => x.productId === productId);
+            if (product === undefined) {
+                this.fetchProduct(productId).subscribe((prod) => {
+                    product = prod;
+                    console.log('Fetched product from server.');
+                });
+            }
         }
         return product;
     }
@@ -76,20 +69,14 @@ export class ProductService {
 
     removeProduct(product: ProductInfo): void {
         this.removeDatabaseProduct(product).subscribe(() => {
-            let products: ProductInfo[];
             if (this.productsObs) {
-                this.productsObs.pipe(takeLast(1)).subscribe((prods) => {
-                    products = prods;
-                    if (products !== null || products !== undefined) {
-                        const index = products.findIndex(
-                            (x) => x.productId === product.productId
-                        );
-                        if (index !== -1) {
-                            products.splice(index, 1);
-                            this.productsSubject.next(products);
-                        }
+                if (this.products !== null && this.products !== undefined) {
+                    const index = this.products.findIndex((x) => x.productId === product.productId);
+                    if (index !== -1) {
+                        this.products.splice(index, 1);
+                        this.productsSubject.next(this.products);
                     }
-                });
+                }
             }
         });
     }
@@ -103,15 +90,11 @@ export class ProductService {
         const success: Subject<boolean> = new Subject<boolean>();
         this.createDatabaseProduct(product).subscribe(
             () => {
-                let products: ProductInfo[];
                 if (this.productsObs) {
-                    this.productsObs.pipe(takeLast(1)).subscribe((prods) => {
-                        products = prods;
-                        if (products !== null && products !== undefined) {
-                            products.push(product);
-                            this.productsSubject.next(products);
-                        }
-                    });
+                    if (this.products !== null && this.products !== undefined) {
+                        this.products.push(product);
+                        this.productsSubject.next(this.products);
+                    }
                 }
                 success.next(true);
             },
@@ -136,20 +119,14 @@ export class ProductService {
         const success: Subject<boolean> = new Subject<boolean>();
         this.updateDatabaseProduct(product).subscribe(
             () => {
-                let products: ProductInfo[];
                 if (this.productsObs) {
-                    this.productsObs.pipe(takeLast(1)).subscribe((prods) => {
-                        products = prods;
-                        if (products !== null && products !== undefined) {
-                            const index = products.findIndex(
-                                (x) => x.productId === product.productId
-                            );
-                            if (index !== -1) {
-                                products[index] = product;
-                                this.productsSubject.next(products);
-                            }
+                    if (this.products !== null && this.products !== undefined) {
+                        const index = this.products.findIndex((x) => x.productId === product.productId);
+                        if (index !== -1) {
+                            this.products[index] = product;
+                            this.productsSubject.next(this.products);
                         }
-                    });
+                    }
                 }
                 success.next(true);
             },
@@ -195,10 +172,7 @@ export class ProductService {
     // 0 -> TOPS
     // 1 -> BOTTOMS
     // 2 -> GEAR
-    private getAllSortedProductsInCategory(
-        categoryType: number,
-        sortType: string
-    ): Observable<ProductInfo[]> {
+    private getAllSortedProductsInCategory(categoryType: number, sortType: string): Observable<ProductInfo[]> {
         const url = `${this.productUrl}/sortBy/${categoryType}/${sortType}`;
         return this.httpClient.get<ProductInfo[]>(url).pipe(
             tap(() => {
@@ -207,11 +181,7 @@ export class ProductService {
         );
     }
 
-    private getProductsInCategory(
-        categoryType: number,
-        page: number,
-        size: number
-    ): Observable<any> {
+    private getProductsInCategory(categoryType: number, page: number, size: number): Observable<any> {
         const url = `${this.categoryUrl}/${categoryType}?page=${page}&size=${size}`;
         return this.httpClient.get(url).pipe(
             tap(() => {

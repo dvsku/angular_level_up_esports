@@ -1,11 +1,72 @@
+@import '../../../../_variables'
+
 .shop-item-container
-    display: flex
-    flex-direction: column
+	display: flex
+	flex-direction: column
+	width: 18.75rem
+	height: 36.5625rem
+	overflow: hidden
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px
 
 .shop-item-image
-    width: 18.75rem
-    height: 31.25rem
+	position: absolute
+	top: 0
+	left: 0
+	width: 18.75rem
+	height: 31.25rem
 
-.shop-item-name
+.shop-item-view-details
+	position: absolute
+	opacity: 0
+	top: 9.375rem
+	left: 4.6875rem
+	z-index: 11
+	width: 9.375rem
+	user-select: none
+	text-decoration: none
+	text-align: center
+	color: $fc-white
+	border: 2px solid $fc-white
+	padding: .3125rem .625rem
+	transition: all 0.2s ease-out
 
-.shop-item-price
+.shop-item-view-details:hover, .shop-item-view-details:focus
+	cursor: pointer
+	color: $fc-blue
+	background-color: $fc-white
+
+.shop-item-details
+	position: absolute
+	top: 29.75rem
+	left: 0
+	z-index: 10
+	background-color: white
+	width: 100%
+	transition: top 0.2s ease-out
+
+.shop-item-options
+	opacity: 1
+	transition: opacity 0.2s ease-out
+
+.shop-item-image-overlay
+	position: absolute
+	top: 0
+	left: 0
+	z-index: 9
+	width: 100%
+	height: 100%
+	background-color: $fc-blue
+	opacity: 0
+	transition: opacity 0.2s ease-out
+
+.shop-item-container:hover, .shop-item-container:focus
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px
+
+.shop-item-container:hover .shop-item-image-overlay, .shop-item-container:focus .shop-item-image-overlay
+	opacity: 0.7
+
+.shop-item-container:hover .shop-item-details, .shop-item-container:focus .shop-item-details
+	top: 27.1875rem
+
+.shop-item-container:hover .shop-item-view-details, .shop-item-container:focus .shop-item-view-details
+	opacity: 1

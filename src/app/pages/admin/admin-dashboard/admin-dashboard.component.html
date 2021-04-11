@@ -1,27 +1,53 @@
 <div class="wrapper h-100">
     <div class="wrapped-header">
-        <app-esports-header></app-esports-header>
+        <app-header></app-header>
     </div>
     <div class="wrapped-content">
-        <div id='main-panel' class="container container-shadow bg-white my-5 p-5">
+        <div id="main-panel" class="container container-shadow bg-white my-5 p-5">
             <div class="row">
                 <div class="col-12 col-lg-3">
                     <ul class="list-unstyled sticky">
                         <li>
-                            <a class="category-link" (click)="barcraftCollapse.toggle()" [attr.aria-expanded]="!isBarcraftCollapsed">BARCRAFT</a>
+                            <a
+                                class="category-link"
+                                (click)="barcraftCollapse.toggle()"
+                                [attr.aria-expanded]="!isBarcraftCollapsed"
+                                >BARCRAFT</a
+                            >
                             <div class="pl-2" #barcraftCollapse="ngbCollapse" [(ngbCollapse)]="isBarcraftCollapsed">
                                 a
                             </div>
                         </li>
                         <li>
-                            <a class="category-link" (click)="esportsCollapse.toggle()" [attr.aria-expanded]="!isEsportsCollapsed">ESPORTS</a>
+                            <a
+                                class="category-link"
+                                (click)="esportsCollapse.toggle()"
+                                [attr.aria-expanded]="!isEsportsCollapsed"
+                                >ESPORTS</a
+                            >
                             <div class="pl-2" #esportsCollapse="ngbCollapse" [(ngbCollapse)]="isEsportsCollapsed">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a class="subcategory-link" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }]" skipLocationChange>PRODUCTS</a>
+                                        <a
+                                            class="subcategory-link"
+                                            [routerLink]="[
+                                                '/admin/dashboard',
+                                                { outlets: { adminOutlet: 'esports/products' } }
+                                            ]"
+                                            skipLocationChange
+                                            >PRODUCTS</a
+                                        >
                                     </li>
-									<li>
-                                        <a class="subcategory-link" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }]" skipLocationChange>HOME ROTATING PICTURES</a>
+                                    <li>
+                                        <a
+                                            class="subcategory-link"
+                                            [routerLink]="[
+                                                '/admin/dashboard',
+                                                { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }
+                                            ]"
+                                            skipLocationChange
+                                            >HOME ROTATING PICTURES</a
+                                        >
                                     </li>
                                     <!-- <li>
                                         <a class="subcategory-link" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]" skipLocationChange>ADD PRODUCT</a>
@@ -38,6 +64,6 @@
         </div>
     </div>
     <div class="wrapped-footer">
-        <app-esports-footer></app-esports-footer>
+        <app-footer></app-footer>
     </div>
 </div>

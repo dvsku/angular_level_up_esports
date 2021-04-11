@@ -12,11 +12,11 @@ import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
-    selector: 'app-esports-header',
-    templateUrl: './esports-header.component.html',
-    styleUrls: ['./esports-header.component.sass']
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.sass']
 })
-export class EsportsHeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit {
     public isMenuCollapsed = true;
     public isShopCollapsed = true;
     public isTeamsCollapsed = true;
@@ -56,16 +56,12 @@ export class EsportsHeaderComponent implements OnInit {
         this.productCategoryService.getProductCategories().subscribe((cats) => {
             this.categories = cats;
         });
-        this.productsSubscription = this.productService
-            .getProducts()
-            .subscribe((prods) => {
-                if (prods !== undefined && prods !== null) {
-                    this.featuredProducts = prods
-                        .sort((a, b) => a.sold - b.sold)
-                        .slice(0, 3);
-                    //console.log(this.featuredProducts)
-                }
-            });
+        this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
+            if (prods !== undefined && prods !== null) {
+                this.featuredProducts = prods.sort((a, b) => a.sold - b.sold).slice(0, 3);
+                //console.log(this.featuredProducts)
+            }
+        });
 
         this.getCart();
         this.cartNotifyService.obs.subscribe(() => this.getCart());

@@ -16,10 +16,9 @@ import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
 import { EsportsHomeComponent } from './pages/esports/esports-home/esports-home.component';
 import { EsportsShopComponent } from './pages/esports/esports-shop/esports-shop.component';
 import { BarcraftHomeComponent } from './pages/barcraft/barcraft-home/barcraft-home.component';
-import { BarcraftShopComponent } from './pages/barcraft/barcraft-shop/barcraft-shop.component';
-import { EsportsHeaderComponent } from './parts/esports/esports-header/esports-header.component';
+import { HeaderComponent } from './parts/common/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { EsportsFooterComponent } from './parts/esports/esports-footer/esports-footer.component';
+import { FooterComponent } from './parts/common/footer/footer.component';
 import { ShopItemComponent } from './parts/common/shop-item/shop-item.component';
 import { ShopItemDeckComponent } from './parts/common/shop-item-deck/shop-item-deck.component';
 import { SignUpComponent } from './pages/esports/sign-up/sign-up.component';
@@ -46,9 +45,8 @@ import { UnderConstructionComponent } from './pages/common/under-construction/un
         EsportsHomeComponent,
         EsportsShopComponent,
         BarcraftHomeComponent,
-        BarcraftShopComponent,
-        EsportsHeaderComponent,
-        EsportsFooterComponent,
+        FooterComponent,
+        HeaderComponent,
         ShopItemComponent,
         ShopItemDeckComponent,
         SignUpComponent,

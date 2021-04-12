@@ -21,14 +21,8 @@
         </button>
     </div>
     <div class="modal-body" style="height: 75vh">
-        <image-cropper
-            #cropper
-            [imageBase64]="cropperImageBase64"
-            [maintainAspectRatio]="false"
-            format="png"
-            (imageCropped)="imageCropped($event)"
-            [autoCrop]="false"
-        ></image-cropper>
+        <image-cropper #cropper [imageBase64]="cropperImageBase64" [maintainAspectRatio]="false" format="png"
+            (imageCropped)="imageCropped($event)" [autoCrop]="false"></image-cropper>
     </div>
     <div class="modal-footer">
         <button type="button" class="standard-btn standard-btn-primary" (click)="cropper.crop(); modal.close()">

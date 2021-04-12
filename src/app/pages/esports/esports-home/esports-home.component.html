@@ -1,173 +1,153 @@
-<div class="wrapper h-100">
-    <div class="wrapped-header">
-        <app-header></app-header>
+<three-row-grid-layout>
+    <div id="shop" class="d-flex flex-column align-items-center justify-content-center">
+        <div class="container">
+            <div class="row py-5">
+                <div
+                    class="col-12 col-lg-4 mt-5 mt-lg-0 pt-4 pt-lg-0 order-last order-lg-first d-flex flex-column justify-content-center align-items-center">
+                    <div class="d-flex flex-column">
+                        <p class="shop-now-brand">LevelUp</p>
+                        <p class="fw-800 fc-hover fs-big">MERCH <span class="fc-first">ORIGINALS</span></p>
+                        <a class="lvl-btn lvl-btn-primary" routerLink="/esports/shop">shop now</a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-8 order-first order-lg-last">
+                    <ngb-carousel style="max-width: 100%; height: 60vh">
+                        <ng-template class="h-100" *ngFor="let image of rotatingImages" ngbSlide>
+                            <div>
+                                <img class="mx-auto" style="display: block; max-width: 100%; max-height: 60vh"
+                                    src="{{ image.picture }}" />
+                            </div>
+                        </ng-template>
+                        <!-- <ng-template ngbSlide>
+                            <div class="d-flex">
+                                <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/FF0000/000000">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="d-flex">
+                                <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/00FF00/000000">
+                            </div>
+                        </ng-template>
+                        <ng-template ngbSlide>
+                            <div class="d-flex">
+                                <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/0000FF/000000">
+                            </div>
+                        </ng-template> -->
+                    </ngb-carousel>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="wrapped-content">
-        <div id="shop" class="d-flex flex-column align-items-center justify-content-center">
-            <div class="container">
-                <div class="row py-5">
-                    <div
-                        class="col-12 col-lg-4 mt-5 mt-lg-0 pt-4 pt-lg-0 order-last order-lg-first d-flex flex-column justify-content-center align-items-center"
-                    >
-                        <div class="d-flex flex-column">
-                            <p class="shop-now-brand">LevelUp</p>
-                            <p class="fw-800 fc-hover fs-big">MERCH <span class="fc-first">ORIGINALS</span></p>
-                            <a class="lvl-btn lvl-btn-primary" routerLink="/esports/shop">shop now</a>
-                        </div>
-                    </div>
-                    <div class="col-12 col-lg-8 order-first order-lg-last">
-                        <ngb-carousel style="max-width: 100%; height: 60vh">
-                            <ng-template class="h-100" *ngFor="let image of rotatingImages" ngbSlide>
-                                <div>
-                                    <img
-                                        class="mx-auto"
-                                        style="display: block; max-width: 100%; max-height: 60vh"
-                                        src="{{ image.picture }}"
-                                    />
-                                </div>
-                            </ng-template>
-                            <!-- <ng-template ngbSlide>
-                                <div class="d-flex">
-                                    <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/FF0000/000000">
-                                </div>
-                            </ng-template>
-                            <ng-template ngbSlide>
-                                <div class="d-flex">
-                                    <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/00FF00/000000">
-                                </div>
-                            </ng-template>
-                            <ng-template ngbSlide>
-                                <div class="d-flex">
-                                    <img class="img-fluid mx-auto" src="https://via.placeholder.com/450/0000FF/000000">
-                                </div>
-                            </ng-template> -->
-                        </ngb-carousel>
-                    </div>
-                </div>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
+                <app-swappable-image class="game-image" firstSrc="/assets/content-creators.jpg">
+                </app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-dota2.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-csgo.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-lol.jpg"></app-swappable-image>
+            </div>
+            <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
+                <app-swappable-image class="game-image" firstSrc="/assets/game-wc3.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-fortnite.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-hots.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" firstSrc="/assets/game-hs.jpg"></app-swappable-image>
             </div>
         </div>
-
-        <div class="container py-5">
-            <div class="row">
-                <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
-                    <app-swappable-image
-                        class="game-image"
-                        firstSrc="/assets/content-creators.jpg"
-                    ></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-dota2.jpg"></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-csgo.jpg"></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-lol.jpg"></app-swappable-image>
-                </div>
-                <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-wc3.jpg"></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-fortnite.jpg"></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-hots.jpg"></app-swappable-image>
-                    <app-swappable-image class="game-image" firstSrc="/assets/game-hs.jpg"></app-swappable-image>
-                </div>
+        <div class="row mt-5">
+            <div class="col-12 d-flex flex-column align-items-center">
+                <p class="fw-800 fc-hover mb-1 fs-big">TEAMS <span class="fc-first">AND ACHIEVEMENTS</span></p>
+                <a class="lvl-btn lvl-btn-primary">find out</a>
             </div>
-            <div class="row mt-5">
+        </div>
+    </div>
+    <div id="gaming-area-vip-room">
+        <img src="/assets/bg-ga.jpg" />
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <p class="fw-800 fc-second mb-1 lh-1 fs-big">GAMING AREA & <span class="fc-hover">VIP ROOM</span></p>
+            <p class="fc-second mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
+            <a class="lvl-btn lvl-btn-primary">see more</a>
+        </div>
+    </div>
+    <div id="bootcamp">
+        <div id="bootcamp-info" class="align-items-center">
+            <div class="row mt-5 w-100 pt-5 mb-3">
                 <div class="col-12 d-flex flex-column align-items-center">
-                    <p class="fw-800 fc-hover mb-1 fs-big">TEAMS <span class="fc-first">AND ACHIEVEMENTS</span></p>
-                    <a class="lvl-btn lvl-btn-primary">find out</a>
+                    <p class="fw-800 fc-hover mb-1 lh-1 fs-big">BOOTCAMP</p>
+                    <p class="fc-first mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
+                    <a class="lvl-btn lvl-btn-primary">see more</a>
+                </div>
+            </div>
+            <div class="row mt-5 w-100 mb-5 pb-5 justify-content-center align-items-center">
+                <div class="col-12 col-xl-4 text-xl-right text-center mb-xl-0 mb-3">
+                    <app-swappable-image class="bootcamp-image" firstSrc="/assets/bootcamp-a.jpg"
+                        secondSrc="/assets/bootcamp-b.jpg">
+                        <p class="fs-large fw-800">24/7 BOOTCAMP ROOM</p>
+                    </app-swappable-image>
+                </div>
+                <div class="bootcamp-images col-12 col-xl-4 text-xl-left text-center p-relative">
+                    <app-swappable-image class="bootcamp-image" firstSrc="/assets/tb-a.jpg"
+                        secondSrc="/assets/tb-b.jpg">
+                        <p class="fs-large fw-800">TEAM BUILDING</p>
+                    </app-swappable-image>
                 </div>
             </div>
         </div>
-        <div id="gaming-area-vip-room">
-            <img src="/assets/bg-ga.jpg" />
-            <div class="d-flex flex-column align-items-center justify-content-center">
-                <p class="fw-800 fc-second mb-1 lh-1 fs-big">GAMING AREA & <span class="fc-hover">VIP ROOM</span></p>
-                <p class="fc-second mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-                <a class="lvl-btn lvl-btn-primary">see more</a>
-            </div>
-        </div>
-        <div id="bootcamp">
-            <div id="bootcamp-info" class="align-items-center">
-                <div class="row mt-5 w-100 pt-5 mb-3">
-                    <div class="col-12 d-flex flex-column align-items-center">
-                        <p class="fw-800 fc-hover mb-1 lh-1 fs-big">BOOTCAMP</p>
-                        <p class="fc-first mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-                        <a class="lvl-btn lvl-btn-primary">see more</a>
-                    </div>
-                </div>
-                <div class="row mt-5 w-100 mb-5 pb-5 justify-content-center align-items-center">
-                    <div class="col-12 col-xl-4 text-xl-right text-center mb-xl-0 mb-3">
-                        <app-swappable-image
-                            class="bootcamp-image"
-                            firstSrc="/assets/bootcamp-a.jpg"
-                            secondSrc="/assets/bootcamp-b.jpg"
-                        >
-                            <p class="fs-large fw-800">24/7 BOOTCAMP ROOM</p>
-                        </app-swappable-image>
-                    </div>
-                    <div class="bootcamp-images col-12 col-xl-4 text-xl-left text-center p-relative">
-                        <app-swappable-image
-                            class="bootcamp-image"
-                            firstSrc="/assets/tb-a.jpg"
-                            secondSrc="/assets/tb-b.jpg"
-                        >
-                            <p class="fs-large fw-800">TEAM BUILDING</p>
-                        </app-swappable-image>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div id="entertainemnt">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="d-flex flex-column align-items-center">
-                            <p class="fw-800 fc-first lh-1 mb-1 fs-big">
-                                KEEP BEING <span class="fc-hover">ENTERTAINED</span>
-                            </p>
-                            <p class="fw-400 fc-first lh-1">latest videos</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-5 mb-5">
-                    <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
-                        <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
-                    </div>
-                    <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
-                        <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
-                    </div>
-                    <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
-                        <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="container pt-5">
+    </div>
+    <div id="entertainemnt">
+        <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
                     <div class="d-flex flex-column align-items-center">
-                        <p class="fw-800 fc-hover lh-1 mb-1 fs-big">PARTNERS <3</p>
-                        <p class="fw-400 fc-first lh-1">show some love to our friends and sponsors</p>
+                        <p class="fw-800 fc-first lh-1 mb-1 fs-big">
+                            KEEP BEING <span class="fc-hover">ENTERTAINED</span>
+                        </p>
+                        <p class="fw-400 fc-first lh-1">latest videos</p>
                     </div>
                 </div>
             </div>
-            <div class="row mt-5 mb-0 mb-lg-3 pb-0 pb-lg-3">
-                <div class="col-12 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" src="https://via.placeholder.com/600x200/222222/000000" />
+            <div class="row mt-5 mb-5">
+                <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
+                    <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
                 </div>
-            </div>
-            <div class="row mt-3 mb-5 pb-5">
-                <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+                <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
+                    <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
                 </div>
-                <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
-                </div>
-                <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
-                </div>
-                <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+                <div class="col-12 col-lg-4 mb-lg-0 mb-3 text-center">
+                    <img class="img-fluid image-shadow" src="https://via.placeholder.com/300x150/222222/000000" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="wrapped-footer">
-        <app-footer></app-footer>
+
+    <div class="container pt-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="d-flex flex-column align-items-center">
+                    <p class="fw-800 fc-hover lh-1 mb-1 fs-big">PARTNERS <3< /p>
+                            <p class="fw-400 fc-first lh-1">show some love to our friends and sponsors</p>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5 mb-0 mb-lg-3 pb-0 pb-lg-3">
+            <div class="col-12 mb-lg-0 mb-3 text-center">
+                <img class="img-fluid" src="https://via.placeholder.com/600x200/222222/000000" />
+            </div>
+        </div>
+        <div class="row mt-3 mb-5 pb-5">
+            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
+                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+            </div>
+            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
+                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+            </div>
+            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
+                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+            </div>
+            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
+                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+            </div>
+        </div>
     </div>
-</div>
+</three-row-grid-layout>

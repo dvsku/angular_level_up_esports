@@ -45,15 +45,11 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
         this.productId = +this.activatedRoute.snapshot.paramMap.get('id');
         if (this.productId) {
             this.product = this.productService.getProduct(this.productId);
-            this.product.productInfoSizes = this.product.productInfoSizes.sort(
-                (a, b) => a.sizeOrder - b.sizeOrder
-            );
+            this.product.productInfoSizes = this.product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
         }
-        this.categoriesSubscription = this.categoriesService
-            .getProductCategories()
-            .subscribe((cats) => {
-                this.categories = cats;
-            });
+        this.categoriesSubscription = this.categoriesService.getProductCategories().subscribe((cats) => {
+            this.categories = cats;
+        });
     }
 
     ngOnDestroy(): void {
@@ -65,12 +61,7 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     onAddSizeSubmit(): void {
-        if (
-            this.size !== '' &&
-            this.product.productInfoSizes.findIndex(
-                (x) => x.productSize === this.size
-            ) === -1
-        ) {
+        if (this.size !== '' && this.product.productInfoSizes.findIndex((x) => x.productSize === this.size) === -1) {
             this.product.productInfoSizes.push(new ProductInfoSize(null, this.size));
             this.reorderSizes();
             this.size = '';
@@ -78,9 +69,7 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     }
 
     removeSize(size: ProductInfoSize): void {
-        const index = this.product.productInfoSizes.findIndex(
-            (x) => x.productSize === size.productSize
-        );
+        const index = this.product.productInfoSizes.findIndex((x) => x.productSize === size.productSize);
         if (index !== -1) {
             this.product.productInfoSizes.splice(index, 1);
             this.reorderSizes();
@@ -94,11 +83,7 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     }
 
     drop(event: CdkDragDrop<string[]>): void {
-        moveItemInArray(
-            this.product.productInfoSizes,
-            event.previousIndex,
-            event.currentIndex
-        );
+        moveItemInArray(this.product.productInfoSizes, event.previousIndex, event.currentIndex);
         this.reorderSizes();
     }
 
@@ -132,13 +117,9 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
             .subscribe((success) => {
                 if (success) {
                     this.router
-                        .navigate(
-                            [
-                                '/admin/dashboard',
-                                { outlets: { adminOutlet: 'esports/products' } }
-                            ],
-                            { skipLocationChange: true }
-                        )
+                        .navigate(['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }], {
+                            skipLocationChange: true
+                        })
                         .then(() => {
                             this.toastrService.success('Product updated.');
                         });

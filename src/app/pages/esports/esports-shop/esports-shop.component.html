@@ -1,57 +1,45 @@
-<div class="wrapper h-100">
-    <div class="wrapped-header">
-        <app-header></app-header>
-    </div>
-    <div class="wrapped-content">
-        <div class="container">
-            <div class="row my-5 align-items-start">
-                <div class="col-12 col-lg-3 container-shadow bg-white sticky">
-                    <ul class="list-unstyled px-4 py-4">
-                        <li>
-                            <a class="category-link fs-xlarge" (click)="changeCategory('all')">ALL</a>
-                        </li>
-                        <li *ngFor="let category of categories">
-                            <a
-                                class="category-link fs-xlarge"
-                                (click)="changeCategory(category.categoryName.toLowerCase())"
-                                >{{ category.categoryName.toUpperCase() }}</a
-                            >
-                        </li>
-                    </ul>
-                </div>
-                <div class="col-12 col-lg-8 ml-0 mt-5 ml-lg-5 mt-lg-0 container-shadow bg-white">
-                    <div id="info-row" class="row pb-2 pt-4 mx-4">
-                        <div
-                            class="col-12 col-lg-6 fw-500 d-flex flex-column text-center text-lg-left justify-content-end"
-                        >
-                            <span *ngIf="displayedProducts?.length !== 1; else prodLenOne">
-                                SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULTS
+<three-row-grid-layout>
+    <div class="container">
+        <div class="row my-5 align-items-start">
+            <div class="col-12 col-lg-3 container-shadow bg-white sticky">
+                <ul class="list-unstyled px-4 py-4">
+                    <li>
+                        <a class="category-link fs-xlarge" (click)="changeCategory('all')">ALL</a>
+                    </li>
+                    <li *ngFor="let category of categories">
+                        <a class="category-link fs-xlarge"
+                            (click)="changeCategory(category.categoryName.toLowerCase())">{{
+                            category.categoryName.toUpperCase() }}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-8 ml-0 mt-5 ml-lg-5 mt-lg-0 container-shadow bg-white">
+                <div id="info-row" class="row pb-2 pt-4 mx-4">
+                    <div class="col-12 col-lg-6 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
+                        <span *ngIf="displayedProducts?.length !== 1; else prodLenOne">
+                            SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULTS
+                        </span>
+                        <ng-template #prodLenOne>
+                            <span>
+                                SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULT
                             </span>
-                            <ng-template #prodLenOne>
-                                <span>
-                                    SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULT
-                                </span>
-                            </ng-template>
-                        </div>
-                        <div class="col-12 col-lg-6 d-flex flex-column justify-content-end align-items-end">
-                            <select class="form-control w-100 w-lg-75" (change)="changeSort($event.target.value)">
-                                <option value="newest" [selected]="sort === 'newest'">NEWEST</option>
-                                <option value="popular" [selected]="sort === 'popular'">POPULAR</option>
-                                <option value="priceAsc" [selected]="sort === 'priceAsc'">PRICE LOW TO HIGH</option>
-                                <option value="priceDesc" [selected]="sort === 'priceDesc'">PRICE HIGH TO LOW</option>
-                            </select>
-                        </div>
+                        </ng-template>
                     </div>
-                    <div class="row mt-3">
-                        <div class="col-12 py-4 text-center">
-                            <app-shop-item-deck [products]="displayedProducts"></app-shop-item-deck>
-                        </div>
+                    <div class="col-12 col-lg-6 d-flex flex-column justify-content-end align-items-end">
+                        <select class="form-control w-100 w-lg-75" (change)="changeSort($event.target.value)">
+                            <option value="newest" [selected]="sort === 'newest'">NEWEST</option>
+                            <option value="popular" [selected]="sort === 'popular'">POPULAR</option>
+                            <option value="priceAsc" [selected]="sort === 'priceAsc'">PRICE LOW TO HIGH</option>
+                            <option value="priceDesc" [selected]="sort === 'priceDesc'">PRICE HIGH TO LOW</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 py-4 text-center">
+                        <app-shop-item-deck [products]="displayedProducts"></app-shop-item-deck>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="wrapped-footer">
-        <app-footer></app-footer>
-    </div>
-</div>
+</three-row-grid-layout>

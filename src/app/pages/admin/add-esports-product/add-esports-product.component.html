@@ -15,24 +15,31 @@
                     <ng-template ngbNavContent>
                         <div class="form-group">
                             <label for="productName">Name</label>
-                            <input [(ngModel)]="product.productName" type="text" class="form-control" id="productName" name="productName" placeholder="Name" required #productName="ngModel">
+                            <input [(ngModel)]="product.productName" type="text" class="form-control" id="productName"
+                                name="productName" placeholder="Name" required #productName="ngModel">
                             <div *ngIf="productName.invalid && (productName.dirty ||productName.touched)">
                                 <small *ngIf="productName.errors.required">Name is required.</small>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="productDescription">Description</label>
-                            <textarea class="form-control text-left" id="productDescription" name="productDescription" placeholder="Description" [(ngModel)]="product.productDescription"></textarea>
+                            <textarea class="form-control text-left" id="productDescription" name="productDescription"
+                                placeholder="Description" [(ngModel)]="product.productDescription"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="productCategory">Category</label>
-                            <select [(ngModel)]="product.categoryType" class="form-control" id="productCategory" name="productCategory" required>
-                                <option [selected]='category.uniqueId === product.categoryType' *ngFor='let category of categories' [value]="category.categoryType">{{category.categoryName}}</option>
+                            <select [(ngModel)]="product.categoryType" class="form-control" id="productCategory"
+                                name="productCategory" required>
+                                <option [selected]='category.uniqueId === product.categoryType'
+                                    *ngFor='let category of categories' [value]="category.categoryType">
+                                    {{category.categoryName}}</option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="productPrice">Price (RSD)</label>
-                            <input [(ngModel)]="product.productPrice" type="number" class="form-control" id="productPrice" name="productPrice" placeholder="Name" required #productPrice="ngModel" (ngModelChange)="product.productPrice=$event">
+                            <input [(ngModel)]="product.productPrice" type="number" class="form-control"
+                                id="productPrice" name="productPrice" placeholder="Name" required
+                                #productPrice="ngModel" (ngModelChange)="product.productPrice=$event">
                             <div *ngIf="productPrice.invalid && (productPrice.dirty ||productPrice.touched)">
                                 <small *ngIf="productPrice.errors.required">Price is required.</small>
                             </div>
@@ -44,7 +51,8 @@
                     <ng-template ngbNavContent>
                         <div class="row">
                             <div class="col-12">
-                                <button type="button" (click)='addImageInput()' class="standard-btn standard-btn-primary btn-block">Add</button>
+                                <button type="button" (click)='addImageInput()'
+                                    class="standard-btn standard-btn-primary btn-block">Add</button>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -59,7 +67,8 @@
                     <ng-template ngbNavContent>
                         <div class="row">
                             <div class="col-12">
-                                <button type="button" class="standard-btn standard-btn-primary btn-block" (click)="openModal(addSizeModal)">Add</button>
+                                <button type="button" class="standard-btn standard-btn-primary btn-block"
+                                    (click)="openModal(addSizeModal)">Add</button>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -69,7 +78,8 @@
                                         <div class="drop-placeholder" *cdkDragPlaceholder></div>
                                         <div>{{size.productSize.toUpperCase()}}</div>
                                         <div class="mr-2 my-2 text-right" style="width: 100px;">
-                                            <a type="button" class="subcategory-link btn-block" (click)='removeSize(size)'>Remove</a>
+                                            <a type="button" class="subcategory-link btn-block"
+                                                (click)='removeSize(size)'>Remove</a>
                                         </div>
                                     </div>
                                 </div>
@@ -88,20 +98,20 @@
 </form>
 
 <ng-template #addSizeModal let-modal>
-	<div class="modal-header">
-	  <h4 class="modal-title" id="modal-basic-title">Add Size</h4>
-	  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-		<span aria-hidden="true">&times;</span>
-	  </button>
-	</div>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Add Size</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <form (ngSubmit)="onAddSizeSubmit()">
-	    <div class="modal-body">
+        <div class="modal-body">
             <div class="form-group">
-                <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size" placeholder="Size" >
+                <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size" placeholder="Size">
             </div>
-	    </div>
-	    <div class="modal-footer">
-	      <button type="submit" class="standard-btn standard-btn-primary" (click)="modal.close()">Save</button>
-	    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="standard-btn standard-btn-primary" (click)="modal.close()">Save</button>
+        </div>
     </form>
 </ng-template>

@@ -5,9 +5,8 @@
     <a class="navbar-brand" routerLink="/esports"><img src="https://via.placeholder.com/40/FFFFFF/000000" /></a>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse px-5 mt-5 mt-lg-0">
         <div class="navbar-nav">
-            <a class="nav-link" (click)="toggleShop()"
-                >SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon
-            ></a>
+            <a class="nav-link" (click)="toggleShop()">SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block">
+                </fa-icon></a>
             <div [ngbCollapse]="isShopCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
                     <div class="col-3">
@@ -19,30 +18,24 @@
                                 <a class="standard-link" [routerLink]="['/esports/shop', { category: 'all' }]">ALL</a>
                             </li>
                             <li class="text-left" *ngFor="let category of categories">
-                                <a
-                                    class="standard-link"
-                                    [routerLink]="['/esports/shop', { category: category.categoryName.toLowerCase() }]"
-                                    >{{ category.categoryName.toUpperCase() }}</a
-                                >
+                                <a class="standard-link"
+                                    [routerLink]="['/esports/shop', { category: category.categoryName.toLowerCase() }]">{{
+                                    category.categoryName.toUpperCase() }}</a>
                             </li>
                         </ul>
                     </div>
                     <div class="col-9 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-shop-items">
-                                <app-swappable-image
-                                    *ngFor="let product of featuredProducts"
-                                    class="shop-item-image"
-                                    firstSrc="{{ product.productInfoIcons[0].productIcon }}"
-                                ></app-swappable-image>
+                                <app-swappable-image *ngFor="let product of featuredProducts" class="shop-item-image"
+                                    firstSrc="{{ product.productInfoIcons[0].productIcon }}"></app-swappable-image>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <a class="nav-link" (click)="toggleTeams()"
-                >TEAMS <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon
-            ></a>
+            <a class="nav-link" (click)="toggleTeams()">TEAMS <fa-icon [icon]="faArrowDown" class="d-inline-block">
+                </fa-icon></a>
             <div [ngbCollapse]="isTeamsCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
                     <div class="col-3 col-lg-4 col-xl-3">
@@ -63,42 +56,26 @@
                     <div class="col-9 col-lg-8 col-xl-8 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/content-creators.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-dota2.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-csgo.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-lol.jpg"
-                                ></app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/content-creators.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-dota2.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-csgo.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-lol.jpg">
+                                </app-swappable-image>
                             </div>
                         </div>
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-wc3.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-fortnite.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-hots.jpg"
-                                ></app-swappable-image>
-                                <app-swappable-image
-                                    class="game-image"
-                                    firstSrc="/assets/game-hs.jpg"
-                                ></app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-wc3.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-fortnite.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-hots.jpg">
+                                </app-swappable-image>
+                                <app-swappable-image class="game-image" firstSrc="/assets/game-hs.jpg">
+                                </app-swappable-image>
                             </div>
                         </div>
                     </div>
@@ -109,10 +86,10 @@
             <a class="nav-link" routerLink="/partners">PARTNERS</a>
         </div>
         <div class="navbar-nav ml-auto">
-            <a class="nav-link" (click)="toggleCart()"
-                ><fa-icon [icon]="faCart" class="d-inline-block"></fa-icon> CART
-                <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon
-            ></a>
+            <a class="nav-link" (click)="toggleCart()">
+                <fa-icon [icon]="faCart" class="d-inline-block"></fa-icon> CART
+                <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
+            </a>
             <div id="cartCollapse" [ngbCollapse]="isCartCollapsed" class="navbar-collapse-details">
                 <ng-container *ngIf="cart.length > 0; else cartEmpty">
                     <div class="row py-0 px-3 pt-lg-4 pb-lg-1 px-lg-5">
@@ -122,12 +99,8 @@
                     </div>
                     <div class="row mt-2 px-3 px-lg-5 pb-lg-3">
                         <div class="col-12 d-flex flex-row-reverse pb-2">
-                            <a
-                                class="standard-btn standard-btn-primary"
-                                style="padding-left: 3rem; padding-right: 3rem"
-                                routerLink="/esports/shop/checkout"
-                                >checkout</a
-                            >
+                            <a class="standard-btn standard-btn-primary" style="padding-left: 3rem; padding-right: 3rem"
+                                routerLink="/esports/shop/checkout">checkout</a>
                         </div>
                     </div>
                 </ng-container>
@@ -139,56 +112,29 @@
                     </div>
                 </ng-template>
             </div>
-            <div
-                *ngIf="currentUser === undefined || currentUser === null; else notSignedIn"
-                ngbDropdown
-                class="d-inline-block"
-            >
-                <a class="nav-link" id="sign-in-dropdown-toggle" ngbDropdownToggle
-                    >SIGN IN <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon
-                ></a>
-                <div
-                    id="sign-in-dropdown"
-                    ngbDropdownMenu
-                    class="dropdown-menu dropdown-menu-right"
-                    aria-labelledby="sign-in-dropdown"
-                >
+            <div *ngIf="currentUser === undefined || currentUser === null; else notSignedIn" ngbDropdown
+                class="d-inline-block">
+                <a class="nav-link" id="sign-in-dropdown-toggle" ngbDropdownToggle>SIGN IN <fa-icon [icon]="faArrowDown"
+                        class="d-inline-block"></fa-icon></a>
+                <div id="sign-in-dropdown" ngbDropdownMenu class="dropdown-menu dropdown-menu-right"
+                    aria-labelledby="sign-in-dropdown">
                     <form id="sign-in-form" class="px-3 py-2 w-100" #form="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="email-signin">Email</label>
-                            <input
-                                type="email"
-                                class="form-control"
-                                id="email-signin"
-                                name="email"
-                                placeholder="email@example.com"
-                                [(ngModel)]="model.username"
-                                #email="ngModel"
-                                autocomplete="email"
-                            />
+                            <input type="email" class="form-control" id="email-signin" name="email"
+                                placeholder="email@example.com" [(ngModel)]="model.username" #email="ngModel"
+                                autocomplete="email" />
                         </div>
                         <div class="form-group">
                             <label for="password-signin">Password</label>
-                            <input
-                                type="password"
-                                class="form-control"
-                                id="password-signin"
-                                name="password"
-                                placeholder="Password"
-                                autocomplete="password"
-                                [(ngModel)]="model.password"
-                                #password="ngModel"
-                            />
+                            <input type="password" class="form-control" id="password-signin" name="password"
+                                placeholder="Password" autocomplete="password" [(ngModel)]="model.password"
+                                #password="ngModel" />
                         </div>
                         <div class="form-group">
                             <div class="form-check">
-                                <input
-                                    type="checkbox"
-                                    class="form-check-input"
-                                    id="remember_me"
-                                    name="remember-me"
-                                    [(ngModel)]="model.remembered"
-                                />
+                                <input type="checkbox" class="form-check-input" id="remember_me" name="remember-me"
+                                    [(ngModel)]="model.remembered" />
                                 <label class="form-check-label" for="remember_me">Remember me</label>
                             </div>
                         </div>
@@ -199,23 +145,16 @@
                     </form>
                 </div>
             </div>
-            <a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup"
-                >SIGN UP</a
-            >
+            <a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup">SIGN
+                UP</a>
             <ng-template #notSignedIn>
                 <div ngbDropdown class="d-inline-block">
-                    <a class="nav-link" id="self-dropdown" ngbDropdownToggle
-                        >{{ currentUser.name.toUpperCase() }}
-                        <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon
-                    ></a>
+                    <a class="nav-link" id="self-dropdown" ngbDropdownToggle>{{ currentUser.name.toUpperCase() }}
+                        <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
+                    </a>
                     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="self-dropdown">
-                        <a
-                            *ngIf="currentUser.role === 'USER'; else dashboardElse"
-                            ngbDropdownItem
-                            class="dropdown-item"
-                            routerLink="/dashboard"
-                            >DASHBOARD</a
-                        >
+                        <a *ngIf="currentUser.role === 'USER'; else dashboardElse" ngbDropdownItem class="dropdown-item"
+                            routerLink="/dashboard">DASHBOARD</a>
                         <ng-template #dashboardElse>
                             <a ngbDropdownItem class="dropdown-item" routerLink="/admin/dashboard">DASHBOARD</a>
                         </ng-template>

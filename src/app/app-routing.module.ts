@@ -13,44 +13,50 @@ import { UnderConstructionComponent } from './pages/common/under-construction/un
 import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 
 const routes: Routes = [
+    { path: '', redirectTo: 'esports', pathMatch: 'full' },
     {
         path: 'admin/dashboard',
         component: AdminDashboardComponent,
+        data: { title: 'LevelUp | Admin Dashboard' },
         children: [
             {
                 path: 'esports/products',
                 component: EsportsProductsComponent,
-                outlet: 'adminOutlet'
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Esports Products' }
             },
             {
                 path: 'esports/add-product',
                 component: AddEsportsProductComponent,
-                outlet: 'adminOutlet'
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Add Product' }
             },
             {
                 path: 'esports/edit-product/:id',
                 component: EditEsportsProductComponent,
-                outlet: 'adminOutlet'
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Edit Product' }
             },
             {
                 path: 'esports/home-rotating-pictures',
                 component: EsportsHomeRotatingPicturesComponent,
-                outlet: 'adminOutlet'
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Home Rotating Pictures' }
             }
         ]
     },
-    { path: 'auth/signup', component: SignUpComponent },
-    { path: 'esports', component: EsportsHomeComponent },
-    { path: 'esports/shop', component: EsportsShopComponent },
-    { path: 'esports/shop/checkout', component: CheckoutComponent },
-    { path: 'esports/shop/product/:id', component: ProductComponent },
-    { path: 'partners', component: UnderConstructionComponent },
-    { path: 'gaming-area', component: UnderConstructionComponent },
-    { path: 'bootcamp', component: UnderConstructionComponent }
+    { path: 'auth/signup', component: SignUpComponent, data: { title: 'LevelUp | Sign Up' } },
+    { path: 'esports', component: EsportsHomeComponent, data: { title: 'LevelUp | Home' } },
+    { path: 'esports/shop', component: EsportsShopComponent, data: { title: 'LevelUp | Shop' } },
+    { path: 'esports/shop/checkout', component: CheckoutComponent, data: { title: 'LevelUp | Checkout' } },
+    { path: 'esports/shop/product/:id', component: ProductComponent, data: { title: 'LevelUp | Product' } },
+    { path: 'partners', component: UnderConstructionComponent, data: { title: 'LevelUp | Partners' } },
+    { path: 'gaming-area', component: UnderConstructionComponent, data: { title: 'LevelUp | Gaming Area' } },
+    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } }
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' })],
+    imports: [RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy', scrollPositionRestoration: 'enabled' })],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}

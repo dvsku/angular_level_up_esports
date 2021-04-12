@@ -41,6 +41,7 @@ import { UnderConstructionComponent } from './pages/common/under-construction/un
 import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
 import { CartProductComponent } from './parts/common/cart-product/cart-product.component';
+import { ThreeRowGridLayoutComponent } from './parts/layout/three-row-grid-layout/three-row-grid-layout.component';
 
 @NgModule({
     declarations: [
@@ -66,7 +67,8 @@ import { CartProductComponent } from './parts/common/cart-product/cart-product.c
         UnderConstructionComponent,
         CheckoutComponent,
         CartProductGroupComponent,
-        CartProductComponent
+        CartProductComponent,
+        ThreeRowGridLayoutComponent
     ],
     imports: [
         BrowserModule,

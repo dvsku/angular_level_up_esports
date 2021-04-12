@@ -1,9 +1,10 @@
 @import '~bootstrap/scss/bootstrap'
+@import '../../../../_variables'
 
 .image-main
     max-height: 31.25rem
 
-.image-select 
+.image-select
     max-height: 3.125rem
     cursor: pointer
 
@@ -17,21 +18,21 @@
     text-align: center
     margin-right: .3125rem
     user-select: none
-    background-color: #11abe2
-    color: #FFF
+    background-color: $color-fourth
+    color: $color-second
     line-height: 1.875rem
 
-.size:hover
-    background-color: darken(#11abe2, 10)
-    cursor: pointer
+    .size:hover
+        background-color: darken($color-fourth, 10)
+        cursor: pointer
 
 .size.active
-    background-color: darken(#11abe2, 10)
+    background-color: darken($color-fourth, 10)
 
-hr 
-  border: 0
-  clear: both
-  display: block    
-  width: 100%    
-  background-color: rgba(0, 0, 0, 0.1)
-  height: .0625rem
+hr
+    border: 0
+    clear: both
+    display: block
+    width: 100%
+    background-color: rgba(0, 0, 0, 0.1)
+    height: .0625rem

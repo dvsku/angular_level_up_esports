@@ -11,8 +11,8 @@
             <div [ngbCollapse]="isShopCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
                     <div class="col-3">
-                        <p class="title fw-800 fc-blue d-none d-lg-block">
-                            MERCH <span class="fc-black">ORIGINALS</span>
+                        <p class="title fw-800 fc-hover d-none d-lg-block">
+                            MERCH <span class="fc-first">ORIGINALS</span>
                         </p>
                         <ul class="list-unstyled">
                             <li class="text-left">
@@ -46,8 +46,8 @@
             <div [ngbCollapse]="isTeamsCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
                     <div class="col-3 col-lg-4 col-xl-3">
-                        <p class="title fw-800 fc-blue d-none d-lg-block">
-                            TEAMS <span class="fc-black">AND ACHIEVEMENTS</span>
+                        <p class="title fw-800 fc-hover d-none d-lg-block">
+                            TEAMS <span class="fc-first">AND ACHIEVEMENTS</span>
                         </p>
                         <ul class="list-unstyled">
                             <li class="text-left"><a class="standard-link">CONTENT CREATORS</a></li>
@@ -117,78 +117,17 @@
                 <ng-container *ngIf="cart.length > 0; else cartEmpty">
                     <div class="row py-0 px-3 pt-lg-4 pb-lg-1 px-lg-5">
                         <div class="col-12">
-                            <table class="table">
-                                <thead>
-                                    <th class="text-center" scope="col">Photo</th>
-                                    <th scope="col">Name</th>
-                                    <th class="text-center" scope="col">Size</th>
-                                    <th class="text-center" style="min-width: 115px" scope="col">Quantity</th>
-                                    <th class="text-center" scope="col">Price</th>
-                                    <th class="text-center" scope="col">Subtotal</th>
-                                    <th class="text-center" scope="col">Action(s)</th>
-                                </thead>
-                                <tbody>
-                                    <tr *ngFor="let product of cart">
-                                        <td class="align-middle text-center" style="width: 75px" scope="row">
-                                            <a routerLink="/esports/shop/product/{{ product?.productId }}">
-                                                <img
-                                                    class="img-thumbnail product-thumbnail"
-                                                    src="{{ product.productIcon }}"
-                                                    alt="{{ product.productName }}"
-                                                />
-                                            </a>
-                                        </td>
-                                        <td class="align-middle product-name">
-                                            <a
-                                                class="standard-link"
-                                                routerLink="/esports/shop/product/{{ product?.productId }}"
-                                            >
-                                                <span>{{ product.productName }}</span>
-                                            </a>
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            {{ product.productSize }}
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <button
-                                                type="button"
-                                                class="standard-btn standard-btn-primary quantity-buttons"
-                                                (click)="decreaseCount(product)"
-                                            >
-                                                -
-                                            </button>
-                                            <!-- <div [ngClass]="{'btn-quantity ': validateDecreaseButton(productInOrder), 'btn-quantity-disabled ': !validateDecreaseButton(productInOrder)}" 
-											class="btn-standard" (click)="decreaseCount(productInOrder)">-</div> -->
-                                            <span class="mx-2">{{ product.count }}</span>
-                                            <button
-                                                type="button"
-                                                class="standard-btn standard-btn-primary quantity-buttons"
-                                                (click)="increaseCount(product)"
-                                            >
-                                                +
-                                            </button>
-                                            <!-- <div [ngClass]="{'btn-quantity ': validateIncreaseButton(productInOrder), 'btn-quantity-disabled ': !validateIncreaseButton(productInOrder)}" 
-											class="btn-standard" (click)="increaseCount(productInOrder)">+</div> -->
-                                        </td>
-                                        <td class="align-middle text-center">{{ product.productPrice }} RSD</td>
-                                        <td class="align-middle text-center">
-                                            {{ product.productPrice * product.count }} RSD
-                                        </td>
-                                        <td class="align-middle text-center">
-                                            <a
-                                                class="standard-btn standard-btn-primary"
-                                                (click)="removeFromCart(product)"
-                                                >Remove</a
-                                            >
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
+                            <cart-product-group [products]="cart"></cart-product-group>
                         </div>
                     </div>
-                    <div class="row px-3 px-lg-5 pb-lg-3">
+                    <div class="row mt-2 px-3 px-lg-5 pb-lg-3">
                         <div class="col-12 d-flex flex-row-reverse pb-2">
-                            <a class="standard-btn standard-btn-primary">checkout</a>
+                            <a
+                                class="standard-btn standard-btn-primary"
+                                style="padding-left: 3rem; padding-right: 3rem"
+                                routerLink="/esports/shop/checkout"
+                                >checkout</a
+                            >
                         </div>
                     </div>
                 </ng-container>

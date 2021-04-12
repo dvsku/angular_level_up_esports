@@ -10,6 +10,7 @@ import { EsportsProductsComponent } from './pages/admin/esports-products/esports
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
 import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
+import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 
 const routes: Routes = [
     {
@@ -41,6 +42,7 @@ const routes: Routes = [
     { path: 'auth/signup', component: SignUpComponent },
     { path: 'esports', component: EsportsHomeComponent },
     { path: 'esports/shop', component: EsportsShopComponent },
+    { path: 'esports/shop/checkout', component: CheckoutComponent },
     { path: 'esports/shop/product/:id', component: ProductComponent },
     { path: 'partners', component: UnderConstructionComponent },
     { path: 'gaming-area', component: UnderConstructionComponent },

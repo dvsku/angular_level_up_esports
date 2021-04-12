@@ -38,6 +38,9 @@ import { RotatingPictureFormGroupComponent } from './parts/common/rotating-pictu
 import { HomePictureService } from './services/home-picture.service';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
+import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
+import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
+import { CartProductComponent } from './parts/common/cart-product/cart-product.component';
 
 @NgModule({
     declarations: [
@@ -60,7 +63,10 @@ import { UnderConstructionComponent } from './pages/common/under-construction/un
         EditEsportsProductComponent,
         EsportsHomeRotatingPicturesComponent,
         RotatingPictureFormGroupComponent,
-        UnderConstructionComponent
+        UnderConstructionComponent,
+        CheckoutComponent,
+        CartProductGroupComponent,
+        CartProductComponent
     ],
     imports: [
         BrowserModule,

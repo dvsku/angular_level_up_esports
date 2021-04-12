@@ -12,4 +12,20 @@ export class Order {
     orderAmount: string;
     orderStatus: string;
     products: ProductInOrder[];
+
+    constructor(order?: Order) {
+        if (order !== null && order !== undefined) {
+            this.orderId = order.orderId;
+            this.buyerEmail = order.buyerEmail;
+            this.buyerName = order.buyerName;
+            this.buyerLastName = order.buyerLastName;
+            this.buyerPhone = order.buyerPhone;
+            this.buyerCity = order.buyerCity;
+            this.buyerStreetAndNumber = order.buyerStreetAndNumber;
+            this.buyerZip = order.buyerZip;
+            this.orderAmount = order.orderAmount;
+            this.orderStatus = order.orderStatus;
+            this.products = order.products;
+        }
+    }
 }

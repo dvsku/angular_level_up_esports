@@ -11,17 +11,17 @@ html
 body
     background: no-repeat url('/assets/bg-body.jpg') 100% / 100%
     background-attachment: fixed
-    font-size: $fs-normal
+    font-size: $font-size-normal
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // VALIDATION
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .ng-valid[required], .ng-valid.required
-    border: 1px solid #3a943f
+    border: 1px solid $validation-success
 
 .ng-touched.ng-invalid:not(form)
-    border: 1px solid #831818
+    border: 1px solid $validation-failed
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LAYOUT
@@ -55,19 +55,19 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .fs-normal
-    font-size: $fs-normal
+    font-size: $font-size-normal
 
 .fs-small
-    font-size: $fs-small
+    font-size: $font-size-small
 
 .fs-big
-    font-size: $fs-big
+    font-size: $font-size-big
 
 .fs-large
-    font-size: $fs-large
+    font-size: $font-size-large
 
 .fs-xlarge
-    font-size: $fs-xlarge
+    font-size: $font-size-xlarge
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // UTILITIES
@@ -94,14 +94,14 @@ body
 .fw-800
     font-weight: 800
 
-.fc-blue
-    color: $fc-blue
+.fc-first
+    color: $font-color-first
 
-.fc-black
-    color: $fc-black
+.fc-second
+    color: $font-color-second
 
-.fc-white
-    color: $fc-white
+.fc-hover
+    color: $font-color-hover
 
 .lh-1
     line-height: 1rem
@@ -168,25 +168,25 @@ body
     border: 0
 
 .standard-btn-primary
-    color: $fc-white !important
+    color: $font-color-second !important
     transition: 0.2s
-    background-color: $fc-blue !important
+    background-color: $button-color-primary !important
 
 .standard-btn-primary:hover, .standard-btn-primary:focus
-    color: $fc-white !important
-    background-color: darken($fc-blue, 10) !important
+    color: $font-color-second !important
+    background-color: darken($button-color-primary, 10) !important
 
 .standard-btn-primary:disabled
     color: darken(#FFF, 60)
     background-color: darken(#FFF, 40)
 
 .lvl-btn-primary
-    color: $fc-black !important
+    color: $font-color-first !important
     transition: 0.2s
-    background-color: $fc-white !important
+    background-color: $color-second !important
 
 .lvl-btn-primary:hover
-    color: $fc-blue !important
+    color: $font-color-hover !important
     cursor: pointer
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -215,11 +215,11 @@ body
         background-color: transparent !important
 
 .dropdown-item:hover, .dropdown-item:focus
-    background-color: #11ABE2 !important
-    color: $fc-white !important
+    background-color: $color-fourth !important
+    color: $font-color-second !important
     @include media-breakpoint-down(md)
         background-color: transparent !important
-        color: $c-link-hover !important
+        color: $font-color-hover !important
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // CAROUSEL OVERRIDE
@@ -251,11 +251,11 @@ body
     min-height: 3.5rem
 
 .nav-link
-    color: $c-link !important
+    color: $font-color-first !important
     font-weight: 500
 
 .nav-link:hover
-    color: $c-link-hover !important
+    color: $font-color-hover !important
     cursor: pointer
     user-select: none
 
@@ -274,45 +274,56 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .category-link
-    color: $c-link !important
+    color: $font-color-first !important
     font-weight: 500
     text-decoration: none !important
 
 .category-link:hover
-    color: $c-link-hover !important
+    color: $font-color-hover !important
     cursor: pointer
     user-select: none
 
 .subcategory-link
-    color: $c-link !important
+    color: $font-color-first !important
     font-weight: 400
-    font-size: $fs-small !important
+    font-size: $font-size-small !important
     text-decoration: none !important
 
 .subcategory-link:hover
-    color: $c-link-hover !important
+    color: $font-color-hover !important
     cursor: pointer
     user-select: none
 
 .standard-link
-    color: $c-link !important
+    color: $font-color-first !important
     font-weight: 400
-    font-size: $fs-normal !important
+    font-size: $font-size-normal !important
     text-decoration: none !important
 
 .standard-link:hover
-    color: $c-link-hover !important
+    color: $font-color-hover !important
     cursor: pointer
     user-select: none
 
 .standard-link-reverse
-    color: $fc-white !important
+    color: $font-color-second !important
     font-weight: 400
-    font-size: $fs-normal !important
+    font-size: $font-size-normal !important
     text-decoration: none !important
 
 .standard-link-reverse:hover
-    color: $c-link-hover !important
+    color: $font-color-hover !important
+    cursor: pointer
+    user-select: none
+
+.standard-link-obvious
+    color: $font-color-hover !important
+    font-weight: 400
+    font-size: $font-size-normal !important
+    text-decoration: none !important
+
+.standard-link-obvious:hover
+    color: darken($font-color-hover, 10) !important
     cursor: pointer
     user-select: none
 

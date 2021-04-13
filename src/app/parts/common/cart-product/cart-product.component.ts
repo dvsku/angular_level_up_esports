@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductInOrder } from 'src/app/models/ProductInOrder';
 import { CartService } from 'src/app/services/cart.service';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -8,7 +8,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
     templateUrl: './cart-product.component.html',
     styleUrls: ['./cart-product.component.sass']
 })
-export class CartProductComponent implements OnInit {
+export class CartProductComponent {
     faRemove = faTimes;
 
     @Input('product')
@@ -16,7 +16,7 @@ export class CartProductComponent implements OnInit {
 
     constructor(private cartService: CartService) {}
 
-    ngOnInit(): void {
-        console.log(this.product);
+    removeProduct() {
+        this.cartService.removeProductFromCart(this.product);
     }
 }

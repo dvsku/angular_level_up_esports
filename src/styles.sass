@@ -133,7 +133,8 @@ body
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 .btn-w-1
-    width: 6.25rem
+    padding-left: 3.125rem !important
+    padding-right: 3.125rem !important
 
 .lvl-btn
     display: inline-block
@@ -152,10 +153,7 @@ body
     text-align: center
     vertical-align: middle
     user-select: none
-    width: 1.5625rem
-    height: 1.5625rem
     border-radius: 50%
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px
 
 .standard-btn
     display: inline-block
@@ -177,8 +175,8 @@ body
     background-color: darken($button-color-primary, 10) !important
 
 .standard-btn-primary:disabled
-    color: darken($color-second, 60)
-    background-color: darken($color-second, 40)
+    color: darken($color-second, 60) !important
+    background-color: darken($color-second, 40) !important
 
 .lvl-btn-primary
     color: $font-color-first !important

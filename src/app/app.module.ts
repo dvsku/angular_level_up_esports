@@ -29,7 +29,6 @@ import { ImagesFormGroupComponent } from './parts/common/images-form-group/image
 import { ImageInputComponent } from './parts/common/image-input/image-input.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
-import { CartNotifyService } from './services/cart-notify.service';
 import { SwappableImageComponent } from './parts/common/swappable-image/swappable-image.component';
 import { ProductService } from './services/product.service';
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
@@ -42,6 +41,7 @@ import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
 import { CartProductComponent } from './parts/common/cart-product/cart-product.component';
 import { ThreeRowGridLayoutComponent } from './parts/layout/three-row-grid-layout/three-row-grid-layout.component';
+import { CartService } from './services/cart.service';
 
 @NgModule({
     declarations: [
@@ -85,7 +85,7 @@ import { ThreeRowGridLayoutComponent } from './parts/layout/three-row-grid-layou
     ],
     providers: [
         CookieService,
-        CartNotifyService,
+        CartService,
         ProductService,
         HomePictureService,
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },

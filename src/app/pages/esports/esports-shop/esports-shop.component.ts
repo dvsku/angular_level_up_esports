@@ -48,12 +48,11 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
 
     updateShop(): void {
         if (this.products === null || this.products === undefined) return;
-        console.log('a');
         let products: ProductInfo[] = this.products.filter((x) => x);
         switch (this.sort) {
             case 'newest':
                 products = products.sort((a, b) => {
-                    return new Date(a.createTime).getTime() - new Date(b.createTime).getTime();
+                    return 0 - (new Date(a.createTime).getTime() - new Date(b.createTime).getTime() ? 1 : -1);
                 });
                 break;
             case 'priceAsc':

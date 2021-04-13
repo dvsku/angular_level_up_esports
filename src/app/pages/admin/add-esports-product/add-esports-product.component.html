@@ -1,9 +1,9 @@
 <form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
     <div class="row">
         <div class="col-12 d-flex flex-row justify-content-between">
-            <h3 class="fw-700">{{title.toUpperCase()}}</h3>
+            <h3 class="fw-700 text-uppercase">{{title}}</h3>
             <div class="form-group">
-                <button type="submit" class="standard-btn standard-btn-primary">Save</button>
+                <button type="submit" class="standard-btn standard-btn-primary btn-w-1">Save</button>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
                             <label for="productCategory">Category</label>
                             <select [(ngModel)]="product.categoryType" class="form-control" id="productCategory"
                                 name="productCategory" required>
-                                <option [selected]='category.uniqueId === product.categoryType'
+                                <option [selected]='category.categoryType === product.categoryType'
                                     *ngFor='let category of categories' [value]="category.categoryType">
                                     {{category.categoryName}}</option>
                             </select>
@@ -76,7 +76,7 @@
                                 <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
                                     <div class="drop-list-item" *ngFor='let size of product?.productInfoSizes' cdkDrag>
                                         <div class="drop-placeholder" *cdkDragPlaceholder></div>
-                                        <div>{{size.productSize.toUpperCase()}}</div>
+                                        <div class="text-uppercase">{{size.productSize}}</div>
                                         <div class="mr-2 my-2 text-right" style="width: 100px;">
                                             <a type="button" class="subcategory-link btn-block"
                                                 (click)='removeSize(size)'>Remove</a>

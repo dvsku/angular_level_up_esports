@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
-import { catchError, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { ProductInfo } from '../models/ProductInfo';
 
 @Injectable({
@@ -23,6 +23,10 @@ export class ProductService {
         if (this.products === null) {
             this.fetchSortedProducts('new').subscribe((products) => {
                 this.products = products;
+                this.products.forEach((product) => {
+                    product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
+                    product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                });
                 this.productsSubject.next(this.products);
                 this.productsObs.pipe(publishReplay(1), refCount());
                 console.log('Fetched products from server.');
@@ -44,27 +48,42 @@ export class ProductService {
         );
     }
 
-    getProduct(productId: number): ProductInfo {
+    getProduct(productId: number): Promise<ProductInfo> {
         let product = undefined;
         if (this.products !== null && this.products !== undefined) {
-            product = this.products.find((x) => x.productId === productId);
-            if (product === undefined) {
-                this.fetchProduct(productId).subscribe((prod) => {
-                    product = prod;
-                    console.log('Fetched product from server.');
-                });
-            }
+            product = this.products.find((x) => x.productId === +productId);
         }
-        return product;
+        if (product === undefined) {
+            return this.fetchProduct(productId)
+                .then((prod) => {
+                    prod.productInfoSizes = prod.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
+                    prod.productInfoIcons = prod.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                    return prod;
+                })
+                .catch(() => {
+                    return undefined;
+                });
+        } else {
+            product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
+            product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+            return Promise.resolve(product);
+        }
     }
 
-    private fetchProduct(productId: number): Observable<ProductInfo> {
+    private fetchProduct(productId: number): Promise<ProductInfo> {
         const url = `${this.productUrl}/${productId}`;
-        return this.httpClient.get<ProductInfo>(url).pipe(
-            catchError(() => {
-                return of(new ProductInfo());
-            })
-        );
+        console.log('fetching from server');
+        return this.httpClient
+            .get<ProductInfo>(url)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
     removeProduct(product: ProductInfo): void {
@@ -86,33 +105,37 @@ export class ProductService {
         return this.httpClient.delete(url);
     }
 
-    createProduct(product: ProductInfo): Observable<boolean> {
-        const success: Subject<boolean> = new Subject<boolean>();
-        this.createDatabaseProduct(product).subscribe(
-            () => {
+    createProduct(product: ProductInfo): Promise<boolean> {
+        return this.createDatabaseProduct(product).then(
+            (response) => {
                 if (this.productsObs) {
                     if (this.products !== null && this.products !== undefined) {
+                        product.productId = response;
                         this.products.push(product);
                         this.productsSubject.next(this.products);
                     }
                 }
-                success.next(true);
+                return true;
             },
-            (error) => {
-                console.log("Couldn't create product: " + error.message);
-                success.next(false);
+            () => {
+                return false;
             }
         );
-        return success.asObservable();
     }
 
-    private createDatabaseProduct(productInfo: ProductInfo): Observable<boolean> {
+    private createDatabaseProduct(productInfo: ProductInfo): Promise<number> {
         const url = `${this.productAdminUrl}/new`;
-        return this.httpClient.post<boolean>(url, productInfo).pipe(
-            tap(() => {
-                // LOGOVANJE
-            })
-        );
+        return this.httpClient
+            .post<number>(url, productInfo)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
     updateProduct(product: ProductInfo): Observable<boolean> {

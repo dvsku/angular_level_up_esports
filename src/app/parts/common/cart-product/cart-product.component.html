@@ -12,6 +12,6 @@
         <div class="text-muted fs-small">{{ product.count * product.productPrice }} RSD</div>
     </div>
     <div>
-        <fa-icon [icon]="faRemove" class="close"></fa-icon>
+        <fa-icon (click)='removeProduct()' [icon]="faRemove" class="close"></fa-icon>
     </div>
 </div>

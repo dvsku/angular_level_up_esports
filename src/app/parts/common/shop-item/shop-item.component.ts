@@ -9,4 +9,17 @@ import { ProductInfo } from 'src/app/models/ProductInfo';
 export class ShopItemComponent {
     @Input('product')
     product: ProductInfo;
+
+    getProductSizes(): string {
+        if (this.product === null || this.product === undefined) return '';
+        let final = '';
+        this.product.productInfoSizes.forEach((size, index) => {
+            if (index === this.product.productInfoSizes.length - 1) {
+                final = final.concat(size.productSize);
+            } else {
+                final = final.concat(size.productSize + ', ');
+            }
+        });
+        return final;
+    }
 }

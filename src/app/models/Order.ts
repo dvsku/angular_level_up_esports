@@ -14,6 +14,7 @@ export class Order {
     products: ProductInOrder[];
 
     constructor(order?: Order) {
+        this.orderStatus = '0';
         if (order !== null && order !== undefined) {
             this.orderId = order.orderId;
             this.buyerEmail = order.buyerEmail;

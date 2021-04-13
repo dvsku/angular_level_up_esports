@@ -1,12 +1,18 @@
 @import '~bootstrap/scss/bootstrap'
 @import '../../../../_variables'
 
-.image-main
-    max-height: 31.25rem
+.image-main-container
+    width: 100%
+    height: 60vh
+    display: flex
 
 .image-select
     max-height: 3.125rem
     cursor: pointer
+    border: 1px $border-color-muted solid
+
+.image-select.active
+    border: 1px $color-fourth solid
 
 .container
     @include media-breakpoint-only(xl)
@@ -22,9 +28,9 @@
     color: $color-second
     line-height: 1.875rem
 
-    .size:hover
-        background-color: darken($color-fourth, 10)
-        cursor: pointer
+.size:hover
+    background-color: darken($color-fourth, 10)
+    cursor: pointer
 
 .size.active
     background-color: darken($color-fourth, 10)

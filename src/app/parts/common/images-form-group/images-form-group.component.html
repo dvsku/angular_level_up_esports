@@ -20,9 +20,10 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <div class="modal-body">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [maintainAspectRatio]="true" [aspectRatio]="3 / 5"
-            format="png" (imageCropped)="imageCropped($event)" [autoCrop]="false"></image-cropper>
+    <div class="modal-body" style="height: 75vh">
+        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="1000" [resizeToHeight]="700"
+            [maintainAspectRatio]="true" [aspectRatio]="7 / 10" format="png" (imageCropped)="imageCropped($event)"
+            [autoCrop]="false"></image-cropper>
     </div>
     <div class="modal-footer">
         <button type="button" class="standard-btn standard-btn-primary"

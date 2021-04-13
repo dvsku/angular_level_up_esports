@@ -2,64 +2,64 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { Order } from '../models/Order';
 import { ProductInOrder } from '../models/ProductInOrder';
-import { CartNotifyService } from './cart-notify.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService {
+    private cartProducts: ProductInOrder[] = null;
+    private cartProductsSubject: BehaviorSubject<ProductInOrder[]> = new BehaviorSubject<ProductInOrder[]>(
+        this.cartProducts
+    );
+    private cartProductsObs: Observable<ProductInOrder[]> = this.cartProductsSubject.asObservable();
+
     private cartUrl = `http://localhost:8080/api/cart`;
-    cartProducts: ProductInOrder[];
 
     constructor(
         private httpClient: HttpClient,
         private toastrService: ToastrService,
-        private cookieService: CookieService,
-        private cartNotifyService: CartNotifyService
+        private cookieService: CookieService
     ) {}
 
-    getCart(): ProductInOrder[] {
-        if (this.cookieService.check('cart')) {
-            this.cartProducts = JSON.parse(this.cookieService.get('cart'));
-        } else {
-            this.cartProducts = [];
+    getCart(): Observable<ProductInOrder[]> {
+        if (this.cartProducts === null) {
+            if (this.cookieService.check('cart')) {
+                this.cartProducts = JSON.parse(this.cookieService.get('cart'));
+            } else {
+                this.cartProducts = [];
+            }
         }
-        return this.cartProducts;
+        this.cartProductsSubject.next(this.cartProducts);
+
+        return this.cartProductsObs;
     }
 
     addProductToCart(product: ProductInOrder): void {
-        if (this.cookieService.check('cart')) {
-            this.cartProducts = JSON.parse(this.cookieService.get('cart'));
-        }
         const index = this.cartProducts.findIndex(
-            (x) =>
-                x.productId === product.productId && x.productSize === product.productSize
+            (x) => x.productId === product.productId && x.productSize === product.productSize
         );
         if (index !== -1) {
             this.cartProducts[index].count += product.count;
         } else {
             this.cartProducts.push(product);
         }
-        this.cookieService.set('cart', JSON.stringify(this.cartProducts));
+        this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
+        this.cartProductsSubject.next(this.cartProducts);
         this.toastrService.success('Successfully added item to cart.');
-        this.cartNotifyService.notify(null);
     }
 
     removeProductFromCart(product: ProductInOrder): void {
-        if (this.cookieService.check('cart')) {
-            this.cartProducts = JSON.parse(this.cookieService.get('cart'));
-        }
         const index = this.cartProducts.findIndex(
-            (x) =>
-                x.productId === product.productId && x.productSize === product.productSize
+            (x) => x.productId === product.productId && x.productSize === product.productSize
         );
         if (index !== -1) {
             this.cartProducts.splice(index, 1);
-            this.cookieService.set('cart', JSON.stringify(this.cartProducts));
+            this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
+            this.cartProductsSubject.next(this.cartProducts);
             this.toastrService.info('Item removed from cart');
-            this.cartNotifyService.notify(null);
         } else {
             console.log('Failed to remove item from cart.');
         }
@@ -68,11 +68,21 @@ export class CartService {
     clearCart(): void {
         this.cookieService.delete('cart');
         this.cartProducts = [];
-        this.cartNotifyService.notify(null);
+        this.cartProductsSubject.next(this.cartProducts);
     }
 
-    checkout(): Observable<any> {
+    checkout(order: Order): Promise<any> {
         const url = `${this.cartUrl}/checkout`;
-        return this.httpClient.post(url, null).pipe();
+        return this.httpClient
+            .post(url, order)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 }

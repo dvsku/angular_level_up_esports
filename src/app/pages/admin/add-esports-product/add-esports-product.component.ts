@@ -104,21 +104,18 @@ export class AddEsportsProductComponent implements OnInit, OnDestroy {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     onSubmit(): void {
-        this.productService
-            .createProduct(this.product)
-            .subscribe((success) => {
-                if (success) {
-                    this.router
-                        .navigate(['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }], {
-                            skipLocationChange: true
-                        })
-                        .then(() => {
-                            this.toastrService.success('Product created.');
-                        });
-                } else {
-                    this.toastrService.error("Couldn't create product.");
-                }
-            })
-            .unsubscribe();
+        this.productService.createProduct(this.product).then((success) => {
+            if (success) {
+                this.router
+                    .navigate(['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }], {
+                        skipLocationChange: true
+                    })
+                    .then(() => {
+                        this.toastrService.success('Product created.');
+                    });
+            } else {
+                this.toastrService.error("Couldn't create product.");
+            }
+        });
     }
 }

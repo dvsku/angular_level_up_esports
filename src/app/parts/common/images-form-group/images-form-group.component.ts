@@ -44,6 +44,7 @@ export class ImagesFormGroupComponent {
     drop(event: CdkDragDrop<string[]>): void {
         moveItemInArray(this.images, event.previousIndex, event.currentIndex);
         this.reorderImages();
+        console.log(this.images);
     }
 
     reorderImages(): void {

@@ -27,7 +27,12 @@ export class SwappableImageComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.firstSource !== '') this.currentSource = this.firstSource;
-        else this.currentSource = this.secondSource;
+        if (this.firstSource !== '') {
+            this.currentSource = this.firstSource;
+        } else if (this.secondSource !== '') {
+            this.currentSource = this.secondSource;
+        } else {
+            ('');
+        }
     }
 }

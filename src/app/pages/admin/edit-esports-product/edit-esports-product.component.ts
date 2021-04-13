@@ -18,7 +18,7 @@ import { take } from 'rxjs/operators';
     styleUrls: ['../add-esports-product/add-esports-product.component.sass']
 })
 export class EditEsportsProductComponent implements OnInit, OnDestroy {
-    product: ProductInfo;
+    product: ProductInfo = new ProductInfo();
     productId: number;
     categories: ProductCategory[];
     size = '';
@@ -44,8 +44,9 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.productId = +this.activatedRoute.snapshot.paramMap.get('id');
         if (this.productId) {
-            this.product = this.productService.getProduct(this.productId);
-            this.product.productInfoSizes = this.product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
+            this.productService.getProduct(this.productId).then((prod) => {
+                this.product = prod;
+            });
         }
         this.categoriesSubscription = this.categoriesService.getProductCategories().subscribe((cats) => {
             this.categories = cats;
@@ -53,7 +54,9 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy(): void {
-        this.categoriesSubscription.unsubscribe();
+        if (this.categoriesSubscription !== null && this.categoriesSubscription !== undefined) {
+            this.categoriesSubscription.unsubscribe();
+        }
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

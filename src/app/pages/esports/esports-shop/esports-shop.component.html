@@ -7,21 +7,21 @@
                         <a class="category-link fs-xlarge" (click)="changeCategory('all')">ALL</a>
                     </li>
                     <li *ngFor="let category of categories">
-                        <a class="category-link fs-xlarge"
+                        <a class="category-link fs-xlarge text-uppercase"
                             (click)="changeCategory(category.categoryName.toLowerCase())">{{
-                            category.categoryName.toUpperCase() }}</a>
+                            category.categoryName }}</a>
                     </li>
                 </ul>
             </div>
             <div class="col-12 col-lg-8 ml-0 mt-5 ml-lg-5 mt-lg-0 container-shadow bg-white">
                 <div id="info-row" class="row pb-2 pt-4 mx-4">
                     <div class="col-12 col-lg-6 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
-                        <span *ngIf="displayedProducts?.length !== 1; else prodLenOne">
-                            SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULTS
+                        <span class="text-uppercase" *ngIf="displayedProducts?.length !== 1; else prodLenOne">
+                            SHOWING {{ displayedProducts?.length }} {{ category }} RESULTS
                         </span>
                         <ng-template #prodLenOne>
-                            <span>
-                                SHOWING {{ displayedProducts?.length }} {{ category?.toUpperCase() }} RESULT
+                            <span class="text-uppercase">
+                                SHOWING {{ displayedProducts?.length }} {{ category }} RESULT
                             </span>
                         </ng-template>
                     </div>

@@ -3,6 +3,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 import { Subscription } from 'rxjs';
 import { HomeRotatingPicture } from 'src/app/models/HomeRotatingPicture';
 import { HomePictureService } from 'src/app/services/home-picture.service';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-esports-home',
@@ -10,6 +11,7 @@ import { HomePictureService } from 'src/app/services/home-picture.service';
     styleUrls: ['./esports-home.component.sass']
 })
 export class EsportsHomeComponent implements OnInit, OnDestroy {
+    faHeart = faHeart;
     rotatingImages: HomeRotatingPicture[];
     rotatingImagesSubscription: Subscription;
 

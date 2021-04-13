@@ -3,7 +3,6 @@ import { faBars, faAngleDown, faShoppingCart } from '@fortawesome/free-solid-svg
 import { Subscription } from 'rxjs';
 import { ProductInOrder } from 'src/app/models/ProductInOrder';
 import { JwtResponse } from 'src/app/response/JwtResponse';
-import { CartNotifyService } from 'src/app/services/cart-notify.service';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProductCategory } from 'src/app/models/ProductCategory';
@@ -33,6 +32,7 @@ export class HeaderComponent implements OnInit {
     featuredProducts: ProductInfo[];
 
     private productsSubscription: Subscription;
+    private cartProductsSubscription: Subscription;
 
     model: any = {
         username: '',
@@ -45,8 +45,7 @@ export class HeaderComponent implements OnInit {
         private userService: UserService,
         private cartService: CartService,
         private productCategoryService: ProductCategoryService,
-        private productService: ProductService,
-        private cartNotifyService: CartNotifyService
+        private productService: ProductService
     ) {}
 
     ngOnInit(): void {
@@ -58,13 +57,16 @@ export class HeaderComponent implements OnInit {
         });
         this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
             if (prods !== undefined && prods !== null) {
-                this.featuredProducts = prods.sort((a, b) => a.sold - b.sold).slice(0, 3);
-                //console.log(this.featuredProducts)
+                this.featuredProducts = prods
+                    .filter((x) => x.productStatus === 0)
+                    .sort((a, b) => a.sold - b.sold)
+                    .slice(0, 3);
             }
         });
 
-        this.getCart();
-        this.cartNotifyService.obs.subscribe(() => this.getCart());
+        this.cartProductsSubscription = this.cartService.getCart().subscribe((prods) => {
+            this.cart = prods;
+        });
     }
 
     ngOnDestroy(): void {
@@ -75,10 +77,6 @@ export class HeaderComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////////////////////
     // CART
     //////////////////////////////////////////////////////////////////////////////////////////////////
-
-    getCart(): void {
-        this.cart = this.cartService.getCart();
-    }
 
     removeFromCart(product: ProductInOrder): void {
         this.cartService.removeProductFromCart(product);

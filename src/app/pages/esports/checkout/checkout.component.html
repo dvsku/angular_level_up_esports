@@ -12,19 +12,19 @@
                         <div class="col-12 d-flex flex-column">
                             <div class="d-flex flex-column px-3 pb-2">
                                 <div>
-                                    <span>NAME:</span> {{ order.buyerName }} {{ order.buyerLastName }}
+                                    <span>NAME:</span> {{ order?.buyerName }} {{ order?.buyerLastName }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>ADDRESS:</span> {{ order.buyerStreetAndNumber }}, {{ order.buyerCity }}
+                                    <span>ADDRESS:</span> {{ order?.buyerStreetAndNumber }}, {{ order?.buyerCity }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>ZIP:</span> {{ order.buyerZip }}
+                                    <span>ZIP:</span> {{ order?.buyerZip }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>PHONE:</span> {{ order.buyerPhone }}
+                                    <span>PHONE:</span> {{ order?.buyerPhone }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                             </div>
@@ -37,7 +37,8 @@
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-end pt-2">
-                            <button class="standard-btn standard-btn-primary" type="button">place order</button>
+                            <button class="standard-btn standard-btn-primary" type="button" (click)='checkout()'>place
+                                order</button>
                         </div>
                     </div>
                 </div>
@@ -59,7 +60,7 @@
                             <form #form="ngForm" class="w-50 mt-2" (ngSubmit)="updateInformation()">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" [(ngModel)]="tempOrder.buyerEmail" #email="ngModel"
+                                    <input type="email" [(ngModel)]="order.buyerEmail" #email="ngModel"
                                         class="form-control" id="email" name="email" required />
                                     <div *ngIf="email.invalid && (email.dirty || email.touched)">
                                         <small *ngIf="email.errors.required">Email is required.</small>
@@ -68,7 +69,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="firstname">First Name</label>
-                                    <input type="text" [(ngModel)]="tempOrder.buyerName" #firstName="ngModel"
+                                    <input type="text" [(ngModel)]="order.buyerName" #firstName="ngModel"
                                         class="form-control" id="firstname" name="firstname" required />
                                     <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
                                         <small *ngIf="firstName.errors.required">First Name is required.</small>
@@ -76,7 +77,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="lastname">Last Name</label>
-                                    <input type="text" [(ngModel)]="tempOrder.buyerLastName" #lastName="ngModel"
+                                    <input type="text" [(ngModel)]="order.buyerLastName" #lastName="ngModel"
                                         class="form-control" id="lastname" name="lastname" required />
                                     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                                         <small *ngIf="lastName.errors.required">Last Name is required.</small>
@@ -84,7 +85,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="city">City</label>
-                                    <input type="text" [(ngModel)]="tempOrder.buyerCity" #city="ngModel"
+                                    <input type="text" [(ngModel)]="order.buyerCity" #city="ngModel"
                                         class="form-control" id="city" name="city" required />
                                     <div *ngIf="city.invalid && (city.dirty || city.touched)">
                                         <small *ngIf="city.errors.required">City is required.</small>
@@ -92,7 +93,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" [(ngModel)]="tempOrder.buyerStreetAndNumber" #address="ngModel"
+                                    <input type="text" [(ngModel)]="order.buyerStreetAndNumber" #address="ngModel"
                                         class="form-control" id="address" name="address" required />
                                     <div *ngIf="address.invalid && (address.dirty || address.touched)">
                                         <small *ngIf="address.errors.required">Address is required.</small>
@@ -100,7 +101,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="zip">Zip</label>
-                                    <input type="number" [(ngModel)]="tempOrder.buyerZip" class="form-control" id="zip"
+                                    <input type="number" [(ngModel)]="order.buyerZip" class="form-control" id="zip"
                                         name="zip" #zip="ngModel" required />
                                     <div *ngIf="zip.invalid && (zip.dirty || zip.touched)">
                                         <small *ngIf="zip.errors.required">Zip is required.</small>
@@ -108,7 +109,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone</label>
-                                    <input type="text" [(ngModel)]="tempOrder.buyerPhone" #phone="ngModel"
+                                    <input type="text" [(ngModel)]="order.buyerPhone" #phone="ngModel"
                                         class="form-control" id="phone" name="phone" required />
                                     <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
                                         <small *ngIf="phone.errors.required">Phone is required.</small>

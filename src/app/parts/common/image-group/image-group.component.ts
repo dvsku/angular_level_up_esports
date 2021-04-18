@@ -1,18 +1,19 @@
-import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver, ElementRef } from '@angular/core';
-import { ProductIcon } from 'src/app/models/ProductIcon';
-import { ImageInputComponent } from '../image-input/image-input.component';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { Component, Input, ViewChild, ViewContainerRef, ElementRef, ComponentFactoryResolver } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImageCroppedEvent } from 'ngx-image-cropper';
+import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
+import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
+import { ImageInputComponent } from '../image-input/image-input.component';
 
 @Component({
-    selector: 'app-images-form-group',
-    templateUrl: './images-form-group.component.html',
-    styleUrls: ['./images-form-group.component.sass']
+    selector: 'image-group',
+    templateUrl: './image-group.component.html',
+    styleUrls: ['./image-group.component.sass']
 })
-export class ImagesFormGroupComponent {
+export class ImageGroupComponent {
     @Input('images')
-    images: ProductIcon[];
+    images: ModelWithImage[];
 
     @ViewChild('parent', { read: ViewContainerRef })
     container: ViewContainerRef;
@@ -23,11 +24,16 @@ export class ImagesFormGroupComponent {
     cropperImageBase64 = '';
     croppedImage: any = '';
 
+    parent: ImagesHandler;
+
     constructor(private _cfr: ComponentFactoryResolver, private modalService: NgbModal) {}
 
     imageCropped(event: ImageCroppedEvent): void {
-        this.images.push(new ProductIcon(null, event.base64, 0));
-        this.reorderImages();
+        this.parent.createImage(event.base64);
+        this.parent.reorderImages();
+        //if(this.images instanceof HomeRotatingPicture[])
+        /*  this.images.push(new ProductIcon(null, event.base64, 0));
+        this.reorderImages(); */
     }
 
     resizeImage(imageBase64: string): void {
@@ -41,18 +47,6 @@ export class ImagesFormGroupComponent {
         }
     }
 
-    drop(event: CdkDragDrop<string[]>): void {
-        moveItemInArray(this.images, event.previousIndex, event.currentIndex);
-        this.reorderImages();
-        console.log(this.images);
-    }
-
-    reorderImages(): void {
-        this.images.forEach((image, index) => {
-            image.iconOrder = index + 1;
-        });
-    }
-
     addImage(): void {
         const component = this._cfr.resolveComponentFactory(ImageInputComponent);
         const createdComponent = this.container.createComponent(component);
@@ -61,10 +55,17 @@ export class ImagesFormGroupComponent {
         createdComponent.instance.openFileSelectDialog();
     }
 
-    removeImage(image: ProductIcon): void {
-        const index = this.images.indexOf(image);
+    drop(event: CdkDragDrop<string[]>): void {
+        moveItemInArray(this.images, event.previousIndex, event.currentIndex);
+        this.parent.reorderImages();
+    }
+
+    removeImage(image: ModelWithImage): void {
+        this.parent.removeImage(image);
+        this.parent.reorderImages();
+        /* const index = this.images.indexOf(image);
         if (index > -1) {
             this.images.splice(index, 1);
-        }
+        } */
     }
 }

@@ -25,7 +25,6 @@ import { SignUpComponent } from './pages/esports/sign-up/sign-up.component';
 import { ProductComponent } from './pages/esports/product/product.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { AddEsportsProductComponent } from './pages/admin/add-esports-product/add-esports-product.component';
-import { ImagesFormGroupComponent } from './parts/common/images-form-group/images-form-group.component';
 import { ImageInputComponent } from './parts/common/image-input/image-input.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EsportsProductsComponent } from './pages/admin/esports-products/esports-products.component';
@@ -33,7 +32,6 @@ import { SwappableImageComponent } from './parts/common/swappable-image/swappabl
 import { ProductService } from './services/product.service';
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
 import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
-import { RotatingPictureFormGroupComponent } from './parts/common/rotating-picture-form-group/rotating-picture-form-group.component';
 import { HomePictureService } from './services/home-picture.service';
 import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
@@ -45,6 +43,7 @@ import { CartService } from './services/cart.service';
 import { OrdersComponent } from './pages/esports/orders/orders.component';
 import { OrderComponent } from './pages/esports/order/order.component';
 import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
+import { ImageGroupComponent } from './parts/common/image-group/image-group.component';
 
 @NgModule({
     declarations: [
@@ -60,13 +59,11 @@ import { AdminPartnersComponent } from './pages/admin/partners/partners.componen
         ProductComponent,
         AdminDashboardComponent,
         AddEsportsProductComponent,
-        ImagesFormGroupComponent,
         ImageInputComponent,
         EsportsProductsComponent,
         SwappableImageComponent,
         EditEsportsProductComponent,
         EsportsHomeRotatingPicturesComponent,
-        RotatingPictureFormGroupComponent,
         UnderConstructionComponent,
         CheckoutComponent,
         CartProductGroupComponent,
@@ -74,7 +71,8 @@ import { AdminPartnersComponent } from './pages/admin/partners/partners.componen
         ThreeRowGridLayoutComponent,
         OrdersComponent,
         OrderComponent,
-        AdminPartnersComponent
+        AdminPartnersComponent,
+        ImageGroupComponent
     ],
     imports: [
         BrowserModule,

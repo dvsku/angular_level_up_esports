@@ -17,6 +17,7 @@ export class AdminPartnersComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.partnersSubscription = this.partnerService.getPartners().subscribe((partners) => {
             this.partners = partners;
+            console.log(this.partners);
         });
     }
 

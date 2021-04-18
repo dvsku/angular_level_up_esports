@@ -1,10 +1,9 @@
-export class HomeRotatingPicture {
+import { ModelWithImage } from './base/ModelWithImage';
+
+export class HomeRotatingPicture extends ModelWithImage {
     id?: number;
-    picture?: string;
-    pictureOrder?: number;
 
     constructor(picture?: string, order?: number) {
-        this.picture = picture;
-        this.pictureOrder = order;
+        super(picture, order);
     }
 }

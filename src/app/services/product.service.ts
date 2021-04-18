@@ -25,7 +25,7 @@ export class ProductService {
                 this.products = products;
                 this.products.forEach((product) => {
                     product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-                    product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                    product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
                 });
                 this.productsSubject.next(this.products);
                 this.productsObs.pipe(publishReplay(1), refCount());
@@ -57,7 +57,7 @@ export class ProductService {
             return this.fetchProduct(productId)
                 .then((prod) => {
                     prod.productInfoSizes = prod.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-                    prod.productInfoIcons = prod.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                    prod.productInfoIcons = prod.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
                     return prod;
                 })
                 .catch(() => {
@@ -65,7 +65,7 @@ export class ProductService {
                 });
         } else {
             product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-            product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+            product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
             return Promise.resolve(product);
         }
     }

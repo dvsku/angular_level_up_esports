@@ -15,6 +15,7 @@ import { ProductResolver } from './_resolvers/product.resolver';
 import { OrdersComponent } from './pages/esports/orders/orders.component';
 import { OrderComponent } from './pages/esports/order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
+import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -46,6 +47,12 @@ const routes: Routes = [
                 component: EsportsHomeRotatingPicturesComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Home Rotating Pictures' }
+            },
+            {
+                path: 'partners',
+                component: AdminPartnersComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Partners' }
             }
         ]
     },

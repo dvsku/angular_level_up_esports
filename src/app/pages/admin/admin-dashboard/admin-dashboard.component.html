@@ -3,35 +3,35 @@
         <div class="row">
             <div class="col-12 col-lg-3">
                 <ul class="list-unstyled sticky">
-                    <li>
+                    <!-- <li>
                         <a class="category-link" (click)="barcraftCollapse.toggle()"
                             [attr.aria-expanded]="!isBarcraftCollapsed">BARCRAFT</a>
                         <div class="pl-2" #barcraftCollapse="ngbCollapse" [(ngbCollapse)]="isBarcraftCollapsed">
                             a
                         </div>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="category-link" (click)="esportsCollapse.toggle()"
                             [attr.aria-expanded]="!isEsportsCollapsed">ESPORTS</a>
                         <div class="pl-2" #esportsCollapse="ngbCollapse" [(ngbCollapse)]="isEsportsCollapsed">
                             <ul class="list-unstyled">
                                 <li>
-                                    <a class="subcategory-link" [routerLink]="[
-                                            '/admin/dashboard',
-                                            { outlets: { adminOutlet: 'esports/products' } }
-                                        ]" skipLocationChange>PRODUCTS</a>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }]"
+                                        skipLocationChange>PRODUCTS</a>
                                 </li>
                                 <li>
-                                    <a class="subcategory-link" [routerLink]="[
-                                            '/admin/dashboard',
-                                            { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }
-                                        ]" skipLocationChange>HOME ROTATING PICTURES</a>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }]"
+                                        skipLocationChange>HOME ROTATING PICTURES</a>
                                 </li>
-                                <!-- <li>
-                                    <a class="subcategory-link" [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]" skipLocationChange>ADD PRODUCT</a>
-                                </li> -->
                             </ul>
                         </div>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'partners' } }]"
+                            skipLocationChange>PARTNERS</a>
                     </li>
                 </ul>
             </div>

@@ -44,6 +44,7 @@ import { ThreeRowGridLayoutComponent } from './parts/layout/three-row-grid-layou
 import { CartService } from './services/cart.service';
 import { OrdersComponent } from './pages/esports/orders/orders.component';
 import { OrderComponent } from './pages/esports/order/order.component';
+import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +73,8 @@ import { OrderComponent } from './pages/esports/order/order.component';
         CartProductComponent,
         ThreeRowGridLayoutComponent,
         OrdersComponent,
-        OrderComponent
+        OrderComponent,
+        AdminPartnersComponent
     ],
     imports: [
         BrowserModule,

@@ -1,0 +1,25 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h3 class="fw-700">ESPORTS ROTATING PICTURES</h3>
+            <div class="form-group">
+                <button type="submit" class="standard-btn standard-btn-primary btn-w-1">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <!-- <button type="button" (click)='addImageInput()'
+                        class="standard-btn standard-btn-primary btn-block">Add</button> -->
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <app-rotating-picture-form-group></app-rotating-picture-form-group>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

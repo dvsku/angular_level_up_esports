@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ContentCreator } from '../models/ContentCreator';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ContentCreatorService {
-    private url = `http://localhost:8080/api/contentCreator`;
-    private adminUrl = `http://localhost:8080/api/admin/contentCreator`;
+    private url = environment.apiURL + `contentCreator`;
+    private adminUrl = environment.apiURL + `admin/contentCreator`;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -32,10 +33,7 @@ export class ContentCreatorService {
         );
     }
 
-    public editExistingContentCreator(
-        id: number,
-        contentCreator: ContentCreator
-    ): Observable<boolean> {
+    public editExistingContentCreator(id: number, contentCreator: ContentCreator): Observable<boolean> {
         const url = `${this.adminUrl}/${id}/edit`;
         return this.httpClient.put<boolean>(url, contentCreator).pipe(
             tap((data) => {

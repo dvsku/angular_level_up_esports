@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { ProductCatalogCategory } from '../models/ProductCatalogCategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductCatalogCategoryService {
-    private catalogCategoryUrl = `http://localhost:8080/api/productCatalogCategory`;
-    private catalogCategoryAdminurl = `http://localhost:8080/api/admin/productCatalogCategory`;
+    private catalogCategoryUrl = environment.apiURL + `productCatalogCategory`;
+    private catalogCategoryAdminurl = environment.apiURL + `admin/productCatalogCategory`;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -31,9 +32,7 @@ export class ProductCatalogCategoryService {
         );
     }
 
-    addNewProductCatalogCategory(
-        productCatalogCategory: ProductCatalogCategory
-    ): Observable<boolean> {
+    addNewProductCatalogCategory(productCatalogCategory: ProductCatalogCategory): Observable<boolean> {
         const url = `${this.catalogCategoryAdminurl}/new`;
         return this.httpClient.post<boolean>(url, productCatalogCategory).pipe(
             tap((data) => {

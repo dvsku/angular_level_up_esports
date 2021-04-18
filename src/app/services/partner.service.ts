@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { publishReplay, refCount, tap } from 'rxjs/operators';
 import { Partner } from '../models/Partner';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class PartnerService {
-    private partnerUrl = `http://localhost:8080/api/partner`;
-    private adminPartnerUrl = `http://localhost:8080/api/admin/partner`;
+    private partnerUrl = environment.apiURL + `partner`;
+    private adminPartnerUrl = environment.apiURL + `admin/partner`;
 
     private partners: Partner[] = null;
     private partnersSubject: BehaviorSubject<Partner[]> = new BehaviorSubject<Partner[]>(this.partners);

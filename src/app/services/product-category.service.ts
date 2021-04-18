@@ -4,17 +4,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { publishReplay, refCount } from 'rxjs/operators';
 import { ProductCategory } from '../models/ProductCategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductCategoryService {
+    private categoryUrl = environment.apiURL + `productCategory`;
+    private categoryAdminUrl = environment.apiURL + `admin/productCategory`;
+
     private categories: ProductCategory[] = null;
     private categoriesSubject: BehaviorSubject<ProductCategory[]> = new BehaviorSubject<ProductCategory[]>(null);
     private categoriesObs: Observable<ProductCategory[]> = this.categoriesSubject.asObservable();
-
-    private categoryUrl = `http://localhost:8080/api/productCategory`;
-    private categoryAdminUrl = `http://localhost:8080/api/admin/productCategory`;
 
     constructor(private httpClient: HttpClient) {}
 

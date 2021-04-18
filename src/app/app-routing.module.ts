@@ -92,7 +92,31 @@ const routes: Routes = [
     },
     { path: 'partners', component: PartnersComponent, data: { title: 'LevelUp | Partners' } },
     { path: 'gaming-area', component: UnderConstructionComponent, data: { title: 'LevelUp | Gaming Area' } },
-    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } }
+    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } },
+    { path: 'content-creators', component: UnderConstructionComponent, data: { title: 'LevelUp | Content Creators' } },
+    { path: 'teams/dota-2', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Dota 2' } },
+    { path: 'teams/csgo', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | CSGO' } },
+    {
+        path: 'teams/league-of-legends',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | League of Legends' }
+    },
+    {
+        path: 'teams/warcraft-3',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Warcraft III' }
+    },
+    { path: 'teams/fortnite', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Fortnite' } },
+    {
+        path: 'teams/heroes-of-the-storm',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Heroes of the Storm' }
+    },
+    {
+        path: 'teams/hearthstone',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Hearthstone' }
+    }
 ];
 
 @NgModule({

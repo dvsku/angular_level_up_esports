@@ -26,17 +26,25 @@
     <div class="container py-5">
         <div class="row">
             <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
-                <app-swappable-image class="game-image" firstSrc="/assets/content-creators.jpg">
+                <app-swappable-image class="game-image" href="/content-creators"
+                    firstSrc="/assets/content-creators.jpg">
                 </app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-dota2.jpg"></app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-csgo.jpg"></app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-lol.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/dota-2' firstSrc="/assets/game-dota2.jpg">
+                </app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/csgo' firstSrc="/assets/game-csgo.jpg">
+                </app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/league-of-legends' firstSrc="/assets/game-lol.jpg">
+                </app-swappable-image>
             </div>
             <div class="col-12 d-flex flex-row flex-wrap justify-content-center">
-                <app-swappable-image class="game-image" firstSrc="/assets/game-wc3.jpg"></app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-fortnite.jpg"></app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-hots.jpg"></app-swappable-image>
-                <app-swappable-image class="game-image" firstSrc="/assets/game-hs.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/warcraft-3' firstSrc="/assets/game-wc3.jpg">
+                </app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/fortnite' firstSrc="/assets/game-fortnite.jpg">
+                </app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/heroes-of-the-storm'
+                    firstSrc="/assets/game-hots.jpg"></app-swappable-image>
+                <app-swappable-image class="game-image" href='/teams/hearthstones' firstSrc="/assets/game-hs.jpg">
+                </app-swappable-image>
             </div>
         </div>
         <div class="row mt-5">
@@ -51,7 +59,7 @@
         <div class="d-flex flex-column align-items-center justify-content-center container-shadow-y">
             <p class="fw-800 fc-second mb-1 lh-1 fs-big">GAMING AREA & <span class="fc-hover">VIP ROOM</span></p>
             <p class="fc-second mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-            <a class="lvl-btn lvl-btn-primary btn-w-1">see more</a>
+            <a class="lvl-btn lvl-btn-primary btn-w-1" routerLink="/gaming-area">see more</a>
         </div>
     </div>
     <div id="bootcamp">
@@ -60,7 +68,7 @@
                 <div class="col-12 d-flex flex-column align-items-center">
                     <p class="fw-800 fc-hover mb-1 lh-1 fs-big">BOOTCAMP</p>
                     <p class="fc-first mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-                    <a class="lvl-btn lvl-btn-primary btn-w-1">see more</a>
+                    <a class="lvl-btn lvl-btn-primary btn-w-1" routerLink="/bootcamp">see more</a>
                 </div>
             </div>
             <div class="row mt-5 w-100 mb-5 pb-5 justify-content-center align-items-center">

@@ -24,15 +24,16 @@ export class HeaderComponent implements OnInit {
     faArrowDown = faAngleDown;
     faCart = faShoppingCart;
 
-    currentUserSubscription: Subscription;
     currentUser: JwtResponse;
 
     cart: ProductInOrder[];
     categories: ProductCategory[];
     featuredProducts: ProductInfo[];
 
+    private currentUserSubscription: Subscription;
     private productsSubscription: Subscription;
     private cartProductsSubscription: Subscription;
+    private categoriesSubscription: Subscription;
 
     model: any = {
         username: '',
@@ -52,7 +53,7 @@ export class HeaderComponent implements OnInit {
         this.currentUserSubscription = this.userService.currentUser.subscribe((user) => {
             this.currentUser = user;
         });
-        this.productCategoryService.getProductCategories().subscribe((cats) => {
+        this.categoriesSubscription = this.productCategoryService.getProductCategories().subscribe((cats) => {
             this.categories = cats;
         });
         this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
@@ -63,7 +64,6 @@ export class HeaderComponent implements OnInit {
                     .slice(0, 3);
             }
         });
-
         this.cartProductsSubscription = this.cartService.getCart().subscribe((prods) => {
             this.cart = prods;
         });
@@ -72,6 +72,8 @@ export class HeaderComponent implements OnInit {
     ngOnDestroy(): void {
         this.currentUserSubscription.unsubscribe();
         this.productsSubscription.unsubscribe();
+        this.cartProductsSubscription.unsubscribe();
+        this.categoriesSubscription.unsubscribe();
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////

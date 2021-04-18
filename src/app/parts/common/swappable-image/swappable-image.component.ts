@@ -12,6 +12,9 @@ export class SwappableImageComponent implements OnInit {
     @Input('secondSrc')
     secondSource = '';
 
+    @Input('href')
+    href = '';
+
     currentSource: string;
 
     onMouseEnter(): void {

@@ -61,6 +61,21 @@ export class UserService {
         return this.httpClient.put<User>(url, existingUser);
     }
 
+    verify(token: string): Promise<number> {
+        const url = environment.apiURL + `auth/register/confirm/${token}`;
+        return this.httpClient
+            .get<number>(url)
+            .toPromise()
+            .then(
+                (status) => {
+                    return status;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
+    }
+
     getUserProfile(email: string): Observable<User> {
         const url = environment.apiURL + `auth/profile/${email}`;
         return this.httpClient.get<User>(url);

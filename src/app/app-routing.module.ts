@@ -20,6 +20,7 @@ import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.compo
 import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
 import { PartnerResolver } from './_resolvers/partner.resolver';
 import { PartnersComponent } from './pages/esports/partners/partners.component';
+import { VerifyComponent } from './pages/esports/verify/verify.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -74,6 +75,7 @@ const routes: Routes = [
         ]
     },
     { path: 'auth/signup', component: SignUpComponent, data: { title: 'LevelUp | Sign Up' } },
+    { path: 'auth/verify/:token', component: VerifyComponent, data: { title: 'LevelUp | Verify' } },
     { path: 'esports', component: EsportsHomeComponent, data: { title: 'LevelUp | Home' } },
     { path: 'esports/shop', component: EsportsShopComponent, data: { title: 'LevelUp | Shop' } },
     { path: 'esports/shop/checkout', component: CheckoutComponent, data: { title: 'LevelUp | Checkout' } },

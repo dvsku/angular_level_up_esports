@@ -47,6 +47,7 @@ import { ImageGroupComponent } from './parts/common/image-group/image-group.comp
 import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.component';
 import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
 import { PartnersComponent } from './pages/esports/partners/partners.component';
+import { VerifyComponent } from './pages/esports/verify/verify.component';
 
 @NgModule({
     declarations: [
@@ -78,7 +79,8 @@ import { PartnersComponent } from './pages/esports/partners/partners.component';
         ImageGroupComponent,
         AddPartnerComponent,
         EditPartnerComponent,
-        PartnersComponent
+        PartnersComponent,
+        VerifyComponent
     ],
     imports: [
         BrowserModule,

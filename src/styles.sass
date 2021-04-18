@@ -350,6 +350,42 @@ tbody tr:last-child
     border: 0px !important
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// PAGINATION
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.page-link
+    background-color: $color-second
+    color: $font-color-first
+    cursor: pointer
+    user-select: none
+    border-radius: 0 !important
+    border-color: $border-color-muted
+    transition: 0.2s
+
+.page-item
+    border-radius: 0 !important
+
+.page-link:hover, .page-link:focus
+    background-color: $color-fourth
+    color: $font-color-second
+    border-color: $border-color-muted
+
+.page-link.disabled
+    color: darken($color-second, 40) !important
+    background-color: darken($color-second, 20) !important
+
+.page-item.active > .page-link
+    background-color: $color-fourth
+    border-color: $border-color-muted
+    color: $font-color-second
+
+.page-item:first-child.page-link
+    border-radius: 0 !important
+
+.page-item:last-child.page-link
+    border-radius: 0 !important
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // DRAG DROP
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 

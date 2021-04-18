@@ -11,7 +11,7 @@
         </ng-template>
         <div class="text-muted fs-small">{{ product.count * product.productPrice }} RSD</div>
     </div>
-    <div>
+    <div *ngIf="removable">
         <fa-icon (click)='removeProduct()' [icon]="faRemove" class="close"></fa-icon>
     </div>
 </div>

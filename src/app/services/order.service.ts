@@ -1,7 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
 import { Order } from '../models/Order';
 
 @Injectable({
@@ -12,23 +10,107 @@ export class OrderService {
 
     constructor(private httpClient: HttpClient) {}
 
-    getOrdersInPage(page = 1, size = 10): Observable<any> {
+    getPageOrders(page = 1, perPage = 1): Promise<any> {
+        return this.fetchPageOrders(page, perPage).then(
+            (orders) => {
+                return orders;
+            },
+            () => {
+                return undefined;
+            }
+        );
+    }
+
+    private fetchPageOrders(page = 1, size = 10): Promise<any> {
         const url = `${this.orderUrl}/all?page=${page}&size=${size}`;
-        return this.httpClient.get(url);
+        return this.httpClient
+            .get(url)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
-    showOneOrder(id: number): Observable<Order> {
-        const url = `${this.orderUrl}/${id}`;
-        return this.httpClient.get<Order>(url).pipe(catchError(() => of(null)));
+    getOrder(orderId: number): Promise<Order> {
+        return this.fetchOrder(orderId).then(
+            (order) => {
+                return order;
+            },
+            () => {
+                return undefined;
+            }
+        );
     }
 
-    cancelOrder(id: number): Observable<Order> {
+    private fetchOrder(orderId: number): Promise<Order> {
+        const url = `${this.orderUrl}/${orderId}`;
+        return this.httpClient
+            .get<Order>(url)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
+    }
+
+    cancelOrder(orderId: number): Promise<boolean> {
+        return this.cancelDatabaseOrder(orderId).then(
+            (success) => {
+                return success;
+            },
+            () => {
+                return false;
+            }
+        );
+    }
+
+    private cancelDatabaseOrder(id: number): Promise<boolean> {
         const url = `${this.orderUrl}/cancel/${id}`;
-        return this.httpClient.patch<Order>(url, null).pipe(catchError(() => of(null)));
+        return this.httpClient
+            .patch<boolean>(url, null)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
-    finishOrder(id: number): Observable<Order> {
+    finishOrder(orderId: number): Promise<boolean> {
+        return this.finishDatabaseOrder(orderId).then(
+            (success) => {
+                return success;
+            },
+            () => {
+                return false;
+            }
+        );
+    }
+
+    private finishDatabaseOrder(id: number): Promise<boolean> {
         const url = `${this.orderUrl}/finish/${id}`;
-        return this.httpClient.patch<Order>(url, null).pipe(catchError(() => of(null)));
+        return this.httpClient
+            .patch<boolean>(url, null)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 }

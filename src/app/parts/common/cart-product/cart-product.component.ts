@@ -14,6 +14,9 @@ export class CartProductComponent {
     @Input('product')
     product: ProductInOrder;
 
+    @Input('removable')
+    public removable = true;
+
     constructor(private cartService: CartService) {}
 
     removeProduct() {

@@ -113,7 +113,7 @@
                     </div>
                 </ng-template>
             </div>
-            <div *ngIf="currentUser === undefined || currentUser === null; else notSignedIn" ngbDropdown
+            <div *ngIf="currentUser === undefined || currentUser === null; else signedIn" ngbDropdown
                 class="d-inline-block">
                 <a class="nav-link" id="sign-in-dropdown-toggle" ngbDropdownToggle>SIGN IN <fa-icon [icon]="faArrowDown"
                         class="d-inline-block"></fa-icon></a>
@@ -148,7 +148,7 @@
             </div>
             <a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup">SIGN
                 UP</a>
-            <ng-template #notSignedIn>
+            <ng-template #signedIn>
                 <div ngbDropdown class="d-inline-block">
                     <a class="nav-link text-uppercase" id="self-dropdown" ngbDropdownToggle>{{ currentUser.name }}
                         <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
@@ -159,6 +159,7 @@
                         <ng-template #dashboardElse>
                             <a ngbDropdownItem class="dropdown-item" routerLink="/admin/dashboard">DASHBOARD</a>
                         </ng-template>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/esports/shop/orders">ORDERS</a>
                         <div class="dropdown-divider d-none d-lg-block"></div>
                         <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">SIGN OUT</a>
                     </div>

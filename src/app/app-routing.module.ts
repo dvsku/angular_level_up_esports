@@ -12,6 +12,9 @@ import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { ProductResolver } from './_resolvers/product.resolver';
+import { OrdersComponent } from './pages/esports/orders/orders.component';
+import { OrderComponent } from './pages/esports/order/order.component';
+import { OrderResolver } from './_resolvers/order.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -50,6 +53,13 @@ const routes: Routes = [
     { path: 'esports', component: EsportsHomeComponent, data: { title: 'LevelUp | Home' } },
     { path: 'esports/shop', component: EsportsShopComponent, data: { title: 'LevelUp | Shop' } },
     { path: 'esports/shop/checkout', component: CheckoutComponent, data: { title: 'LevelUp | Checkout' } },
+    { path: 'esports/shop/orders', component: OrdersComponent, data: { title: 'LevelUp | Orders' } },
+    {
+        path: 'esports/shop/orders/:id',
+        component: OrderComponent,
+        resolve: { order: OrderResolver },
+        data: { title: 'LevelUp | Order' }
+    },
     {
         path: 'esports/shop/product/:id',
         component: ProductComponent,

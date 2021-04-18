@@ -1,0 +1,15 @@
+<three-row-grid-layout>
+    <div class="containers">
+        <div class="container container-shadow bg-white" *ngFor='let partner of partners'>
+            <div class="row">
+                <div class="col-7 d-flex flex-column" style="padding: 4rem;">
+                    <div class="fs-large fw-800 text-uppercase">{{partner.name}}</div>
+                    <div class="fs-normal py-4">{{partner.description}}</div>
+                </div>
+                <div class="col-5 d-flex justify-content-center align-items-center">
+                    <img class="img-fluid p-5" [src]="partner.image">
+                </div>
+            </div>
+        </div>
+    </div>
+</three-row-grid-layout>

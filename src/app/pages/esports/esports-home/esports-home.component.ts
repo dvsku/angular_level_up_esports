@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { HomeRotatingPicture } from 'src/app/models/HomeRotatingPicture';
 import { HomePictureService } from 'src/app/services/home-picture.service';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { PartnerService } from 'src/app/services/partner.service';
+import { Partner } from 'src/app/models/Partner';
 
 @Component({
     selector: 'app-esports-home',
@@ -13,9 +15,16 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 export class EsportsHomeComponent implements OnInit, OnDestroy {
     faHeart = faHeart;
     rotatingImages: HomeRotatingPicture[];
-    rotatingImagesSubscription: Subscription;
+    partners: Partner[];
 
-    constructor(private config: NgbCarouselConfig, private homeImagesService: HomePictureService) {
+    private rotatingImagesSubscription: Subscription;
+    private partnersSubscription: Subscription;
+
+    constructor(
+        private config: NgbCarouselConfig,
+        private homeImagesService: HomePictureService,
+        private partnerService: PartnerService
+    ) {
         config.showNavigationArrows = false;
         config.interval = 5000;
         config.pauseOnFocus = false;
@@ -27,9 +36,17 @@ export class EsportsHomeComponent implements OnInit, OnDestroy {
         this.rotatingImagesSubscription = this.homeImagesService.getHomeRotatingPictures().subscribe((images) => {
             this.rotatingImages = images;
         });
+        this.partnersSubscription = this.partnerService.getPartners().subscribe((partners) => {
+            this.partners = partners;
+        });
     }
 
     ngOnDestroy() {
-        this.rotatingImagesSubscription.unsubscribe();
+        if (this.rotatingImagesSubscription !== null && this.rotatingImagesSubscription !== undefined) {
+            this.rotatingImagesSubscription.unsubscribe();
+        }
+        if (this.partnersSubscription !== null && this.partnersSubscription !== undefined) {
+            this.partnersSubscription.unsubscribe();
+        }
     }
 }

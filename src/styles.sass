@@ -173,6 +173,7 @@ body
 .standard-btn-primary:hover, .standard-btn-primary:focus
     color: $font-color-second !important
     background-color: darken($button-color-primary, 10) !important
+    cursor: pointer !important
 
 .standard-btn-primary:disabled
     color: darken($color-second, 60) !important
@@ -266,6 +267,15 @@ body
 
 .container-shadow
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px
+
+.container-shadow-y
+    box-shadow: rgba(33, 35, 38, 0.3) 0px -10px 10px -10px, rgba(33, 35, 38, 0.3) 0px 10px 10px -10px !important
+
+.container-shadow-top
+    box-shadow: rgba(33, 35, 38, 0.3) 0px -10px 10px -10px
+
+.container-shadow-bottom
+    box-shadow: rgba(33, 35, 38, 0.3) 0px 10px 10px -10px
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LINKS
@@ -392,7 +402,7 @@ tbody tr:last-child
 .drop-list
     max-width: 100%
     display: block
-    background: $color-first
+    background: $color-second
     overflow: hidden
 
 .drop-list:empty
@@ -409,7 +419,7 @@ tbody tr:last-child
     justify-content: space-between
     box-sizing: border-box
     cursor: move
-    background: $color-first
+    background: $color-second
     font-size: 14px
 
 .drop-list-item:first

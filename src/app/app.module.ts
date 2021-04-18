@@ -44,6 +44,9 @@ import { OrdersComponent } from './pages/esports/orders/orders.component';
 import { OrderComponent } from './pages/esports/order/order.component';
 import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
 import { ImageGroupComponent } from './parts/common/image-group/image-group.component';
+import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.component';
+import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
+import { PartnersComponent } from './pages/esports/partners/partners.component';
 
 @NgModule({
     declarations: [
@@ -72,7 +75,10 @@ import { ImageGroupComponent } from './parts/common/image-group/image-group.comp
         OrdersComponent,
         OrderComponent,
         AdminPartnersComponent,
-        ImageGroupComponent
+        ImageGroupComponent,
+        AddPartnerComponent,
+        EditPartnerComponent,
+        PartnersComponent
     ],
     imports: [
         BrowserModule,

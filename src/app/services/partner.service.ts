@@ -22,7 +22,7 @@ export class PartnerService {
         if (this.partners === null) {
             this.fetchPartners().subscribe((products) => {
                 this.partners = products;
-                this.partners.sort((a, b) => a.partnerOrder - b.partnerOrder);
+                this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
                 this.partnersSubject.next(this.partners);
                 this.partnersObs.pipe(publishReplay(1), refCount());
                 console.log('Fetched partners from server.');
@@ -73,30 +73,108 @@ export class PartnerService {
             );
     }
 
-    public addNewPartner(partner: Partner): Observable<boolean> {
+    public createPartner(partner: Partner): Promise<boolean> {
+        return this.createDatabasePartner(partner)
+            .then((partnerId) => {
+                if (partnerId !== -1) {
+                    if (this.partners !== null && this.partners !== undefined) {
+                        partner.id = partnerId;
+                        this.partners.push(partner);
+                        this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
+                        this.partnersSubject.next(this.partners);
+                    }
+                    return true;
+                } else {
+                    return false;
+                }
+            })
+            .catch(() => {
+                return false;
+            });
+    }
+
+    private createDatabasePartner(partner: Partner): Promise<number> {
         const url = `${this.adminPartnerUrl}/new`;
-        return this.httpClient.post<boolean>(url, partner).pipe(
-            tap((data) => {
-                console.log('Added new partner -> ' + data);
-            })
-        );
+        return this.httpClient
+            .post<number>(url, partner)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
-    public editExistingPartner(id: number, partner: Partner): Observable<boolean> {
+    public updatePartner(partner: Partner): Promise<boolean> {
+        return this.updateDatabasePartner(partner.id, partner)
+            .then((success) => {
+                if (success) {
+                    if (this.partners !== null && this.partners !== undefined) {
+                        const index = this.partners.findIndex((x) => x.id === partner.id);
+                        if (index !== -1) {
+                            this.partners[index] = partner;
+                            this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
+                            this.partnersSubject.next(this.partners);
+                        }
+                    }
+                }
+                return success;
+            })
+            .catch(() => {
+                return false;
+            });
+    }
+
+    private updateDatabasePartner(id: number, partner: Partner): Promise<boolean> {
         const url = `${this.adminPartnerUrl}/${id}/edit`;
-        return this.httpClient.put<boolean>(url, partner).pipe(
-            tap((data) => {
-                console.log('Edited existing partner -> ' + data);
-            })
-        );
+        return this.httpClient
+            .put<boolean>(url, partner)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
-    public deleteExistingPartner(id: number): Observable<any> {
-        const url = `${this.adminPartnerUrl}/${id}`;
-        return this.httpClient.delete<any>(url).pipe(
-            tap((data) => {
-                console.log(data);
+    public removePartner(partnerId: number): Promise<boolean> {
+        return this.removeDatabasePartner(partnerId)
+            .then((success) => {
+                if (success) {
+                    if (this.partners !== null && this.partners !== undefined) {
+                        const index = this.partners.findIndex((x) => x.id === partnerId);
+                        if (index !== -1) {
+                            this.partners.splice(index, 1);
+                            this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
+                            this.partnersSubject.next(this.partners);
+                        }
+                    }
+                }
+                return success;
             })
-        );
+            .catch(() => {
+                return false;
+            });
+    }
+
+    private removeDatabasePartner(id: number): Promise<any> {
+        const url = `${this.adminPartnerUrl}/${id}`;
+        return this.httpClient
+            .delete<any>(url)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 }

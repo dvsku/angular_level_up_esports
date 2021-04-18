@@ -1,5 +1,5 @@
 <three-row-grid-layout>
-    <div id="shop" class="d-flex flex-column align-items-center justify-content-center">
+    <div id="shop" class="d-flex flex-column align-items-center justify-content-center container-shadow-bottom">
         <div class="container">
             <div class="row py-5">
                 <div
@@ -42,16 +42,16 @@
         <div class="row mt-5">
             <div class="col-12 d-flex flex-column align-items-center">
                 <p class="fw-800 fc-hover mb-1 fs-big">TEAMS <span class="fc-first">AND ACHIEVEMENTS</span></p>
-                <a class="lvl-btn lvl-btn-primary">find out</a>
+                <a class="lvl-btn lvl-btn-primary btn-w-1">find out</a>
             </div>
         </div>
     </div>
     <div id="gaming-area-vip-room">
         <img src="/assets/bg-ga.jpg" />
-        <div class="d-flex flex-column align-items-center justify-content-center">
+        <div class="d-flex flex-column align-items-center justify-content-center container-shadow-y">
             <p class="fw-800 fc-second mb-1 lh-1 fs-big">GAMING AREA & <span class="fc-hover">VIP ROOM</span></p>
             <p class="fc-second mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-            <a class="lvl-btn lvl-btn-primary">see more</a>
+            <a class="lvl-btn lvl-btn-primary btn-w-1">see more</a>
         </div>
     </div>
     <div id="bootcamp">
@@ -60,7 +60,7 @@
                 <div class="col-12 d-flex flex-column align-items-center">
                     <p class="fw-800 fc-hover mb-1 lh-1 fs-big">BOOTCAMP</p>
                     <p class="fc-first mb-4 lh-1 fs-small">Šafarikova 8, Novi Sad Serbia</p>
-                    <a class="lvl-btn lvl-btn-primary">see more</a>
+                    <a class="lvl-btn lvl-btn-primary btn-w-1">see more</a>
                 </div>
             </div>
             <div class="row mt-5 w-100 mb-5 pb-5 justify-content-center align-items-center">
@@ -104,7 +104,7 @@
             </div>
         </div>
     </div> -->
-    <div class="container pt-5">
+    <div id="partners" class="container container-shadow-top bg-white pt-5">
         <div class="row">
             <div class="col-12 text-center">
                 <div class="d-flex flex-column align-items-center">
@@ -116,23 +116,15 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-5 mb-0 mb-lg-3 pb-0 pb-lg-3">
+        <div *ngIf="partners?.length > 0" class="row mt-5 mb-0 mb-lg-3 pb-0 pb-lg-3">
             <div class="col-12 mb-lg-0 mb-3 text-center">
-                <img class="img-fluid" src="https://via.placeholder.com/600x200/222222/000000" />
+                <img class="img-fluid" style="max-height: 15rem;" src="{{partners[0].image}}" />
             </div>
         </div>
-        <div class="row mt-3 mb-5 pb-5">
-            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
-            </div>
-            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
-            </div>
-            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
-            </div>
-            <div class="col-12 col-lg-3 mb-lg-0 mb-3 text-center">
-                <img class="img-fluid" src="https://via.placeholder.com/300x150/222222/000000" />
+        <div class="row mt-3 pb-5">
+            <div *ngFor="let partner of partners | slice:1"
+                class="col-12 col-lg-3 mb-lg-0 mb-3 mt-4 text-center d-flex align-items-center justify-content-center">
+                <img class="img-fluid" style="max-height: 10rem;" [src]="partner.image" />
             </div>
         </div>
     </div>

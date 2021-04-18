@@ -83,7 +83,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
     }
 
     nextPage() {
-        if (this.page !== this.pageMax) {
+        if (this.page < this.pageMax) {
             this.page++;
             this.getOrders();
         }

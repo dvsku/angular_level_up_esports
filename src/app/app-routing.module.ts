@@ -16,6 +16,10 @@ import { OrdersComponent } from './pages/esports/orders/orders.component';
 import { OrderComponent } from './pages/esports/order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
 import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
+import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.component';
+import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
+import { PartnerResolver } from './_resolvers/partner.resolver';
+import { PartnersComponent } from './pages/esports/partners/partners.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -53,6 +57,19 @@ const routes: Routes = [
                 component: AdminPartnersComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Partners' }
+            },
+            {
+                path: 'partners/add-partner',
+                component: AddPartnerComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Add Partner' }
+            },
+            {
+                path: 'partners/edit-partner/:id',
+                component: EditPartnerComponent,
+                outlet: 'adminOutlet',
+                resolve: { partner: PartnerResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Edit Partner' }
             }
         ]
     },
@@ -73,7 +90,7 @@ const routes: Routes = [
         resolve: { product: ProductResolver },
         data: { title: 'LevelUp | Product' }
     },
-    { path: 'partners', component: UnderConstructionComponent, data: { title: 'LevelUp | Partners' } },
+    { path: 'partners', component: PartnersComponent, data: { title: 'LevelUp | Partners' } },
     { path: 'gaming-area', component: UnderConstructionComponent, data: { title: 'LevelUp | Gaming Area' } },
     { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } }
 ];

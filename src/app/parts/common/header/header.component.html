@@ -157,6 +157,10 @@
                         </div>
                         <button type="submit" class="standard-btn standard-btn-primary w-100">sign in</button>
                     </form>
+                    <div class="d-flex flex-column mt-1 px-3">
+                        <a class="standard-link" routerLink="/auth/reset-password">Forgot password?</a>
+                        <a class="standard-link" routerLink="/auth/resend-verification">Resend verification email</a>
+                    </div>
                 </div>
             </div>
             <a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup">SIGN

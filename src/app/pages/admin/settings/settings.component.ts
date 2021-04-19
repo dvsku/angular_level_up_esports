@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { MaintenanceService } from 'src/app/services/maintenance.service';
 
 @Component({
@@ -9,18 +11,31 @@ import { MaintenanceService } from 'src/app/services/maintenance.service';
 export class SettingsComponent implements OnInit {
     isMaintenance: boolean;
 
-    constructor(private maintenanceService: MaintenanceService) {}
+    constructor(
+        private maintenanceService: MaintenanceService,
+        private activatedRoute: ActivatedRoute,
+        private toastrService: ToastrService
+    ) {}
 
     ngOnInit(): void {
-        this.isMaintenance = this.maintenanceService.isMaintenance;
+        this.activatedRoute.data.subscribe((data: { isMaintenance: boolean }) => {
+            this.isMaintenance = data.isMaintenance;
+        });
     }
 
     toggleMaintenanceMode() {
-        if (this.isMaintenance) {
-            console.log('disabled');
-        } else {
-            console.log('enabled');
-        }
-        this.isMaintenance = !this.isMaintenance;
+        this.maintenanceService.changeMaintenanceMode().then(
+            (success) => {
+                if (success) {
+                    this.toastrService.success('Maintenance mode changed.');
+                    this.isMaintenance = !this.isMaintenance;
+                } else {
+                    this.toastrService.error('Failed to change maintenance mode.');
+                }
+            },
+            () => {
+                this.toastrService.error('Failed to change maintenance mode.');
+            }
+        );
     }
 }

@@ -25,6 +25,7 @@ import { MaintenanceComponent } from './pages/common/maintenance/maintenance.com
 import { MaintenanceGuard } from './_guard/maintenance.guard';
 import { AuthGuard } from './_guard/auth.guard';
 import { SettingsComponent } from './pages/admin/settings/settings.component';
+import { MaintenanceResolver } from './_resolvers/maintenance.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -38,6 +39,7 @@ const routes: Routes = [
                 path: 'settings',
                 component: SettingsComponent,
                 outlet: 'adminOutlet',
+                resolve: { isMaintenance: MaintenanceResolver },
                 data: { title: 'LevelUp | Admin Dashboard | Settings' }
             },
             {

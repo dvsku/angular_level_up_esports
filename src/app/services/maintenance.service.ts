@@ -1,35 +1,64 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class MaintenanceService {
-    private maintenanceAdminUrl = `http://localhost:8080/api/admin/maintenance`;
-    public isMaintenance = false;
+    private maintenanceAdminUrl = environment.apiURL + `admin/maintenance`;
 
     constructor(private httpClient: HttpClient) {}
 
-    enableMaintenanceMode(): void {}
-    disableMaintenanceMode(): void {}
-
-    public getCurrentMaintenanceStatus(): Observable<number> {
-        const url = `${this.maintenanceAdminUrl}/get`;
-        return this.httpClient.get<number>(url).pipe(
-            tap((data) => {
-                console.log('Current maintenance status -> ' + data);
-            })
+    getMaintenanceMode(): Promise<boolean> {
+        return this.getCurrentMaintenanceStatus().then(
+            (value) => {
+                return <boolean>(<unknown>value);
+            },
+            () => {
+                return true;
+            }
         );
     }
 
-    public changeMaintenanceToOppositeStatus(): Observable<boolean> {
-        const url = `${this.maintenanceAdminUrl}/change`;
-        return this.httpClient.put<boolean>(url, null).pipe(
-            tap((data) => {
-                console.log('Status of maintenance changed -> ' + data);
-            })
+    changeMaintenanceMode(): Promise<boolean> {
+        return this.changeMaintenanceToOppositeStatus().then(
+            (value) => {
+                return value;
+            },
+            () => {
+                return false;
+            }
         );
+    }
+
+    private getCurrentMaintenanceStatus(): Promise<number> {
+        const url = `${this.maintenanceAdminUrl}/get`;
+        return this.httpClient
+            .get<number>(url)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
+    }
+
+    private changeMaintenanceToOppositeStatus(): Promise<boolean> {
+        const url = `${this.maintenanceAdminUrl}/change`;
+        return this.httpClient
+            .put<boolean>(url, null)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 }

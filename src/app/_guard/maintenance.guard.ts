@@ -16,15 +16,27 @@ export class MaintenanceGuard implements CanActivate {
 
     canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
         const currentUser = this.userService.currentUserValue;
-        if (currentUser !== null && currentUser !== undefined) {
-            if (currentUser.role === 'ADMIN') {
-                return true;
+        let isMaintenance: boolean;
+        return this.maintenanceService.getMaintenanceMode().then(
+            (value) => {
+                isMaintenance = value;
+                console.log(1);
+                if (currentUser !== null && currentUser !== undefined) {
+                    if (currentUser.role === 'ADMIN') {
+                        return true;
+                    }
+                }
+                if (!isMaintenance) {
+                    return true;
+                } else {
+                    this.router.navigate(['/maintenance']);
+                    return false;
+                }
+            },
+            () => {
+                this.router.navigate(['/maintenance']);
+                return false;
             }
-        }
-        if (!this.maintenanceService.isMaintenance) {
-            return true;
-        }
-        this.router.navigate(['/maintenance']);
-        return false;
+        );
     }
 }

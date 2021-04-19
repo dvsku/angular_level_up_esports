@@ -82,35 +82,43 @@ export class UserService {
         return this.httpClient.get<User>(url);
     }
 
-    public resendConfirmationToken(email : string) : Observable<boolean>{
+    public resendConfirmationToken(email: string): Observable<boolean> {
         const url = `http://localhost:8080/api/auth/register/resendToken/${email}`;
-        return this.httpClient.post<boolean>(url , null).pipe(tap(data =>{
-          console.log('Confirmation token was resend -> ' + data);
-        }));
+        return this.httpClient.post<boolean>(url, null).pipe(
+            tap((data) => {
+                console.log('Confirmation token was resend -> ' + data);
+            })
+        );
     }
 
     // 0 -> Valid
     // 1 -> Expired
     // 2 -> Doesn't exist
-    public checkIfPasswordResetTokenIsValid(token : string) : Observable<number>{
+    public checkIfPasswordResetTokenIsValid(token: string): Observable<number> {
         const url = `http://localhost:8080/api/auth/user/resetPassword/validate/${token}`;
-        return this.httpClient.get<number>(url).pipe(tap(data =>{
-          console.log('Is token valid -> ' + data);
-        }));
+        return this.httpClient.get<number>(url).pipe(
+            tap((data) => {
+                console.log('Is token valid -> ' + data);
+            })
+        );
     }
 
-    public sendPasswordTokenToEmail(email : string) : Observable<boolean>{
-      const url = `http://localhost:8080/api/auth/user/resetPassword/${email}`;
-      return this.httpClient.post<boolean>(url , null).pipe(tap(data => {
-        console.log('Password reset token sent to email -> ' + data);
-      }));
+    public sendPasswordTokenToEmail(email: string): Observable<boolean> {
+        const url = `http://localhost:8080/api/auth/user/resetPassword/${email}`;
+        return this.httpClient.post<boolean>(url, null).pipe(
+            tap((data) => {
+                console.log('Password reset token sent to email -> ' + data);
+            })
+        );
     }
 
-    public setNewPasswordForUser(token : string , email : string) : Observable<boolean>{
-      const url = `http://localhost:8080/api/auth/user/resetPassword/${token}`;
-      return this.httpClient.put<boolean>(url , email).pipe(tap(data => {
-        console.log('Password updated for user -> ' + data);
-      }));
+    public setNewPasswordForUser(token: string, password: string): Observable<boolean> {
+        const url = `http://localhost:8080/api/auth/user/resetPassword/${token}`;
+        return this.httpClient.put<boolean>(url, password).pipe(
+            tap((data) => {
+                console.log('Password updated for user -> ' + data);
+            })
+        );
     }
 
     // Handle Errors Method

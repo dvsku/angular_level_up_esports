@@ -50,6 +50,10 @@ import { PartnersComponent } from './pages/esports/partners/partners.component';
 import { VerifyComponent } from './pages/esports/verify/verify.component';
 import { MaintenanceComponent } from './pages/common/maintenance/maintenance.component';
 import { SettingsComponent } from './pages/admin/settings/settings.component';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
+import { ForgotPasswordComponent } from './pages/esports/forgot-password/forgot-password.component';
+import { VerifyResendComponent } from './pages/esports/verify-resend/verify-resend.component';
+import { ResetPasswordComponent } from './pages/esports/reset-password/reset-password.component';
 
 @NgModule({
     declarations: [
@@ -84,7 +88,11 @@ import { SettingsComponent } from './pages/admin/settings/settings.component';
         PartnersComponent,
         VerifyComponent,
         MaintenanceComponent,
-        SettingsComponent
+        SettingsComponent,
+        DashboardComponent,
+        ForgotPasswordComponent,
+        VerifyResendComponent,
+        ResetPasswordComponent
     ],
     imports: [
         BrowserModule,

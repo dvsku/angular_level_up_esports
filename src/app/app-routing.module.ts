@@ -26,6 +26,10 @@ import { MaintenanceGuard } from './_guard/maintenance.guard';
 import { AuthGuard } from './_guard/auth.guard';
 import { SettingsComponent } from './pages/admin/settings/settings.component';
 import { MaintenanceResolver } from './_resolvers/maintenance.resolver';
+import { ForgotPasswordComponent } from './pages/esports/forgot-password/forgot-password.component';
+import { VerifyResendComponent } from './pages/esports/verify-resend/verify-resend.component';
+import { ResetPasswordComponent } from './pages/esports/reset-password/reset-password.component';
+import { NotLoggedInGuard } from './_guard/not-logged-in.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -90,13 +94,31 @@ const routes: Routes = [
     {
         path: 'auth/signup',
         component: SignUpComponent,
-        canActivate: [MaintenanceGuard],
+        canActivate: [MaintenanceGuard, NotLoggedInGuard],
         data: { title: 'LevelUp | Sign Up' }
+    },
+    {
+        path: 'auth/reset-password',
+        component: ForgotPasswordComponent,
+        canActivate: [MaintenanceGuard, NotLoggedInGuard],
+        data: { title: 'LevelUp | Forgot Password' }
+    },
+    {
+        path: 'auth/resend-verification',
+        component: VerifyResendComponent,
+        canActivate: [MaintenanceGuard, NotLoggedInGuard],
+        data: { title: 'LevelUp | Resend Verification' }
+    },
+    {
+        path: 'auth/reset-password/:token',
+        component: ResetPasswordComponent,
+        canActivate: [MaintenanceGuard, NotLoggedInGuard],
+        data: { title: 'LevelUp | Reset Password' }
     },
     {
         path: 'auth/verify/:token',
         component: VerifyComponent,
-        canActivate: [MaintenanceGuard],
+        canActivate: [MaintenanceGuard, NotLoggedInGuard],
         data: { title: 'LevelUp | Verify' }
     },
     {

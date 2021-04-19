@@ -57,7 +57,8 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-12">
-                                <image-group [images]='product.productInfoIcons'></image-group>
+                                <image-group [isApspectRatioUnlockable]="true" [maintainAspectRatio]="false"
+                                    [aspectRatioLocked]="7/10" [images]='product.productInfoIcons'></image-group>
                             </div>
                         </div>
                     </ng-template>

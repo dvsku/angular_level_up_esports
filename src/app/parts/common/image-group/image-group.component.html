@@ -21,9 +21,21 @@
         </button>
     </div>
     <div class="modal-body" style="height: 75vh">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="1000" [resizeToHeight]="700"
-            [maintainAspectRatio]="true" [aspectRatio]="7 / 10" format="png" (imageCropped)="imageCropped($event)"
-            [autoCrop]="false"></image-cropper>
+        <div class="d-flex flex-column h-100">
+            <div *ngIf="isApspectRatioUnlockable">
+                <div class="d-flex flex-row justify-content-start align-items-center">
+                    <label class="switch m-0">
+                        <input [checked]="maintainAspectRatio" (change)="toggleAspectRatio()" type="checkbox">
+                        <span class="slider round"></span>
+                    </label>
+                    <div class="fs-small text-uppercase ml-2">Aspect ratio locked</div>
+                </div>
+            </div>
+            <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="resizeToWidth"
+                [resizeToHeight]="resizeToHeight" [maintainAspectRatio]="maintainAspectRatio"
+                [aspectRatio]="aspectRatio" format="png" (imageCropped)="imageCropped($event)" [autoCrop]="false">
+            </image-cropper>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="standard-btn standard-btn-primary"

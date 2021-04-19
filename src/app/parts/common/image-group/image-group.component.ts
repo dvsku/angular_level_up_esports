@@ -15,6 +15,24 @@ export class ImageGroupComponent {
     @Input('images')
     images: ModelWithImage[];
 
+    @Input('maintainAspectRatio')
+    maintainAspectRatio = true;
+
+    @Input('resizeToWidth')
+    resizeToWidth = 1280;
+
+    @Input('resizeToHeight')
+    resizeToHeight = 720;
+
+    @Input('aspectRatio')
+    aspectRatio = 1 / 1;
+
+    @Input('aspectRatioLocked')
+    aspectRatioLocked = 1 / 1;
+
+    @Input('isApspectRatioUnlockable')
+    isApspectRatioUnlockable = false;
+
     @ViewChild('parent', { read: ViewContainerRef })
     container: ViewContainerRef;
 
@@ -67,5 +85,14 @@ export class ImageGroupComponent {
         if (index > -1) {
             this.images.splice(index, 1);
         } */
+    }
+
+    toggleAspectRatio() {
+        this.maintainAspectRatio = !this.maintainAspectRatio;
+        if (this.maintainAspectRatio) {
+            this.aspectRatio = this.aspectRatioLocked;
+        } else {
+            this.aspectRatio = 1 / 1;
+        }
     }
 }

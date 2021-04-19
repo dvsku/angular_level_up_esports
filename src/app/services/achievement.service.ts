@@ -22,9 +22,7 @@ export class AchievementService {
         );
     }
 
-    public getAllAchievementsForCategory(
-        categoryNumber: number
-    ): Observable<Achievement[]> {
+    public getAllAchievementsForCategory(categoryNumber: number): Observable<Achievement[]> {
         const url = `${this.achievementUrl}/category/${categoryNumber}`;
         return this.httpClient.get<Achievement[]>(url).pipe(
             tap(() => {
@@ -33,10 +31,7 @@ export class AchievementService {
         );
     }
 
-    public addNewAchievementInCategory(
-        categoryNumber: number,
-        achievement: Achievement
-    ): Observable<boolean> {
+    public addNewAchievementInCategory(categoryNumber: number, achievement: Achievement): Observable<boolean> {
         const url = `${this.achievementAdminUrl}/new/category/${categoryNumber}`;
         return this.httpClient.post<boolean>(url, achievement).pipe(
             tap((data) => {
@@ -45,10 +40,7 @@ export class AchievementService {
         );
     }
 
-    public editExistingAchievement(
-        id: number,
-        achievement: Achievement
-    ): Observable<boolean> {
+    public editExistingAchievement(id: number, achievement: Achievement): Observable<boolean> {
         const url = `${this.achievementAdminUrl}/${id}/edit`;
         return this.httpClient.put<boolean>(url, achievement).pipe(
             tap((data) => {

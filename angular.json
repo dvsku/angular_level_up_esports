@@ -28,6 +28,7 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css",
                             "node_modules/bootstrap-slider/dist/css/bootstrap-slider.min.css",
                             "src/styles.sass"
@@ -54,13 +55,13 @@
                             "budgets": [
                                 {
                                     "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
+                                    "maximumWarning": "3mb",
+                                    "maximumError": "6mb"
                                 },
                                 {
                                     "type": "anyComponentStyle",
-                                    "maximumWarning": "150kb",
-                                    "maximumError": "150kb"
+                                    "maximumWarning": "50kb",
+                                    "maximumError": "75kb"
                                 }
                             ]
                         }

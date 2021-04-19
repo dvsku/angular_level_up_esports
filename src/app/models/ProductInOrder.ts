@@ -16,7 +16,7 @@ export class ProductInOrder {
         this.productPrice = productInfo.productPrice;
 
         this.productDescription = productInfo.productDescription;
-        this.productIcon = productInfo.productInfoIcons[0].productIcon;
+        this.productIcon = productInfo.productInfoIcons[0].image;
         this.categoryType = productInfo.categoryType;
         this.count = quantity;
         this.productSize = productSize;

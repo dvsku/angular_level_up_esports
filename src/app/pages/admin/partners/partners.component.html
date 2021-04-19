@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">PARTNERS</h3>
+        <div class="form-group">
+            <a class="standard-btn standard-btn-primary btn-w-1 mr-2"
+                [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'partners/add-partner' } }]"
+                skipLocationChange>add</a>
+            <a class="standard-btn standard-btn-primary btn-w-1" (click)="saveChanges()">save</a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <!-- <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th class="text-right" scope="col">Action(s)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let partner of partners">
+                    <td class="align-middle text-center" style="width: 75px;" scope="row">
+                        <img class="img-thumbnail" src="{{partner.image}}">
+                    </td>
+                    <td class="align-middle product-name">{{partner.name}}</td>
+                    <td class="align-middle text-right">
+                        <div ngbDropdown placement="bottom-right" container="body">
+                            <button class="standard-btn standard-btn-primary" ngbDropdownToggle>Action(s) <fa-icon
+                                    [icon]="faArrowDown" class="d-inline-block"></fa-icon></button>
+                            <div ngbDropdownMenu>
+                                <a ngbDropdownItem
+                                    [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['partners', 'edit-partner', partner.id] } }]"
+                                    skipLocationChange>Edit</a>
+                                <a ngbDropdownItem
+                                    (click)="selectedProduct = productInfo; showModal(removeProduct)">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+        <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
+            <div class="drop-list-item" *ngFor='let partner of partners' cdkDrag>
+                <div class="drop-placeholder" *cdkDragPlaceholder></div>
+                <div style="width: 75px;">
+                    <img class="img-thumbnail" src="{{partner.image}}">
+                </div>
+                <div class="text-left w-75">{{partner.name}}</div>
+                <div class="mr-2">
+                    <div ngbDropdown placement="bottom-right" container="body">
+                        <button class="standard-btn standard-btn-primary" ngbDropdownToggle>Action(s) <fa-icon
+                                [icon]="faArrowDown" class="d-inline-block"></fa-icon></button>
+                        <div ngbDropdownMenu>
+                            <a ngbDropdownItem
+                                [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['partners', 'edit-partner', partner.id] } }]"
+                                skipLocationChange>Edit</a>
+                            <a ngbDropdownItem (click)="selectedPartner = partner; showModal(removePartner)">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #removePartner let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Remove Partner</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h6>Are you sure that you you want to remove this partner?</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="onRemoveOk(); modal.close()">Remove</button>
+        <button type="button" class="standard-btn standard-btn-primary" (click)="modal.close()">Cancel</button>
+    </div>
+</ng-template>
+
+<!-- <form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h3 class="fw-700">ESPORTS ROTATING PICTURES</h3>
+            <div class="form-group">
+                <button type="submit" class="standard-btn standard-btn-primary btn-w-1">Save</button>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-12">
+                    <button type="button" (click)='addImageInput()'
+                        class="standard-btn standard-btn-primary btn-block">Add</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-12">
+                    <image-group [images]="partners"></image-group>
+                </div>
+            </div>
+        </div>
+    </div>
+</form> -->

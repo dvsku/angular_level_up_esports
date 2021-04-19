@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { JwtResponse } from '../response/JwtResponse';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/User';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -28,7 +29,7 @@ export class UserService {
     }
 
     login(loginForm): Observable<JwtResponse> {
-        const url = `http://localhost:8080/api/auth/login`;
+        const url = environment.apiURL + `auth/login`;
         return this.httpClient.post<JwtResponse>(url, loginForm).pipe(
             tap((user) => {
                 if (user && user.token) {
@@ -52,17 +53,17 @@ export class UserService {
     }
 
     signup(newUser: User): Observable<User> {
-        const url = `http://localhost:8080/api/auth/register`;
+        const url = environment.apiURL + `auth/register`;
         return this.httpClient.post<User>(url, newUser);
     }
 
     update(existingUser: User): Observable<User> {
-        const url = `http://localhost:8080/api/auth/profile`;
+        const url = environment.apiURL + `auth/profile`;
         return this.httpClient.put<User>(url, existingUser);
     }
 
     getUserProfile(email: string): Observable<User> {
-        const url = `http://localhost:8080/api/auth/profile/${email}`;
+        const url = environment.apiURL + `auth/profile/${email}`;
         return this.httpClient.get<User>(url);
     }
 

@@ -1,16 +1,15 @@
-export class Partner {
+import { ModelWithImage } from './base/ModelWithImage';
+
+export class Partner extends ModelWithImage {
     id?: number;
     name?: string;
-    picture?: string;
     description?: string;
-    partnerOrder?: number;
-    linkToWebsite? : string;
+    linkToWebsite?: string;
 
-    constructor(name?: string, picture?: string, description?: string, order?: number , linkToWebsite?: string) {
+    constructor(name?: string, image: string, description?: string, imageOrder: number, linkToWebsite: string) {
+        super(image, imageOrder);
         this.name = name;
-        this.picture = picture;
         this.description = description;
-        this.partnerOrder = order;
         this.linkToWebsite = linkToWebsite;
     }
 }

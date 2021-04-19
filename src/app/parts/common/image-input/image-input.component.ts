@@ -1,6 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { ImagesFormGroupComponent } from '../images-form-group/images-form-group.component';
-import { RotatingPictureFormGroupComponent } from '../rotating-picture-form-group/rotating-picture-form-group.component';
+import { ImageGroupComponent } from '../image-group/image-group.component';
 
 @Component({
     selector: 'app-image-input',
@@ -8,7 +7,7 @@ import { RotatingPictureFormGroupComponent } from '../rotating-picture-form-grou
     styleUrls: ['./image-input.component.sass']
 })
 export class ImageInputComponent {
-    _parent: ImagesFormGroupComponent | RotatingPictureFormGroupComponent;
+    _parent: ImageGroupComponent;
 
     @ViewChild('fileInput')
     fileInput: ElementRef;

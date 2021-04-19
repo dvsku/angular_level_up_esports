@@ -12,6 +12,14 @@ import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { ProductResolver } from './_resolvers/product.resolver';
+import { OrdersComponent } from './pages/esports/orders/orders.component';
+import { OrderComponent } from './pages/esports/order/order.component';
+import { OrderResolver } from './_resolvers/order.resolver';
+import { AdminPartnersComponent } from './pages/admin/partners/partners.component';
+import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.component';
+import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
+import { PartnerResolver } from './_resolvers/partner.resolver';
+import { PartnersComponent } from './pages/esports/partners/partners.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -43,6 +51,25 @@ const routes: Routes = [
                 component: EsportsHomeRotatingPicturesComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Home Rotating Pictures' }
+            },
+            {
+                path: 'partners',
+                component: AdminPartnersComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Partners' }
+            },
+            {
+                path: 'partners/add-partner',
+                component: AddPartnerComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Add Partner' }
+            },
+            {
+                path: 'partners/edit-partner/:id',
+                component: EditPartnerComponent,
+                outlet: 'adminOutlet',
+                resolve: { partner: PartnerResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Edit Partner' }
             }
         ]
     },
@@ -50,15 +77,46 @@ const routes: Routes = [
     { path: 'esports', component: EsportsHomeComponent, data: { title: 'LevelUp | Home' } },
     { path: 'esports/shop', component: EsportsShopComponent, data: { title: 'LevelUp | Shop' } },
     { path: 'esports/shop/checkout', component: CheckoutComponent, data: { title: 'LevelUp | Checkout' } },
+    { path: 'esports/shop/orders', component: OrdersComponent, data: { title: 'LevelUp | Orders' } },
+    {
+        path: 'esports/shop/orders/:id',
+        component: OrderComponent,
+        resolve: { order: OrderResolver },
+        data: { title: 'LevelUp | Order' }
+    },
     {
         path: 'esports/shop/product/:id',
         component: ProductComponent,
         resolve: { product: ProductResolver },
         data: { title: 'LevelUp | Product' }
     },
-    { path: 'partners', component: UnderConstructionComponent, data: { title: 'LevelUp | Partners' } },
+    { path: 'partners', component: PartnersComponent, data: { title: 'LevelUp | Partners' } },
     { path: 'gaming-area', component: UnderConstructionComponent, data: { title: 'LevelUp | Gaming Area' } },
-    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } }
+    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } },
+    { path: 'content-creators', component: UnderConstructionComponent, data: { title: 'LevelUp | Content Creators' } },
+    { path: 'teams/dota-2', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Dota 2' } },
+    { path: 'teams/csgo', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | CSGO' } },
+    {
+        path: 'teams/league-of-legends',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | League of Legends' }
+    },
+    {
+        path: 'teams/warcraft-3',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Warcraft III' }
+    },
+    { path: 'teams/fortnite', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Fortnite' } },
+    {
+        path: 'teams/heroes-of-the-storm',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Heroes of the Storm' }
+    },
+    {
+        path: 'teams/hearthstone',
+        component: UnderConstructionComponent,
+        data: { title: 'LevelUp | Teams | Hearthstone' }
+    }
 ];
 
 @NgModule({

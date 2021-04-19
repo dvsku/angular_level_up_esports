@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { AchievementCategory } from '../models/AchievementCategory';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AchievementCategoryService {
-    private achievementCategoryUrl = `http://localhost:8080/api/achievementCategory`;
-    private achievementCategoryAdminUrl = `http://localhost:8080/api/admin/achievementCategory`;
+    private achievementCategoryUrl = environment.apiURL + `achievementCategory`;
+    private achievementCategoryAdminUrl = environment.apiURL + `admin/achievementCategory`;
 
     constructor(private httpClient: HttpClient) {}
 
@@ -31,9 +32,7 @@ export class AchievementCategoryService {
         );
     }
 
-    public addNewAchievementCategory(
-        achievementCategory: AchievementCategory
-    ): Observable<boolean> {
+    public addNewAchievementCategory(achievementCategory: AchievementCategory): Observable<boolean> {
         const url = `${this.achievementCategoryAdminUrl}/new`;
         return this.httpClient.post<boolean>(url, achievementCategory).pipe(
             tap((data) => {
@@ -42,10 +41,7 @@ export class AchievementCategoryService {
         );
     }
 
-    public editExistingAchievementCategory(
-        id: number,
-        achievementCategory: AchievementCategory
-    ): Observable<boolean> {
+    public editExistingAchievementCategory(id: number, achievementCategory: AchievementCategory): Observable<boolean> {
         const url = `${this.achievementCategoryAdminUrl}/${id}/edit`;
         return this.httpClient.put<boolean>(url, achievementCategory).pipe(
             tap((data) => {

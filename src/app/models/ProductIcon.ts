@@ -1,11 +1,10 @@
-export class ProductIcon {
+import { ModelWithImage } from './base/ModelWithImage';
+
+export class ProductIcon extends ModelWithImage {
     id?: number;
-    productIcon: string;
-    iconOrder?: number;
 
     constructor(id?: number, productIcon?: string, iconOrder?: number) {
+        super(productIcon, iconOrder);
         this.id = id;
-        this.productIcon = productIcon;
-        this.iconOrder = iconOrder;
     }
 }

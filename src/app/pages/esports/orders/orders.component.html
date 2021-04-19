@@ -1,0 +1,78 @@
+<three-row-grid-layout>
+    <div class="container container-shadow bg-white my-5">
+        <div class="row">
+            <div class="col-12 pt-5 pb-3 mb-3 d-flex flex-column align-items-center">
+                <h1 class="fc-hover fw-700 text-center">ORDERS</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 mb-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date</th>
+                            <th scope="col" class="text-center">Status</th>
+                            <th scope="col" class="text-center">Action(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor='let order of displayedOrders'>
+                            <td class="align-middle">{{order.orderId}}</td>
+                            <td class="align-middle">{{order.buyerName}} {{order.buyerLastName}}</td>
+                            <td class="align-middle">{{order.createTime | date: 'dd/MM/yyyy HH:mm'}}</td>
+                            <td class="align-middle text-center">{{OrderStatus[order.orderStatus]}}</td>
+                            <td class="align-middle text-center">
+                                <div ngbDropdown placement="bottom-right" container="body">
+                                    <button class="standard-btn standard-btn-primary" ngbDropdownToggle>Action(s)
+                                        <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
+                                    </button>
+                                    <div ngbDropdownMenu>
+                                        <a ngbDropdownItem routerLink="/esports/shop/orders/{{order?.orderId}}">View</a>
+                                        <a ngbDropdownItem (click)="cancelOrder(order)">Cancel</a>
+                                        <a ngbDropdownItem (click)="finishOrder(order)">Finish</a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row pb-4">
+            <div class="col-12 d-flex flex-row-reverse">
+                <div class="pagination justify-content-end">
+                    <li class="page-item" *ngIf="page > 1; else prev" (click)="previousPage()">
+                        <a class="page-link">Previous</a>
+                    </li>
+                    <ng-template #prev>
+                        <li class="page-item">
+                            <a class="page-link disabled">Previous</a>
+                        </li>
+                    </ng-template>
+
+                    <ng-container *ngFor="let loop of counter(pageMax); let i= index">
+                        <li class="page-item page-link" *ngIf="(page - 1) != i; else active" (click)="changePage(i+1)">
+                            {{ i + 1 }}
+                        </li>
+                        <ng-template #active>
+                            <li class="page-item active">
+                                <button class="page-link" disabled>{{ i + 1 }}</button>
+                            </li>
+                        </ng-template>
+                    </ng-container>
+
+                    <li class="page-item" *ngIf="page < pageMax; else next" (click)="nextPage()">
+                        <a class="page-link">Next</a>
+                    </li>
+                    <ng-template #next>
+                        <li class="page-item">
+                            <a class="page-link disabled">Next</a>
+                        </li>
+                    </ng-template>
+                </div>
+            </div>
+        </div>
+    </div>
+</three-row-grid-layout>

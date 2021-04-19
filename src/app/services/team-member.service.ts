@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { TeamMember } from '../models/TeamMember';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export default class TeamMemberService {
-    private teamMemberUrl = 'http://localhost:8080/api/teamMember';
-    private teamMemberAdminUrl = 'http://localhost:8080/api/admin/teamMember';
+    private teamMemberUrl = environment.apiURL + 'teamMember';
+    private teamMemberAdminUrl = environment.apiURL + 'admin/teamMember';
 
     constructor(private httpClient: HttpClient) {}
 
@@ -31,10 +32,7 @@ export default class TeamMemberService {
         );
     }
 
-    public addNewTeamMemberInCategory(
-        categoryNumber: number,
-        teamMember: TeamMember
-    ): Observable<boolean> {
+    public addNewTeamMemberInCategory(categoryNumber: number, teamMember: TeamMember): Observable<boolean> {
         const url = `${this.teamMemberAdminUrl}/new/category/${categoryNumber}`;
         return this.httpClient.post<boolean>(url, teamMember).pipe(
             tap((data) => {
@@ -43,10 +41,7 @@ export default class TeamMemberService {
         );
     }
 
-    public editExistingTeamMember(
-        id: number,
-        teamMember: TeamMember
-    ): Observable<boolean> {
+    public editExistingTeamMember(id: number, teamMember: TeamMember): Observable<boolean> {
         const url = `${this.teamMemberAdminUrl}/${id}/edit`;
         return this.httpClient.put<boolean>(url, teamMember).pipe(
             tap((data) => {

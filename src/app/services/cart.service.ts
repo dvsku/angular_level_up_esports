@@ -5,18 +5,19 @@ import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Order } from '../models/Order';
 import { ProductInOrder } from '../models/ProductInOrder';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class CartService {
+    private cartUrl = environment.apiURL + `cart`;
+
     private cartProducts: ProductInOrder[] = null;
     private cartProductsSubject: BehaviorSubject<ProductInOrder[]> = new BehaviorSubject<ProductInOrder[]>(
         this.cartProducts
     );
     private cartProductsObs: Observable<ProductInOrder[]> = this.cartProductsSubject.asObservable();
-
-    private cartUrl = `http://localhost:8080/api/cart`;
 
     constructor(
         private httpClient: HttpClient,

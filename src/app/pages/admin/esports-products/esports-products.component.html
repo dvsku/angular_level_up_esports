@@ -50,8 +50,8 @@
             <tbody>
                 <tr *ngFor="let productInfo of displayedProducts">
                     <td class="align-middle text-center" style="width: 75px;" scope="row">
-                        <img class="img-thumbnail product-thumbnail"
-                            src="{{productInfo.productInfoIcons[0]?.productIcon}}" alt="{{productInfo.productName}}">
+                        <img class="img-thumbnail product-thumbnail" src="{{productInfo.productInfoIcons[0]?.image}}"
+                            alt="{{productInfo.productName}}">
                     </td>
                     <td class="align-middle product-name">{{productInfo.productName}}</td>
                     <td class="align-middle text-center">{{productInfo.productPrice}} RSD</td>

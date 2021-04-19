@@ -1,7 +1,6 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { ImagesFormGroupComponent } from 'src/app/parts/common/images-form-group/images-form-group.component';
 import { NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from 'src/app/services/product.service';
@@ -11,21 +10,25 @@ import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ToastrService } from 'ngx-toastr';
 import { take } from 'rxjs/operators';
+import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
+import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
+import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
+import { ProductIcon } from 'src/app/models/ProductIcon';
 
 @Component({
     selector: 'app-edit-esports-product',
     templateUrl: '../add-esports-product/add-esports-product.component.html',
     styleUrls: ['../add-esports-product/add-esports-product.component.sass']
 })
-export class EditEsportsProductComponent implements OnInit, OnDestroy {
+export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterViewInit, ImagesHandler {
     product: ProductInfo = new ProductInfo();
     productId: number;
     categories: ProductCategory[];
     size = '';
     title = 'Edit Esports Product';
 
-    @ViewChild(ImagesFormGroupComponent)
-    imagesFormGroup: ImagesFormGroupComponent;
+    @ViewChild(ImageGroupComponent)
+    imageGroup: ImageGroupComponent;
 
     private categoriesSubscription: Subscription;
 
@@ -57,6 +60,32 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
         if (this.categoriesSubscription !== null && this.categoriesSubscription !== undefined) {
             this.categoriesSubscription.unsubscribe();
         }
+    }
+
+    ngAfterViewInit(): void {
+        this.imageGroup.parent = this;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //	ImagesHandler interface
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    createImage(image: string) {
+        this.product.productInfoIcons.push(new ProductIcon(null, image, 0));
+    }
+
+    removeImage(image: ModelWithImage) {
+        const index = this.product.productInfoIcons.findIndex((x) => x.image === image.image);
+        if (index !== -1) {
+            this.product.productInfoIcons.splice(index, 1);
+        }
+    }
+
+    reorderImages() {
+        this.product.productInfoIcons.forEach((image, index) => {
+            image.displayOrder = index + 1;
+        });
+        console.log(this.product.productInfoIcons);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -95,7 +124,7 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     addImageInput(): void {
-        this.imagesFormGroup.addImage();
+        this.imageGroup.addImage();
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

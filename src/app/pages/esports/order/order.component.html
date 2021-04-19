@@ -1,0 +1,51 @@
+<three-row-grid-layout>
+    <div class="container container-shadow bg-white my-5">
+        <div class="row">
+            <div class="col-12 pt-5 pb-3 mb-3 d-flex flex-column align-items-center">
+                <h1 class="fc-hover fw-700 text-center">ORDER</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-12 d-flex flex-column">
+                        <div class="d-flex flex-column px-3 pb-2">
+                            <div>
+                                <span class="text-muted fs-small">NAME:</span> {{ order?.buyerName }} {{
+                                order?.buyerLastName }}
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">ADDRESS:</span> {{ order?.buyerStreetAndNumber }}, {{
+                                order?.buyerCity }}
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">ZIP:</span> {{ order?.buyerZip }}
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">PHONE:</span> {{ order?.buyerPhone }}
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">TOTAL:</span> {{ total }} RSD
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">DATE:</span>
+                                {{ order?.createTime | date: 'dd/MM/yyyy HH:mm' }}
+                            </div>
+                            <div>
+                                <span class="text-muted fs-small">STATUS:</span> {{ OrderStatus[order?.orderStatus] }}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pb-3">
+                    <div class="col-12 d-flex flex-column">
+                        <cart-product *ngFor="let product of order?.products" class="cart-product" [removable]="false"
+                            [product]="product">
+                        </cart-product>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</three-row-grid-layout>

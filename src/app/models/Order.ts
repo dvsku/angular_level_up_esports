@@ -11,6 +11,7 @@ export class Order {
     buyerZip: number;
     orderAmount: string;
     orderStatus: string;
+    createTime: string;
     products: ProductInOrder[];
 
     constructor(order?: Order) {

@@ -4,14 +4,15 @@ import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { ProductInfo } from '../models/ProductInfo';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class ProductService {
-    private productUrl = `http://localhost:8080/api/product`;
-    private categoryUrl = `http://localhost:8080/api/category`;
-    private productAdminUrl = `http://localhost:8080/api/admin/product`;
+    private productUrl = environment.apiURL + `product`;
+    private categoryUrl = environment.apiURL + `category`;
+    private productAdminUrl = environment.apiURL + `admin/product`;
 
     private products: ProductInfo[] = null;
     private productsSubject: BehaviorSubject<ProductInfo[]> = new BehaviorSubject<ProductInfo[]>(this.products);
@@ -25,7 +26,7 @@ export class ProductService {
                 this.products = products;
                 this.products.forEach((product) => {
                     product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-                    product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                    product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
                 });
                 this.productsSubject.next(this.products);
                 this.productsObs.pipe(publishReplay(1), refCount());
@@ -57,7 +58,7 @@ export class ProductService {
             return this.fetchProduct(productId)
                 .then((prod) => {
                     prod.productInfoSizes = prod.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-                    prod.productInfoIcons = prod.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+                    prod.productInfoIcons = prod.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
                     return prod;
                 })
                 .catch(() => {
@@ -65,7 +66,7 @@ export class ProductService {
                 });
         } else {
             product.productInfoSizes = product.productInfoSizes.sort((a, b) => a.sizeOrder - b.sizeOrder);
-            product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.iconOrder - b.iconOrder);
+            product.productInfoIcons = product.productInfoIcons.sort((a, b) => a.displayOrder - b.displayOrder);
             return Promise.resolve(product);
         }
     }

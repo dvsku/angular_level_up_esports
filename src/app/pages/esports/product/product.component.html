@@ -8,7 +8,7 @@
                             <div class="image-main-container">
                                 <img class="mx-auto image-shadow"
                                     style="display: block; max-width: 100%; max-height: 60vh"
-                                    [src]="imageSource?.productIcon" />
+                                    [src]="imageSource?.image" />
 
                             </div>
                         </div>
@@ -18,7 +18,7 @@
                             <div class="d-flex flex-wrap justify-content-center">
                                 <img *ngFor="let image of product?.productInfoIcons"
                                     [ngClass]="{'active': imageSource === image}" class="img-fluid m-1 image-select"
-                                    src="{{image.productIcon}}" (mouseenter)="onHover(image)">
+                                    src="{{image.image}}" (mouseenter)="onHover(image)">
                             </div>
                         </div>
                     </div>

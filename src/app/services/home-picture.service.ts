@@ -4,13 +4,14 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { publishReplay, refCount, takeLast } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { HomeRotatingPicture } from '../models/HomeRotatingPicture';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class HomePictureService {
-    private homePictureUrl = `http://localhost:8080/api/homePicture`;
-    private homePictureAdminUrl = `http://localhost:8080/api/admin/homePicture`;
+    private homePictureUrl = environment.apiURL + `homePicture`;
+    private homePictureAdminUrl = environment.apiURL + `admin/homePicture`;
 
     private hrps: HomeRotatingPicture[] = null;
     private hrpsSubject: BehaviorSubject<HomeRotatingPicture[]> = new BehaviorSubject<HomeRotatingPicture[]>(this.hrps);

@@ -2,7 +2,7 @@
     <button class="navbar-toggler" type="button" (click)="toggleMenu()">
         <fa-icon [icon]="faBars" class="navbar-toggler-icon"></fa-icon>
     </button>
-    <a class="navbar-brand" routerLink="/esports"><img src="https://via.placeholder.com/40/FFFFFF/000000" /></a>
+    <a class="navbar-brand" routerLink="/esports"><img class="logo" src="/assets/logo.png" /></a>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse px-5 mt-5 mt-lg-0">
         <div class="navbar-nav">
             <a class="nav-link" (click)="toggleShop()">SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block">
@@ -27,8 +27,9 @@
                     <div class="col-9 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-shop-items">
-                                <app-swappable-image *ngFor="let product of featuredProducts" class="shop-item-image"
-                                    firstSrc="{{ (product.productInfoIcons[0]?.productIcon)  }}">
+                                <app-swappable-image *ngFor="let product of featuredProducts"
+                                    href="/esports/shop/product/{{product.productId}}" class="shop-item-image"
+                                    firstSrc="{{ (product.productInfoIcons[0]?.image)  }}">
                                 </app-swappable-image>
                             </div>
                         </div>
@@ -44,38 +45,52 @@
                             TEAMS <span class="fc-first">AND ACHIEVEMENTS</span>
                         </p>
                         <ul class="list-unstyled">
-                            <li class="text-left"><a class="standard-link">CONTENT CREATORS</a></li>
-                            <li class="text-left"><a class="standard-link">DOTA 2</a></li>
-                            <li class="text-left"><a class="standard-link">COUNTER-STRIKE: GLOBAL OFFENSIVE</a></li>
-                            <li class="text-left"><a class="standard-link">LEAGUE OF LEGENDS</a></li>
-                            <li class="text-left"><a class="standard-link">WARCRAFT III</a></li>
-                            <li class="text-left"><a class="standard-link">FORTNITE</a></li>
-                            <li class="text-left"><a class="standard-link">HEROES OF THE STORM</a></li>
-                            <li class="text-left"><a class="standard-link">HEARTHSTONE</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/content-creators'>CONTENT
+                                    CREATORS</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/teams/dota-2'>DOTA 2</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/teams/csgo'>COUNTER-STRIKE:
+                                    GLOBAL OFFENSIVE</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/teams/league-of-legends'>LEAGUE
+                                    OF LEGENDS</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/teams/warcraft-3'>WARCRAFT
+                                    III</a></li>
+                            <li class="text-left"><a class="standard-link" routerLink='/teams/fortnite'>FORTNITE</a>
+                            </li>
+                            <li class="text-left"><a class="standard-link"
+                                    routerLink='/teams/heroes-of-the-storm'>HEROES OF THE STORM</a></li>
+                            <li class="text-left"><a class="standard-link"
+                                    routerLink='/teams/hearthstones'>HEARTHSTONE</a></li>
                         </ul>
                     </div>
                     <div class="col-9 col-lg-8 col-xl-8 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image class="game-image" firstSrc="/assets/content-creators.jpg">
+                                <app-swappable-image class="game-image" href="/content-creators"
+                                    firstSrc="/assets/content-creators.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-dota2.jpg">
+                                <app-swappable-image class="game-image" href='/teams/dota-2'
+                                    firstSrc="/assets/game-dota2.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-csgo.jpg">
+                                <app-swappable-image class="game-image" href='/teams/csgo'
+                                    firstSrc="/assets/game-csgo.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-lol.jpg">
+                                <app-swappable-image class="game-image" href='/teams/league-of-legends'
+                                    firstSrc="/assets/game-lol.jpg">
                                 </app-swappable-image>
                             </div>
                         </div>
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-wc3.jpg">
+                                <app-swappable-image class="game-image" href='/teams/warcraft-3'
+                                    firstSrc="/assets/game-wc3.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-fortnite.jpg">
+                                <app-swappable-image class="game-image" href='/teams/fortnite'
+                                    firstSrc="/assets/game-fortnite.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-hots.jpg">
-                                </app-swappable-image>
-                                <app-swappable-image class="game-image" firstSrc="/assets/game-hs.jpg">
+                                <app-swappable-image class="game-image" href='/teams/heroes-of-the-storm'
+                                    firstSrc="/assets/game-hots.jpg"></app-swappable-image>
+                                <app-swappable-image class="game-image" href='/teams/hearthstones'
+                                    firstSrc="/assets/game-hs.jpg">
                                 </app-swappable-image>
                             </div>
                         </div>
@@ -113,7 +128,7 @@
                     </div>
                 </ng-template>
             </div>
-            <div *ngIf="currentUser === undefined || currentUser === null; else notSignedIn" ngbDropdown
+            <div *ngIf="currentUser === undefined || currentUser === null; else signedIn" ngbDropdown
                 class="d-inline-block">
                 <a class="nav-link" id="sign-in-dropdown-toggle" ngbDropdownToggle>SIGN IN <fa-icon [icon]="faArrowDown"
                         class="d-inline-block"></fa-icon></a>
@@ -148,7 +163,7 @@
             </div>
             <a *ngIf="currentUser === undefined || currentUser === null" class="nav-link" routerLink="/auth/signup">SIGN
                 UP</a>
-            <ng-template #notSignedIn>
+            <ng-template #signedIn>
                 <div ngbDropdown class="d-inline-block">
                     <a class="nav-link text-uppercase" id="self-dropdown" ngbDropdownToggle>{{ currentUser.name }}
                         <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
@@ -159,6 +174,7 @@
                         <ng-template #dashboardElse>
                             <a ngbDropdownItem class="dropdown-item" routerLink="/admin/dashboard">DASHBOARD</a>
                         </ng-template>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/esports/shop/orders">ORDERS</a>
                         <div class="dropdown-divider d-none d-lg-block"></div>
                         <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">SIGN OUT</a>
                     </div>

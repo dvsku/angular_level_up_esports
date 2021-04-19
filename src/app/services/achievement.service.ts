@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Achievement } from '../models/Achievement';
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AchievementService {
-    private achievementUrl = `http://localhost:8080/api/achievement`;
-    private achievementAdminUrl = `http://localhost:8080/api/admin/achievement`;
+    private achievementUrl = environment.apiURL + `achievement`;
+    private achievementAdminUrl = environment.apiURL + `admin/achievement`;
 
     constructor(private httpClient: HttpClient) {}
 

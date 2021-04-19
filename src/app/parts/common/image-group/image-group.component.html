@@ -3,10 +3,10 @@
     <div class="image-box" *ngFor="let image of images" cdkDrag>
         <div class="image-placeholder" *cdkDragPlaceholder></div>
         <div class="image-box-image">
-            <img class="image" src="{{ image.picture }}" />
+            <img class="image" src="{{image.image}}">
         </div>
         <div class="image-box-actions">
-            <div class="mr-2 my-2 text-right" style="width: 100px">
+            <div class="mr-2 my-2 text-right" style="width: 100px;">
                 <a type="button" class="subcategory-link btn-block" (click)="removeImage(image)">Remove</a>
             </div>
         </div>
@@ -21,12 +21,12 @@
         </button>
     </div>
     <div class="modal-body" style="height: 75vh">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [maintainAspectRatio]="false" format="png"
-            (imageCropped)="imageCropped($event)" [autoCrop]="false"></image-cropper>
+        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="1000" [resizeToHeight]="700"
+            [maintainAspectRatio]="true" [aspectRatio]="7 / 10" format="png" (imageCropped)="imageCropped($event)"
+            [autoCrop]="false"></image-cropper>
     </div>
     <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary" (click)="cropper.crop(); modal.close()">
-            Save
-        </button>
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="cropper.crop(); modal.close()">Save</button>
     </div>
 </ng-template>

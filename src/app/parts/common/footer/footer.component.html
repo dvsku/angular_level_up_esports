@@ -4,34 +4,50 @@
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex flex-column align-items-start">
                 <p class="title fw-800 fc-second text-left">TEAMS <span>AND ACHIEVEMENTS</span></p>
                 <ul class="list-unstyled">
-                    <li class="text-left"><a class="standard-link-reverse">CONTENT CREATORS</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">DOTA 2</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">COUNTER-STRIKE: GLOBAL OFFENSIVE</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">LEAGUE OF LEGENDS</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">WARCRAFT III</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">FORTNITE</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">HEROES OF THE STORM</a></li>
-                    <li class="text-left"><a class="standard-link-reverse">HEARTHSTONE</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/content-creators'>CONTENT
+                            CREATORS</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/teams/dota-2'>DOTA 2</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/teams/csgo'>COUNTER-STRIKE:
+                            GLOBAL OFFENSIVE</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/teams/league-of-legends'>LEAGUE
+                            OF LEGENDS</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/teams/warcraft-3'>WARCRAFT
+                            III</a></li>
+                    <li class="text-left"><a class="standard-link-reverse" routerLink='/teams/fortnite'>FORTNITE</a>
+                    </li>
+                    <li class="text-left"><a class="standard-link-reverse"
+                            routerLink='/teams/heroes-of-the-storm'>HEROES OF THE STORM</a></li>
+                    <li class="text-left"><a class="standard-link-reverse"
+                            routerLink='/teams/hearthstones'>HEARTHSTONE</a></li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex flex-column align-items-center">
                 <p class="title fw-800 fc-second text-center">MERCH <span>ORIGINALS</span></p>
                 <ul class="list-unstyled">
-                    <li class="text-center"><a class="standard-link-reverse">TOPS</a></li>
-                    <li class="text-center"><a class="standard-link-reverse">BOTTOMS</a></li>
+                    <li class="text-center">
+                        <a class="standard-link-reverse text-uppercase"
+                            [routerLink]="['/esports/shop', { category: 'all' }]">ALL</a>
+                    </li>
+                    <li class="text-center" *ngFor="let category of categories">
+                        <a class="standard-link-reverse text-uppercase"
+                            [routerLink]="['/esports/shop', { category: category.categoryName.toLowerCase() }]">
+                            {{category.categoryName}}
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="col-lg-4 col-md-12 mb-4 mb-lg-0 d-flex flex-column align-items-end">
                 <p class="title fw-800 fc-second text-right"><span class="single">GAMING</span></p>
                 <ul class="list-unstyled">
-                    <li class="text-right"><a class="standard-link-reverse">GAMING AREA</a></li>
-                    <li class="text-right"><a class="standard-link-reverse">VIP ROOM</a></li>
-                    <li class="text-right"><a class="standard-link-reverse">BOOTCAMP</a></li>
+                    <li class="text-right"><a class="standard-link-reverse" routerLink="/gaming-area">GAMING AREA</a>
+                    </li>
+                    <!-- <li class="text-right"><a class="standard-link-reverse">VIP ROOM</a></li> -->
+                    <li class="text-right"><a class="standard-link-reverse" routerLink="bootcamp">BOOTCAMP</a></li>
                 </ul>
             </div>
         </div>
     </div>
-    <div class="row mx-1">
+    <div class=" row mx-1">
         <div class="col text-left">
             <a href="https://www.instagram.com/lvlup_esports" target="_blank" class="standard-link-reverse">
                 <fa-icon [icon]="faInstagram" class="brand-icon"></fa-icon>

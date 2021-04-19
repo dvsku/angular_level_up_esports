@@ -13,11 +13,7 @@ export class SignUpComponent {
     user: User;
     secondPassword: string;
 
-    constructor(
-        private userService: UserService,
-        private router: Router,
-        private toastrService: ToastrService
-    ) {
+    constructor(private userService: UserService, private router: Router, private toastrService: ToastrService) {
         this.user = new User();
     }
 
@@ -28,9 +24,7 @@ export class SignUpComponent {
                 this.router.navigate(['/esports'], {
                     queryParams: { registered: 'true' }
                 });
-                this.toastrService.success(
-                    'Successful registration , please check your email to activate account'
-                );
+                this.toastrService.success('Successful registration , please check your email to activate account');
             },
             (error) => {
                 console.log(error);

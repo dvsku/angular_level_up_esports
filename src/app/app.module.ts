@@ -48,6 +48,8 @@ import { AddPartnerComponent } from './pages/admin/add-partner/add-partner.compo
 import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.component';
 import { PartnersComponent } from './pages/esports/partners/partners.component';
 import { VerifyComponent } from './pages/esports/verify/verify.component';
+import { MaintenanceComponent } from './pages/common/maintenance/maintenance.component';
+import { SettingsComponent } from './pages/admin/settings/settings.component';
 
 @NgModule({
     declarations: [
@@ -80,7 +82,9 @@ import { VerifyComponent } from './pages/esports/verify/verify.component';
         AddPartnerComponent,
         EditPartnerComponent,
         PartnersComponent,
-        VerifyComponent
+        VerifyComponent,
+        MaintenanceComponent,
+        SettingsComponent
     ],
     imports: [
         BrowserModule,

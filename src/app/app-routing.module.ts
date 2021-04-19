@@ -21,6 +21,10 @@ import { EditPartnerComponent } from './pages/admin/edit-partner/edit-partner.co
 import { PartnerResolver } from './_resolvers/partner.resolver';
 import { PartnersComponent } from './pages/esports/partners/partners.component';
 import { VerifyComponent } from './pages/esports/verify/verify.component';
+import { MaintenanceComponent } from './pages/common/maintenance/maintenance.component';
+import { MaintenanceGuard } from './_guard/maintenance.guard';
+import { AuthGuard } from './_guard/auth.guard';
+import { SettingsComponent } from './pages/admin/settings/settings.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -28,7 +32,14 @@ const routes: Routes = [
         path: 'admin/dashboard',
         component: AdminDashboardComponent,
         data: { title: 'LevelUp | Admin Dashboard' },
+        canActivate: [AuthGuard, MaintenanceGuard],
         children: [
+            {
+                path: 'settings',
+                component: SettingsComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Settings' }
+            },
             {
                 path: 'esports/products',
                 component: EsportsProductsComponent,
@@ -74,50 +85,126 @@ const routes: Routes = [
             }
         ]
     },
-    { path: 'auth/signup', component: SignUpComponent, data: { title: 'LevelUp | Sign Up' } },
-    { path: 'auth/verify/:token', component: VerifyComponent, data: { title: 'LevelUp | Verify' } },
-    { path: 'esports', component: EsportsHomeComponent, data: { title: 'LevelUp | Home' } },
-    { path: 'esports/shop', component: EsportsShopComponent, data: { title: 'LevelUp | Shop' } },
-    { path: 'esports/shop/checkout', component: CheckoutComponent, data: { title: 'LevelUp | Checkout' } },
-    { path: 'esports/shop/orders', component: OrdersComponent, data: { title: 'LevelUp | Orders' } },
+    {
+        path: 'auth/signup',
+        component: SignUpComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Sign Up' }
+    },
+    {
+        path: 'auth/verify/:token',
+        component: VerifyComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Verify' }
+    },
+    {
+        path: 'esports',
+        component: EsportsHomeComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Home' }
+    },
+    {
+        path: 'esports/shop',
+        component: EsportsShopComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Shop' }
+    },
+    {
+        path: 'esports/shop/checkout',
+        component: CheckoutComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Checkout' }
+    },
+    {
+        path: 'esports/shop/orders',
+        component: OrdersComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Orders' }
+    },
     {
         path: 'esports/shop/orders/:id',
         component: OrderComponent,
+        canActivate: [MaintenanceGuard],
         resolve: { order: OrderResolver },
         data: { title: 'LevelUp | Order' }
     },
     {
         path: 'esports/shop/product/:id',
         component: ProductComponent,
+        canActivate: [MaintenanceGuard],
         resolve: { product: ProductResolver },
         data: { title: 'LevelUp | Product' }
     },
-    { path: 'partners', component: PartnersComponent, data: { title: 'LevelUp | Partners' } },
-    { path: 'gaming-area', component: UnderConstructionComponent, data: { title: 'LevelUp | Gaming Area' } },
-    { path: 'bootcamp', component: UnderConstructionComponent, data: { title: 'LevelUp | Bootcamp' } },
-    { path: 'content-creators', component: UnderConstructionComponent, data: { title: 'LevelUp | Content Creators' } },
-    { path: 'teams/dota-2', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Dota 2' } },
-    { path: 'teams/csgo', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | CSGO' } },
+    {
+        path: 'partners',
+        component: PartnersComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Partners' }
+    },
+    {
+        path: 'gaming-area',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Gaming Area' }
+    },
+    {
+        path: 'bootcamp',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Bootcamp' }
+    },
+    {
+        path: 'content-creators',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Content Creators' }
+    },
+    {
+        path: 'teams/dota-2',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Teams | Dota 2' }
+    },
+    {
+        path: 'teams/csgo',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Teams | CSGO' }
+    },
     {
         path: 'teams/league-of-legends',
         component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Teams | League of Legends' }
     },
     {
         path: 'teams/warcraft-3',
         component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Teams | Warcraft III' }
     },
-    { path: 'teams/fortnite', component: UnderConstructionComponent, data: { title: 'LevelUp | Teams | Fortnite' } },
+    {
+        path: 'teams/fortnite',
+        component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
+        data: { title: 'LevelUp | Teams | Fortnite' }
+    },
     {
         path: 'teams/heroes-of-the-storm',
         component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Teams | Heroes of the Storm' }
     },
     {
         path: 'teams/hearthstone',
         component: UnderConstructionComponent,
+        canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Teams | Hearthstone' }
+    },
+    {
+        path: 'maintenance',
+        component: MaintenanceComponent,
+        data: { title: 'LevelUp | Maintenance' }
     }
 ];
 

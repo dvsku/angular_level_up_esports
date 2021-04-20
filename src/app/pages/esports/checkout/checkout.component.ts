@@ -81,7 +81,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     changeInformation(): void {
         if (this.currentUser !== null) {
-            // route to settings change
+            this.router.navigate(['/dashboard']);
         } else {
             this.changeInfo = true;
         }

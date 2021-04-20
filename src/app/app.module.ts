@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -33,7 +32,6 @@ import { ProductService } from './services/product.service';
 import { EditEsportsProductComponent } from './pages/admin/edit-esports-product/edit-esports-product.component';
 import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
 import { HomePictureService } from './services/home-picture.service';
-import { NgxBootstrapSliderModule } from 'ngx-bootstrap-slider';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
@@ -112,8 +110,7 @@ import { PageLoaderComponent } from './parts/loaders/page-loader/page-loader.com
         NgbModule,
         DragDropModule,
         FontAwesomeModule,
-        ImageCropperModule,
-        NgxBootstrapSliderModule
+        ImageCropperModule
     ],
     providers: [
         CookieService,

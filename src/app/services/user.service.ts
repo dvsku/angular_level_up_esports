@@ -20,7 +20,7 @@ export class UserService {
         const memo = localStorage.getItem('currentUser');
         this.jwtUser = JSON.parse(memo);
         this.jwtUserSubject.next(this.jwtUser);
-        cookieService.set('currentUser', memo);
+        cookieService.set('currentUser', memo, undefined, '/', undefined, false, 'Lax');
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -71,7 +71,15 @@ export class UserService {
             .then(
                 (jwtResponse) => {
                     if (jwtResponse && jwtResponse.token) {
-                        this.cookieService.set('currentUser', JSON.stringify(jwtResponse));
+                        this.cookieService.set(
+                            'currentUser',
+                            JSON.stringify(jwtResponse),
+                            undefined,
+                            '/',
+                            undefined,
+                            false,
+                            'Lax'
+                        );
                         if (model.remembered) {
                             localStorage.setItem('currentUser', JSON.stringify(jwtResponse));
                         }

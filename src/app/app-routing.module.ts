@@ -30,6 +30,12 @@ import { ForgotPasswordComponent } from './pages/esports/forgot-password/forgot-
 import { VerifyResendComponent } from './pages/esports/verify-resend/verify-resend.component';
 import { ResetPasswordComponent } from './pages/esports/reset-password/reset-password.component';
 import { NotLoggedInGuard } from './_guard/not-logged-in.guard';
+import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
+import { GeneralComponent } from './pages/dashboard/general/general.component';
+import { ChangePasswordComponent } from './pages/dashboard/change-password/change-password.component';
+import { ChangeInformationComponent } from './pages/dashboard/change-information/change-information.component';
+import { UserResolver } from './_resolvers/user.resolver';
+import { LoggedInGuard } from './_guard/logged-in.guard';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -88,6 +94,34 @@ const routes: Routes = [
                 outlet: 'adminOutlet',
                 resolve: { partner: PartnerResolver },
                 data: { title: 'LevelUp | Admin Dashboard | Edit Partner' }
+            }
+        ]
+    },
+    {
+        path: 'dashboard',
+        component: DashboardComponent,
+        data: { title: 'LevelUp | Dashboard' },
+        canActivate: [MaintenanceGuard, LoggedInGuard],
+        children: [
+            {
+                path: 'general',
+                component: GeneralComponent,
+                outlet: 'userOutlet',
+                resolve: { isMaintenance: MaintenanceResolver },
+                data: { title: 'LevelUp | Dashboard | General' }
+            },
+            {
+                path: 'change-password',
+                component: ChangePasswordComponent,
+                outlet: 'userOutlet',
+                data: { title: 'LevelUp | Dashboard | Change Password' }
+            },
+            {
+                path: 'update-information',
+                component: ChangeInformationComponent,
+                resolve: { user: UserResolver },
+                outlet: 'userOutlet',
+                data: { title: 'LevelUp | Dashboard | Update Information' }
             }
         ]
     },

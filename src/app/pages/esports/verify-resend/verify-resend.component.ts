@@ -18,7 +18,7 @@ export class VerifyResendComponent {
 
     onSubmit(): void {
         this.state = 1;
-        this.userService.resendConfirmationToken(this.model.email).subscribe(
+        this.userService.resendVerificationToken(this.model.email).then(
             (success) => {
                 if (success) {
                     this.state = 2;

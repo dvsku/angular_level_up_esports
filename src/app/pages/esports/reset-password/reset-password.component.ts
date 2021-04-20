@@ -36,7 +36,7 @@ export class ResetPasswordComponent implements OnInit {
 
     onSubmit(): void {
         this.state = 1;
-        this.userService.setNewPasswordForUser(this.token, this.model.password).subscribe(
+        this.userService.resetPassword(this.token, this.model.password).then(
             (success) => {
                 if (success) {
                     this.state = 2;

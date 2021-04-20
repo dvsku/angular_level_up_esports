@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.cartProductsObs = this.cartService.getCart();
-        this.currentUserObs = this.userService.currentUser;
+        this.currentUserObs = this.userService.getCurrentUserObservable();
 
         this.combinedSubscription = combineLatest([this.cartProductsObs, this.currentUserObs])
             .pipe(
@@ -52,10 +52,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
                         if (this.currentUser !== null && this.currentUser !== undefined) {
                             this.changeInfo = false;
-                            this.userService
-                                .getUserProfile(this.currentUser.account)
-                                .toPromise()
-                                .then((user) => {
+                            this.userService.getUserProfile(this.currentUser.account).then((user) => {
+                                if (user) {
                                     this.user = user;
                                     this.order.buyerName = this.user.firstName;
                                     this.order.buyerLastName = this.user.lastName;
@@ -64,7 +62,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                     this.order.buyerStreetAndNumber = this.user.streetAndNumber;
                                     this.order.buyerZip = this.user.zip;
                                     this.order.buyerPhone = this.user.phone;
-                                });
+                                } else {
+                                    this.changeInfo = true;
+                                }
+                            });
                         } else {
                             this.changeInfo = true;
                         }

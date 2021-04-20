@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        this.currentUserSubscription = this.userService.currentUser.subscribe((user) => {
+        this.currentUserSubscription = this.userService.getCurrentUserObservable().subscribe((user) => {
             this.currentUser = user;
         });
         this.categoriesSubscription = this.productCategoryService.getProductCategories().subscribe((cats) => {
@@ -99,17 +99,17 @@ export class HeaderComponent implements OnInit {
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
     logout(): void {
-        this.userService.logout();
+        this.userService.signOut();
     }
 
     onSubmit(): void {
         this.isInvalid = false;
-        this.userService.login(this.model).subscribe((jwtResponse) => {
+        this.userService.signIn(this.model).then((jwtResponse) => {
             if (jwtResponse) {
-                this.model.username = '';
-                this.model.password = '';
-                this.model.remembered = false;
-                this.currentUser = jwtResponse;
+                //this.model.username = '';
+                //this.model.password = '';
+                //this.model.remembered = false;
+                //this.currentUser = jwtResponse;
                 //this.router.navigateByUrl('/esports');
             } else {
                 this.isInvalid = true;

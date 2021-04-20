@@ -19,15 +19,19 @@ export class SignUpComponent {
 
     onSubmit(): void {
         console.log(this.user);
-        this.userService.signup(this.user).subscribe(
-            () => {
-                this.router.navigate(['/esports'], {
-                    queryParams: { registered: 'true' }
-                });
-                this.toastrService.success('Successful registration , please check your email to activate account');
+        this.userService.signUp(this.user).then(
+            (success) => {
+                if (success) {
+                    this.router.navigate(['/esports'], {
+                        queryParams: { registered: 'true' }
+                    });
+                    this.toastrService.success('Account created. Please check your email to activate your account.');
+                } else {
+                    this.toastrService.error('Failed to create account, please try again later.');
+                }
             },
-            (error) => {
-                console.log(error);
+            () => {
+                this.toastrService.error('Failed to create account, please try again later.');
             }
         );
     }

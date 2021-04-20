@@ -15,7 +15,7 @@ export class MaintenanceGuard implements CanActivate {
     ) {}
 
     canActivate(): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        const currentUser = this.userService.currentUserValue;
+        const currentUser = this.userService.getCurrentUser();
         let isMaintenance: boolean;
         return this.maintenanceService.getMaintenanceMode().then(
             (value) => {

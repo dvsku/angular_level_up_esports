@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">GENERAL</h3>
+    </div>
+</div>
+<div class="row pt-2 px-3">
+    <div class="col-12 d-flex flex-column">
+        <div>
+            <span class="text-muted fs-small">EMAIL:</span> {{ currentUser.account }}
+        </div>
+        <div>
+            <span class="text-muted fs-small">NAME:</span> {{ user?.firstName }} {{
+            user?.lastName }}
+        </div>
+        <div>
+            <span class="text-muted fs-small">ADDRESS:</span> {{ user?.streetAndNumber }}, {{
+            user?.city }}
+        </div>
+        <div>
+            <span class="text-muted fs-small">ZIP:</span> {{ user?.zip }}
+        </div>
+        <div>
+            <span class="text-muted fs-small">PHONE:</span> {{ user?.phone }}
+        </div>
+    </div>
+</div>

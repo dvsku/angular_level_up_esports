@@ -18,7 +18,7 @@ export class ForgotPasswordComponent {
 
     onSubmit(): void {
         this.state = 1;
-        this.userService.sendPasswordTokenToEmail(this.model.email).subscribe(
+        this.userService.sendPasswordTokenToEmail(this.model.email).then(
             (success) => {
                 if (success) {
                     this.state = 2;

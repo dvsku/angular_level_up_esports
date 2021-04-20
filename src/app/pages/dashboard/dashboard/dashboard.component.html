@@ -1,1 +1,35 @@
-<p>dashboard works!</p>
+<three-row-grid-layout>
+    <div id="main-panel" class="container container-shadow bg-white my-5 p-5">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <ul class="list-unstyled sticky">
+                    <li>
+                        <a class="category-link" [routerLink]="['/dashboard', { outlets: { userOutlet: 'general' } }]"
+                            skipLocationChange>GENERAL</a>
+                    </li>
+                    <li>
+                        <a class="category-link" (click)="esportsCollapse.toggle()"
+                            [attr.aria-expanded]="!isSettingsCollapsed">SETTINGS</a>
+                        <div class="pl-2" #esportsCollapse="ngbCollapse" [(ngbCollapse)]="isSettingsCollapsed">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/dashboard', { outlets: { userOutlet: 'change-password' } }]"
+                                        skipLocationChange>CHANGE PASSWORD</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/dashboard', { outlets: { userOutlet: 'update-information' } }]"
+                                        skipLocationChange>UPDATE INFORMATION</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-9">
+                <router-outlet name="userOutlet"></router-outlet>
+            </div>
+        </div>
+    </div>
+</three-row-grid-layout>

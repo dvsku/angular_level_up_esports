@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
     constructor(private router: Router, private userService: UserService) {}
 
     canActivate(): Observable<boolean> | Promise<boolean> | boolean {
-        const currentUser = this.userService.currentUserValue;
+        const currentUser = this.userService.getCurrentUser();
         if (currentUser) {
             if (currentUser.role === 'ADMIN') {
                 return true;

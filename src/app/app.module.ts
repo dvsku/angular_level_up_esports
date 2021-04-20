@@ -54,6 +54,9 @@ import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.compon
 import { ForgotPasswordComponent } from './pages/esports/forgot-password/forgot-password.component';
 import { VerifyResendComponent } from './pages/esports/verify-resend/verify-resend.component';
 import { ResetPasswordComponent } from './pages/esports/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './pages/dashboard/change-password/change-password.component';
+import { ChangeInformationComponent } from './pages/dashboard/change-information/change-information.component';
+import { GeneralComponent } from './pages/dashboard/general/general.component';
 
 @NgModule({
     declarations: [
@@ -92,7 +95,10 @@ import { ResetPasswordComponent } from './pages/esports/reset-password/reset-pas
         DashboardComponent,
         ForgotPasswordComponent,
         VerifyResendComponent,
-        ResetPasswordComponent
+        ResetPasswordComponent,
+        ChangePasswordComponent,
+        ChangeInformationComponent,
+        GeneralComponent
     ],
     imports: [
         BrowserModule,

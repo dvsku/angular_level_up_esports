@@ -1,0 +1,4 @@
+<div *ngIf="(loaderService.isLoading | async) && (loaderService.canLoad | async)" [@loaderFadeOut]
+    class="loader-container">
+    <div class="spinner-border page-loader" role="status"></div>
+</div>

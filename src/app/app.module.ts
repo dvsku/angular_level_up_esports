@@ -57,6 +57,7 @@ import { ResetPasswordComponent } from './pages/esports/reset-password/reset-pas
 import { ChangePasswordComponent } from './pages/dashboard/change-password/change-password.component';
 import { ChangeInformationComponent } from './pages/dashboard/change-information/change-information.component';
 import { GeneralComponent } from './pages/dashboard/general/general.component';
+import { PageLoaderComponent } from './parts/loaders/page-loader/page-loader.component';
 
 @NgModule({
     declarations: [
@@ -98,7 +99,8 @@ import { GeneralComponent } from './pages/dashboard/general/general.component';
         ResetPasswordComponent,
         ChangePasswordComponent,
         ChangeInformationComponent,
-        GeneralComponent
+        GeneralComponent,
+        PageLoaderComponent
     ],
     imports: [
         BrowserModule,

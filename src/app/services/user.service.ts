@@ -7,6 +7,8 @@ import { JwtResponse } from '../response/JwtResponse';
 import { catchError, tap } from 'rxjs/operators';
 import { User } from '../models/User';
 import { environment } from '../../environments/environment';
+import { UserWithoutPassDto } from '../models/UserWithoutPassDto';
+import { PasswordDto } from '../models/PasswordDto';
 
 @Injectable({
     providedIn: 'root'
@@ -57,9 +59,18 @@ export class UserService {
         return this.httpClient.post<User>(url, newUser);
     }
 
-    update(existingUser: User): Observable<User> {
+    update(existingUser: UserWithoutPassDto): Observable<User> {
         const url = environment.apiURL + `auth/profile`;
         return this.httpClient.put<User>(url, existingUser);
+    }
+
+    updatePassword(passwordDto: PasswordDto): Observable<boolean> {
+        const url = `http://localhost:8080/api/auth/profile/password-update`;
+        return this.httpClient.put<boolean>(url, passwordDto).pipe(
+            tap((data) => {
+                console.log('Updejtovan user password -> ' + data);
+            })
+        );
     }
 
     verify(token: string): Promise<number> {

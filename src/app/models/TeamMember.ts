@@ -1,28 +1,27 @@
 export class TeamMember {
     id?: number;
-    firstName: string;
-    lastName: string;
-    inGameName: string;
-    profilePicture: string;
-    description: string;
-    position: string;
-    nationality: string;
+    inGameName?: string;
+    position?: string;
+    nationality?: string;
+    instagramLink?: string;
+    twitterLink?: string;
+    twitchLink?: string;
 
     constructor(
-        firstName?: string,
-        lastName?: string,
+        id?: number,
         inGameName?: string,
-        description?: string,
         position?: string,
         nationality?: string,
-        profilePicture?: string
+        instagramLink?: string,
+        twitterLink?: string,
+        twitchLink?: string
     ) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.id = id;
         this.inGameName = inGameName;
-        this.description = description;
         this.position = position;
         this.nationality = nationality;
-        this.profilePicture = profilePicture;
+        this.instagramLink = instagramLink;
+        this.twitterLink = twitterLink;
+        this.twitchLink = twitchLink;
     }
 }

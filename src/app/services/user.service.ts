@@ -65,7 +65,7 @@ export class UserService {
     }
 
     updatePassword(passwordDto: PasswordDto): Observable<boolean> {
-        const url = `http://localhost:8080/api/auth/profile/password-update`;
+        const url = `http://localhost:8080/auth/profile/password-update`;
         return this.httpClient.put<boolean>(url, passwordDto).pipe(
             tap((data) => {
                 console.log('Updejtovan user password -> ' + data);
@@ -94,7 +94,7 @@ export class UserService {
     }
 
     public resendConfirmationToken(email: string): Observable<boolean> {
-        const url = `http://localhost:8080/api/auth/register/resendToken/${email}`;
+        const url = `http://localhost:8080/auth/register/resendToken/${email}`;
         return this.httpClient.post<boolean>(url, null).pipe(
             tap((data) => {
                 console.log('Confirmation token was resend -> ' + data);
@@ -106,7 +106,7 @@ export class UserService {
     // 1 -> Expired
     // 2 -> Doesn't exist
     public checkIfPasswordResetTokenIsValid(token: string): Observable<number> {
-        const url = `http://localhost:8080/api/auth/user/resetPassword/validate/${token}`;
+        const url = `http://localhost:8080/auth/user/resetPassword/validate/${token}`;
         return this.httpClient.get<number>(url).pipe(
             tap((data) => {
                 console.log('Is token valid -> ' + data);
@@ -115,7 +115,7 @@ export class UserService {
     }
 
     public sendPasswordTokenToEmail(email: string): Observable<boolean> {
-        const url = `http://localhost:8080/api/auth/user/resetPassword/${email}`;
+        const url = `http://localhost:8080/auth/user/resetPassword/${email}`;
         return this.httpClient.post<boolean>(url, null).pipe(
             tap((data) => {
                 console.log('Password reset token sent to email -> ' + data);
@@ -124,7 +124,7 @@ export class UserService {
     }
 
     public setNewPasswordForUser(token: string, password: string): Observable<boolean> {
-        const url = `http://localhost:8080/api/auth/user/resetPassword/${token}`;
+        const url = `http://localhost:8080/auth/user/resetPassword/${token}`;
         return this.httpClient.put<boolean>(url, password).pipe(
             tap((data) => {
                 console.log('Password updated for user -> ' + data);

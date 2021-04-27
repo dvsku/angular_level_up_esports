@@ -6,6 +6,7 @@ import { PartnerService } from 'src/app/services/partner.service';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-edit-partner',
@@ -33,7 +34,8 @@ export class EditPartnerComponent implements OnInit {
         private partnerService: PartnerService,
         private activatedRoute: ActivatedRoute,
         private router: Router,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
+        public imagesService: ImagesService
     ) {}
 
     ngOnInit(): void {

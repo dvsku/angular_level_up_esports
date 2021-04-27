@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Partner } from 'src/app/models/Partner';
+import { ImagesService } from 'src/app/services/images.service';
 import { PartnerService } from 'src/app/services/partner.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
     partners: Partner[];
     private partnersSubscription: Subscription;
 
-    constructor(private partnerService: PartnerService) {}
+    constructor(private partnerService: PartnerService, public imagesService: ImagesService) {}
 
     ngOnInit(): void {
         this.partnersSubscription = this.partnerService.getPartners().subscribe((partners) => {

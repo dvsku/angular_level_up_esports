@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ProductInfo } from 'src/app/models/ProductInfo';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-shop-item',
@@ -9,6 +10,8 @@ import { ProductInfo } from 'src/app/models/ProductInfo';
 export class ShopItemComponent {
     @Input('product')
     product: ProductInfo;
+
+    constructor(public imagesService: ImagesService) {}
 
     getProductSizes(): string {
         if (this.product === null || this.product === undefined) return '';

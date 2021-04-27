@@ -6,6 +6,7 @@ import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { PartnerService } from 'src/app/services/partner.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-add-partner',
@@ -32,7 +33,8 @@ export class AddPartnerComponent {
         private modalService: NgbModal,
         private partnerService: PartnerService,
         private router: Router,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
+        public imagesService: ImagesService
     ) {}
 
     openFileSelectDialog(): void {

@@ -4,6 +4,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
+import { ImagesService } from 'src/app/services/images.service';
 import { ImageInputComponent } from '../image-input/image-input.component';
 
 @Component({
@@ -44,7 +45,11 @@ export class ImageGroupComponent {
 
     parent: ImagesHandler;
 
-    constructor(private _cfr: ComponentFactoryResolver, private modalService: NgbModal) {}
+    constructor(
+        private _cfr: ComponentFactoryResolver,
+        private modalService: NgbModal,
+        public imagesService: ImagesService
+    ) {}
 
     imageCropped(event: ImageCroppedEvent): void {
         this.parent.createImage(event.base64);

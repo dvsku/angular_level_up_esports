@@ -6,6 +6,7 @@ import { HomePictureService } from 'src/app/services/home-picture.service';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { PartnerService } from 'src/app/services/partner.service';
 import { Partner } from 'src/app/models/Partner';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-esports-home',
@@ -23,7 +24,8 @@ export class EsportsHomeComponent implements OnInit, OnDestroy {
     constructor(
         private config: NgbCarouselConfig,
         private homeImagesService: HomePictureService,
-        private partnerService: PartnerService
+        private partnerService: PartnerService,
+        public imagesService: ImagesService
     ) {
         config.showNavigationArrows = false;
         config.interval = 5000;

@@ -15,7 +15,7 @@
                     </div>
                     <ng-template #hasImage>
                         <div id="image-container" style="position: relative;" (click)="removeImage()">
-                            <img class="img-fluid" src="{{partner.image}}">
+                            <img class="img-fluid" [src]="imagesService.getImage(partner.image)">
                             <div id="overlay" class="top-left"></div>
                             <div id="icon-container" class="top-left d-flex justify-content-center align-items-center">
                                 <fa-icon id="icon" size="4x" [icon]="faTimes">

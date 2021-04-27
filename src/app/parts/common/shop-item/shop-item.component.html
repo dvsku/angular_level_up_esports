@@ -1,6 +1,6 @@
 <div class="shop-item-container position-relative">
 
-    <img class="shop-item-image" src="{{product?.productInfoIcons[0].image}}">
+    <img class="shop-item-image" [src]="imagesService.getImage(product?.productInfoIcons[0].image)">
     <div class="shop-item-image-overlay"></div>
     <a class="shop-item-view-details fs-big fw-500" routerLink="/esports/shop/product/{{product?.productId}}">
         VIEW DETAILS

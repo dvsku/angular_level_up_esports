@@ -1,5 +1,11 @@
 @import '../../../../_variables'
 
+.fixed-background
+    height: 100% !important
+    background: no-repeat url('/assets/bg-body.jpg') 100% / 100% !important
+    background-attachment: fixed !important
+    font-size: $font-size-normal
+
 .shop-now-brand
     line-height: 1rem
     margin-bottom: 0
@@ -11,12 +17,18 @@
     justify-items: center
     width: auto
 
+$game-image-base-width: 30vw
+
 .game-image
-    max-width: 12.5rem
+    max-width: $game-image-base-width
     margin-right: .9375rem
     margin-bottom: 1.5625rem
-    @include media-breakpoint-down(md)
-        max-width: 15.625rem
+    @include media-breakpoint-only(sm)
+        max-width: 14.5vw
+    @include media-breakpoint-only(md)
+        max-width: 14.5vw
+    @include media-breakpoint-up(lg)
+        max-width: 12.5rem
 
 .bootcamp-image
     max-width: 31.25rem
@@ -24,8 +36,11 @@
 #shop
     background-color: $color-second
     padding-top: 1.5625rem
-    padding-bottom: 6.25rem
+    padding-bottom: 5rem
     min-height: 41.875rem
+
+#teams
+    background-color: $color-second
 
 #entertainemnt
     background-color: $color-second

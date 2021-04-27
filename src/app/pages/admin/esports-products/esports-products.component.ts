@@ -7,6 +7,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { Subscription } from 'rxjs';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-esports-products',
@@ -32,7 +33,8 @@ export class EsportsProductsComponent implements OnInit, OnDestroy {
         private productService: ProductService,
         private modalService: NgbModal,
         private config: NgbModalConfig,
-        private categoriesService: ProductCategoryService
+        private categoriesService: ProductCategoryService,
+        public imagesService: ImagesService
     ) {
         config.backdrop = 'static';
         config.keyboard = false;

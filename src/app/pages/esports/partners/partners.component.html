@@ -8,7 +8,7 @@
                     <p style="white-space: pre-line" class="fs-normal py-4">{{partner.description}}</p>
                 </div>
                 <div class="col-5 d-flex justify-content-center align-items-center">
-                    <img class="img-fluid p-5" [src]="partner.image">
+                    <img class="img-fluid p-5" [src]="imagesService.getImage(partner.image)">
                 </div>
             </div>
             <div class="row" *ngIf="partner.linkToWebsite !== null && partner.linkToWebsite !== undefined">

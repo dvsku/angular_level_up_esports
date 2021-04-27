@@ -3,7 +3,7 @@
     <div class="image-box" *ngFor="let image of images" cdkDrag>
         <div class="image-placeholder" *cdkDragPlaceholder></div>
         <div class="image-box-image">
-            <img class="image" src="{{image.image}}">
+            <img class="image" [src]="imagesService.getImage(image.image)">
         </div>
         <div class="image-box-actions">
             <div class="mr-2 my-2 text-right" style="width: 100px;">

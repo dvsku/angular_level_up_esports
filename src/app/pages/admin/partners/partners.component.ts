@@ -6,6 +6,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-partners',
@@ -22,7 +23,8 @@ export class AdminPartnersComponent implements OnInit, OnDestroy {
     constructor(
         private partnerService: PartnerService,
         private toastrService: ToastrService,
-        private modalService: NgbModal
+        private modalService: NgbModal,
+        public imagesService: ImagesService
     ) {}
 
     ngOnInit(): void {

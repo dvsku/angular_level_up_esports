@@ -7,6 +7,7 @@ import { ProductInOrder } from 'src/app/models/ProductInOrder';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-product',
@@ -26,7 +27,8 @@ export class ProductComponent implements OnInit {
         private productService: ProductService,
         private cartService: CartService,
         private activeRoute: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        public imagesService: ImagesService
     ) {}
 
     ngOnInit(): void {

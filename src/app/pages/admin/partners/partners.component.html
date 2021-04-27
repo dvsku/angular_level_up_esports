@@ -45,7 +45,7 @@
             <div class="drop-list-item" *ngFor='let partner of partners' cdkDrag>
                 <div class="drop-placeholder" *cdkDragPlaceholder></div>
                 <div style="width: 75px;">
-                    <img class="img-thumbnail" src="{{partner.image}}">
+                    <img class="img-thumbnail" [src]="imagesService.getImage(partner?.image)">
                 </div>
                 <div class="text-left w-75">{{partner.name}}</div>
                 <div class="mr-2">

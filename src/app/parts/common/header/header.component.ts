@@ -9,6 +9,7 @@ import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-header',
@@ -46,7 +47,8 @@ export class HeaderComponent implements OnInit {
         private userService: UserService,
         private cartService: CartService,
         private productCategoryService: ProductCategoryService,
-        private productService: ProductService
+        private productService: ProductService,
+        public imagesService: ImagesService
     ) {}
 
     ngOnInit(): void {

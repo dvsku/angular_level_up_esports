@@ -7,7 +7,7 @@
         </div>
         <div class="image-box-actions">
             <div class="mr-2 my-2 text-right" style="width: 100px;">
-                <a type="button" class="subcategory-link btn-block" (click)="removeImage(image)">Remove</a>
+                <fa-icon (click)='removeImage(image)' [icon]="faRemove" class="close"></fa-icon>
             </div>
         </div>
     </div>

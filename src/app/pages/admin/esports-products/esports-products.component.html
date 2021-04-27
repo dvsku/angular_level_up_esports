@@ -1,11 +1,17 @@
 <div class="row">
     <div class="col-12 d-flex flex-row justify-content-between">
         <h3 class="fw-700">ESPORTS PRODUCTS</h3>
-        <div class="form-group">
-            <a class="standard-btn standard-btn-primary btn-w-1"
-                [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]"
-                skipLocationChange>Add</a>
-        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4 d-flex justify-content-start align-items-center">
+        <fa-icon [icon]="faInfo" class="d-inline-block ml-3" placement="bottom"
+            ngbTooltip="You can edit and add new products here."></fa-icon>
+    </div>
+    <div class="col-8 d-flex justify-content-end align-items-center">
+        <a class="standard-btn standard-btn-primary btn-w-1"
+            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/add-product' } }]"
+            skipLocationChange>add</a>
     </div>
 </div>
 <div class="row pb-2">
@@ -44,21 +50,20 @@
                     <th scope="col">Photo</th>
                     <th scope="col">Name</th>
                     <th class="text-center" scope="col">Price</th>
-                    <th class="text-center" scope="col">Actions</th>
+                    <th class="text-right" scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let productInfo of displayedProducts">
                     <td class="align-middle text-center" style="width: 75px;" scope="row">
-                        <img class="img-thumbnail product-thumbnail"
-                            [src]="imagesService.getImage(productInfo.productInfoIcons[0]?.image)"
+                        <img class="thumbnail" [src]="imagesService.getImage(productInfo.productInfoIcons[0]?.image)"
                             alt="{{productInfo.productName}}">
                     </td>
                     <td class="align-middle product-name">{{productInfo.productName}}</td>
                     <td class="align-middle text-center">{{productInfo.productPrice}} RSD</td>
-                    <td class="align-middle text-center">
+                    <td class="align-middle text-right">
                         <div ngbDropdown placement="bottom-right" container="body">
-                            <button class="standard-btn standard-btn-primary" ngbDropdownToggle>Actions <fa-icon
+                            <button class="standard-btn standard-btn-primary" ngbDropdownToggle>actions <fa-icon
                                     [icon]="faArrowDown" class="d-inline-block"></fa-icon></button>
                             <div ngbDropdownMenu>
                                 <a ngbDropdownItem

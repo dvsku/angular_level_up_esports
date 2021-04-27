@@ -5,6 +5,7 @@ import { HomeRotatingPicture } from 'src/app/models/HomeRotatingPicture';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { HomePictureService } from 'src/app/services/home-picture.service';
+import { faInfo } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-esports-home-rotating-pictures',
@@ -17,6 +18,8 @@ export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, 
 
     @ViewChild(ImageGroupComponent)
     imageGroup: ImageGroupComponent;
+
+    faInfo = faInfo;
 
     constructor(private homePictureService: HomePictureService) {}
 

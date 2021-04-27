@@ -6,6 +6,7 @@ import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImagesService } from 'src/app/services/images.service';
 import { ImageInputComponent } from '../image-input/image-input.component';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'image-group',
@@ -44,6 +45,8 @@ export class ImageGroupComponent {
     croppedImage: any = '';
 
     parent: ImagesHandler;
+
+    faRemove = faTimes;
 
     constructor(
         private _cfr: ComponentFactoryResolver,

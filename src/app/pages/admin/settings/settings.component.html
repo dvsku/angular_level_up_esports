@@ -1,9 +1,16 @@
-<div class="d-flex flex-column w-50">
-    <div class="d-flex flex-row justify-content-start align-items-center">
-        <label class="switch m-0">
-            <input [checked]="isMaintenance" (change)="toggleMaintenanceMode()" type="checkbox">
-            <span class="slider round"></span>
-        </label>
-        <div class="ml-3">Maintenance mode</div>
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">SETTINGS</h3>
+    </div>
+</div>
+<div class="row mt-4">
+    <div class="col-12 d-flex flex-column w-50">
+        <div class="d-flex flex-row justify-content-start align-items-center">
+            <label class="switch m-0">
+                <input [checked]="isMaintenance" (change)="toggleMaintenanceMode()" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+            <div class="ml-3">Maintenance mode</div>
+        </div>
     </div>
 </div>

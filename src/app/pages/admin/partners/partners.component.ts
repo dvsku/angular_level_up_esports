@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Partner } from 'src/app/models/Partner';
 import { PartnerService } from 'src/app/services/partner.service';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faInfo } from '@fortawesome/free-solid-svg-icons';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -19,6 +19,7 @@ export class AdminPartnersComponent implements OnInit, OnDestroy {
     private partnersSubscription: Subscription;
 
     faArrowDown = faAngleDown;
+    faInfo = faInfo;
 
     constructor(
         private partnerService: PartnerService,

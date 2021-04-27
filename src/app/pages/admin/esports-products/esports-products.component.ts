@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductStatus } from 'src/app/enums/ProductStatus';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faInfo } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
@@ -25,6 +25,7 @@ export class EsportsProductsComponent implements OnInit, OnDestroy {
     sort = 'newest';
 
     faArrowDown = faAngleDown;
+    faInfo = faInfo;
 
     private productsSubscription: Subscription;
     private categoriesSubscription: Subscription;

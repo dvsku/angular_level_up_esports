@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { JwtResponse } from 'src/app/models/JwtResponse';
 import { PasswordDto } from 'src/app/models/PasswordDto';
-import { JwtResponse } from 'src/app/response/JwtResponse';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

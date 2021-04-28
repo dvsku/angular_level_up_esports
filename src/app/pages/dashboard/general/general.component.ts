@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { JwtResponse } from 'src/app/models/JwtResponse';
 import { User } from 'src/app/models/User';
-import { JwtResponse } from 'src/app/response/JwtResponse';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({

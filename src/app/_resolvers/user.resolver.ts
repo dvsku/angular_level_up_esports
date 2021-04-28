@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
+import { JwtResponse } from '../models/JwtResponse';
 import { User } from '../models/User';
-import { JwtResponse } from '../response/JwtResponse';
 import { UserService } from '../services/user.service';
 
 @Injectable({

@@ -10,8 +10,8 @@ import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
     selector: 'app-edit-partner',
-    templateUrl: '../add-partner/add-partner.component.html',
-    styleUrls: ['../add-partner/add-partner.component.sass']
+    templateUrl: '../partners-add/add-partner.component.html',
+    styleUrls: ['../partners-add/add-partner.component.sass']
 })
 export class EditPartnerComponent implements OnInit {
     partner: Partner = new Partner();

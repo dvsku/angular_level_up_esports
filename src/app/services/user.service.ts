@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { JwtResponse } from '../response/JwtResponse';
 import { User } from '../models/User';
 import { environment } from '../../environments/environment';
 import { UserWithoutPassDto } from '../models/UserWithoutPassDto';
 import { PasswordDto } from '../models/PasswordDto';
+import { JwtResponse } from '../models/JwtResponse';
 
 @Injectable({
     providedIn: 'root'

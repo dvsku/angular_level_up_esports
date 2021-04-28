@@ -17,8 +17,8 @@ import { ProductIcon } from 'src/app/models/ProductIcon';
 
 @Component({
     selector: 'app-edit-esports-product',
-    templateUrl: '../add-esports-product/add-esports-product.component.html',
-    styleUrls: ['../add-esports-product/add-esports-product.component.sass']
+    templateUrl: '../products-add/add-esports-product.component.html',
+    styleUrls: ['../products-add/add-esports-product.component.sass']
 })
 export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterViewInit, ImagesHandler {
     product: ProductInfo = new ProductInfo();

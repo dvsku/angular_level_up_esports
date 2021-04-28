@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { faBars, faAngleDown, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import { Subscription } from 'rxjs';
 import { ProductInOrder } from 'src/app/models/ProductInOrder';
-import { JwtResponse } from 'src/app/response/JwtResponse';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { ProductCategory } from 'src/app/models/ProductCategory';
@@ -10,6 +9,7 @@ import { ProductCategoryService } from 'src/app/services/product-category.servic
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
 import { ImagesService } from 'src/app/services/images.service';
+import { JwtResponse } from 'src/app/models/JwtResponse';
 
 @Component({
     selector: 'app-header',

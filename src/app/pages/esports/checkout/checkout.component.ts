@@ -4,11 +4,11 @@ import { Observable, Subscription, combineLatest } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { ProductInOrder } from 'src/app/models/ProductInOrder';
 import { User } from 'src/app/models/User';
-import { JwtResponse } from 'src/app/response/JwtResponse';
 import { CartService } from 'src/app/services/cart.service';
 import { UserService } from 'src/app/services/user.service';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs/operators';
+import { JwtResponse } from 'src/app/models/JwtResponse';
 
 @Component({
     selector: 'app-checkout',

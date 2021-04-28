@@ -1,0 +1,6 @@
+<div class="d-flex px-3 py-2 fs-small text-uppercase fc-second fw-600">
+    <div *ngIf="message && !options.enableHtml" role="alert" aria-live="polite" [class]="options.messageClass"
+        [attr.aria-label]="message">
+        {{ message }}
+    </div>
+</div>

@@ -1,12 +1,13 @@
 <div class="row">
     <div class="col-12 d-flex flex-column">
-        <cart-product *ngFor="let product of products" class="cart-product" [product]="product"></cart-product>
+        <cart-product *ngFor="let product of products" class="cart-product" [product]="product" [removable]="removable">
+        </cart-product>
     </div>
 </div>
 <div class="row">
     <div class="col-12">
         <div class="d-flex justify-content-between pt-2 px-3">
-            <div>Total</div>
+            <div class="text-uppercase fw-800 fs-small">Total</div>
             <div>{{ total }} RSD</div>
         </div>
     </div>

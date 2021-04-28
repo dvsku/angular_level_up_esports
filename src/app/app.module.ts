@@ -56,6 +56,7 @@ import { ChangePasswordComponent } from './pages/dashboard/change-password/chang
 import { ChangeInformationComponent } from './pages/dashboard/change-information/change-information.component';
 import { GeneralComponent } from './pages/dashboard/general/general.component';
 import { PageLoaderComponent } from './parts/loaders/page-loader/page-loader.component';
+import { CustomToastComponent } from './_toastr/custom-toast/custom-toast.component';
 
 @NgModule({
     declarations: [
@@ -98,7 +99,8 @@ import { PageLoaderComponent } from './parts/loaders/page-loader/page-loader.com
         ChangePasswordComponent,
         ChangeInformationComponent,
         GeneralComponent,
-        PageLoaderComponent
+        PageLoaderComponent,
+        CustomToastComponent
     ],
     imports: [
         BrowserModule,
@@ -106,12 +108,24 @@ import { PageLoaderComponent } from './parts/loaders/page-loader/page-loader.com
         FormsModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        ToastrModule.forRoot(),
+        ToastrModule.forRoot({
+            toastComponent: CustomToastComponent,
+            timeOut: 3000,
+            positionClass: 'toast-top-right',
+            toastClass: '',
+            iconClasses: {
+                error: 'custom-toast-error',
+                info: 'custom-toast-info',
+                success: 'custom-toast-success',
+                warning: ''
+            }
+        }),
         NgbModule,
         DragDropModule,
         FontAwesomeModule,
         ImageCropperModule
     ],
+    entryComponents: [CustomToastComponent],
     providers: [
         CookieService,
         CartService,

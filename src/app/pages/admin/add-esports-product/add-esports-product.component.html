@@ -14,20 +14,21 @@
                     <a ngbNavLink>General</a>
                     <ng-template ngbNavContent>
                         <div class="form-group">
-                            <label for="productName">Name</label>
+                            <label class="fs-small text-muted text-uppercase" for="productName">Name</label>
                             <input [(ngModel)]="product.productName" type="text" class="form-control" id="productName"
-                                name="productName" placeholder="Name" required #productName="ngModel">
+                                name="productName" required #productName="ngModel">
                             <div *ngIf="productName.invalid && (productName.dirty ||productName.touched)">
                                 <small *ngIf="productName.errors.required">Name is required.</small>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="productDescription">Description</label>
+                            <label class="fs-small text-muted text-uppercase"
+                                for="productDescription">Description</label>
                             <textarea class="form-control text-left" id="productDescription" name="productDescription"
-                                placeholder="Description" [(ngModel)]="product.productDescription"></textarea>
+                                [(ngModel)]="product.productDescription"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="productCategory">Category</label>
+                            <label class="fs-small text-muted text-uppercase" for="productCategory">Category</label>
                             <select [(ngModel)]="product.categoryType" class="form-control" id="productCategory"
                                 name="productCategory" required>
                                 <option [selected]='category.categoryType === product.categoryType'
@@ -36,10 +37,10 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="productPrice">Price (RSD)</label>
+                            <label class="fs-small text-muted text-uppercase" for="productPrice">Price (RSD)</label>
                             <input [(ngModel)]="product.productPrice" type="number" class="form-control"
-                                id="productPrice" name="productPrice" placeholder="Name" required
-                                #productPrice="ngModel" (ngModelChange)="product.productPrice=$event">
+                                id="productPrice" name="productPrice" required #productPrice="ngModel"
+                                (ngModelChange)="product.productPrice=$event">
                             <div *ngIf="productPrice.invalid && (productPrice.dirty ||productPrice.touched)">
                                 <small *ngIf="productPrice.errors.required">Price is required.</small>
                             </div>
@@ -108,7 +109,8 @@
     <form (ngSubmit)="onAddSizeSubmit()">
         <div class="modal-body">
             <div class="form-group">
-                <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size" placeholder="Size">
+                <label class="fs-small text-muted text-uppercase" for="size">Size</label>
+                <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size">
             </div>
         </div>
         <div class="modal-footer">

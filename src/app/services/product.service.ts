@@ -139,36 +139,41 @@ export class ProductService {
             );
     }
 
-    updateProduct(product: ProductInfo): Observable<boolean> {
-        const success: Subject<boolean> = new Subject<boolean>();
-        this.updateDatabaseProduct(product).subscribe(
-            () => {
-                if (this.productsObs) {
-                    if (this.products !== null && this.products !== undefined) {
-                        const index = this.products.findIndex((x) => x.productId === product.productId);
-                        if (index !== -1) {
-                            this.products[index] = product;
-                            this.productsSubject.next(this.products);
+    updateProduct(product: ProductInfo): Promise<boolean> {
+        return this.updateDatabaseProduct(product).then(
+            (success) => {
+                if (success) {
+                    if (this.productsObs) {
+                        if (this.products !== null && this.products !== undefined) {
+                            const index = this.products.findIndex((x) => x.productId === product.productId);
+                            if (index !== -1) {
+                                this.products[index] = product;
+                                this.productsSubject.next(this.products);
+                            }
                         }
                     }
                 }
-                success.next(true);
+                return success;
             },
             (error) => {
-                success.next(false);
-                console.log("Couldn't update product: " + error.message);
+                return false;
             }
         );
-        return success.asObservable();
     }
 
-    private updateDatabaseProduct(productInfo: ProductInfo): Observable<boolean> {
+    private updateDatabaseProduct(productInfo: ProductInfo): Promise<boolean> {
         const url = `${this.productAdminUrl}/${productInfo.productId}/edit`;
-        return this.httpClient.put<boolean>(url, productInfo).pipe(
-            tap(() => {
-                // LOGOVANJE
-            })
-        );
+        return this.httpClient
+            .put<boolean>(url, productInfo)
+            .toPromise()
+            .then(
+                (response) => {
+                    return response;
+                },
+                (error) => {
+                    return Promise.reject(error.message || error);
+                }
+            );
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,7 +5,7 @@
                 <h1 class="fc-hover fw-700 text-center">SIGN UP</h1>
                 <form #form="ngForm" class="w-50 mt-2" (ngSubmit)="onSubmit()">
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label class="fs-small text-muted text-uppercase" for="email">Email</label>
                         <input type="email" [(ngModel)]="user.email" #email="ngModel" class="form-control" id="email"
                             name="email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" required />
                         <div *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label class="fs-small text-muted text-uppercase" for="password">Password</label>
                         <input type="password" [(ngModel)]="user.password" #password="ngModel" class="form-control"
                             id="password" name="password" required minlength="3" />
                         <div *ngIf="password.invalid && (password.dirty || password.touched)">
@@ -24,7 +24,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="confirm-password">Confirm Password</label>
+                        <label class="fs-small text-muted text-uppercase" for="confirm-password">Confirm
+                            Password</label>
                         <input [(ngModel)]="secondPassword" type="password" class="form-control" id="confirmPassword"
                             name="confirmPassword" minlength="3" required #confirmPassword="ngModel"
                             pattern="{{ password.value }}" />
@@ -36,9 +37,8 @@
                                 match.</small>
                         </div>
                     </div>
-                    <hr />
                     <div class="form-group">
-                        <label for="firstname">First Name</label>
+                        <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
                         <input type="text" [(ngModel)]="user.firstName" #firstName="ngModel" class="form-control"
                             id="firstname" name="firstname" required />
                         <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -46,7 +46,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="lastname">Last Name</label>
+                        <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
                         <input type="text" [(ngModel)]="user.lastName" #lastName="ngModel" class="form-control"
                             id="lastname" name="lastname" required />
                         <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="city">City</label>
+                        <label class="fs-small text-muted text-uppercase" for="city">City</label>
                         <input type="text" [(ngModel)]="user.city" #city="ngModel" class="form-control" id="city"
                             name="city" required />
                         <div *ngIf="city.invalid && (city.dirty || city.touched)">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="address">Address</label>
+                        <label class="fs-small text-muted text-uppercase" for="address">Address</label>
                         <input type="text" [(ngModel)]="user.streetAndNumber" #address="ngModel" class="form-control"
                             id="address" name="address" required />
                         <div *ngIf="address.invalid && (address.dirty || address.touched)">
@@ -70,19 +70,21 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="zip">Zip</label>
-                        <input type="number" [(ngModel)]="user.zip" class="form-control" id="zip" name="zip"
-                            #zip="ngModel" required />
+                        <label class="fs-small text-muted text-uppercase" for="zip">Zip</label>
+                        <input type="text" pattern="[0-9]{5,5}" [(ngModel)]="user.zip" class="form-control" id="zip"
+                            name="zip" #zip="ngModel" required />
                         <div *ngIf="zip.invalid && (zip.dirty || zip.touched)">
                             <small *ngIf="zip.errors.required">Zip is required.</small>
+                            <small *ngIf="zip.errors.pattern">Invalid zip.</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="phone">Phone</label>
+                        <label class="fs-small text-muted text-uppercase" for="phone">Phone number</label>
                         <input type="text" [(ngModel)]="user.phone" #phone="ngModel" class="form-control" id="phone"
-                            name="phone" required />
+                            name="phone" pattern="[+0-9]+" required />
                         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-                            <small *ngIf="phone.errors.required">Phone is required.</small>
+                            <small *ngIf="phone.errors.required">Phone number is required.</small>
+                            <small *ngIf="phone.errors.pattern">Invalid phone number.</small>
                         </div>
                     </div>
                     <button type="submit" [disabled]="!form.form.valid"

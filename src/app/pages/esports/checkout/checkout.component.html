@@ -12,19 +12,22 @@
                         <div class="col-12 d-flex flex-column">
                             <div class="d-flex flex-column px-3 pb-2">
                                 <div>
-                                    <span>NAME:</span> {{ order?.buyerName }} {{ order?.buyerLastName }}
+                                    <span class="fs-small text-muted text-uppercase">NAME:</span> {{ order?.buyerName }}
+                                    {{ order?.buyerLastName }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>ADDRESS:</span> {{ order?.buyerStreetAndNumber }}, {{ order?.buyerCity }}
+                                    <span class="fs-small text-muted text-uppercase">ADDRESS:</span> {{
+                                    order?.buyerStreetAndNumber }}, {{ order?.buyerCity }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>ZIP:</span> {{ order?.buyerZip }}
+                                    <span class="fs-small text-muted text-uppercase">ZIP:</span> {{ order?.buyerZip }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
-                                    <span>PHONE:</span> {{ order?.buyerPhone }}
+                                    <span class="fs-small text-muted text-uppercase">PHONE NUMBER:</span> {{
+                                    order?.buyerPhone }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                             </div>
@@ -32,7 +35,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <cart-product-group></cart-product-group>
+                            <cart-product-group [removable]="false"></cart-product-group>
                         </div>
                     </div>
                     <div class="row">
@@ -59,7 +62,7 @@
                         <div class="col-12 d-flex justify-content-center">
                             <form #form="ngForm" class="w-50 mt-2" (ngSubmit)="updateInformation()">
                                 <div class="form-group">
-                                    <label for="email">Email</label>
+                                    <label class="fs-small text-muted text-uppercase" for="email">Email</label>
                                     <input type="email" [(ngModel)]="order.buyerEmail" #email="ngModel"
                                         class="form-control" id="email" name="email" required />
                                     <div *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -68,7 +71,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="firstname">First Name</label>
+                                    <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
                                     <input type="text" [(ngModel)]="order.buyerName" #firstName="ngModel"
                                         class="form-control" id="firstname" name="firstname" required />
                                     <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -76,7 +79,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastname">Last Name</label>
+                                    <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
                                     <input type="text" [(ngModel)]="order.buyerLastName" #lastName="ngModel"
                                         class="form-control" id="lastname" name="lastname" required />
                                     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
@@ -84,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="city">City</label>
+                                    <label class="fs-small text-muted text-uppercase" for="city">City</label>
                                     <input type="text" [(ngModel)]="order.buyerCity" #city="ngModel"
                                         class="form-control" id="city" name="city" required />
                                     <div *ngIf="city.invalid && (city.dirty || city.touched)">
@@ -92,7 +95,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Address</label>
+                                    <label class="fs-small text-muted text-uppercase" for="address">Address</label>
                                     <input type="text" [(ngModel)]="order.buyerStreetAndNumber" #address="ngModel"
                                         class="form-control" id="address" name="address" required />
                                     <div *ngIf="address.invalid && (address.dirty || address.touched)">
@@ -100,19 +103,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="zip">Zip</label>
-                                    <input type="number" [(ngModel)]="order.buyerZip" class="form-control" id="zip"
-                                        name="zip" #zip="ngModel" required />
+                                    <label class="fs-small text-muted text-uppercase" for="zip">Zip</label>
+                                    <input type="number" [(ngModel)]="order.buyerZip" pattern="[0-9]{5,5}"
+                                        class="form-control" id="zip" name="zip" #zip="ngModel" required />
                                     <div *ngIf="zip.invalid && (zip.dirty || zip.touched)">
                                         <small *ngIf="zip.errors.required">Zip is required.</small>
+                                        <small *ngIf="zip.errors.pattern">Invalid zip.</small>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone</label>
+                                    <label class="fs-small text-muted text-uppercase" for="phone">Phone number</label>
                                     <input type="text" [(ngModel)]="order.buyerPhone" #phone="ngModel"
-                                        class="form-control" id="phone" name="phone" required />
+                                        class="form-control" id="phone" name="phone" pattern="[+0-9]+" required />
                                     <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-                                        <small *ngIf="phone.errors.required">Phone is required.</small>
+                                        <small *ngIf="phone.errors.required">Phone number is required.</small>
+                                        <small *ngIf="phone.errors.pattern">Invalid phone number.</small>
                                     </div>
                                 </div>
                                 <button type="submit" [disabled]="!form.form.valid"

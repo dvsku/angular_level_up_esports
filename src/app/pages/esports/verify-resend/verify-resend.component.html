@@ -9,7 +9,7 @@
             <div *ngIf='state === 0' class="col-12 d-flex flex-column justify-content-center align-items-center">
                 <form #form="ngForm" class="w-50 mt-2 py-4" (ngSubmit)="onSubmit()">
                     <div class="form-group">
-                        <label for="email-forgot">Email</label>
+                        <label class="fs-small text-muted text-uppercase" for="email-forgot">Email</label>
                         <input type="email" [(ngModel)]="model.email" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$"
                             #email_reset="ngModel" class="form-control" id="email-forgot" name="email-forgot"
                             required />

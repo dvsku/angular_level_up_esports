@@ -19,7 +19,6 @@ export class User {
         this.phone = '';
         this.city = '';
         this.streetAndNumber = '';
-        this.zip = 0;
         this.userRole = UserRole.USER;
     }
 }

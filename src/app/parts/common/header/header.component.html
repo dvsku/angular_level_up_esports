@@ -40,7 +40,7 @@
                 </fa-icon></a>
             <div [ngbCollapse]="isTeamsCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
-                    <div class="col-3 col-lg-4 col-xl-3">
+                    <div class="col-12 col-lg-4 col-xl-3">
                         <p class="title fw-800 fc-hover d-none d-lg-block">
                             TEAMS <span class="fc-first">AND ACHIEVEMENTS</span>
                         </p>
@@ -171,11 +171,10 @@
                         <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
                     </a>
                     <div ngbDropdownMenu class="dropdown-menu dropdown-menu-right" aria-labelledby="self-dropdown">
-                        <a *ngIf="currentUser.role === 'USER'; else dashboardElse" ngbDropdownItem class="dropdown-item"
+                        <a *ngIf="currentUser" ngbDropdownItem class="dropdown-item"
                             routerLink="/dashboard">DASHBOARD</a>
-                        <ng-template #dashboardElse>
-                            <a ngbDropdownItem class="dropdown-item" routerLink="/admin/dashboard">DASHBOARD</a>
-                        </ng-template>
+                        <a *ngIf="currentUser && currentUser.role === 'ADMIN'" ngbDropdownItem class="dropdown-item"
+                            routerLink="/admin/dashboard">ADMIN DASHBOARD</a>
                         <a ngbDropdownItem class="dropdown-item" routerLink="/esports/shop/orders">ORDERS</a>
                         <div class="dropdown-divider d-none d-lg-block"></div>
                         <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">SIGN OUT</a>

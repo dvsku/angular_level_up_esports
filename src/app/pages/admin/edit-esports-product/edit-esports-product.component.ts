@@ -143,22 +143,18 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterView
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     onSubmit(): void {
-        this.productService
-            .updateProduct(this.product)
-            .pipe(take(1))
-            .subscribe((success) => {
-                if (success) {
-                    this.router
-                        .navigate(['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }], {
-                            skipLocationChange: true
-                        })
-                        .then(() => {
-                            this.toastrService.success('Product updated.');
-                        });
-                } else {
-                    console.log('fail');
-                    this.toastrService.error("Couldn't update product.");
-                }
-            });
+        this.productService.updateProduct(this.product).then((success) => {
+            if (success) {
+                this.router
+                    .navigate(['/admin/dashboard', { outlets: { adminOutlet: 'esports/products' } }], {
+                        skipLocationChange: true
+                    })
+                    .then(() => {
+                        this.toastrService.success('Product updated.');
+                    });
+            } else {
+                this.toastrService.error("Couldn't update product.");
+            }
+        });
     }
 }

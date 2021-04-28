@@ -26,22 +26,22 @@
                 </div>
                 <div class="col-9">
                     <div class="form-group">
-                        <label for="partnerName">Name</label>
+                        <label class="fs-small text-muted text-uppercase" for="partnerName">Name</label>
                         <input [(ngModel)]="partner.name" type="text" class="form-control" id="partnerName"
-                            name="partnerName" placeholder="Name" required #partnerName="ngModel">
+                            name="partnerName" required #partnerName="ngModel">
                         <div *ngIf="partnerName.invalid && (partnerName.dirty ||partnerName.touched)">
                             <small *ngIf="partnerName.errors.required">Name is required.</small>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="partnerLink">Link</label>
+                        <label class="fs-small text-muted text-uppercase" for="partnerLink">Link</label>
                         <input [(ngModel)]="partner.linkToWebsite" type="text" class="form-control" id="partnerLink"
-                            name="partnerLink" placeholder="Name">
+                            name="partnerLink">
                     </div>
                     <div class="form-group">
-                        <label for="partnerDescription">Description</label>
+                        <label class="fs-small text-muted text-uppercase" for="partnerDescription">Description</label>
                         <textarea class="form-control text-left" id="partnerDescription" name="partnerDescription"
-                            placeholder="Description" [(ngModel)]="partner.description"></textarea>
+                            [(ngModel)]="partner.description"></textarea>
                     </div>
                 </div>
             </div>

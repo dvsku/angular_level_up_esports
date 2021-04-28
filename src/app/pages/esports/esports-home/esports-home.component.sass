@@ -21,8 +21,9 @@ $game-image-base-width: 30vw
 
 .game-image
     max-width: $game-image-base-width
-    margin-right: .9375rem
-    margin-bottom: 1.5625rem
+    margin-right: .46875rem
+    margin-left: .46875rem
+    margin-bottom: 1rem
     @include media-breakpoint-only(sm)
         max-width: 14.5vw
     @include media-breakpoint-only(md)
@@ -36,8 +37,9 @@ $game-image-base-width: 30vw
 #shop
     background-color: $color-second
     padding-top: 1.5625rem
-    padding-bottom: 5rem
     min-height: 41.875rem
+    @include media-breakpoint-up(md)
+        padding-bottom: 5rem
 
 #teams
     background-color: $color-second

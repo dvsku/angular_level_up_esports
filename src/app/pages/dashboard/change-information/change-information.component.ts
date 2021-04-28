@@ -40,6 +40,7 @@ export class ChangeInformationComponent implements OnInit {
     }
 
     onSubmit(): void {
+        this.model.zip = +this.model.zip;
         this.userService.updateInformation(this.model).then(
             (success) => {
                 if (success) {

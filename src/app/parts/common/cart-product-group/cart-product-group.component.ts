@@ -11,6 +11,10 @@ import { CartService } from 'src/app/services/cart.service';
 export class CartProductGroupComponent implements OnInit, OnDestroy {
     @Input('products')
     products: ProductInOrder[];
+
+    @Input('removable')
+    public removable = true;
+
     private productsSubscription: Subscription;
 
     total: number;

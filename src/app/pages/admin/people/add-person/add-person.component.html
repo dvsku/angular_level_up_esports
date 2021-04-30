@@ -6,41 +6,21 @@
     </div>
     <div class="row py-3">
         <div class="col-12">
-            <div class="row">
-                <div class="col-3 d-flex justify-content-center">
-                    <div class="add-image" style="width: 8rem; height: 8rem;" (click)="openFileSelectDialog()"
-                        *ngIf='!person.profilePicture; else hasImage'>
-                        <fa-icon [icon]="faEyeSlash" class="d-inline-block"></fa-icon>
-                        <input #fileInput hidden type="file" (change)="fileSelected($event)" class="d-none">
-                    </div>
-                    <ng-template #hasImage>
-                        <div id="image-container" style="position: relative;" (click)="removeImage()">
-                            <img class="img-fluid" [src]="imagesService.getImage(person.profilePicture)">
-                            <div id="overlay" class="top-left"></div>
-                            <div id="icon-container" class="top-left d-flex justify-content-center align-items-center">
-                                <fa-icon id="icon" size="4x" [icon]="faTimes">
-                                </fa-icon>
-                            </div>
-                        </div>
-                    </ng-template>
+            <image-select [(image)]="person.profilePicture" [aspectRatio]="16 / 25"></image-select>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
+                <input type="text" [(ngModel)]="person.firstName" #firstName="ngModel" class="form-control"
+                    id="firstname" name="firstname" required />
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                    <small *ngIf="firstName.errors.required">First Name is required.</small>
                 </div>
-                <div class="col-9">
-                    <div class="form-group">
-                        <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
-                        <input type="text" [(ngModel)]="person.firstName" #firstName="ngModel" class="form-control"
-                            id="firstname" name="firstname" required />
-                        <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
-                            <small *ngIf="firstName.errors.required">First Name is required.</small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
-                        <input type="text" [(ngModel)]="person.lastName" #lastName="ngModel" class="form-control"
-                            id="lastname" name="lastname" required />
-                        <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
-                            <small *ngIf="lastName.errors.required">Last Name is required.</small>
-                        </div>
-                    </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
+                <input type="text" [(ngModel)]="person.lastName" #lastName="ngModel" class="form-control" id="lastname"
+                    name="lastname" required />
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    <small *ngIf="lastName.errors.required">Last Name is required.</small>
                 </div>
             </div>
         </div>
@@ -54,21 +34,3 @@
         </div>
     </div>
 </form>
-
-<ng-template #modal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crop Image</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body" style="height: 75vh">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="1024" [resizeToHeight]="768"
-            [maintainAspectRatio]="false" [aspectRatio]="1 / 1" format="png" (imageCropped)="imageCropped($event)"
-            [autoCrop]="false"></image-cropper>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary"
-            (click)="cropper.crop(); modal.close()">Save</button>
-    </div>
-</ng-template>

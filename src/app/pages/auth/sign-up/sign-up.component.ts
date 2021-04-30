@@ -18,7 +18,6 @@ export class SignUpComponent {
     }
 
     onSubmit(): void {
-        console.log(this.user);
         this.userService.signUp(this.user).then(
             (success) => {
                 if (success) {

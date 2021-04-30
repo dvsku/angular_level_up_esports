@@ -9,7 +9,6 @@ import { Subscription } from 'rxjs';
 import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ToastrService } from 'ngx-toastr';
-import { take } from 'rxjs/operators';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
@@ -85,7 +84,6 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterView
         this.product.productInfoIcons.forEach((image, index) => {
             image.displayOrder = index + 1;
         });
-        console.log(this.product.productInfoIcons);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

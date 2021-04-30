@@ -85,7 +85,6 @@ export class UserService {
                         }
                         this.jwtUser = jwtResponse;
                         this.jwtUserSubject.next(this.jwtUser);
-                        console.log(this.jwtUser);
                     }
                     return true;
                 },

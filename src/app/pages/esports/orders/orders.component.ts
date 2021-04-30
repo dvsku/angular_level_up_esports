@@ -43,9 +43,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
             (success) => {
                 if (success) {
                     this.getOrders();
-                    console.log('order cancelled');
                 } else {
-                    console.log("can't cancel order");
                 }
             },
             (error) => {

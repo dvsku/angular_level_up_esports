@@ -25,7 +25,6 @@ export class PartnerService {
                 this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
                 this.partnersSubject.next(this.partners);
                 this.partnersObs.pipe(publishReplay(1), refCount());
-                console.log('Fetched partners from server.');
             });
         }
         return this.partnersObs;

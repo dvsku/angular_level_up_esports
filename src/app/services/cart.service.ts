@@ -48,7 +48,6 @@ export class CartService {
             this.cartProducts.push(product);
         }
         this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
-        console.log('cookie set');
         this.cartProductsSubject.next(this.cartProducts);
         this.toastrService.success('Successfully added item to cart.');
     }

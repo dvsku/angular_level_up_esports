@@ -20,7 +20,6 @@ export class MaintenanceGuard implements CanActivate {
         return this.maintenanceService.getMaintenanceMode().then(
             (value) => {
                 isMaintenance = value;
-                console.log(1);
                 if (currentUser !== null && currentUser !== undefined) {
                     if (currentUser.role === 'ADMIN') {
                         return true;

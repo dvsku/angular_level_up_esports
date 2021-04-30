@@ -9,6 +9,7 @@ import { UserService } from 'src/app/services/user.service';
 import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs/operators';
 import { JwtResponse } from 'src/app/models/JwtResponse';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-checkout',
@@ -29,7 +30,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
     public changeInfo = false;
 
-    constructor(private userService: UserService, private cartService: CartService, private router: Router) {}
+    constructor(
+        private userService: UserService,
+        private cartService: CartService,
+        private router: Router,
+        private toastrService: ToastrService
+    ) {}
 
     ngOnInit(): void {
         this.cartProductsObs = this.cartService.getCart();
@@ -96,10 +102,18 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             .checkout(this.order)
             .then(() => {
                 this.cartService.clearCart();
-                // toast
-                // navigate
+                if (this.currentUser) {
+                    this.router.navigate(['/esports/shop/orders']).then(() => {
+                        this.toastrService.success('Order placed.');
+                    });
+                } else {
+                    this.router.navigate(['/esports']).then(() => {
+                        this.toastrService.success('Order placed.');
+                    });
+                }
             })
             .catch((reason) => {
+                this.toastrService.error('Failed to place order, please try again later.');
                 console.log(reason.text);
             });
     }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { publishReplay, refCount } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { ProductInfo } from '../models/ProductInfo';
@@ -30,7 +30,6 @@ export class ProductService {
                 });
                 this.productsSubject.next(this.products);
                 this.productsObs.pipe(publishReplay(1), refCount());
-                console.log('Fetched products from server.');
             });
         }
         return this.productsObs;
@@ -73,7 +72,6 @@ export class ProductService {
 
     private fetchProduct(productId: number): Promise<ProductInfo> {
         const url = `${this.productUrl}/${productId}`;
-        console.log('fetching from server');
         return this.httpClient
             .get<ProductInfo>(url)
             .toPromise()
@@ -155,7 +153,7 @@ export class ProductService {
                 }
                 return success;
             },
-            (error) => {
+            () => {
                 return false;
             }
         );

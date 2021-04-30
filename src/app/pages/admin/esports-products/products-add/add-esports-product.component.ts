@@ -75,7 +75,6 @@ export class AddEsportsProductComponent implements OnInit, OnDestroy, AfterViewI
         this.product.productInfoIcons.forEach((image, index) => {
             image.displayOrder = index + 1;
         });
-        console.log(this.product.productInfoIcons);
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

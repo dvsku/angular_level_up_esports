@@ -26,7 +26,6 @@ export class HomePictureService {
 
                 this.hrpsSubject.next(this.hrps);
                 this.hrpsObs.pipe(publishReplay(1), refCount());
-                console.log('Fetched pictures from server.');
             });
         }
         return this.hrpsObs;

@@ -29,6 +29,7 @@
                             <div class="wrapper-shop-items">
                                 <app-swappable-image *ngFor="let product of featuredProducts"
                                     href="/esports/shop/product/{{product.productId}}" class="shop-item-image"
+                                    additionalClasses="shop-item-image-fixed"
                                     [firstSrc]="imagesService.getImage(product.productInfoIcons[0]?.image)">
                                 </app-swappable-image>
                             </div>

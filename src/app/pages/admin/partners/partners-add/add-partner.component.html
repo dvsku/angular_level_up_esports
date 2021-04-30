@@ -6,44 +6,24 @@
     </div>
     <div class="row py-3">
         <div class="col-12">
-            <div class="row">
-                <div class="col-3 d-flex justify-content-center">
-                    <div class="add-image" style="width: 8rem; height: 8rem;" (click)="openFileSelectDialog()"
-                        *ngIf='partner.image === null || partner.image === undefined; else hasImage'>
-                        <fa-icon [icon]="faEyeSlash" class="d-inline-block"></fa-icon>
-                        <input #fileInput hidden type="file" (change)="fileSelected($event)" class="d-none">
-                    </div>
-                    <ng-template #hasImage>
-                        <div id="image-container" style="position: relative;" (click)="removeImage()">
-                            <img class="img-fluid" [src]="imagesService.getImage(partner.image)">
-                            <div id="overlay" class="top-left"></div>
-                            <div id="icon-container" class="top-left d-flex justify-content-center align-items-center">
-                                <fa-icon id="icon" size="4x" [icon]="faTimes">
-                                </fa-icon>
-                            </div>
-                        </div>
-                    </ng-template>
+            <image-select [(image)]="partner.image"></image-select>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="partnerName">Name</label>
+                <input [(ngModel)]="partner.name" type="text" class="form-control" id="partnerName" name="partnerName"
+                    required #partnerName="ngModel">
+                <div *ngIf="partnerName.invalid && (partnerName.dirty ||partnerName.touched)">
+                    <small *ngIf="partnerName.errors.required">Name is required.</small>
                 </div>
-                <div class="col-9">
-                    <div class="form-group">
-                        <label class="fs-small text-muted text-uppercase" for="partnerName">Name</label>
-                        <input [(ngModel)]="partner.name" type="text" class="form-control" id="partnerName"
-                            name="partnerName" required #partnerName="ngModel">
-                        <div *ngIf="partnerName.invalid && (partnerName.dirty ||partnerName.touched)">
-                            <small *ngIf="partnerName.errors.required">Name is required.</small>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="fs-small text-muted text-uppercase" for="partnerLink">Link</label>
-                        <input [(ngModel)]="partner.linkToWebsite" type="text" class="form-control" id="partnerLink"
-                            name="partnerLink">
-                    </div>
-                    <div class="form-group">
-                        <label class="fs-small text-muted text-uppercase" for="partnerDescription">Description</label>
-                        <textarea class="form-control text-left" id="partnerDescription" name="partnerDescription"
-                            [(ngModel)]="partner.description"></textarea>
-                    </div>
-                </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="partnerLink">Link</label>
+                <input [(ngModel)]="partner.linkToWebsite" type="text" class="form-control" id="partnerLink"
+                    name="partnerLink">
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="partnerDescription">Description</label>
+                <textarea class="form-control text-left" id="partnerDescription" name="partnerDescription"
+                    [(ngModel)]="partner.description"></textarea>
             </div>
         </div>
     </div>
@@ -55,21 +35,3 @@
         </div>
     </div>
 </form>
-
-<ng-template #modal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crop Image</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <div class="modal-body" style="height: 75vh">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="1024" [resizeToHeight]="768"
-            [maintainAspectRatio]="false" [aspectRatio]="1 / 1" format="png" (imageCropped)="imageCropped($event)"
-            [autoCrop]="false"></image-cropper>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary"
-            (click)="cropper.crop(); modal.close()">Save</button>
-    </div>
-</ng-template>

@@ -77,7 +77,6 @@ export class EsportsProductsComponent implements OnInit, OnDestroy {
     updateProducts(): void {
         if (this.products === null || this.products === undefined) return;
         let products: ProductInfo[] = this.products.filter((x) => x);
-        console.log(products);
         switch (this.sort) {
             case 'newest':
                 products = products.sort((a, b) => {

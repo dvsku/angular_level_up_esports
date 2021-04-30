@@ -25,7 +25,6 @@ export class ProductCategoryService {
                 this.categories = categories;
                 this.categoriesSubject.next(this.categories);
                 this.categoriesObs.pipe(publishReplay(1), refCount());
-                console.log('Fetched categories from server.');
             });
         }
         return this.categoriesObs;

@@ -15,6 +15,9 @@ export class SwappableImageComponent implements OnInit {
     @Input('href')
     href = '';
 
+    @Input('additionalClasses')
+    classes = 'swappable-image';
+
     currentSource: string;
 
     onMouseEnter(): void {

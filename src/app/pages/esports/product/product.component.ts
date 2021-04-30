@@ -42,12 +42,6 @@ export class ProductComponent implements OnInit {
                 this.validateAddToCart();
             }
         });
-        /* const id = +this.activeRoute.snapshot.paramMap.get('id');
-        console.log('a');
-        this.productService.getProduct(id).then((prod) => {
-            this.product = prod;
-            this.imageSource = this.product.productInfoIcons[0];
-        }); */
     }
 
     onHover(image: ProductIcon) {

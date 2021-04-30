@@ -1,0 +1,42 @@
+<div class="card-content-creator">
+    <img class="card-content-creator-image" [src]='imageService.getImage(creator?.profilePicture)'>
+    <div class="card-content-creator-details">
+        <div *ngIf='creator.nickName && creator.nickName != ""; else noNickname' class="card-content-creator-name">
+            <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23" class="text-center fs-xlarge">
+                {{creator.nickName}}
+            </div>
+            <div class="text-center fs-normal">{{creator.description}}</div>
+        </div>
+        <ng-template #noNickname>
+            <div class="card-content-creator-name">
+                <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23" class="text-center fs-xlarge">
+                    {{creator.firstName}} {{creator.lastName}}
+                </div>
+                <div class="text-center fs-normal">{{creator.description}}</div>
+            </div>
+        </ng-template>
+        <div class="card-content-creator-nationality">Serbia</div>
+        <div class="card-content-creator-links">
+            <a class="standard-link-reverse" *ngIf='creator.instagramLink && creator.instagramLink !== ""'
+                [href]="creator.instagramLink" target="_blank">
+                <fa-icon [icon]="faInstagram" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='creator.facebookLink && creator.facebookLink !== ""'
+                [href]="creator.facebookLink" target="_blank">
+                <fa-icon [icon]="faFacebook" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" style="margin-top: 2px;"
+                *ngIf='creator.twitchLink && creator.twitchLink !== ""' [href]="creator.twitchLink" target="_blank">
+                <fa-icon [icon]="faTwitch" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='creator.youtubeLink && creator.youtubeLink !== ""'
+                [href]="creator.youtubeLink" target="_blank">
+                <fa-icon [icon]="faYouTube" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='creator.trovoLink && creator.trovoLink !== ""'
+                [href]="creator.trovoLink" target="_blank">
+                <fa-icon [icon]="faTrovo" class="brand-icon"></fa-icon>
+            </a>
+        </div>
+    </div>
+</div>

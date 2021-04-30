@@ -1,0 +1,72 @@
+@import '../../../../_variables'
+
+$ccc-width: 16rem
+$ccc-height: 25rem
+
+.card-content-creator
+    width: $ccc-width
+    height: $ccc-height
+    position: relative
+    overflow: hidden
+    &:hover .card-content-creator-details
+        @media (hover: hover)
+            transform: translateY(0%)
+
+.card-content-creator-image
+    position: absolute
+    top: 0
+    left: 0
+    width: $ccc-width
+    height: $ccc-height
+
+.card-content-creator-details
+    position: absolute
+    left: 0
+    bottom: 0
+    width: 100%
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    color: white
+    padding-top: 6rem
+    background: linear-gradient(hsl(0 0% 0% / 0), hsl(20 0% 0% / 0.3) 20%,hsl(0 0% 0% /1))
+    @media (hover: hover)
+        transform: translateY(100%)
+        transition: transform 0.5s ease
+
+.card-content-creator-links
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    padding: 1.5rem 0 1rem 0
+    & > *:not(:last-child)
+        margin-right: .5rem
+
+.card-content-creator-name
+    width: 100%
+    display: flex
+    flex-direction: column
+    text-align: center
+    color: white
+    text-transform: uppercase
+    font-weight: 700
+    padding-bottom: 1rem
+
+.card-content-creator-nationality
+    position: relative
+    width: 100%
+    text-align: center
+    text-transform: uppercase
+    font-size: $font-size-small
+    font-weight: 700
+    padding-bottom: .375rem
+    &::after
+        position: absolute
+        bottom: 0
+        left: 0
+        content: ""
+        height: .125rem
+        width: 100%
+        background-color: $color-fourth

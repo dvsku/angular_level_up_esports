@@ -35,6 +35,16 @@
                     </li>
                     <li>
                         <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'people' } }]"
+                            skipLocationChange>PEOPLE</a>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'content-creators' } }]"
+                            skipLocationChange>CONTENT CREATORS</a>
+                    </li>
+                    <li>
+                        <a class="category-link"
                             [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'settings' } }]"
                             skipLocationChange>SETTINGS</a>
                     </li>

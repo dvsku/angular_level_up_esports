@@ -1,0 +1,32 @@
+<div class="image-select-none" (click)="openFileSelectDialog()" *ngIf='!image; else hasImage'>
+    <fa-icon [icon]="faEyeSlash" class="d-inline-block"></fa-icon>
+    <input #fileInput hidden type="file" (change)="fileSelected($event)" class="d-none">
+</div>
+<ng-template #hasImage>
+    <div class="image-select-has">
+        <img class="image-select-image" [src]="imageService.getImage(image)">
+        <div class="image-select-overlay"></div>
+        <div class="image-select-remove" (click)="removeImage()">
+            <fa-icon id="icon" size="3x" [icon]="faTimes"></fa-icon>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #modal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Crop Image</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body" style="height: 75vh">
+        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="resizeToWidth"
+            [resizeToHeight]="resizeToHeight" [maintainAspectRatio]="maintainAspectRatio" [aspectRatio]="aspectRatio"
+            format="png" (imageCropped)="imageCropped($event)" [autoCrop]="false">
+        </image-cropper>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="cropper.crop(); modal.close()">Save</button>
+    </div>
+</ng-template>

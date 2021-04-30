@@ -36,6 +36,15 @@ import { EditEsportsProductComponent } from './pages/admin/esports-products/prod
 import { AdminPartnersComponent } from './pages/admin/partners/partners-list/partners.component';
 import { AddPartnerComponent } from './pages/admin/partners/partners-add/add-partner.component';
 import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-partner.component';
+import { PeopleComponent } from './pages/admin/people/people/people.component';
+import { AddPersonComponent } from './pages/admin/people/add-person/add-person.component';
+import { EditPersonComponent } from './pages/admin/people/edit-person/edit-person.component';
+import { PersonResolver } from './_resolvers/person.resolver';
+import { AdminContentCreatorsComponent } from './pages/admin/content-creators/content-creators/admin-content-creators.component';
+import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
+import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
+import { ContentCreatorResolver } from './_resolvers/content-creator.resolver';
+import { ContentCreatorsComponent } from './pages/esports/content-creators/content-creators.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -94,6 +103,44 @@ const routes: Routes = [
                 outlet: 'adminOutlet',
                 resolve: { partner: PartnerResolver },
                 data: { title: 'LevelUp | Admin Dashboard | Edit Partner' }
+            },
+            {
+                path: 'people',
+                component: PeopleComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | People' }
+            },
+            {
+                path: 'people/add-person',
+                component: AddPersonComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Add Person' }
+            },
+            {
+                path: 'people/edit-person/:id',
+                component: EditPersonComponent,
+                outlet: 'adminOutlet',
+                resolve: { person: PersonResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Edit Person' }
+            },
+            {
+                path: 'content-creators',
+                component: AdminContentCreatorsComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Content Creators' }
+            },
+            {
+                path: 'content-creators/add-content-creator',
+                component: AddContentCreatorComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Content Creators | Add Content Creator' }
+            },
+            {
+                path: 'content-creators/edit-content-creator/:id',
+                component: EditContentCreatorComponent,
+                outlet: 'adminOutlet',
+                resolve: { contentCreator: ContentCreatorResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Content Creators | Edit Content Creator' }
             }
         ]
     },
@@ -213,7 +260,7 @@ const routes: Routes = [
     },
     {
         path: 'content-creators',
-        component: UnderConstructionComponent,
+        component: ContentCreatorsComponent,
         canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Content Creators' }
     },

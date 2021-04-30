@@ -1,6 +1,10 @@
 <div class="shop-item-container position-relative">
 
-    <img class="shop-item-image" [src]="imagesService.getImage(product?.productInfoIcons[0].image)">
+    <img class="shop-item-image" *ngIf="product.productInfoIcons.length > 0; else noImage"
+        [src]="imagesService.getImage(product?.productInfoIcons[0].image)">
+    <ng-template #noImage>
+        <img class="shop-item-image" src="/assets/no-image.png">
+    </ng-template>
     <div class="shop-item-image-overlay"></div>
     <a class="shop-item-view-details fs-big fw-500" routerLink="/esports/shop/product/{{product?.productId}}">
         VIEW DETAILS

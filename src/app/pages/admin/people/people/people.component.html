@@ -1,0 +1,67 @@
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">PEOPLE</h3>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-4 d-flex justify-content-start align-items-center">
+        <!-- <fa-icon [icon]="faInfo" class="d-inline-block ml-3" placement="bottom"
+            ngbTooltip="Use add button to add new partners. You can drag and drop partners to modify their display order. You need to save only when you modify display order.">
+        </fa-icon> -->
+    </div>
+    <div class="col-8 d-flex justify-content-end align-items-center">
+        <a class="standard-btn standard-btn-primary btn-w-1 mr-2"
+            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'people/add-person' } }]"
+            skipLocationChange>add</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Photo</th>
+                    <th scope="col">Name</th>
+                    <th class="text-right" scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let person of people">
+                    <td class="align-middle text-center" style="width: 75px;" scope="row">
+                        <img class="thumbnail" [src]="imagesService.getImage(person.profilePicture)">
+                    </td>
+                    <td class="align-middle product-name">{{person.firstName}} {{person.lastName}}</td>
+                    <td class="align-middle text-right">
+                        <div ngbDropdown placement="bottom-right" container="body">
+                            <button class="standard-btn standard-btn-primary" ngbDropdownToggle>actions <fa-icon
+                                    [icon]="faArrowDown" class="d-inline-block"></fa-icon></button>
+                            <div ngbDropdownMenu>
+                                <a ngbDropdownItem
+                                    [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['people', 'edit-person', person.id] } }]"
+                                    skipLocationChange>Edit</a>
+                                <a ngbDropdownItem (click)="selectedPerson = person; showModal(removePerson)">Remove</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #removePerson let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Remove Person</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h6>Are you sure that you you want to remove this person?</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="onRemoveOk(); modal.close()">Remove</button>
+        <button type="button" class="standard-btn standard-btn-primary" (click)="modal.close()">Cancel</button>
+    </div>
+</ng-template>

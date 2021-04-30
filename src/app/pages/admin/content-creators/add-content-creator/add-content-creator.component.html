@@ -1,0 +1,71 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h3 class="fw-700 text-uppercase">{{title}}</h3>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col-12">
+            <image-select [(image)]="creator.profilePicture" [aspectRatio]="16 / 25"></image-select>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
+                <input type="text" [(ngModel)]="creator.firstName" #firstName="ngModel" class="form-control"
+                    id="content_creator_firstname" name="firstname" required />
+                <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
+                    <small *ngIf="firstName.errors.required">First Name is required.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
+                <input type="text" [(ngModel)]="creator.lastName" #lastName="ngModel" class="form-control"
+                    id="content_creator_lastname" name="lastname" required />
+                <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
+                    <small *ngIf="lastName.errors.required">Last Name is required.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="nickname">Nickname</label>
+                <input type="text" [(ngModel)]="creator.nickName" class="form-control" id="content_creator_nickname"
+                    name="nickname" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="description">Role</label>
+                <input type="text" class="form-control text-left" id="content_creator_description" name="description"
+                    [(ngModel)]="creator.description">
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="twitch">Twitch Link</label>
+                <input type="text" [(ngModel)]="creator.twitchLink" class="form-control" id="content_creator_twitch"
+                    name="twitch" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="trovo">Trovo Link</label>
+                <input type="text" [(ngModel)]="creator.trovoLink" class="form-control" id="content_creator_trovo"
+                    name="trovo" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="youtube">YouTube Link</label>
+                <input type="text" [(ngModel)]="creator.youtubeLink" class="form-control" id="content_creator_youtube"
+                    name="youtube" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="facebook">Facebook Link</label>
+                <input type="text" [(ngModel)]="creator.facebookLink" class="form-control" id="content_creator_facebook"
+                    name="facebook" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="instagram">Instagram Link</label>
+                <input type="text" [(ngModel)]="creator.instagramLink" class="form-control"
+                    id="content_creator_instagram" name="instagram" />
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <div class="form-group">
+                <button type="submit" [disabled]=!form.valid
+                    class="standard-btn standard-btn-primary btn-w-1">save</button>
+            </div>
+        </div>
+    </div>
+</form>

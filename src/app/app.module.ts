@@ -57,6 +57,17 @@ import { EditEsportsProductComponent } from './pages/admin/esports-products/prod
 import { AdminPartnersComponent } from './pages/admin/partners/partners-list/partners.component';
 import { AddPartnerComponent } from './pages/admin/partners/partners-add/add-partner.component';
 import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-partner.component';
+import { PeopleComponent } from './pages/admin/people/people/people.component';
+import { AddPersonComponent } from './pages/admin/people/add-person/add-person.component';
+import { EditPersonComponent } from './pages/admin/people/edit-person/edit-person.component';
+import { AdminContentCreatorsComponent } from './pages/admin/content-creators/content-creators/admin-content-creators.component';
+import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
+import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
+import { ContentCreatorsComponent } from './pages/esports/content-creators/content-creators.component';
+import { CardContentCreatorComponent } from './parts/common/card-content-creator/card-content-creator.component';
+import { Ng2FittextModule } from 'ng2-fittext';
+import { CardContentCreatorDeckComponent } from './parts/common/card-content-creator-deck/card-content-creator-deck.component';
+import { ImageSelectComponent } from './parts/common/image-select/image-select.component';
 
 @NgModule({
     declarations: [
@@ -100,7 +111,17 @@ import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-
         ChangeInformationComponent,
         GeneralComponent,
         PageLoaderComponent,
-        CustomToastComponent
+        CustomToastComponent,
+        PeopleComponent,
+        AddPersonComponent,
+        EditPersonComponent,
+        AdminContentCreatorsComponent,
+        AddContentCreatorComponent,
+        EditContentCreatorComponent,
+        ContentCreatorsComponent,
+        CardContentCreatorComponent,
+        CardContentCreatorDeckComponent,
+        ImageSelectComponent
     ],
     imports: [
         BrowserModule,
@@ -123,7 +144,8 @@ import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-
         NgbModule,
         DragDropModule,
         FontAwesomeModule,
-        ImageCropperModule
+        ImageCropperModule,
+        Ng2FittextModule
     ],
     entryComponents: [CustomToastComponent],
     providers: [

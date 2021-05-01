@@ -22,17 +22,16 @@
     min-height: 1.875rem
     text-align: center
     margin-right: .3125rem
+    padding: 0 .625rem 0 .625rem
     user-select: none
     background-color: $color-fourth
     color: $color-second
     line-height: 1.875rem
-
-.size:hover
-    background-color: darken($color-fourth, 10)
-    cursor: pointer
-
-.size.active
-    background-color: darken($color-fourth, 10)
+    &:hover
+        background-color: darken($color-fourth, 10)
+        cursor: pointer
+    &.active
+        background-color: darken($color-fourth, 10)
 
 hr
     border: 0

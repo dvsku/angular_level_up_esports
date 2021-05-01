@@ -1,7 +1,7 @@
 <three-row-grid-layout>
-    <div class="container">
+    <div class="container-fluid">
         <div class="row my-5 align-items-start">
-            <div class="col-12 col-lg-3 container-shadow bg-white sticky">
+            <div class="col-12 col-lg-2 bg-white sticky">
                 <ul class="list-unstyled px-4 py-4">
                     <li>
                         <a class="category-link fs-xlarge" (click)="changeCategory('all')">ALL</a>
@@ -13,9 +13,9 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-8 ml-0 mt-5 ml-lg-5 mt-lg-0 container-shadow bg-white">
+            <div class="col-12 col-lg-10 ml-0 mt-5 mt-lg-0 bg-white">
                 <div id="info-row" class="row pb-2 pt-4 mx-4">
-                    <div class="col-12 col-lg-6 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
+                    <div class="col-12 col-lg-8 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
                         <span class="text-uppercase" *ngIf="displayedProducts?.length !== 1; else prodLenOne">
                             SHOWING {{ displayedProducts?.length }} {{ category }} RESULTS
                         </span>
@@ -25,7 +25,7 @@
                             </span>
                         </ng-template>
                     </div>
-                    <div class="col-12 col-lg-6 d-flex flex-column justify-content-end align-items-end">
+                    <div class="col-12 col-lg-4 d-flex flex-column justify-content-end align-items-end">
                         <select class="form-control w-100 w-lg-75" (change)="changeSort($event.target.value)">
                             <option value="newest" [selected]="sort === 'newest'">NEWEST</option>
                             <option value="popular" [selected]="sort === 'popular'">POPULAR</option>

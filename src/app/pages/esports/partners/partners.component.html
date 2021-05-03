@@ -1,21 +1,21 @@
 <three-row-grid-layout>
     <div class="containers">
-        <div class="container container-shadow bg-white" *ngFor='let partner of partners'>
+        <div class="container" *ngFor='let partner of partners'>
             <div class="row">
-                <div class="col-7 d-flex flex-column"
+                <div class="col-12 col-lg-7 d-flex flex-column"
                     style="padding-left: 4rem; padding-right: 4rem; padding-top: 2rem; padding-bottom: 2rem;">
                     <div class="fs-large fw-800 text-uppercase">{{partner.name}}</div>
                     <p style="white-space: pre-line" class="fs-normal py-4">{{partner.description}}</p>
                 </div>
-                <div class="col-5 d-flex justify-content-center align-items-center">
-                    <img class="img-fluid p-5" [src]="imagesService.getImage(partner.image)">
+                <div class="col-12 order-first col-lg-5 order-lg-last d-flex justify-content-center align-items-center">
+                    <img class="partner-image p-5" [src]="imagesService.getImage(partner.image)">
                 </div>
             </div>
             <div class="row" *ngIf="partner.linkToWebsite !== null && partner.linkToWebsite !== undefined">
                 <div class="col-12" style="padding-left: 4rem; padding-right: 4rem; padding-bottom: 2rem;">
                     <a href="{{partner.linkToWebsite}}" target="_blank" class="standard-btn standard-btn-primary"
                         style="max-width: 10rem;">
-                        View Website
+                        view website
                     </a>
                 </div>
 

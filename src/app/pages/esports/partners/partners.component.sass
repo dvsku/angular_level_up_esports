@@ -1,3 +1,5 @@
+@import '../../../../_variables'
+
 .containers:first-child .container
     margin-top: 2rem
 
@@ -8,3 +10,11 @@
     margin-top: 2rem
     margin-bottom: 2rem
     min-height: 18.75rem
+    &:not(:last-child)
+        border-bottom: 1px $font-color-hover solid
+
+.partner-image
+    max-width: 100%
+    height: auto
+    @include media-breakpoint-down(lg)
+        max-width: 60%

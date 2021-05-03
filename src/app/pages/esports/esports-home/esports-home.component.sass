@@ -34,6 +34,21 @@ $game-image-base-width: 30vw
 .bootcamp-image
     max-width: 31.25rem
 
+$partner-image-width: 15rem
+
+.partners-container
+    display: grid
+    width: 100%
+    grid-gap: 2rem
+    grid-template-columns: repeat(auto-fit, minmax($partner-image-width + 10rem , 1fr))
+    justify-items: center
+    align-items: center
+
+.partner-image
+    max-width: $partner-image-width
+    max-height: 7rem
+    height: auto
+
 #shop
     background-color: $color-second
     padding-top: 1.5625rem

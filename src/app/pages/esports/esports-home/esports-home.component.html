@@ -1,6 +1,6 @@
 <three-row-grid-layout>
     <div class="fixed-background">
-        <div id="shop" class="d-flex flex-column align-items-center justify-content-center container-shadow-bottom">
+        <div id="shop" class="d-flex flex-column align-items-center justify-content-center">
             <div class="container">
                 <div class="row py-lg-5">
                     <div
@@ -133,14 +133,28 @@
             </div>
             <div *ngIf="partners?.length > 0" class="row mt-5 mb-0 mb-lg-3 pb-0 pb-lg-3">
                 <div class="col-12 mb-lg-0 mb-3 text-center">
-                    <img class="img-fluid" style="max-height: 7rem;"
-                        [src]="imagesService.getImage(partners[0].image)" />
+                    <a *ngIf="partners[0].linkToWebsite && partners[0].linkToWebsite !== ''; else noLinkBig"
+                        [href]="partners[0].linkToWebsite" target="_blank">
+                        <img class="img-fluid" style="max-height: 7rem;"
+                            [src]="imagesService.getImage( partners[0].image)" />
+                    </a>
+                    <ng-template #noLinkBig>
+                        <img class="img-fluid" style="max-height: 7rem;"
+                            [src]="imagesService.getImage( partners[0].image)" />
+                    </ng-template>
                 </div>
             </div>
-            <div class="row mt-3 pb-5 px-2">
-                <div *ngFor="let partner of partners | slice:1"
-                    class="col-12 col-lg-3 mb-lg-0 mb-3 mt-4 text-center d-flex align-items-center justify-content-center">
-                    <img class="img-fluid" style="max-height: 5rem;" [src]="imagesService.getImage( partner.image)" />
+            <div class="row mt-4 pb-5 px-2">
+                <div class="partners-container">
+                    <div *ngFor="let partner of partners | slice:1">
+                        <a *ngIf="partner.linkToWebsite && partner.linkToWebsite !== ''; else noLink"
+                            [href]="partner.linkToWebsite" target="_blank">
+                            <img class="partner-image" [src]="imagesService.getImage( partner.image)" />
+                        </a>
+                        <ng-template #noLink>
+                            <img class="partner-image" [src]="imagesService.getImage( partner.image)" />
+                        </ng-template>
+                    </div>
                 </div>
             </div>
         </div>

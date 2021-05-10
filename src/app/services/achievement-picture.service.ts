@@ -32,16 +32,30 @@ export class AchievementPictureService {
         );
     }
 
-    public addNewAchievementPicture(
-        achievementId: number,
-        achievementPicture: AchievementPicture
-    ): Observable<boolean> {
-        const url = `${this.achievementPictureAdminUrl}/add/${achievementId}`;
-        return this.httpClient.post<boolean>(url, achievementPicture).pipe(
-            tap((data) => {
-                console.log('Achievement picture added -> ' + data);
-            })
+    public createAchievementPicture(achievementId: number, achievementPicture: AchievementPicture): Promise<boolean> {
+        return this.addNewAchievementPicture(achievementId, achievementPicture).then(
+            (success) => {
+                return success;
+            },
+            () => {
+                return false;
+            }
         );
+    }
+
+    public addNewAchievementPicture(achievementId: number, achievementPicture: AchievementPicture): Promise<boolean> {
+        const url = `${this.achievementPictureAdminUrl}/add/${achievementId}`;
+        return this.httpClient
+            .post<boolean>(url, achievementPicture)
+            .toPromise()
+            .then(
+                (success) => {
+                    return success;
+                },
+                () => {
+                    return false;
+                }
+            );
     }
 
     public deleteAchievementPicture(achievementPictureId: number): Observable<boolean> {

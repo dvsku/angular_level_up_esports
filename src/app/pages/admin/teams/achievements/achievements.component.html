@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">{{team?.categoryName}} TEAM</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 mt-2">
+        <div class="fs-small fw-500 text-muted text-uppercase">ACTIVE ROSTER</div>
+        <hr class="mt-1" />
+    </div>
+    <div class="col-12 mb-2 d-flex flex-row">
+        <div>
+            <a class="standard-link mr-3" placement="top" ngbTooltip="Add roster member"
+                [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['teams', name, 'add-roster-member'] } }]"
+                skipLocationChange>
+                <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="col-12">
+        <team-member-group [(teamMembers)]="team.teamMembers"></team-member-group>
+    </div>
+    <div class="col-12 mt-4">
+        <div class="fs-small fw-500 text-muted text-uppercase">ACHIEVEMENTS</div>
+        <hr class="mt-1" />
+    </div>
+    <div class="col-12 mb-2 d-flex flex-row">
+        <div>
+            <a class="standard-link mr-3" placement="top" ngbTooltip="Add achievement"
+                [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['teams', name, 'add-achievement'] } }]"
+                skipLocationChange>
+                <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" class="w-100">Name</th>
+                    <th scope="col" class="w-25">Place</th>
+                    <th scope="col" class="w-25">Date</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor='let achievement of team.achievements'>
+                    <td class="align-middle">{{achievement.title}}</td>
+                    <td class="align-middle">{{achievement.place}}</td>
+                    <td class="align-middle">{{achievement.timeWhenFinished}}</td>
+                    <td class="align-middle d-flex justify-content-end align-items-center">
+                        <a class="standard-link mr-3" placement="top" ngbTooltip="Edit"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['teams', name, 'edit-achievement', achievement.id] } }]"
+                            skipLocationChange>
+                            <fa-icon transform="grow-4" [icon]="faEdit"></fa-icon>
+                        </a>
+                        <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
+                            (click)="removeAchievement(achievement)">
+                            <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<ng-template #removeAchievementModal let-removeAchievementModal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Remove Roster Member</h4>
+        <button type="button" class="close" aria-label="Close" (click)="removeAchievementModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h6>Are you sure that you you want to remove this team member?</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="onRemoveAchievementOk(); removeAchievementModal.close()">Remove</button>
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="removeAchievementModal.close()">Cancel</button>
+    </div>
+</ng-template>

@@ -1,0 +1,72 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div *ngIf="teamMember.person; else noPerson" class="row py-3">
+        <div class="col-12 mb-2">
+            <div class="px-3">
+                <a class="standard-link mr-3" placement="top" ngbTooltip="Unlink person" (click)="unlinkPerson()">
+                    <fa-icon transform="grow-4" [icon]="faUserMinus"></fa-icon>
+                </a>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="px-3">
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
+                    <input type="text" [(ngModel)]="teamMember.person.firstName" id="team_member_firstname"
+                        name="firstname" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
+                    <input type="text" [(ngModel)]="teamMember.person.lastName" id="team_member_lastname"
+                        name="lastname" class="form-control" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="nickname">IGN</label>
+                    <input type="text" [(ngModel)]="teamMember.inGameName" class="form-control"
+                        id="team_member_in_game_name" name="inGameName" />
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="description">Role</label>
+                    <input type="text" class="form-control text-left" id="team_member_position" name="position"
+                        [(ngModel)]="teamMember.position">
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="twitch">Twitch Link</label>
+                    <input type="text" [(ngModel)]="teamMember.twitchLink" class="form-control" id="team_member_twitch"
+                        name="twitch" />
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="instagram">Instagram Link</label>
+                    <input type="text" [(ngModel)]="teamMember.instagramLink" class="form-control"
+                        id="team_member_instagram" name="instagram" />
+                </div>
+                <div class="form-group">
+                    <label class="fs-small text-muted text-uppercase" for="twitter">Twitter Link</label>
+                    <input type="text" [(ngModel)]="teamMember.twitterLink" class="form-control"
+                        id="team_member_twitter" name="twitter" />
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="px-3 d-flex flex-row-reverse">
+                <div class="form-group">
+                    <button type="submit" [disabled]=!form.valid
+                        class="standard-btn standard-btn-primary btn-w-1">save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-template #noPerson>
+        <div class="row py-3">
+            <div class="col-12">
+                <div class="px-3">
+                    <a class="standard-link mr-3" placement="top" ngbTooltip="Link to person"
+                        (click)="personPicker.open()">
+                        <fa-icon transform="grow-4" [icon]="faUserPlus"></fa-icon>
+                    </a>
+                </div>
+                <person-picker #personPicker [(selected)]="teamMember.person" [people]="people" [subtract]="subtract">
+                </person-picker>
+            </div>
+        </div>
+    </ng-template>
+</form>

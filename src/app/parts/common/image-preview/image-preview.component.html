@@ -1,0 +1,14 @@
+<ng-template #imagePreviewModal let-imagePreviewModal>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <a class="standard-link-reverse mr-3" (click)="imagePreviewModal.dismiss()">
+                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-12 d-flex justify-content-center align-items-center">
+            <img class="image" [src]="image" />
+        </div>
+    </div>
+</ng-template>

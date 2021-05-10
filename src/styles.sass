@@ -415,25 +415,28 @@ input:checked + .slider:before
 // TABLE
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-.table thead th
-    border-bottom: 1px solid $border-color-muted !important
-
-.table th
-    border-top: 1px solid $border-color-muted !important
-
-tbody tr:nth-of-type(odd)
-    background-color: darken($color-second, 5) !important
-    border-top: 1px solid $border-color-muted !important
-
-tbody tr:nth-of-type(even)
-    background-color: darken($color-second, 10) !important
-    border-top: 1px solid $border-color-muted !important
-
-tbody tr:last-child
-    border-bottom: 1px solid $border-color-muted !important
-
-.table td
-    border: 0px !important
+.table
+    thead
+        background-color: $color-fourth
+        color: $font-color-second
+        tr
+            th
+                padding: 0.25rem 1rem
+                font-weight: 600
+                border: 0
+    tbody
+        border: 0
+        tr
+            border: 0
+            &:nth-of-type(odd)
+                background-color: $color-second !important
+            &:nth-of-type(even)
+                background-color: darken($color-second, 2) !important
+            &:last-child
+                border-bottom: 1px solid $color-fourth !important
+            td
+                padding: 0.25rem 1rem
+                border: 0
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // PAGINATION
@@ -547,3 +550,31 @@ tbody tr:last-child
 .shop-item-image-fixed
     width: 12.5rem
     height: 17.8125rem
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// MODAL
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.modal-dialog-100
+    .modal-dialog
+        max-width: 100% !important
+        margin-left: 1.75rem
+        margin-right: 1.75rem
+        height: 100%
+        .modal-content
+            background-color: transparent
+            border: 0
+            height: 100%
+
+.modal-dialog-standard
+    .modal-dialog
+        max-width: 100% !important
+        max-height: 100vh
+        display: flex
+        justify-content: center
+        align-items: center
+        .modal-content
+            background-color: transparent
+            border: 0
+            border-radius: 0%
+            height: 100%

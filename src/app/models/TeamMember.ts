@@ -1,3 +1,5 @@
+import { Person } from './Person';
+
 export class TeamMember {
     id?: number;
     inGameName?: string;
@@ -6,6 +8,8 @@ export class TeamMember {
     instagramLink?: string;
     twitterLink?: string;
     twitchLink?: string;
+    person?: Person;
+    displayOrder?: number;
 
     constructor(
         id?: number,
@@ -14,7 +18,9 @@ export class TeamMember {
         nationality?: string,
         instagramLink?: string,
         twitterLink?: string,
-        twitchLink?: string
+        twitchLink?: string,
+        person?: Person,
+        displayOrder?: number
     ) {
         this.id = id;
         this.inGameName = inGameName;
@@ -23,5 +29,7 @@ export class TeamMember {
         this.instagramLink = instagramLink;
         this.twitterLink = twitterLink;
         this.twitchLink = twitchLink;
+        this.person = person;
+        this.displayOrder = displayOrder;
     }
 }

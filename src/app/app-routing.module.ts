@@ -45,6 +45,15 @@ import { AddContentCreatorComponent } from './pages/admin/content-creators/add-c
 import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
 import { ContentCreatorResolver } from './_resolvers/content-creator.resolver';
 import { ContentCreatorsComponent } from './pages/esports/content-creators/content-creators.component';
+import { TeamResolver } from './_resolvers/team.resolver';
+import { AchievementsComponent } from './pages/admin/teams/achievements/achievements.component';
+import { AddRosterMemberComponent } from './pages/admin/teams/add-roster-member/add-roster-member.component';
+import { EditRosterMemberComponent } from './pages/admin/teams/edit-roster-member/edit-roster-member.component';
+import { TeamMemberResolver } from './_resolvers/team-member.resolver';
+import { HasChangesGuard } from './_guard/has-changes.guard';
+import { AddAchievementComponent } from './pages/admin/teams/add-achievement/add-achievement.component';
+import { EditAchievementComponent } from './pages/admin/teams/edit-achievement/edit-achievement.component';
+import { AchievementResolver } from './_resolvers/achievement.resolver';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -141,6 +150,42 @@ const routes: Routes = [
                 outlet: 'adminOutlet',
                 resolve: { contentCreator: ContentCreatorResolver },
                 data: { title: 'LevelUp | Admin Dashboard | Content Creators | Edit Content Creator' }
+            },
+            {
+                path: 'teams/:name',
+                component: AchievementsComponent,
+                outlet: 'adminOutlet',
+                resolve: { team: TeamResolver },
+                canDeactivate: [HasChangesGuard],
+                data: { title: 'LevelUp | Admin Dashboard | Team' }
+            },
+            {
+                path: 'teams/:name/add-roster-member',
+                component: AddRosterMemberComponent,
+                outlet: 'adminOutlet',
+                resolve: { team: TeamResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Team' }
+            },
+            {
+                path: 'teams/:name/edit-roster-member/:id',
+                component: EditRosterMemberComponent,
+                outlet: 'adminOutlet',
+                resolve: { team: TeamResolver, member: TeamMemberResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Team' }
+            },
+            {
+                path: 'teams/:name/add-achievement',
+                component: AddAchievementComponent,
+                outlet: 'adminOutlet',
+                resolve: { team: TeamResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Team' }
+            },
+            {
+                path: 'teams/:name/edit-achievement/:id',
+                component: EditAchievementComponent,
+                outlet: 'adminOutlet',
+                resolve: { team: TeamResolver, achievement: AchievementResolver },
+                data: { title: 'LevelUp | Admin Dashboard | Team' }
             }
         ]
     },

@@ -1,0 +1,43 @@
+@import '../../../../../_variables'
+
+.images-grid
+    display: grid
+    grid-gap: 1rem
+    grid-template-columns: repeat(4, calc( 25% - 1rem ))
+    justify-items: center
+    justify-content: space-evenly
+
+.image
+    position: relative
+    width: 100%
+    height: 10rem
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    &:hover
+        .overlay
+            opacity: 0.5
+        .links
+            opacity: 1
+
+.overlay
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    background-color: $color-fifth
+    opacity: 0
+    transition: opacity 0.2s
+
+.links
+    position: absolute
+    width: 100%
+    height: 100%
+    top: 0
+    left: 0
+    display: flex
+    justify-content: center
+    align-items: center
+    opacity: 0
+    transition: opacity 0.2s

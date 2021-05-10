@@ -14,7 +14,7 @@
                             <th scope="col">Name</th>
                             <th scope="col">Date</th>
                             <th scope="col" class="text-center">Status</th>
-                            <th scope="col" class="text-center">Action(s)</th>
+                            <th scope="col" class="text-center"></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -23,17 +23,15 @@
                             <td class="align-middle">{{order.buyerName}} {{order.buyerLastName}}</td>
                             <td class="align-middle">{{order.createTime | date: 'dd/MM/yyyy HH:mm'}}</td>
                             <td class="align-middle text-center">{{OrderStatus[order.orderStatus]}}</td>
-                            <td class="align-middle text-center">
-                                <div ngbDropdown placement="bottom-right" container="body">
-                                    <button class="standard-btn standard-btn-primary" ngbDropdownToggle>Action(s)
-                                        <fa-icon [icon]="faArrowDown" class="d-inline-block"></fa-icon>
-                                    </button>
-                                    <div ngbDropdownMenu>
-                                        <a ngbDropdownItem routerLink="/esports/shop/orders/{{order?.orderId}}">View</a>
-                                        <a ngbDropdownItem (click)="cancelOrder(order)">Cancel</a>
-                                        <a ngbDropdownItem (click)="finishOrder(order)">Finish</a>
-                                    </div>
-                                </div>
+                            <td class="align-middle text-center d-flex justify-content-center align-items-center">
+                                <a class="standard-link mr-3" placement="top" ngbTooltip="View"
+                                    routerLink="/esports/shop/orders/{{order?.orderId}}">
+                                    <fa-icon transform="grow-6" [icon]="faFileInvoice"></fa-icon>
+                                </a>
+                                <fa-icon class="standard-link mr-3" placement="top" ngbTooltip="Cancel"
+                                    (click)="cancelOrder(order)" transform="grow-6" [icon]="faRemove"></fa-icon>
+                                <fa-icon class="standard-link" placement="top" ngbTooltip="Finish"
+                                    (click)="finishOrder(order)" transform="grow-8 left-2" [icon]="faCheck"></fa-icon>
                             </td>
                         </tr>
                     </tbody>

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Order } from 'src/app/models/Order';
 import { OrderService } from 'src/app/services/order.service';
-import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faFile, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { OrderStatus } from 'src/app/enums/OrderStatus';
 
 @Component({
@@ -12,7 +12,11 @@ import { OrderStatus } from 'src/app/enums/OrderStatus';
 })
 export class OrdersComponent implements OnInit, OnDestroy {
     public isFiltersCollapsed = true;
+
     faArrowDown = faAngleDown;
+    faFileInvoice = faFile;
+    faCheck = faCheck;
+    faRemove = faTimes;
 
     private orders: any;
     private ordersSubscription: Subscription;
@@ -20,7 +24,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     public page = 1;
     public pageMax = 1;
-    private perPage = 5;
+    private perPage = 10;
 
     public OrderStatus = OrderStatus;
 

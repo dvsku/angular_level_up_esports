@@ -1,0 +1,166 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12">
+            <h3 class="fw-700 text-uppercase">{{title}}</h3>
+        </div>
+        <div class="col-12 py-2">
+            <button type="submit" class="standard-link mr-3" style="border: 0; background-color: transparent;"
+                placement="top" ngbTooltip="Save">
+                <fa-icon transform="grow-8" [icon]="faSave"></fa-icon>
+            </button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <nav ngbNav #nav="ngbNav" class="nav-tabs">
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>General</a>
+                    <ng-template ngbNavContent>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase" for="achievement_name">Name</label>
+                            <input [(ngModel)]="achievement.title" type="text" class="form-control"
+                                id="achievement_name" name="name" required #name="ngModel">
+                            <div *ngIf="name.invalid && (name.dirty ||name.touched)">
+                                <small *ngIf="name.errors.required">Name is required.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase"
+                                for="achievement_description">Description</label>
+                            <textarea class="form-control text-left" id="achievement_description" name="description"
+                                [(ngModel)]="achievement.description"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase"
+                                for="achievement_placement">Placement</label>
+                            <input [(ngModel)]="achievement.place" type="text" class="form-control"
+                                id="achievement_placement" name="placement" required #placement="ngModel">
+                            <div *ngIf="placement.invalid && (placement.dirty ||placement.touched)">
+                                <small *ngIf="placement.errors.required">Placement is required.</small>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase" for="achievement_location">Event
+                                location</label>
+                            <input [(ngModel)]="achievement.location" type="text" class="form-control"
+                                id="achievement_location" name="location">
+                        </div>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase" for="achievement_date">Event end
+                                date</label>
+                            <input [(ngModel)]="achievement.timeWhenFinished" type="text" class="form-control"
+                                id="achievement_date" name="date" required #date="ngModel">
+                            <div *ngIf="date.invalid && (date.dirty ||date.touched)">
+                                <small *ngIf="date.errors.required">Event end date is required.</small>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>Images</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <input #fileInput hidden type="file" multiple (change)="fileSelected($event)"
+                                    class="d-none">
+                                <a class="standard-link mr-3" style="margin-left: 5px;" placement="top"
+                                    ngbTooltip="Add images" (click)='addImages()'>
+                                    <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+                                </a>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <div class="images-grid">
+                                    <div class="image" *ngFor="let image of achievement.pictures"
+                                        [style.background-image]="'url(' + imageService.getImage(image?.picture)  + ')'">
+                                        <div class="overlay"></div>
+                                        <div class="links">
+                                            <a class="standard-link-reverse mr-4"
+                                                (click)="imagePreview.show(imageService.getImage(image.picture))">
+                                                <fa-icon transform="grow-14" [icon]="faImage"></fa-icon>
+                                            </a>
+                                            <a class="standard-link-reverse" (click)="removeImage(image)">
+                                                <fa-icon transform="grow-14" [icon]="faTimes"></fa-icon>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <image-cropper hidden (imageLoaded)="imageLoaded()" [imageBase64]="cropperImageBase64"
+                                    [resizeToWidth]="1920" [resizeToHeight]="1080" [maintainAspectRatio]="false"
+                                    [aspectRatio]="1/1" format="jpeg" [onlyScaleDown]="true"
+                                    (imageCropped)="imageCropped($event)" [autoCrop]="false">
+                                </image-cropper>
+                                <image-preview #imagePreview></image-preview>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+                <ng-container ngbNavItem>
+                    <a ngbNavLink>Team members</a>
+                    <ng-template ngbNavContent>
+                        <div class="row">
+                            <div class="col-12">
+                                <a class="standard-link mr-3" style="margin-left: 5px;" placement="top"
+                                    ngbTooltip="Add images" (click)='addTeamMember()'>
+                                    <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-12">
+                                <team-member-group [(teamMembers)]="achievement.teamMembers">
+                                </team-member-group>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-container>
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div [ngbNavOutlet]="nav" class="mt-2"></div>
+        </div>
+    </div>
+</form>
+
+<ng-template #removeImageModal let-removeImageModal>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="removeImageModal.dismiss()">
+                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="container bg-white mt-2 w-50">
+        <div class="row py-3">
+            <div class="col-12 px-4 py-2 d-flex justify-content-center">
+                <h6>Are you sure that you want to remove this image?</h6>
+            </div>
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="button" class="standard-btn standard-btn-primary"
+                    (click)="removeImageModal.close()">Cancel</button>
+                <button type="button" class="standard-btn standard-btn-primary mr-2"
+                    (click)="onRemoveImageOk(); removeImageModal.close()">Remove</button>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #createTeamMemberModal let-createTeamMemberModal>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="createTeamMemberModal.dismiss()">
+                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="container bg-white mt-2">
+        <div class="row py-2 px-4">
+            <div class="col-12">
+                <team-member-creator [teamMember]="teamMember" [people]="people" [subtract]="subtract" [edit]="edit"
+                    [parent]="this">
+                </team-member-creator>
+            </div>
+        </div>
+    </div>
+</ng-template>

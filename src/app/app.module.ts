@@ -68,6 +68,16 @@ import { CardContentCreatorComponent } from './parts/common/card-content-creator
 import { Ng2FittextModule } from 'ng2-fittext';
 import { CardContentCreatorDeckComponent } from './parts/common/card-content-creator-deck/card-content-creator-deck.component';
 import { ImageSelectComponent } from './parts/common/image-select/image-select.component';
+import { AchievementsComponent } from './pages/admin/teams/achievements/achievements.component';
+import { AddAchievementComponent } from './pages/admin/teams/add-achievement/add-achievement.component';
+import { EditAchievementComponent } from './pages/admin/teams/edit-achievement/edit-achievement.component';
+import { PersonPickerComponent } from './parts/common/person-picker/person-picker.component';
+import { AddRosterMemberComponent } from './pages/admin/teams/add-roster-member/add-roster-member.component';
+import { EditRosterMemberComponent } from './pages/admin/teams/edit-roster-member/edit-roster-member.component';
+import { ImagePreviewComponent } from './parts/common/image-preview/image-preview.component';
+import { TeamMemberGroupComponent } from './parts/common/team-member-group/team-member-group.component';
+import { TeamMemberCreatorComponent } from './parts/common/team-member-creator/team-member-creator.component';
+import { AbstractAchievementEditorComponent } from './parts/abstract/abstract-achievement-editor/abstract-achievement-editor.component';
 
 @NgModule({
     declarations: [
@@ -121,7 +131,16 @@ import { ImageSelectComponent } from './parts/common/image-select/image-select.c
         ContentCreatorsComponent,
         CardContentCreatorComponent,
         CardContentCreatorDeckComponent,
-        ImageSelectComponent
+        ImageSelectComponent,
+        AchievementsComponent,
+        AddAchievementComponent,
+        EditAchievementComponent,
+        PersonPickerComponent,
+        AddRosterMemberComponent,
+        EditRosterMemberComponent,
+        ImagePreviewComponent,
+        TeamMemberGroupComponent,
+        TeamMemberCreatorComponent
     ],
     imports: [
         BrowserModule,

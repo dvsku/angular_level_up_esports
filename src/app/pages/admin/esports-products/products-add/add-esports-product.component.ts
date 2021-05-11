@@ -13,6 +13,7 @@ import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { ProductIcon } from 'src/app/models/ProductIcon';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-add-esports-product',
@@ -28,6 +29,8 @@ export class AddEsportsProductComponent implements OnInit, OnDestroy, AfterViewI
 
     size = '';
     title = 'Add Esports Product';
+
+    faSave = faSave;
 
     private categoriesSubscription: Subscription;
 

@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
@@ -77,7 +77,7 @@ import { EditRosterMemberComponent } from './pages/admin/teams/edit-roster-membe
 import { ImagePreviewComponent } from './parts/common/image-preview/image-preview.component';
 import { TeamMemberGroupComponent } from './parts/common/team-member-group/team-member-group.component';
 import { TeamMemberCreatorComponent } from './parts/common/team-member-creator/team-member-creator.component';
-import { AbstractAchievementEditorComponent } from './parts/abstract/abstract-achievement-editor/abstract-achievement-editor.component';
+import { NgbDateCustomParserFormatter } from './_formatters/date-formatter';
 
 @NgModule({
     declarations: [
@@ -172,6 +172,7 @@ import { AbstractAchievementEditorComponent } from './parts/abstract/abstract-ac
         CartService,
         ProductService,
         HomePictureService,
+        { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }

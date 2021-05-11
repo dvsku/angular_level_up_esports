@@ -6,8 +6,16 @@ export class Partner extends ModelWithImage {
     description?: string;
     linkToWebsite?: string;
 
-    constructor(name?: string, image?: string, description?: string, imageOrder?: number, linkToWebsite?: string) {
+    constructor(
+        id?: number,
+        name?: string,
+        image?: string,
+        description?: string,
+        imageOrder?: number,
+        linkToWebsite?: string
+    ) {
         super(image, imageOrder);
+        this.id = id;
         this.name = name;
         this.description = description;
         this.linkToWebsite = linkToWebsite;

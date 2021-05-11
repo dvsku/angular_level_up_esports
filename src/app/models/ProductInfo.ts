@@ -21,13 +21,13 @@ export class ProductInfo {
             this.productName = productInOrder.productName;
             this.productPrice = productInOrder.productPrice;
             this.productDescription = productInOrder.productDescription;
-            this.categoryType = productInOrder.categoryType;
             this.productStatus = 0;
+            this.categoryType = productInOrder.categoryType;
             this.productInfoSizes = [];
         } else {
             this.productId = null;
             this.productName = '';
-            this.productPrice = 20;
+            this.productPrice = 1000;
             this.productDescription = '';
             this.productInfoIcons = [];
             this.categoryType = 0;

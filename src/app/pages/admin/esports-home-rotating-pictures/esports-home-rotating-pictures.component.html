@@ -1,28 +1,21 @@
-<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-12 d-flex flex-row justify-content-between">
-            <h3 class="fw-700">ESPORTS ROTATING PICTURES</h3>
-        </div>
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">ESPORTS ROTATING PICTURES</h3>
     </div>
-    <div class="row">
-        <div class="col-4 d-flex justify-content-start align-items-center">
-            <fa-icon [icon]="faInfo" class="d-inline-block ml-3" placement="bottom"
-                ngbTooltip="Use add button to add new pictures. You can drag and drop images to modify their display order. You need to save only when you modify display order.">
-            </fa-icon>
-        </div>
-        <div class="col-8 d-flex justify-content-end align-items-center">
-            <button type="button" (click)='addImageInput()'
-                class="standard-btn standard-btn-primary btn-w-1 mr-2">add</button>
-            <button type="submit" class="standard-btn standard-btn-primary btn-w-1">save</button>
-        </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <a class="standard-link mr-1" (click)='addImageInput()' placement="top" ngbTooltip="Add image">
+            <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+        </a>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="row mt-2">
-                <div class="col-12">
-                    <image-group [images]="images" [maintainAspectRatio]="false"></image-group>
-                </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="row mt-2">
+            <div class="col-12">
+                <image-group [images]="images" [maintainAspectRatio]="false"></image-group>
             </div>
         </div>
     </div>
-</form>
+</div>

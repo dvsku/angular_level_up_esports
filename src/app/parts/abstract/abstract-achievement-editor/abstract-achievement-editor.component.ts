@@ -1,6 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faImage, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faImage, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
@@ -48,6 +48,7 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
     faImage = faImage;
     faPlus = faPlus;
     faSave = faSave;
+    faCalendarAlt = faCalendarAlt;
 
     images: string[] = [];
     selectedImage: AchievementPicture;

@@ -22,7 +22,7 @@ export class EditAchievementComponent
             } else {
                 this.team = data.team;
                 this.name = this.teamService.getNameFromId(this.team.categoryId);
-                this.achievement = data.achievement;
+                this.achievement = JSON.parse(JSON.stringify(data.achievement));
                 this.subtract = this.achievement.teamMembers.map<Person>((member) => member.person);
             }
         });

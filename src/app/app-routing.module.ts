@@ -91,12 +91,14 @@ const routes: Routes = [
             {
                 path: 'esports/home-rotating-pictures',
                 component: EsportsHomeRotatingPicturesComponent,
+                canDeactivate: [HasChangesGuard],
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Home Rotating Pictures' }
             },
             {
                 path: 'partners',
                 component: AdminPartnersComponent,
+                canDeactivate: [HasChangesGuard],
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Partners' }
             },

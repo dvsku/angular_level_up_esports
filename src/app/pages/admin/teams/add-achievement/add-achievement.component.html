@@ -4,8 +4,7 @@
             <h3 class="fw-700 text-uppercase">{{title}}</h3>
         </div>
         <div class="col-12 py-2">
-            <button type="submit" class="standard-link mr-3" style="border: 0; background-color: transparent;"
-                placement="top" ngbTooltip="Save">
+            <button type="submit" [disabled]="!form.valid" class="standard-link mr-3" placement="top" ngbTooltip="Save">
                 <fa-icon transform="grow-8" [icon]="faSave"></fa-icon>
             </button>
         </div>
@@ -17,9 +16,9 @@
                     <a ngbNavLink>General</a>
                     <ng-template ngbNavContent>
                         <div class="form-group">
-                            <label class="fs-small text-muted text-uppercase" for="achievement_name">Name</label>
+                            <label class="fs-small text-muted text-uppercase" for="achievement_name">Name*</label>
                             <input [(ngModel)]="achievement.title" type="text" class="form-control"
-                                id="achievement_name" name="name" required #name="ngModel">
+                                id="achievement_name" name="name" required autocomplete="off" #name="ngModel">
                             <div *ngIf="name.invalid && (name.dirty ||name.touched)">
                                 <small *ngIf="name.errors.required">Name is required.</small>
                             </div>
@@ -27,13 +26,13 @@
                         <div class="form-group">
                             <label class="fs-small text-muted text-uppercase"
                                 for="achievement_description">Description</label>
-                            <textarea class="form-control text-left" id="achievement_description" name="description"
-                                [(ngModel)]="achievement.description"></textarea>
+                            <textarea class="form-control text-left" id="achievement_description" autocomplete="off"
+                                name="description" [(ngModel)]="achievement.description"></textarea>
                         </div>
                         <div class="form-group">
                             <label class="fs-small text-muted text-uppercase"
-                                for="achievement_placement">Placement</label>
-                            <input [(ngModel)]="achievement.place" type="text" class="form-control"
+                                for="achievement_placement">Placement*</label>
+                            <input [(ngModel)]="achievement.place" type="text" class="form-control" autocomplete="off"
                                 id="achievement_placement" name="placement" required #placement="ngModel">
                             <div *ngIf="placement.invalid && (placement.dirty ||placement.touched)">
                                 <small *ngIf="placement.errors.required">Placement is required.</small>
@@ -43,15 +42,20 @@
                             <label class="fs-small text-muted text-uppercase" for="achievement_location">Event
                                 location</label>
                             <input [(ngModel)]="achievement.location" type="text" class="form-control"
-                                id="achievement_location" name="location">
+                                autocomplete="off" id="achievement_location" name="location">
                         </div>
                         <div class="form-group">
                             <label class="fs-small text-muted text-uppercase" for="achievement_date">Event end
                                 date</label>
-                            <input [(ngModel)]="achievement.timeWhenFinished" type="text" class="form-control"
-                                id="achievement_date" name="date" required #date="ngModel">
-                            <div *ngIf="date.invalid && (date.dirty ||date.touched)">
-                                <small *ngIf="date.errors.required">Event end date is required.</small>
+                            <div class="input-group">
+                                <input class="form-control" placeholder="dd/mm/yyyy" id="achievement_date" name="date"
+                                    [(ngModel)]="achievement.timeWhenFinished" ngbDatepicker readonly
+                                    #d="ngbDatepicker">
+                                <div class="input-group-append">
+                                    <button class="standard-link btn" (click)="d.toggle()" type="button">
+                                        <fa-icon transform="grow-4" [icon]="faCalendarAlt"></fa-icon>
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </ng-template>
@@ -100,7 +104,7 @@
                         <div class="row">
                             <div class="col-12">
                                 <a class="standard-link mr-3" style="margin-left: 5px;" placement="top"
-                                    ngbTooltip="Add images" (click)='addTeamMember()'>
+                                    ngbTooltip="Add team member" (click)='addTeamMember()'>
                                     <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
                                 </a>
                             </div>

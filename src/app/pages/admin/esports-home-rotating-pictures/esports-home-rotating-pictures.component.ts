@@ -5,14 +5,17 @@ import { HomeRotatingPicture } from 'src/app/models/HomeRotatingPicture';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { HomePictureService } from 'src/app/services/home-picture.service';
-import { faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faInfo, faPlus, faSave } from '@fortawesome/free-solid-svg-icons';
+import { ChangeDetection } from 'src/app/models/interfaces/ChangeDetection';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
     selector: 'app-esports-home-rotating-pictures',
     templateUrl: './esports-home-rotating-pictures.component.html',
     styleUrls: ['./esports-home-rotating-pictures.component.sass']
 })
-export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, AfterViewInit, ImagesHandler {
+export class EsportsHomeRotatingPicturesComponent
+    implements OnInit, OnDestroy, AfterViewInit, ImagesHandler, ChangeDetection {
     images: HomeRotatingPicture[];
     private imagesSubscription: Subscription;
 
@@ -20,8 +23,12 @@ export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, 
     imageGroup: ImageGroupComponent;
 
     faInfo = faInfo;
+    faPlus = faPlus;
+    faSave = faSave;
 
-    constructor(private homePictureService: HomePictureService) {}
+    private hasChanges = false;
+
+    constructor(private homePictureService: HomePictureService, private toastrService: ToastrService) {}
 
     ngOnInit(): void {
         this.imagesSubscription = this.homePictureService.getHomeRotatingPictures().subscribe((images) => {
@@ -44,31 +51,33 @@ export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     createImage(image: string): void {
-        this.homePictureService.addHomeRotatingPicture(new HomeRotatingPicture(image, 0)).subscribe(
+        this.homePictureService.createHomeRotatingPicture(new HomeRotatingPicture(image, 0)).then(
             (success) => {
                 if (success) {
                     this.reorderImages();
+                    this.toastrService.success('Home rotating picture created.');
                 } else {
-                    console.log('Failed to add image');
+                    this.toastrService.error('Failed to create home rotating picture.');
                 }
             },
             () => {
-                console.log('Failed to add image');
+                this.toastrService.error('Failed to create home rotating picture.');
             }
         );
     }
 
     removeImage(image: ModelWithImage): void {
-        this.homePictureService.deleteHomeRotatingPicture(image).subscribe(
+        this.homePictureService.removeHomeRotatingPicture(image).then(
             (success) => {
                 if (success) {
                     this.reorderImages();
+                    this.toastrService.success('Home rotating picture removed.');
                 } else {
-                    console.log('Failed to remove image');
+                    this.toastrService.error('Failed to remove home rotating picture.');
                 }
             },
             () => {
-                console.log('Failed to remove image');
+                this.toastrService.error('Failed to remove home rotating picture.');
             }
         );
     }
@@ -77,6 +86,7 @@ export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, 
         this.images.forEach((image, index) => {
             image.displayOrder = index + 1;
         });
+        this.hasChanges = true;
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,20 +101,17 @@ export class EsportsHomeRotatingPicturesComponent implements OnInit, OnDestroy, 
     //	FORM
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    onSubmit(): void {
-        for (const image of this.images) {
-            if (image.id !== null && image.id !== -1) {
-                this.homePictureService.updateHomeRotatingPicture(image).subscribe(
-                    (success) => {
-                        if (!success) {
-                            console.log('Failed to update image');
-                        }
-                    },
-                    () => {
-                        console.log('Failed to update image');
-                    }
-                );
-            }
-        }
+    saveChanges(): Promise<boolean> {
+        if (!this.hasChanges) return Promise.resolve(true);
+
+        const promises = [];
+
+        this.images.forEach((image) => {
+            promises.push(this.homePictureService.updateHomeRotatingPicture(image));
+        });
+
+        return Promise.all(promises).then(() => {
+            return true;
+        });
     }
 }

@@ -12,7 +12,7 @@ import { PersonService } from 'src/app/services/person.service';
 })
 export class EditPersonComponent implements OnInit {
     person: Person = new Person();
-    title = 'Add Person';
+    title = 'Edit Person';
 
     constructor(
         private personService: PersonService,
@@ -28,7 +28,7 @@ export class EditPersonComponent implements OnInit {
                 this.router.navigate(['/esports']);
                 return;
             } else {
-                this.person = data.person;
+                this.person = JSON.parse(JSON.stringify(data.person));
             }
         });
     }

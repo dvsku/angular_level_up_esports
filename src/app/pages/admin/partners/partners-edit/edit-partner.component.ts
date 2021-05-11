@@ -28,7 +28,7 @@ export class EditPartnerComponent implements OnInit {
                 this.router.navigate(['/esports']);
                 return;
             } else {
-                this.partner = data.partner;
+                this.partner = JSON.parse(JSON.stringify(data.partner));
             }
         });
     }

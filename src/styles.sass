@@ -22,6 +22,11 @@ body
 .ng-touched.ng-invalid:not(form)
     border: 1px solid $validation-failed
 
+small
+    display: block
+    width: 100%
+    color: $validation-failed !important
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // LAYOUT
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -334,6 +339,12 @@ input:checked + .slider:before
     cursor: pointer
     user-select: none
 
+.nav-tabs .nav-link
+    border-radius: 0% !important
+    font-size: $font-size-small
+    font-weight: 500
+    text-transform: uppercase
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // BOX SHADOWS
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -383,11 +394,17 @@ input:checked + .slider:before
     font-weight: 400
     font-size: $font-size-normal !important
     text-decoration: none !important
+    border: 0
+    background-color: transparent
 
 .standard-link:hover
     color: $font-color-hover !important
     cursor: pointer
     user-select: none
+
+.standard-link:disabled
+    color: darken($color-second, 60) !important
+    cursor: default
 
 .standard-link-reverse
     color: $font-color-second !important

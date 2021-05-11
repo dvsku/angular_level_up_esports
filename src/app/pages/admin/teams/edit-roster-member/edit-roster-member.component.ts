@@ -50,7 +50,7 @@ export class EditRosterMemberComponent extends TeamMembersHandler implements OnI
                 this.team = data.team;
                 this.name = this.teamService.getNameFromId(this.team.categoryId);
                 this.subtract = this.team.teamMembers.map<Person>((member) => member.person);
-                this.teamMember = data.member;
+                this.teamMember = JSON.parse(JSON.stringify(data.member));
             }
         });
         this.peopleSubscription = this.peopleService.getPeople().subscribe((people) => {

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faArrowDown, faEdit, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faArrowDown, faEdit, faPlus, faTimes, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Achievement } from 'src/app/models/Achievement';
@@ -29,6 +29,7 @@ export class AchievementsComponent extends TeamMembersHandler implements OnInit,
     faEdit = faEdit;
     faTimes = faTimes;
     faPlus = faPlus;
+    faUserPlus = faUserPlus;
 
     @ViewChild('removeAchievementModal')
     modal: ElementRef;

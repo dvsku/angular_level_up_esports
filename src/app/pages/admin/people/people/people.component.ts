@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { faAngleDown, faInfo } from '@fortawesome/free-solid-svg-icons';
+import { faAngleDown, faEdit, faInfo, faTimes, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -19,6 +19,9 @@ export class PeopleComponent implements OnInit, OnDestroy {
 
     faArrowDown = faAngleDown;
     faInfo = faInfo;
+    faUserPlus = faUserPlus;
+    faEdit = faEdit;
+    faTimes = faTimes;
 
     constructor(
         private personService: PersonService,

@@ -12,6 +12,8 @@
         <div class="text-muted fs-small">{{ product.count * product.productPrice }} RSD</div>
     </div>
     <div *ngIf="removable">
-        <fa-icon (click)='removeProduct()' [icon]="faRemove" class="close"></fa-icon>
+        <a class="standard-link mr-2 my-2" (click)='removeProduct()'>
+            <fa-icon transform="grow-6" [icon]="faRemove"></fa-icon>
+        </a>
     </div>
 </div>

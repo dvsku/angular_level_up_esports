@@ -13,6 +13,7 @@ import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ProductIcon } from 'src/app/models/ProductIcon';
+import { faSave } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-edit-esports-product',
@@ -28,6 +29,8 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterView
 
     @ViewChild(ImageGroupComponent)
     imageGroup: ImageGroupComponent;
+
+    faSave = faSave;
 
     private categoriesSubscription: Subscription;
 
@@ -47,7 +50,7 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterView
         this.productId = +this.activatedRoute.snapshot.paramMap.get('id');
         if (this.productId) {
             this.productService.getProduct(this.productId).then((prod) => {
-                this.product = prod;
+                this.product = JSON.parse(JSON.stringify(prod));
             });
         }
         this.categoriesSubscription = this.categoriesService.getProductCategories().subscribe((cats) => {

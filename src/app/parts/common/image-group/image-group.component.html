@@ -6,9 +6,9 @@
             <img class="image" [src]="imagesService.getImage(image.image)">
         </div>
         <div class="image-box-actions">
-            <div class="mr-2 my-2 text-right" style="width: 100px;">
-                <fa-icon (click)='removeImage(image)' [icon]="faRemove" class="close"></fa-icon>
-            </div>
+            <a class="standard-link mr-3 my-2" (click)='removeImage(image)'>
+                <fa-icon transform="grow-6" [icon]="faRemove"></fa-icon>
+            </a>
         </div>
     </div>
 </div>

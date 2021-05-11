@@ -5,7 +5,7 @@
 </div>
 <div class="row">
     <div class="col-12 mt-2">
-        <div class="fs-small fw-500 text-muted text-uppercase">ACTIVE ROSTER</div>
+        <div class="fs-small text-muted text-uppercase">ACTIVE ROSTER</div>
         <hr class="mt-1" />
     </div>
     <div class="col-12 mb-2 d-flex flex-row">
@@ -13,7 +13,7 @@
             <a class="standard-link mr-3" placement="top" ngbTooltip="Add roster member"
                 [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: ['teams', name, 'add-roster-member'] } }]"
                 skipLocationChange>
-                <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+                <fa-icon transform="grow-4" [icon]="faUserPlus"></fa-icon>
             </a>
         </div>
     </div>
@@ -21,7 +21,7 @@
         <team-member-group [(teamMembers)]="team.teamMembers"></team-member-group>
     </div>
     <div class="col-12 mt-4">
-        <div class="fs-small fw-500 text-muted text-uppercase">ACHIEVEMENTS</div>
+        <div class="fs-small text-muted text-uppercase">ACHIEVEMENTS</div>
         <hr class="mt-1" />
     </div>
     <div class="col-12 mb-2 d-flex flex-row">

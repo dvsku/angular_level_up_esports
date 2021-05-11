@@ -1,31 +1,37 @@
-<ng-template #modal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Select Person</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<ng-template #personPickerModal let-personPickerModal>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="personPickerModal.dismiss()">
+                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
+            </a>
+        </div>
     </div>
-    <div class="modal-body" style="height: 75vh">
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">Photo</th>
-                    <th scope="col">Name</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="person-row" (click)="selected = person" [ngClass]="{ 'selected': selected?.id === person.id}"
-                    *ngFor="let person of people">
-                    <td class="align-middle text-center" style="width: 75px;" scope="row">
-                        <img class="thumbnail" [src]="imageService.getImage(person.profilePicture)">
-                    </td>
-                    <td class="align-middle product-name">{{person.firstName}} {{person.lastName}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="modal-footer">
-        <button type="button" [disabled]="!selected" class="standard-btn standard-btn-primary"
-            (click)="close(); modal.close()">Ok</button>
+    <div class="container bg-white mt-2">
+        <div class="row py-4 px-4">
+            <div class="col-12" style="max-height: 80vh; overflow: auto; display:inline-block;">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Photo</th>
+                            <th scope="col">Name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="person-row" (click)="selected = person"
+                            [ngClass]="{ 'selected': selected?.id === person.id}" *ngFor="let person of people">
+                            <td class="align-middle text-center" style="width: 50px;" scope="row">
+                                <img class="thumbnail" [src]="imageService.getImage(person.profilePicture)">
+                            </td>
+                            <td class="align-middle product-name">{{person.firstName}} {{person.lastName}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-12 py-2 d-flex flex-row-reverse">
+                <button type="button" [disabled]="!selected" class="standard-btn standard-btn-primary"
+                    style="padding-left: 30px; padding-right: 30px;"
+                    (click)="close(); personPickerModal.close()">Ok</button>
+            </div>
+        </div>
     </div>
 </ng-template>

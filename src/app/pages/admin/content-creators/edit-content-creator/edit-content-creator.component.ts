@@ -28,7 +28,7 @@ export class EditContentCreatorComponent implements OnInit {
                 this.router.navigate(['/esports']);
                 return;
             } else {
-                this.creator = data.contentCreator;
+                this.creator = JSON.parse(JSON.stringify(data.contentCreator));
             }
         });
     }

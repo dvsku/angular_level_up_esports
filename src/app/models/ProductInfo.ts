@@ -6,6 +6,7 @@ export class ProductInfo {
     productId?: number;
     productName: string;
     productPrice: number;
+    priceInEuros: number;
     productDescription: string;
     productInfoIcons: ProductIcon[];
     productStatus: number;
@@ -28,6 +29,7 @@ export class ProductInfo {
             this.productId = null;
             this.productName = '';
             this.productPrice = 1000;
+            this.priceInEuros = 0;
             this.productDescription = '';
             this.productInfoIcons = [];
             this.categoryType = 0;

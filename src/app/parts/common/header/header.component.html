@@ -27,11 +27,11 @@
                     <div class="col-9 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-shop-items">
-                                <app-swappable-image *ngFor="let product of featuredProducts"
-                                    href="/esports/shop/product/{{product.productId}}" class="shop-item-image"
-                                    additionalClasses="shop-item-image-fixed"
-                                    [firstSrc]="imagesService.getImage(product.productInfoIcons[0]?.image)">
-                                </app-swappable-image>
+                                <a class="shop-item-image scale-small" *ngFor="let product of featuredProducts"
+                                    href="/esports/shop/product/{{product.productId}}">
+                                    <img class="shop-item-image shop-item-image-fixed image-shadow"
+                                        [src]="imagesService.getImage(product.productInfoIcons[0]?.image)">
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -60,37 +60,37 @@
                             <li class="text-left"><a class="standard-link"
                                     routerLink='/teams/heroes-of-the-storm'>HEROES OF THE STORM</a></li>
                             <li class="text-left"><a class="standard-link"
-                                    routerLink='/teams/hearthstones'>HEARTHSTONE</a></li>
+                                    routerLink='/teams/hearthstone'>HEARTHSTONE</a></li>
                         </ul>
                     </div>
                     <div class="col-9 col-lg-8 col-xl-8 wrapper-images d-none d-lg-block">
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image class="game-image" href="/content-creators"
+                                <app-swappable-image class="game-image scale-small" href="/content-creators"
                                     firstSrc="/assets/content-creators.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/dota-2'
+                                <app-swappable-image class="game-image scale-small" href='/teams/dota-2'
                                     firstSrc="/assets/game-dota2.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/csgo'
+                                <app-swappable-image class="game-image scale-small" href='/teams/csgo'
                                     firstSrc="/assets/game-csgo.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/league-of-legends'
+                                <app-swappable-image class="game-image scale-small" href='/teams/league-of-legends'
                                     firstSrc="/assets/game-lol.jpg">
                                 </app-swappable-image>
                             </div>
                         </div>
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-games">
-                                <app-swappable-image class="game-image" href='/teams/warcraft-3'
+                                <app-swappable-image class="game-image scale-small" href='/teams/warcraft-3'
                                     firstSrc="/assets/game-wc3.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/fortnite'
+                                <app-swappable-image class="game-image scale-small" href='/teams/fortnite'
                                     firstSrc="/assets/game-fortnite.jpg">
                                 </app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/heroes-of-the-storm'
+                                <app-swappable-image class="game-image scale-small" href='/teams/heroes-of-the-storm'
                                     firstSrc="/assets/game-hots.jpg"></app-swappable-image>
-                                <app-swappable-image class="game-image" href='/teams/hearthstones'
+                                <app-swappable-image class="game-image scale-small" href='/teams/hearthstone'
                                     firstSrc="/assets/game-hs.jpg">
                                 </app-swappable-image>
                             </div>

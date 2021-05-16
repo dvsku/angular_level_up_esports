@@ -21,8 +21,7 @@ export class ImagePreviewComponent {
         this.image = image;
         this.modalService.open(this.modal, {
             ariaLabelledBy: 'modal-basic-title',
-            windowClass: 'modal-dialog-100',
-            backdrop: 'static'
+            windowClass: 'modal-dialog-100'
         });
     }
 }

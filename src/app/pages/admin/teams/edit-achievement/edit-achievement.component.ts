@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { Achievement } from 'src/app/models/Achievement';
 import { AchievementCategory } from 'src/app/models/AchievementCategory';
 import { Person } from 'src/app/models/Person';
@@ -13,6 +14,8 @@ export class EditAchievementComponent
     extends AbstractAchievementEditorComponent
     implements OnInit, AfterViewInit, OnDestroy {
     title = 'EDIT ACHIEVEMENT';
+
+    dateModel: NgbDateStruct;
 
     ngOnInit(): void {
         this.activatedRoute.data.subscribe((data: { team: AchievementCategory; achievement: Achievement }) => {
@@ -40,8 +43,24 @@ export class EditAchievementComponent
     }
 
     onSubmit(): void {
-        this.achievementService.updateAchievement(this.achievement).then((success) => {
-            console.log(success);
-        });
+        this.achievement.timeWhenFinished = this.parserFormatter.format(this.dateModel);
+        this.achievementService.updateAchievement(this.achievement).then(
+            (success) => {
+                if (success) {
+                    this.router
+                        .navigate(['/admin/dashboard', { outlets: { adminOutlet: ['teams', this.name] } }], {
+                            skipLocationChange: true
+                        })
+                        .then(() => {
+                            this.toastrService.success('Achievement updated.');
+                        });
+                } else {
+                    this.toastrService.error('Failed to update achievement.');
+                }
+            },
+            () => {
+                this.toastrService.error('Failed to update achievement.');
+            }
+        );
     }
 }

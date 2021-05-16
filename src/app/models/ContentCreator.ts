@@ -10,6 +10,8 @@ export class ContentCreator {
     youtubeLink: string;
     facebookLink: string;
     instagramLink: string;
+    twitterLink: string;
+    nationality?: string;
 
     constructor(
         id?: number,
@@ -22,7 +24,9 @@ export class ContentCreator {
         trovoLink?: string,
         youtubeLink?: string,
         facebookLink?: string,
-        instagramLink?: string
+        instagramLink?: string,
+        twitterLink?: string,
+        nationality?: string
     ) {
         this.id = id;
         this.firstName = firstName;
@@ -35,5 +39,7 @@ export class ContentCreator {
         this.youtubeLink = youtubeLink;
         this.facebookLink = facebookLink;
         this.instagramLink = instagramLink;
+        this.twitterLink = twitterLink;
+        this.nationality = nationality;
     }
 }

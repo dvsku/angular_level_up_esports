@@ -5,6 +5,7 @@ import { publishReplay, refCount, tap } from 'rxjs/operators';
 import { AchievementCategory } from '../models/AchievementCategory';
 import { environment } from '../../environments/environment';
 import { TeamMember } from '../models/TeamMember';
+import { CompareService } from './compare.service';
 
 @Injectable({
     providedIn: 'root'
@@ -21,7 +22,7 @@ export class AchievementCategoryService {
     );
     private teamsObs = this.teamsSubject.asObservable();
 
-    constructor(private httpClient: HttpClient) {}
+    constructor(private httpClient: HttpClient, private compareService: CompareService) {}
 
     public getTeams(): Observable<AchievementCategory[]> {
         if (this.teams === null) {
@@ -29,6 +30,9 @@ export class AchievementCategoryService {
                 this.teams = teams;
                 this.teams.forEach((team) => {
                     team.teamMembers = team.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
+                    team.achievements = team.achievements.sort((a, b) =>
+                        this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
+                    );
                 });
                 this.teamsSubject.next(this.teams);
                 this.teamsObs.pipe(publishReplay(1), refCount());
@@ -39,11 +43,7 @@ export class AchievementCategoryService {
 
     private fetchTeams(): Observable<AchievementCategory[]> {
         const url = `${this.achievementCategoryUrl}/list`;
-        return this.httpClient.get<AchievementCategory[]>(url).pipe(
-            tap(() => {
-                // LOGOVANJE
-            })
-        );
+        return this.httpClient.get<AchievementCategory[]>(url);
     }
 
     public getTeam(id: number): Promise<AchievementCategory> {
@@ -55,13 +55,20 @@ export class AchievementCategoryService {
             return this.fetchTeam(id)
                 .then((t) => {
                     t.teamMembers = t.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
+                    t.achievements = t.achievements.sort((a, b) =>
+                        this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
+                    );
                     return t;
                 })
                 .catch(() => {
                     return undefined;
                 });
         } else {
+            console.log(1);
             team.teamMembers = team.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
+            team.achievements = team.achievements.sort((a, b) =>
+                this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
+            );
             return Promise.resolve(team);
         }
     }

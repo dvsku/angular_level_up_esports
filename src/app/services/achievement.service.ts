@@ -43,13 +43,13 @@ export class AchievementService {
             );
     }
 
-    public createAchievement(teamId: number, achievement: Achievement): Promise<number> {
+    public createAchievement(teamId: number, achievement: Achievement): Promise<boolean> {
         return this.createDatabaseAchievement(teamId, achievement).then(
             (achievementId) => {
-                return achievementId;
+                return achievementId !== -1;
             },
             () => {
-                return -1;
+                return false;
             }
         );
     }

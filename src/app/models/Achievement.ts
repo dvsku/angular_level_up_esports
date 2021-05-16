@@ -7,11 +7,11 @@ export class Achievement {
     description: string;
     place: string;
     location: string;
-    timeWhenFinished: Date;
+    timeWhenFinished: string;
     pictures: AchievementPicture[] = [];
     teamMembers: TeamMember[] = [];
 
-    constructor(title?: string, description?: string, place?: string, location?: string, timeWhenFinished?: Date) {
+    constructor(title?: string, description?: string, place?: string, location?: string, timeWhenFinished?: string) {
         this.title = title;
         this.description = description;
         this.place = place;

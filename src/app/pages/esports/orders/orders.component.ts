@@ -4,6 +4,8 @@ import { Order } from 'src/app/models/Order';
 import { OrderService } from 'src/app/services/order.service';
 import { faAngleDown, faFile, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { OrderStatus } from 'src/app/enums/OrderStatus';
+import { UserService } from 'src/app/services/user.service';
+import { JwtResponse } from 'src/app/models/JwtResponse';
 
 @Component({
     selector: 'app-orders',
@@ -27,11 +29,13 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private perPage = 10;
 
     public OrderStatus = OrderStatus;
+    public currentUser: JwtResponse;
 
-    constructor(private ordersService: OrderService) {}
+    constructor(private ordersService: OrderService, private userService: UserService) {}
 
     ngOnInit(): void {
         this.getOrders();
+        this.currentUser = this.userService.getCurrentUser();
     }
 
     private getOrders() {

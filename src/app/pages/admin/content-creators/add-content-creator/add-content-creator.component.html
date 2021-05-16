@@ -29,6 +29,11 @@
                     name="nickname" />
             </div>
             <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="nationality">Nationality</label>
+                <input type="text" [(ngModel)]="creator.nationality" #lastName="ngModel" class="form-control"
+                    id="content_creator_nationality" name="nationality" />
+            </div>
+            <div class="form-group">
                 <label class="fs-small text-muted text-uppercase" for="description">Role</label>
                 <input type="text" class="form-control text-left" id="content_creator_description" name="description"
                     [(ngModel)]="creator.description">
@@ -39,9 +44,14 @@
                     name="twitch" />
             </div>
             <div class="form-group">
-                <label class="fs-small text-muted text-uppercase" for="trovo">Trovo Link</label>
-                <input type="text" [(ngModel)]="creator.trovoLink" class="form-control" id="content_creator_trovo"
-                    name="trovo" />
+                <label class="fs-small text-muted text-uppercase" for="instagram">Instagram Link</label>
+                <input type="text" [(ngModel)]="creator.instagramLink" class="form-control"
+                    id="content_creator_instagram" name="instagram" />
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="twitter">Twitter Link</label>
+                <input type="text" [(ngModel)]="creator.twitterLink" class="form-control" id="content_creator_twitter"
+                    name="twitter" />
             </div>
             <div class="form-group">
                 <label class="fs-small text-muted text-uppercase" for="youtube">YouTube Link</label>
@@ -49,14 +59,14 @@
                     name="youtube" />
             </div>
             <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="trovo">Trovo Link</label>
+                <input type="text" [(ngModel)]="creator.trovoLink" class="form-control" id="content_creator_trovo"
+                    name="trovo" />
+            </div>
+            <div class="form-group">
                 <label class="fs-small text-muted text-uppercase" for="facebook">Facebook Link</label>
                 <input type="text" [(ngModel)]="creator.facebookLink" class="form-control" id="content_creator_facebook"
                     name="facebook" />
-            </div>
-            <div class="form-group">
-                <label class="fs-small text-muted text-uppercase" for="instagram">Instagram Link</label>
-                <input type="text" [(ngModel)]="creator.instagramLink" class="form-control"
-                    id="content_creator_instagram" name="instagram" />
             </div>
         </div>
     </div>

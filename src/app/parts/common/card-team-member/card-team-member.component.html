@@ -1,0 +1,48 @@
+<div class="card-content-creator">
+    <img class="card-content-creator-image" [src]='imageService.getImage(teamMember.person.profilePicture)'>
+    <div class="card-content-creator-details">
+        <div *ngIf='teamMember.inGameName && teamMember.inGameName != ""; else noInGameName'
+            class="card-content-creator-name">
+            <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23" class="text-center fs-xlarge">
+                {{teamMember.inGameName}}
+            </div>
+            <div class="text-center fs-normal">{{teamMember.position}}</div>
+        </div>
+        <ng-template #noInGameName>
+            <div class="card-content-creator-name">
+                <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23" class="text-center fs-xlarge">
+                    {{teamMember.person.firstName}} {{teamMember.person.lastName}}
+                </div>
+                <div class="text-center fs-normal">{{teamMember.position}}</div>
+            </div>
+        </ng-template>
+        <div class="card-content-creator-nationality">{{teamMember.person.nationality}}</div>
+        <div class="card-content-creator-links">
+            <a class="standard-link-reverse" *ngIf='teamMember.instagramLink && teamMember.instagramLink !== ""'
+                [href]="teamMember.instagramLink" target="_blank">
+                <fa-icon [icon]="faInstagram" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='teamMember.facebookLink && teamMember.facebookLink !== ""'
+                [href]="teamMember.facebookLink" target="_blank">
+                <fa-icon [icon]="faFacebook" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='teamMember.twitterLink && teamMember.twitterLink !== ""'
+                [href]="teamMember.twitterLink" target="_blank">
+                <fa-icon [icon]="faTwitter" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='teamMember.youtubeLink && teamMember.youtubeLink !== ""'
+                [href]="teamMember.youtubeLink" target="_blank">
+                <fa-icon [icon]="faYouTube" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" style="margin-top: 2px;"
+                *ngIf='teamMember.twitchLink && teamMember.twitchLink !== ""' [href]="teamMember.twitchLink"
+                target="_blank">
+                <fa-icon [icon]="faTwitch" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" *ngIf='teamMember.trovoLink && teamMember.trovoLink !== ""'
+                [href]="teamMember.trovoLink" target="_blank">
+                <fa-icon [icon]="faTrovo" class="brand-icon"></fa-icon>
+            </a>
+        </div>
+    </div>
+</div>

@@ -58,7 +58,6 @@ export class AchievementsComponent extends TeamMembersHandler implements OnInit,
             } else {
                 this.team = data.team;
                 this.name = this.teamService.getNameFromId(this.team.categoryId);
-                console.log(this.team);
             }
         });
     }

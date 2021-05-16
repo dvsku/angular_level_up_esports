@@ -15,7 +15,7 @@
                 <div class="text-center fs-normal">{{creator.description}}</div>
             </div>
         </ng-template>
-        <div class="card-content-creator-nationality">Serbia</div>
+        <div class="card-content-creator-nationality">{{creator.nationality}}</div>
         <div class="card-content-creator-links">
             <a class="standard-link-reverse" *ngIf='creator.instagramLink && creator.instagramLink !== ""'
                 [href]="creator.instagramLink" target="_blank">
@@ -25,13 +25,17 @@
                 [href]="creator.facebookLink" target="_blank">
                 <fa-icon [icon]="faFacebook" class="brand-icon"></fa-icon>
             </a>
-            <a class="standard-link-reverse" style="margin-top: 2px;"
-                *ngIf='creator.twitchLink && creator.twitchLink !== ""' [href]="creator.twitchLink" target="_blank">
-                <fa-icon [icon]="faTwitch" class="brand-icon"></fa-icon>
+            <a class="standard-link-reverse" *ngIf='creator.twitterLink && creator.twitterLink !== ""'
+                [href]="creator.twitterLink" target="_blank">
+                <fa-icon [icon]="faTwitter" class="brand-icon"></fa-icon>
             </a>
             <a class="standard-link-reverse" *ngIf='creator.youtubeLink && creator.youtubeLink !== ""'
                 [href]="creator.youtubeLink" target="_blank">
                 <fa-icon [icon]="faYouTube" class="brand-icon"></fa-icon>
+            </a>
+            <a class="standard-link-reverse" style="margin-top: 2px;"
+                *ngIf='creator.twitchLink && creator.twitchLink !== ""' [href]="creator.twitchLink" target="_blank">
+                <fa-icon [icon]="faTwitch" class="brand-icon"></fa-icon>
             </a>
             <a class="standard-link-reverse" *ngIf='creator.trovoLink && creator.trovoLink !== ""'
                 [href]="creator.trovoLink" target="_blank">

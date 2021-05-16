@@ -8,7 +8,7 @@
         <div class="col-12">
             <image-select [(image)]="person.profilePicture" [aspectRatio]="16 / 25"></image-select>
             <div class="form-group">
-                <label class="fs-small text-muted text-uppercase" for="firstname">First Name</label>
+                <label class="fs-small text-muted text-uppercase" for="firstname">First Name*</label>
                 <input type="text" [(ngModel)]="person.firstName" #firstName="ngModel" class="form-control"
                     id="firstname" name="firstname" required />
                 <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)">
@@ -16,12 +16,17 @@
                 </div>
             </div>
             <div class="form-group">
-                <label class="fs-small text-muted text-uppercase" for="lastname">Last Name</label>
+                <label class="fs-small text-muted text-uppercase" for="lastname">Last Name*</label>
                 <input type="text" [(ngModel)]="person.lastName" #lastName="ngModel" class="form-control" id="lastname"
                     name="lastname" required />
                 <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                     <small *ngIf="lastName.errors.required">Last Name is required.</small>
                 </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="nationality">Nationality</label>
+                <input type="text" [(ngModel)]="person.nationality" #lastName="ngModel" class="form-control"
+                    id="nationality" name="nationality" />
             </div>
         </div>
     </div>

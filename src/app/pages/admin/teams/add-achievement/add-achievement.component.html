@@ -49,8 +49,7 @@
                                 date</label>
                             <div class="input-group">
                                 <input class="form-control" placeholder="dd/mm/yyyy" id="achievement_date" name="date"
-                                    [(ngModel)]="achievement.timeWhenFinished" ngbDatepicker readonly
-                                    #d="ngbDatepicker">
+                                    [(ngModel)]="dateModel" ngbDatepicker readonly #d="ngbDatepicker">
                                 <div class="input-group-append">
                                     <button class="standard-link btn" (click)="d.toggle()" type="button">
                                         <fa-icon transform="grow-4" [icon]="faCalendarAlt"></fa-icon>

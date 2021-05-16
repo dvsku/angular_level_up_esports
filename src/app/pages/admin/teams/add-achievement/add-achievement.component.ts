@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { AchievementCategory } from 'src/app/models/AchievementCategory';
 import { Person } from 'src/app/models/Person';
 import { AbstractAchievementEditorComponent } from 'src/app/parts/abstract/abstract-achievement-editor/abstract-achievement-editor.component';
@@ -12,6 +13,8 @@ export class AddAchievementComponent
     extends AbstractAchievementEditorComponent
     implements OnInit, AfterViewInit, OnDestroy {
     title = 'ADD ACHIEVEMENT';
+
+    dateModel: NgbDateStruct;
 
     ngOnInit(): void {
         this.activatedRoute.data.subscribe((data: { team: AchievementCategory }) => {
@@ -38,11 +41,24 @@ export class AddAchievementComponent
     }
 
     onSubmit(): void {
-        this.achievementService.createAchievement(this.team.categoryId, this.achievement).then((achievementId) => {
-            if (achievementId !== -1) {
-                console.log('success');
+        this.achievement.timeWhenFinished = this.parserFormatter.format(this.dateModel);
+        this.achievementService.createAchievement(this.team.categoryId, this.achievement).then(
+            (success) => {
+                if (success) {
+                    this.router
+                        .navigate(['/admin/dashboard', { outlets: { adminOutlet: ['teams', this.name] } }], {
+                            skipLocationChange: true
+                        })
+                        .then(() => {
+                            this.toastrService.success('Achievement created.');
+                        });
+                } else {
+                    this.toastrService.error('Failed to create achievement.');
+                }
+            },
+            () => {
+                this.toastrService.error('Failed to create achievement.');
             }
-            console.log('fail');
-        });
+        );
     }
 }

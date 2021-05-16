@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCalendarAlt, faImage, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -15,6 +15,7 @@ import { AchievementCategoryService } from 'src/app/services/achievement-categor
 import { AchievementPictureService } from 'src/app/services/achievement-picture.service';
 import { AchievementService } from 'src/app/services/achievement.service';
 import { ImagesService } from 'src/app/services/images.service';
+import { LoaderService } from 'src/app/services/loader.service';
 import { PersonService } from 'src/app/services/person.service';
 import { TeamMemberGroupComponent } from '../../common/team-member-group/team-member-group.component';
 
@@ -70,7 +71,9 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
         protected config: NgbNavConfig,
         protected modalService: NgbModal,
         protected peopleService: PersonService,
-        public imageService: ImagesService
+        public imageService: ImagesService,
+        protected parserFormatter: NgbDateParserFormatter,
+        protected loaderService: LoaderService
     ) {
         super();
         config.destroyOnHide = false;
@@ -112,17 +115,7 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
     openEditWindow(teamMember: TeamMember): void {
         this.edit = true;
         this.selectedTeamMember = teamMember;
-        this.teamMember = new TeamMember(
-            teamMember.id,
-            teamMember.inGameName,
-            teamMember.position,
-            teamMember.nationality,
-            teamMember.instagramLink,
-            teamMember.twitterLink,
-            teamMember.twitchLink,
-            teamMember.person,
-            teamMember.displayOrder
-        );
+        this.teamMember = JSON.parse(JSON.stringify(teamMember));
         this.modalService.open(this.createTeamMemberModal, {
             ariaLabelledBy: 'modal-basic-title',
             windowClass: 'modal-dialog-standard',
@@ -156,6 +149,7 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
     }
 
     loadImages(event: any): Promise<boolean> {
+        this.loaderService.changeState(true);
         return new Promise((resolve) => {
             let count = 0;
             if (event.target.files && event.target.files[0]) {
@@ -180,6 +174,8 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
     cropImages(): void {
         if (this.images.length > 0) {
             this.cropperImageBase64 = this.images.pop();
+        } else {
+            this.loaderService.changeState(false);
         }
     }
 

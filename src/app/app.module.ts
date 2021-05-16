@@ -78,6 +78,9 @@ import { ImagePreviewComponent } from './parts/common/image-preview/image-previe
 import { TeamMemberGroupComponent } from './parts/common/team-member-group/team-member-group.component';
 import { TeamMemberCreatorComponent } from './parts/common/team-member-creator/team-member-creator.component';
 import { NgbDateCustomParserFormatter } from './_formatters/date-formatter';
+import { TeamComponent } from './pages/team/team.component';
+import { CardTeamMemberDeckComponent } from './parts/common/card-team-member-deck/card-team-member-deck.component';
+import { CardTeamMemberComponent } from './parts/common/card-team-member/card-team-member.component';
 
 @NgModule({
     declarations: [
@@ -140,7 +143,10 @@ import { NgbDateCustomParserFormatter } from './_formatters/date-formatter';
         EditRosterMemberComponent,
         ImagePreviewComponent,
         TeamMemberGroupComponent,
-        TeamMemberCreatorComponent
+        TeamMemberCreatorComponent,
+        TeamComponent,
+        CardTeamMemberDeckComponent,
+        CardTeamMemberComponent
     ],
     imports: [
         BrowserModule,

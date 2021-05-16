@@ -10,6 +10,7 @@ import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
 import { ImagesService } from 'src/app/services/images.service';
 import { JwtResponse } from 'src/app/models/JwtResponse';
+import { NavigationStart, Router } from '@angular/router';
 
 @Component({
     selector: 'app-header',
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit {
     private productsSubscription: Subscription;
     private cartProductsSubscription: Subscription;
     private categoriesSubscription: Subscription;
+    private routerSubscription: Subscription;
 
     model: any = {
         username: '',
@@ -48,6 +50,7 @@ export class HeaderComponent implements OnInit {
         private cartService: CartService,
         private productCategoryService: ProductCategoryService,
         private productService: ProductService,
+        private router: Router,
         public imagesService: ImagesService
     ) {}
 
@@ -69,6 +72,13 @@ export class HeaderComponent implements OnInit {
         this.cartProductsSubscription = this.cartService.getCart().subscribe((prods) => {
             this.cart = prods;
         });
+        this.routerSubscription = this.router.events.subscribe((event) => {
+            if (event instanceof NavigationStart) {
+                this.isShopCollapsed = true;
+                this.isTeamsCollapsed = true;
+                this.isCartCollapsed = true;
+            }
+        });
     }
 
     ngOnDestroy(): void {
@@ -76,6 +86,7 @@ export class HeaderComponent implements OnInit {
         this.productsSubscription.unsubscribe();
         this.cartProductsSubscription.unsubscribe();
         this.categoriesSubscription.unsubscribe();
+        this.routerSubscription.unsubscribe();
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////////

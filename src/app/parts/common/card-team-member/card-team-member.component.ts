@@ -1,17 +1,17 @@
 import { Component, Input } from '@angular/core';
-import { ContentCreator } from 'src/app/models/ContentCreator';
-import { ImagesService } from 'src/app/services/images.service';
 import { faFacebookSquare, faInstagram, faTwitch, faTwitter, faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faStream } from '@fortawesome/free-solid-svg-icons';
+import { TeamMember } from 'src/app/models/TeamMember';
+import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
-    selector: 'card-content-creator',
-    templateUrl: './card-content-creator.component.html',
-    styleUrls: ['./card-content-creator.component.sass']
+    selector: 'card-team-member',
+    templateUrl: './card-team-member.component.html',
+    styleUrls: ['./card-team-member.component.sass']
 })
-export class CardContentCreatorComponent {
-    @Input('creator')
-    creator: ContentCreator;
+export class CardTeamMemberComponent {
+    @Input()
+    teamMember: TeamMember;
 
     faInstagram = faInstagram;
     faTwitch = faTwitch;

@@ -28,10 +28,14 @@
                                     routerLink="/esports/shop/orders/{{order?.orderId}}">
                                     <fa-icon transform="grow-6" [icon]="faFileInvoice"></fa-icon>
                                 </a>
-                                <fa-icon class="standard-link mr-3" placement="top" ngbTooltip="Cancel"
-                                    (click)="cancelOrder(order)" transform="grow-6" [icon]="faRemove"></fa-icon>
-                                <fa-icon class="standard-link" placement="top" ngbTooltip="Finish"
-                                    (click)="finishOrder(order)" transform="grow-8 left-2" [icon]="faCheck"></fa-icon>
+                                <a class="standard-link mr-3" (click)="cancelOrder(order)" placement="top"
+                                    ngbTooltip="Cancel">
+                                    <fa-icon transform="grow-6" [icon]="faRemove"></fa-icon>
+                                </a>
+                                <a *ngIf="currentUser && currentUser.role === 'ADMIN'" class="standard-link mr-3"
+                                    (click)="finishOrder(order)" placement="top" ngbTooltip="Finish">
+                                    <fa-icon transform="grow-6" [icon]="faCheck"></fa-icon>
+                                </a>
                             </td>
                         </tr>
                     </tbody>

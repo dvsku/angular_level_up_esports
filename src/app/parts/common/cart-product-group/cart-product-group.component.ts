@@ -15,6 +15,9 @@ export class CartProductGroupComponent implements OnInit, OnDestroy {
     @Input('removable')
     public removable = true;
 
+    @Input('showTotal')
+    public showTotal = true;
+
     private productsSubscription: Subscription;
 
     total: number;

@@ -67,9 +67,9 @@ export class CartService {
     }
 
     clearCart(): void {
-        this.cookieService.delete('cart');
         this.cartProducts = [];
         this.cartProductsSubject.next(this.cartProducts);
+        this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
     }
 
     checkout(order: Order): Promise<any> {

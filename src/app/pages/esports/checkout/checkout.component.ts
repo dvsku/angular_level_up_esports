@@ -10,6 +10,8 @@ import { faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { map } from 'rxjs/operators';
 import { JwtResponse } from 'src/app/models/JwtResponse';
 import { ToastrService } from 'ngx-toastr';
+import { CouponService } from 'src/app/services/coupon.service';
+import { Coupon } from 'src/app/models/Coupon';
 
 @Component({
     selector: 'app-checkout',
@@ -18,6 +20,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CheckoutComponent implements OnInit, OnDestroy {
     faArrowLeft = faAngleLeft;
+
+    couponModel = {
+        name: ''
+    };
+    discount = 0;
+    coupon: Coupon;
 
     private cartProducts: ProductInOrder[];
     private cartProductsObs: Observable<ProductInOrder[]>;
@@ -34,7 +42,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         private userService: UserService,
         private cartService: CartService,
         private router: Router,
-        private toastrService: ToastrService
+        private toastrService: ToastrService,
+        private couponService: CouponService
     ) {}
 
     ngOnInit(): void {
@@ -52,6 +61,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                     this.order.orderAmount = this.order.orderAmount = this.order.products
                         .reduce((sum, current) => sum + current.count * current.productPrice, 0)
                         .toString();
+
+                    if (this.coupon) {
+                        this.discount = +this.order.orderAmount * (this.coupon.discount / 100);
+                        this.order.orderAmount = (
+                            +this.order.orderAmount *
+                            (1 - this.coupon.discount / 100)
+                        ).toString();
+                    }
 
                     if (jwtUser !== this.currentUser) {
                         this.currentUser = jwtUser;
@@ -97,6 +114,30 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.changeInfo = false;
     }
 
+    removeCoupon(): void {
+        this.couponModel.name = '';
+        this.coupon = undefined;
+        this.discount = 0;
+        this.order.orderAmount = this.order.orderAmount = this.order.products
+            .reduce((sum, current) => sum + current.count * current.productPrice, 0)
+            .toString();
+    }
+
+    onSubmit(): void {
+        if (this.couponModel.name === '') return;
+
+        this.couponService.getCouponByName(this.couponModel.name).then((coupon) => {
+            if (coupon) {
+                this.coupon = coupon;
+                this.discount = +this.order.orderAmount * (this.coupon.discount / 100);
+                this.order.orderAmount = (+this.order.orderAmount * (1 - this.coupon.discount / 100)).toString();
+                this.toastrService.info('Coupon applied.');
+            } else {
+                this.toastrService.error('Coupon does not exist or has expired.');
+            }
+        });
+    }
+
     checkout(): void {
         this.cartService
             .checkout(this.order)
@@ -112,9 +153,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                     });
                 }
             })
-            .catch((reason) => {
+            .catch(() => {
                 this.toastrService.error('Failed to place order, please try again later.');
-                console.log(reason.text);
             });
     }
 }

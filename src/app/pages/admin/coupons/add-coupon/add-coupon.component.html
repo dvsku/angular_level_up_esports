@@ -1,0 +1,51 @@
+<form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 d-flex flex-row justify-content-between">
+            <h3 class="fw-700 text-uppercase">Add Coupon</h3>
+        </div>
+    </div>
+    <div class="row py-3">
+        <div class="col-12">
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="coupon_name">Name*</label>
+                <input type="text" [(ngModel)]="coupon.name" #name="ngModel" class="form-control" autocomplete="off"
+                    id="coupon_name" name="name" required />
+                <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <small *ngIf="name.errors.required">Name is required.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="coupon_discount">Discount (%)*</label>
+                <input type="text" [(ngModel)]="coupon.discount" #discount="ngModel" autocomplete="off"
+                    class="form-control" id="coupon_discount" name="discount" required />
+                <div *ngIf="discount.invalid && (discount.dirty || discount.touched)">
+                    <small *ngIf="discount.errors.required">Discount is required.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="fs-small text-muted text-uppercase" for="coupon_valid_until">Valid Until*</label>
+                <div class="input-group">
+                    <input class="form-control" #validUntil="ngModel" [minDate]="minDate" id="coupon_valid_until"
+                        autocomplete="off" name="valid_until" [(ngModel)]="dateModel" ngbDatepicker required readonly
+                        #d="ngbDatepicker">
+                    <div class="input-group-append">
+                        <button class="standard-link btn" (click)="d.toggle()" type="button">
+                            <fa-icon transform="grow-4" [icon]="faCalendarAlt"></fa-icon>
+                        </button>
+                    </div>
+                </div>
+                <div *ngIf="validUntil.invalid && (validUntil.dirty || validUntil.touched)">
+                    <small *ngIf="validUntil.errors.required">Valid Until is required.</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <div class="form-group">
+                <button type="submit" [disabled]=!form.valid
+                    class="standard-btn standard-btn-primary btn-w-1">save</button>
+            </div>
+        </div>
+    </div>
+</form>

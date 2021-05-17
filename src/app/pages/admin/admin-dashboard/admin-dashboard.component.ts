@@ -7,6 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AdminDashboardComponent {
     public isBarcraftCollapsed = true;
-    public isEsportsCollapsed = true;
+    public isShopCollapsed = true;
     public isTeamsCollapsed = true;
 }

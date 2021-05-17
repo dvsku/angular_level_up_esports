@@ -11,9 +11,9 @@
                         </div>
                     </li> -->
                     <li>
-                        <a class="category-link" (click)="esportsCollapse.toggle()"
-                            [attr.aria-expanded]="!isEsportsCollapsed">ESPORTS</a>
-                        <div class="pl-2" #esportsCollapse="ngbCollapse" [(ngbCollapse)]="isEsportsCollapsed">
+                        <a class="category-link" (click)="shopCollapse.toggle()"
+                            [attr.aria-expanded]="!isShopCollapsed">SHOP</a>
+                        <div class="pl-2" #shopCollapse="ngbCollapse" [(ngbCollapse)]="isShopCollapsed">
                             <ul class="list-unstyled">
                                 <li>
                                     <a class="subcategory-link"
@@ -22,11 +22,16 @@
                                 </li>
                                 <li>
                                     <a class="subcategory-link"
-                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }]"
-                                        skipLocationChange>HOME ROTATING PICTURES</a>
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'coupons' } }]"
+                                        skipLocationChange>COUPONS</a>
                                 </li>
                             </ul>
                         </div>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'esports/home-rotating-pictures' } }]"
+                            skipLocationChange>HOME ROTATING PICTURES</a>
                     </li>
                     <li>
                         <a class="category-link"

@@ -55,6 +55,8 @@ import { AddAchievementComponent } from './pages/admin/teams/add-achievement/add
 import { EditAchievementComponent } from './pages/admin/teams/edit-achievement/edit-achievement.component';
 import { AchievementResolver } from './_resolvers/achievement.resolver';
 import { TeamComponent } from './pages/team/team.component';
+import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
+import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
 
 const routes: Routes = [
     { path: '', redirectTo: 'esports', pathMatch: 'full' },
@@ -189,6 +191,18 @@ const routes: Routes = [
                 outlet: 'adminOutlet',
                 resolve: { team: TeamResolver, achievement: AchievementResolver },
                 data: { title: 'LevelUp | Admin Dashboard | Team' }
+            },
+            {
+                path: 'coupons',
+                component: CouponsComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Coupons' }
+            },
+            {
+                path: 'coupons/add-coupon',
+                component: AddCouponComponent,
+                outlet: 'adminOutlet',
+                data: { title: 'LevelUp | Admin Dashboard | Coupons | Add Coupon' }
             }
         ]
     },

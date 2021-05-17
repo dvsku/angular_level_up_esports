@@ -1,0 +1,60 @@
+<div class="row">
+    <div class="col-12 d-flex flex-row justify-content-between">
+        <h3 class="fw-700">COUPONS</h3>
+    </div>
+</div>
+<div class="row mb-2">
+    <div class="col-12">
+        <a class="standard-link mr-3" placement="top" ngbTooltip="Add coupon"
+            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'coupons/add-coupon' } }]" skipLocationChange>
+            <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+        </a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Discount</th>
+                    <th scope="col">Valid Until</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let coupon of coupons">
+                    <td class="align-middle">{{coupon.name}}</td>
+                    <td class="align-middle">{{coupon.discount}}%</td>
+                    <td class="align-middle">{{coupon.validUntil}}</td>
+                    <td class="align-middle">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
+                                (click)="selectedCoupon = coupon; showModal(removeCouponModal)">
+                                <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ng-template #removeCouponModal let-removeCouponModal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Remove Content Creator</h4>
+        <button type="button" class="close" aria-label="Close" (click)="removeCouponModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <h6>Are you sure that you you want to remove this content creator?</h6>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="onRemoveOk(); removeCouponModal.close()">Remove</button>
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="removeCouponModal.close()">Cancel</button>
+    </div>
+</ng-template>

@@ -81,6 +81,8 @@ import { NgbDateCustomParserFormatter } from './_formatters/date-formatter';
 import { TeamComponent } from './pages/team/team.component';
 import { CardTeamMemberDeckComponent } from './parts/common/card-team-member-deck/card-team-member-deck.component';
 import { CardTeamMemberComponent } from './parts/common/card-team-member/card-team-member.component';
+import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
+import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
 
 @NgModule({
     declarations: [
@@ -146,7 +148,9 @@ import { CardTeamMemberComponent } from './parts/common/card-team-member/card-te
         TeamMemberCreatorComponent,
         TeamComponent,
         CardTeamMemberDeckComponent,
-        CardTeamMemberComponent
+        CardTeamMemberComponent,
+        CouponsComponent,
+        AddCouponComponent
     ],
     imports: [
         BrowserModule,

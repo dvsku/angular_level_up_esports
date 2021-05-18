@@ -99,6 +99,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                     this.order.buyerStreetAndNumber = this.user.streetAndNumber;
                                     this.order.buyerZip = this.user.zip;
                                     this.order.buyerPhone = this.user.phone;
+                                    this.order.buyerCountry = this.user.country;
                                 } else {
                                     this.changeInfo = true;
                                 }
@@ -173,7 +174,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
             this.order.buyerCity,
             this.order.buyerStreetAndNumber,
             this.order.buyerZip,
-            this.order.orderStatus
+            this.order.orderStatus,
+            this.order.buyerCountry
         );
 
         orderDto.products = [];

@@ -10,6 +10,7 @@ export class Order {
     buyerCity: string;
     buyerStreetAndNumber: string;
     buyerZip: number;
+    buyerCountry: string;
     orderAmount: string;
     orderAmountInEuro: string;
     orderStatus: string;
@@ -32,6 +33,7 @@ export class Order {
             this.orderAmountInEuro = order.orderAmountInEuro;
             this.orderStatus = order.orderStatus;
             this.products = order.products;
+            this.buyerCountry = order.buyerCountry;
         }
     }
 }

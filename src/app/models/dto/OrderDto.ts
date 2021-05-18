@@ -8,6 +8,7 @@ export class OrderDto {
     buyerCity: string;
     buyerStreetAndNumber: string;
     buyerZip: number;
+    buyerCountry: string;
     orderStatus: string;
     createTime: string;
     products: ProductInOrderDto[];
@@ -21,7 +22,8 @@ export class OrderDto {
         buyerCity?: string,
         buyerStreetAndNumber?: string,
         buyerZip?: number,
-        orderStatus?: string
+        orderStatus?: string,
+        buyerCountry?: string
     ) {
         this.buyerEmail = buyerEmail;
         this.buyerName = buyerName;
@@ -31,5 +33,6 @@ export class OrderDto {
         this.buyerStreetAndNumber = buyerStreetAndNumber;
         this.buyerZip = buyerZip;
         this.orderStatus = orderStatus;
+        this.buyerCountry = buyerCountry;
     }
 }

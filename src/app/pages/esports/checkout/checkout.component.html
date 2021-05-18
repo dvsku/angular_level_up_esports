@@ -12,13 +12,18 @@
                         <div class="col-12 d-flex flex-column">
                             <div class="d-flex flex-column px-3 pb-2">
                                 <div>
+                                    <span class="fs-small text-muted text-uppercase">EMAIL:</span> {{ order?.buyerEmail
+                                    }}
+                                    <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
+                                </div>
+                                <div>
                                     <span class="fs-small text-muted text-uppercase">NAME:</span> {{ order?.buyerName }}
                                     {{ order?.buyerLastName }}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
                                     <span class="fs-small text-muted text-uppercase">ADDRESS:</span> {{
-                                    order?.buyerStreetAndNumber }}, {{ order?.buyerCity }}
+                                    order?.buyerStreetAndNumber }}, {{ order?.buyerCity }}, {{order?.buyerCountry}}
                                     <a class="standard-link-obvious" (click)="changeInformation()">(change)</a>
                                 </div>
                                 <div>
@@ -143,6 +148,14 @@
                                         class="form-control" id="lastname" name="lastname" required />
                                     <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)">
                                         <small *ngIf="lastName.errors.required">Last Name is required.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="fs-small text-muted text-uppercase" for="country">Country</label>
+                                    <input type="text" [(ngModel)]="order.buyerCountry" #country="ngModel"
+                                        class="form-control" id="country" name="country" required />
+                                    <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                                        <small *ngIf="country.errors.required">Country is required.</small>
                                     </div>
                                 </div>
                                 <div class="form-group">

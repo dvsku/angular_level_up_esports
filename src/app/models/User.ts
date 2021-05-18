@@ -9,6 +9,7 @@ export class User {
     city: string;
     streetAndNumber: string;
     zip: number;
+    country: string;
     userRole: UserRole;
 
     constructor() {
@@ -19,6 +20,7 @@ export class User {
         this.phone = '';
         this.city = '';
         this.streetAndNumber = '';
+        this.country = '';
         this.userRole = UserRole.USER;
     }
 }

@@ -8,6 +8,7 @@ export class UserWithoutPassDto {
     city?: string;
     streetAndNumber?: string;
     zip?: number;
+    country?: string;
     userRole?: UserRole;
 
     constructor(
@@ -17,7 +18,8 @@ export class UserWithoutPassDto {
         phone?: string,
         city?: string,
         streetAndNumber?: string,
-        zip?: number
+        zip?: number,
+        country?: string
     ) {
         this.email = email;
         this.firstName = firstName;
@@ -26,6 +28,7 @@ export class UserWithoutPassDto {
         this.city = city;
         this.streetAndNumber = streetAndNumber;
         this.zip = zip;
+        this.country = country;
         this.userRole = UserRole.USER;
     }
 }

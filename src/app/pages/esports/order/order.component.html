@@ -11,12 +11,15 @@
                     <div class="col-12 d-flex flex-column">
                         <div class="d-flex flex-column px-3 pb-2">
                             <div>
+                                <span class="text-muted fs-small">EMAIL:</span> {{ order?.buyerEmail }}
+                            </div>
+                            <div>
                                 <span class="text-muted fs-small">NAME:</span> {{ order?.buyerName }} {{
                                 order?.buyerLastName }}
                             </div>
                             <div>
                                 <span class="text-muted fs-small">ADDRESS:</span> {{ order?.buyerStreetAndNumber }}, {{
-                                order?.buyerCity }}
+                                order?.buyerCity }}, {{ order?.buyerCountry }}
                             </div>
                             <div>
                                 <span class="text-muted fs-small">ZIP:</span> {{ order?.buyerZip }}

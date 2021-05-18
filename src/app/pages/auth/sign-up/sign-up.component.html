@@ -54,6 +54,14 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="fs-small text-muted text-uppercase" for="country">Country*</label>
+                        <input type="text" [(ngModel)]="user.country" #country="ngModel" class="form-control"
+                            id="country" name="country" required />
+                        <div *ngIf="country.invalid && (country.dirty || country.touched)">
+                            <small *ngIf="country.errors.required">Country is required.</small>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="fs-small text-muted text-uppercase" for="city">City*</label>
                         <input type="text" [(ngModel)]="user.city" #city="ngModel" class="form-control" id="city"
                             name="city" required />

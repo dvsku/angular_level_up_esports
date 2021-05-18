@@ -27,6 +27,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         name: ''
     };
     discount = 0;
+    discountEuro = 0;
     coupon: Coupon;
 
     private cartProducts: ProductInOrder[];
@@ -60,16 +61,27 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                     }
                     this.cartProducts = cartProducts;
                     this.order.products = this.cartProducts;
-                    this.order.orderAmount = this.order.orderAmount = this.order.products
+                    this.order.orderAmount = this.order.products
                         .reduce((sum, current) => sum + current.count * current.product.productPrice, 0)
+                        .toFixed(2)
+                        .toString();
+                    this.order.orderAmountInEuro = this.order.products
+                        .reduce((sum, current) => sum + current.count * current.product.priceInEuros, 0)
+                        .toFixed(2)
                         .toString();
 
                     if (this.coupon) {
                         this.discount = +this.order.orderAmount * (this.coupon.discount / 100);
-                        this.order.orderAmount = (
-                            +this.order.orderAmount *
+                        this.discountEuro = +this.order.orderAmountInEuro * (this.coupon.discount / 100);
+                        this.order.orderAmount = (+this.order.orderAmount * (1 - this.coupon.discount / 100))
+                            .toFixed(2)
+                            .toString();
+                        this.order.orderAmountInEuro = (
+                            +this.order.orderAmountInEuro *
                             (1 - this.coupon.discount / 100)
-                        ).toString();
+                        )
+                            .toFixed(2)
+                            .toString();
                     }
 
                     if (jwtUser !== this.currentUser) {
@@ -120,8 +132,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.couponModel.name = '';
         this.coupon = undefined;
         this.discount = 0;
-        this.order.orderAmount = this.order.orderAmount = this.order.products
+        this.discountEuro = 0;
+        this.order.orderAmount = this.order.products
             .reduce((sum, current) => sum + current.count * current.product.productPrice, 0)
+            .toFixed(2)
+            .toString();
+        this.order.orderAmountInEuro = this.order.products
+            .reduce((sum, current) => sum + current.count * current.product.priceInEuros, 0)
+            .toFixed(2)
             .toString();
     }
 
@@ -131,8 +149,14 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.couponService.getCouponByName(this.couponModel.name).then((coupon) => {
             if (coupon) {
                 this.coupon = coupon;
-                this.discount = +this.order.orderAmount * (this.coupon.discount / 100);
-                this.order.orderAmount = (+this.order.orderAmount * (1 - this.coupon.discount / 100)).toString();
+                this.discount = +(+this.order.orderAmount * (this.coupon.discount / 100)).toFixed(2);
+                this.discountEuro = +(+this.order.orderAmountInEuro * (this.coupon.discount / 100)).toFixed(2);
+                this.order.orderAmount = (+this.order.orderAmount * (1 - this.coupon.discount / 100))
+                    .toFixed(2)
+                    .toString();
+                this.order.orderAmountInEuro = (+this.order.orderAmountInEuro * (1 - this.coupon.discount / 100))
+                    .toFixed(2)
+                    .toString();
                 this.toastrService.info('Coupon applied.');
             } else {
                 this.toastrService.error('Coupon does not exist or has expired.');

@@ -11,6 +11,7 @@ export class Order {
     buyerStreetAndNumber: string;
     buyerZip: number;
     orderAmount: string;
+    orderAmountInEuro: string;
     orderStatus: string;
     createTime: string;
     products: ProductInOrder[];
@@ -28,6 +29,7 @@ export class Order {
             this.buyerStreetAndNumber = order.buyerStreetAndNumber;
             this.buyerZip = order.buyerZip;
             this.orderAmount = order.orderAmount;
+            this.orderAmountInEuro = order.orderAmountInEuro;
             this.orderStatus = order.orderStatus;
             this.products = order.products;
         }

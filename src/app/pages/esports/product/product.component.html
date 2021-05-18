@@ -26,7 +26,11 @@
                 <div class="col-12 col-md-6 bg-white py-0 px-5 pb-3 pb-md-0 px-md-3 py-md-5">
                     <div class="d-flex flex-column flex-wrap">
                         <h2>{{ product?.productName }}</h2>
-                        <h5>{{ product?.productPrice }} RSD</h5>
+                        <h5 *ngIf="product?.priceInEuros; else noPriceInEuro">{{ product?.productPrice }} RSD /
+                            {{product?.priceInEuros}} EUR</h5>
+                        <ng-template #noPriceInEuro>
+                            <h5>{{ product?.productPrice }} RSD</h5>
+                        </ng-template>
                         <hr />
                         <div *ngIf='product?.productInfoSizes.length > 0'>
                             <div class="fs-small fw-500">AVAILABLE SIZES</div>

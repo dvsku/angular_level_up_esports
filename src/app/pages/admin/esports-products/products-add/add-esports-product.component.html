@@ -47,6 +47,17 @@
                                 <small *ngIf="productPrice.errors.required">Price is required.</small>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="fs-small text-muted text-uppercase" for="productPriceInEuro">Price
+                                (EUR)*</label>
+                            <input [(ngModel)]="product.priceInEuros" type="number" class="form-control"
+                                id="productPriceInEuro" name="productPriceInEuro" required #productPriceInEuro="ngModel"
+                                (ngModelChange)="product.priceInEuros=$event">
+                            <div
+                                *ngIf="productPriceInEuro.invalid && (productPriceInEuro.dirty || productPriceInEuro.touched)">
+                                <small *ngIf="productPriceInEuro.errors.required">Price is required.</small>
+                            </div>
+                        </div>
                     </ng-template>
                 </ng-container>
                 <ng-container ngbNavItem>

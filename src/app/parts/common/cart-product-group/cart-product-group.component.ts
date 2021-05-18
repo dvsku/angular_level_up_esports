@@ -21,6 +21,7 @@ export class CartProductGroupComponent implements OnInit, OnDestroy {
     private productsSubscription: Subscription;
 
     total: number;
+    totalEuro: number;
 
     constructor(private cartService: CartService) {}
 
@@ -28,6 +29,10 @@ export class CartProductGroupComponent implements OnInit, OnDestroy {
         this.productsSubscription = this.cartService.getCart().subscribe((prods) => {
             this.products = prods;
             this.total = this.products.reduce((sum, current) => sum + current.count * current.product.productPrice, 0);
+            this.totalEuro = this.products.reduce(
+                (sum, current) => sum + current.count * current.product.priceInEuros,
+                0
+            );
         });
     }
 

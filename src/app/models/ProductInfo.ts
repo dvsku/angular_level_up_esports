@@ -19,6 +19,7 @@ export class ProductInfo {
         this.productId = null;
         this.productName = '';
         this.productPrice = 1000;
+        this.priceInEuros = 10;
         this.productDescription = '';
         this.productInfoIcons = [];
         this.productStatus = 0;

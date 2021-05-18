@@ -62,14 +62,36 @@
                             <div *ngIf="discount && discount > 0; else noDiscount"
                                 class="d-flex flex-column align-items-end justify-content-center">
                                 <div class="d-flex justify-content-center align-items-center">
-                                    <div class="fs-small text-muted text-uppercase">coupon: -{{discount}} RSD </div>
+                                    <div *ngIf="discountEuro; else noDiscountEuro"
+                                        class="fs-small text-muted text-uppercase">
+                                        coupon: -{{discount}} RSD / -{{discountEuro}} EUR
+                                    </div>
+                                    <ng-template #noDiscountEuro>
+                                        <div class="fs-small text-muted text-uppercase">coupon: -{{discount}} RSD </div>
+                                    </ng-template>
                                     <a class="standard-link-obvious ml-2" (click)='removeCoupon()'>(remove)</a>
                                 </div>
 
-                                <div class="fs-normal fw-500 text-muted text-uppercase">{{order.orderAmount}} RSD</div>
+                                <div *ngIf='order.orderAmountInEuro; else noPriceInEuro'
+                                    class="fs-normal fw-500 text-muted text-uppercase">
+                                    {{order.orderAmount}} RSD / {{order.orderAmountInEuro}} EUR
+                                </div>
+                                <ng-template #noPriceInEuro>
+                                    <div class="fs-normal fw-500 text-muted text-uppercase">
+                                        {{order.orderAmount}} RSD
+                                    </div>
+                                </ng-template>
                             </div>
                             <ng-template #noDiscount>
-                                <div class="fs-normal fw-500 text-muted text-uppercase">{{order.orderAmount}} RSD</div>
+                                <div *ngIf='order.orderAmountInEuro; else noPriceInEuroAlt'
+                                    class="fs-normal fw-500 text-muted text-uppercase">
+                                    {{order.orderAmount}} RSD / {{order.orderAmountInEuro}} EUR
+                                </div>
+                                <ng-template #noPriceInEuroAlt>
+                                    <div class="fs-normal fw-500 text-muted text-uppercase">
+                                        {{order.orderAmount}} RSD
+                                    </div>
+                                </ng-template>
                             </ng-template>
 
 

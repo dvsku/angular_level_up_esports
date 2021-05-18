@@ -12,7 +12,11 @@
     <div class="shop-item-details d-flex flex-column p-4">
         <div class="d-flex pb-4 d-flex flex-column align-items-center">
             <div class="fs-large fw-500">{{product?.productName}}</div>
-            <div class="fs-big">{{product?.productPrice}} RSD</div>
+            <div *ngIf="product?.priceInEuros; else noPriceInEuro" class="fs-big">{{product?.productPrice}} RSD /
+                {{product?.priceInEuros}} EUR</div>
+            <ng-template #noPriceInEuro>
+                <div class="fs-big">{{product?.productPrice}} RSD</div>
+            </ng-template>
         </div>
         <div class="shop-item-options d-flex flex-column align-items-start">
             <div class="fs-small fw-500 lh-1">SIZES</div>

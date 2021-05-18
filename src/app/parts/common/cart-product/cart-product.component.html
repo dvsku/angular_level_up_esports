@@ -9,7 +9,13 @@
                 <span class="text-muted fs-small">({{ product.productSize }})</span>
             </div>
         </ng-template>
-        <div class="text-muted fs-small">{{ product.count * product.product.productPrice }} RSD</div>
+        <div *ngIf="product.product.priceInEuros; else noPriceInEuro" class="text-muted fs-small">
+            {{ product.count * product.product.productPrice }} RSD / {{ product.count * product.product.priceInEuros }}
+            EUR
+        </div>
+        <ng-template #noPriceInEuro>
+            <div class="text-muted fs-small">{{ product.count * product.product.productPrice }} RSD</div>
+        </ng-template>
     </div>
     <div *ngIf="removable">
         <a class="standard-link mr-2 my-2" (click)='removeProduct()'>

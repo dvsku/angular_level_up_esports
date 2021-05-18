@@ -8,7 +8,10 @@
     <div class="col-12">
         <div class="d-flex justify-content-between pt-2 px-3">
             <div class="text-uppercase fw-800 fs-small">Total</div>
-            <div>{{ total }} RSD</div>
+            <div *ngIf="totalEuro; else noPriceInEuro">{{ total }} RSD / {{totalEuro}} EUR</div>
+            <ng-template #noPriceInEuro>
+                <div>{{ total }} RSD</div>
+            </ng-template>
         </div>
     </div>
 </div>

@@ -24,9 +24,15 @@
                             <div>
                                 <span class="text-muted fs-small">PHONE:</span> {{ order?.buyerPhone }}
                             </div>
-                            <div>
-                                <span class="text-muted fs-small">TOTAL:</span> {{ order?.orderAmount }} RSD
+                            <div *ngIf="order?.orderAmountInEuro; else noPriceInEuro">
+                                <span class="text-muted fs-small">TOTAL:</span> {{ order?.orderAmount }} RSD /
+                                {{order?.orderAmountInEuro}} EUR
                             </div>
+                            <ng-template #noPriceInEuro>
+                                <div>
+                                    <span class="text-muted fs-small">TOTAL:</span> {{ order?.orderAmount }} RSD
+                                </div>
+                            </ng-template>
                             <div *ngIf='order?.coupon'>
                                 <span class="text-muted fs-small">COUPON:</span> {{ order?.coupon.name }}
                                 ({{order?.coupon.discount}}%)

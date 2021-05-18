@@ -1,24 +1,15 @@
 import { ProductInfo } from './ProductInfo';
 
 export class ProductInOrder {
-    productId: number;
-    productName: string;
-    productDescription: string;
-    productIcon: string;
-    categoryType: number;
-    productPrice: number;
+    id: number;
     count: number;
     productSize: string;
+    product: ProductInfo;
 
-    constructor(productInfo: ProductInfo, quantity = 1, productSize = '') {
-        this.productId = productInfo.productId;
-        this.productName = productInfo.productName;
-        this.productPrice = productInfo.productPrice;
-
-        this.productDescription = productInfo.productDescription;
-        //this.productIcon = productInfo.productInfoIcons[0].image;
-        this.categoryType = productInfo.categoryType;
-        this.count = quantity;
+    constructor(id?: number, product?: ProductInfo, count = 1, productSize = '') {
+        this.id = id;
+        this.count = count;
         this.productSize = productSize;
+        this.product = product;
     }
 }

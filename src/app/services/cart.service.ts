@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { ToastrService } from 'ngx-toastr';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Order } from '../models/Order';
 import { ProductInOrder } from '../models/ProductInOrder';
 import { environment } from '../../environments/environment';
+import { OrderDto } from '../models/dto/OrderDto';
 
 @Injectable({
     providedIn: 'root'
@@ -39,9 +39,7 @@ export class CartService {
     }
 
     addProductToCart(product: ProductInOrder): void {
-        const index = this.cartProducts.findIndex(
-            (x) => x.productId === product.productId && x.productSize === product.productSize
-        );
+        const index = this.cartProducts.findIndex((x) => x.id === product.id && x.productSize === product.productSize);
         if (index !== -1) {
             this.cartProducts[index].count += product.count;
         } else {
@@ -53,9 +51,7 @@ export class CartService {
     }
 
     removeProductFromCart(product: ProductInOrder): void {
-        const index = this.cartProducts.findIndex(
-            (x) => x.productId === product.productId && x.productSize === product.productSize
-        );
+        const index = this.cartProducts.findIndex((x) => x.id === product.id && x.productSize === product.productSize);
         if (index !== -1) {
             this.cartProducts.splice(index, 1);
             this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
@@ -72,7 +68,7 @@ export class CartService {
         this.cookieService.set('cart', JSON.stringify(this.cartProducts), undefined, '/', undefined, false, 'Lax');
     }
 
-    checkout(order: Order): Promise<any> {
+    checkout(order: OrderDto): Promise<any> {
         const url = `${this.cartUrl}/checkout`;
         return this.httpClient
             .post(url, order)

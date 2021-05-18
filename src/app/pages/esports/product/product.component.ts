@@ -79,10 +79,10 @@ export class ProductComponent implements OnInit {
 
     addToCart(): void {
         if (this.product.productInfoSizes.length === 0) {
-            this.cartService.addProductToCart(new ProductInOrder(this.product, this.count, ''));
+            this.cartService.addProductToCart(new ProductInOrder(null, this.product, this.count, ''));
         } else {
             this.cartService.addProductToCart(
-                new ProductInOrder(this.product, this.count, this.selectedSize.productSize)
+                new ProductInOrder(null, this.product, this.count, this.selectedSize.productSize)
             );
         }
     }

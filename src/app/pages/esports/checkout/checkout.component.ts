@@ -12,6 +12,8 @@ import { JwtResponse } from 'src/app/models/JwtResponse';
 import { ToastrService } from 'ngx-toastr';
 import { CouponService } from 'src/app/services/coupon.service';
 import { Coupon } from 'src/app/models/Coupon';
+import { OrderDto } from 'src/app/models/dto/OrderDto';
+import { ProductInOrderDto } from 'src/app/models/dto/ProductInOrderDto';
 
 @Component({
     selector: 'app-checkout',
@@ -59,7 +61,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                     this.cartProducts = cartProducts;
                     this.order.products = this.cartProducts;
                     this.order.orderAmount = this.order.orderAmount = this.order.products
-                        .reduce((sum, current) => sum + current.count * current.productPrice, 0)
+                        .reduce((sum, current) => sum + current.count * current.product.productPrice, 0)
                         .toString();
 
                     if (this.coupon) {
@@ -119,7 +121,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
         this.coupon = undefined;
         this.discount = 0;
         this.order.orderAmount = this.order.orderAmount = this.order.products
-            .reduce((sum, current) => sum + current.count * current.productPrice, 0)
+            .reduce((sum, current) => sum + current.count * current.product.productPrice, 0)
             .toString();
     }
 
@@ -139,8 +141,33 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     }
 
     checkout(): void {
+        const orderDto = new OrderDto(
+            this.order.buyerEmail,
+            this.order.buyerName,
+            this.order.buyerLastName,
+            this.order.buyerPhone,
+            this.order.buyerCity,
+            this.order.buyerStreetAndNumber,
+            this.order.buyerZip,
+            this.order.orderStatus
+        );
+
+        orderDto.products = [];
+        for (const product of this.order.products) {
+            const productInOrderDto = new ProductInOrderDto(
+                product.product.productId,
+                product.productSize,
+                product.count
+            );
+            orderDto.products.push(productInOrderDto);
+        }
+
+        if (this.coupon) {
+            orderDto.couponId = this.coupon.id;
+        }
+
         this.cartService
-            .checkout(this.order)
+            .checkout(orderDto)
             .then(() => {
                 this.cartService.clearCart();
                 if (this.currentUser) {

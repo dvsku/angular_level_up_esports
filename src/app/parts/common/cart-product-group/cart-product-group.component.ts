@@ -27,7 +27,7 @@ export class CartProductGroupComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.productsSubscription = this.cartService.getCart().subscribe((prods) => {
             this.products = prods;
-            this.total = this.products.reduce((sum, current) => sum + current.count * current.productPrice, 0);
+            this.total = this.products.reduce((sum, current) => sum + current.count * current.product.productPrice, 0);
         });
     }
 

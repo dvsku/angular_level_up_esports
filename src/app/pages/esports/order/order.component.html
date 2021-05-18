@@ -25,7 +25,11 @@
                                 <span class="text-muted fs-small">PHONE:</span> {{ order?.buyerPhone }}
                             </div>
                             <div>
-                                <span class="text-muted fs-small">TOTAL:</span> {{ total }} RSD
+                                <span class="text-muted fs-small">TOTAL:</span> {{ order?.orderAmount }} RSD
+                            </div>
+                            <div *ngIf='order?.coupon'>
+                                <span class="text-muted fs-small">COUPON:</span> {{ order?.coupon.name }}
+                                ({{order?.coupon.discount}}%)
                             </div>
                             <div>
                                 <span class="text-muted fs-small">DATE:</span>

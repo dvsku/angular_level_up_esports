@@ -1,3 +1,4 @@
+import { Coupon } from './Coupon';
 import { ProductInOrder } from './ProductInOrder';
 
 export class Order {
@@ -13,6 +14,7 @@ export class Order {
     orderStatus: string;
     createTime: string;
     products: ProductInOrder[];
+    coupon: Coupon;
 
     constructor(order?: Order) {
         this.orderStatus = '0';

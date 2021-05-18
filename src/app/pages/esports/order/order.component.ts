@@ -10,7 +10,6 @@ import { Order } from 'src/app/models/Order';
 })
 export class OrderComponent implements OnInit {
     order: Order;
-    total = 0;
 
     public OrderStatus = OrderStatus;
 
@@ -23,10 +22,6 @@ export class OrderComponent implements OnInit {
                 return;
             } else {
                 this.order = data.order;
-                this.total = this.order.products.reduce(
-                    (sum, current) => sum + current.count * current.productPrice,
-                    0
-                );
             }
         });
     }

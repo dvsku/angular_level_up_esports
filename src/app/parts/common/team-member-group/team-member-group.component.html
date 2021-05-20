@@ -7,27 +7,21 @@
                 <fa-icon transform="grow-4" [icon]="faEdit"></fa-icon>
             </a>
             <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
-                (click)="removeTeamMember(member)">
+                (click)="selectedTeamMember = member; removeMemberModal.show()">
                 <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
             </a>
         </div>
     </div>
 </div>
 
-<ng-template #removeMemberModal let-removeMemberModal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Remove Roster Member</h4>
-        <button type="button" class="close" aria-label="Close" (click)="removeMemberModal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<generic-modal #removeMemberModal>
+    <div body>
+        <h6>Are you sure that you want to remove this team member?</h6>
     </div>
-    <div class="modal-body">
-        <h6>Are you sure that you you want to remove this team member?</h6>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary"
+    <div footer>
+        <button type="button" class="standard-btn standard-btn-primary mr-2"
             (click)="onRemoveMemberOk(); removeMemberModal.close()">Remove</button>
         <button type="button" class="standard-btn standard-btn-primary"
             (click)="removeMemberModal.close()">Cancel</button>
     </div>
-</ng-template>
+</generic-modal>

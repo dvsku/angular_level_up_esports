@@ -12,21 +12,21 @@
     </div>
 </ng-template>
 
-<ng-template #modal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Crop Image</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<generic-modal #cropImageModal>
+    <div class="w-100" body>
+        <div class="row py-2 px-4">
+            <div class="col-12" style="max-height: 70vh;">
+                <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="resizeToWidth"
+                    [resizeToHeight]="resizeToHeight" [maintainAspectRatio]="maintainAspectRatio"
+                    [aspectRatio]="aspectRatio" format="png" (imageCropped)="imageCropped($event)" [autoCrop]="false">
+                </image-cropper>
+            </div>
+        </div>
+        <div class="row py-2 px-4">
+            <div class="col-12 d-flex flex-row-reverse">
+                <button type="button" class="standard-btn standard-btn-primary"
+                    (click)="cropper.crop(); cropImageModal.close()">Save</button>
+            </div>
+        </div>
     </div>
-    <div class="modal-body" style="height: 75vh">
-        <image-cropper #cropper [imageBase64]="cropperImageBase64" [resizeToWidth]="resizeToWidth"
-            [resizeToHeight]="resizeToHeight" [maintainAspectRatio]="maintainAspectRatio" [aspectRatio]="aspectRatio"
-            format="png" (imageCropped)="imageCropped($event)" [autoCrop]="false">
-        </image-cropper>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary"
-            (click)="cropper.crop(); modal.close()">Save</button>
-    </div>
-</ng-template>
+</generic-modal>

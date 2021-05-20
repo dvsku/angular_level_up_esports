@@ -65,8 +65,10 @@
                     <ng-template ngbNavContent>
                         <div class="row">
                             <div class="col-12">
-                                <button type="button" (click)='addImageInput()'
-                                    class="standard-btn standard-btn-primary btn-block">Add</button>
+                                <a class="standard-link mr-3" (click)='addImageInput()' placement="top"
+                                    ngbTooltip="Add image">
+                                    <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+                                </a>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -82,8 +84,10 @@
                     <ng-template ngbNavContent>
                         <div class="row">
                             <div class="col-12">
-                                <button type="button" class="standard-btn standard-btn-primary btn-block"
-                                    (click)="openModal(addSizeModal)">Add</button>
+                                <a class="standard-link mr-3" (click)='addSizeModal.show()' placement="top"
+                                    ngbTooltip="Add size">
+                                    <fa-icon transform="grow-4" [icon]="faPlus"></fa-icon>
+                                </a>
                             </div>
                         </div>
                         <div class="row mt-2">
@@ -93,8 +97,9 @@
                                         <div class="drop-placeholder" *cdkDragPlaceholder></div>
                                         <div class="text-uppercase">{{size.productSize}}</div>
                                         <div class="mr-2 my-2 text-right" style="width: 100px;">
-                                            <a type="button" class="subcategory-link btn-block"
-                                                (click)='removeSize(size)'>Remove</a>
+                                            <a class="standard-link mr-3 my-2" (click)='removeSize(size)'>
+                                                <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
+                                            </a>
                                         </div>
                                     </div>
                                 </div>
@@ -112,22 +117,23 @@
     </div>
 </form>
 
-<ng-template #addSizeModal let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Add Size</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-    <form (ngSubmit)="onAddSizeSubmit()">
-        <div class="modal-body">
-            <div class="form-group">
-                <label class="fs-small text-muted text-uppercase" for="size">Size</label>
-                <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size">
+<generic-modal #addSizeModal>
+    <div class="w-100 d-flex justify-content-center" body>
+        <form class="w-75" (ngSubmit)="onAddSizeSubmit()">
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        <label class="fs-small text-muted text-uppercase" for="size">Size</label>
+                        <input [(ngModel)]="size" type="text" class="form-control" id="size" name="size">
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="submit" class="standard-btn standard-btn-primary" (click)="modal.close()">Save</button>
-        </div>
-    </form>
-</ng-template>
+            <div class="row">
+                <div class="col-12 d-flex flex-row-reverse">
+                    <button type="submit" class="standard-btn standard-btn-primary"
+                        (click)="addSizeModal.close()">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</generic-modal>

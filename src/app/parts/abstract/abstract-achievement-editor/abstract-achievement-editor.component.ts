@@ -1,7 +1,7 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faCalendarAlt, faImage, faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbDateParserFormatter, NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateParserFormatter, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
@@ -18,6 +18,7 @@ import { ImagesService } from 'src/app/services/images.service';
 import { LoaderService } from 'src/app/services/loader.service';
 import { PersonService } from 'src/app/services/person.service';
 import { TeamMemberGroupComponent } from '../../common/team-member-group/team-member-group.component';
+import { GenericModalComponent } from '../../modals/generic-modal/generic-modal.component';
 
 @Component({ template: '' })
 export class AbstractAchievementEditorComponent extends TeamMembersHandler {
@@ -25,16 +26,13 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
     protected name: string;
 
     achievement: Achievement = new Achievement();
-    teamMember: TeamMember;
+    teamMember: TeamMember = new TeamMember();
 
     @ViewChild('fileInput')
     fileInput: ElementRef;
 
-    @ViewChild('removeImageModal')
-    removeImageModal: ElementRef;
-
     @ViewChild('createTeamMemberModal')
-    createTeamMemberModal: ElementRef;
+    createTeamMemberModal: GenericModalComponent;
 
     @ViewChild(ImageCropperComponent)
     imageCropper: ImageCropperComponent;
@@ -69,7 +67,6 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
         protected router: Router,
         protected toastrService: ToastrService,
         protected config: NgbNavConfig,
-        protected modalService: NgbModal,
         protected peopleService: PersonService,
         public imageService: ImagesService,
         protected parserFormatter: NgbDateParserFormatter,
@@ -89,7 +86,7 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
         this.achievement.teamMembers.push(teamMember);
         this.subtract = this.achievement.teamMembers.map<Person>((member) => member.person);
         this.teamMemberGroup.reorderTeamMembers();
-        this.modalService.dismissAll();
+        this.createTeamMemberModal.close();
     }
 
     updateTeamMember(teamMember: TeamMember): void {
@@ -100,7 +97,7 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
             this.teamMemberGroup.reorderTeamMembers();
         }
         this.edit = false;
-        this.modalService.dismissAll();
+        this.createTeamMemberModal.close();
     }
 
     removeTeamMember(teamMember: TeamMember): void {
@@ -116,21 +113,13 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
         this.edit = true;
         this.selectedTeamMember = teamMember;
         this.teamMember = JSON.parse(JSON.stringify(teamMember));
-        this.modalService.open(this.createTeamMemberModal, {
-            ariaLabelledBy: 'modal-basic-title',
-            windowClass: 'modal-dialog-standard',
-            backdrop: 'static'
-        });
+        this.createTeamMemberModal.show();
         this.teamMemberGroup.parent = this;
     }
 
     addTeamMember(): void {
         this.teamMember = new TeamMember();
-        this.modalService.open(this.createTeamMemberModal, {
-            ariaLabelledBy: 'modal-basic-title',
-            windowClass: 'modal-dialog-standard',
-            backdrop: 'static'
-        });
+        this.createTeamMemberModal.show();
         this.teamMemberGroup.parent = this;
     }
 
@@ -189,15 +178,6 @@ export class AbstractAchievementEditorComponent extends TeamMembersHandler {
         this.achievement.pictures.push(new AchievementPicture(null, event.base64));
         this.cropperImageBase64 = '';
         this.cropImages();
-    }
-
-    removeImage(image: AchievementPicture): void {
-        this.selectedImage = image;
-        this.modalService.open(this.removeImageModal, {
-            ariaLabelledBy: 'modal-basic-title',
-            windowClass: 'modal-dialog-standard',
-            backdrop: 'static'
-        });
     }
 
     onRemoveImageOk() {

@@ -30,7 +30,7 @@
                     <td class="align-middle">
                         <div class="d-flex justify-content-end align-items-center">
                             <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
-                                (click)="selectedCoupon = coupon; showModal(removeCouponModal)">
+                                (click)="selectedCoupon = coupon; removeCouponModal.show()">
                                 <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
                             </a>
                         </div>
@@ -41,20 +41,14 @@
     </div>
 </div>
 
-<ng-template #removeCouponModal let-removeCouponModal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Remove Content Creator</h4>
-        <button type="button" class="close" aria-label="Close" (click)="removeCouponModal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<generic-modal #removeCouponModal>
+    <div body>
+        <h6>Are you sure that you want to remove this coupon?</h6>
     </div>
-    <div class="modal-body">
-        <h6>Are you sure that you you want to remove this content creator?</h6>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="standard-btn standard-btn-primary"
+    <div footer>
+        <button type="button" class="standard-btn standard-btn-primary mr-2"
             (click)="onRemoveOk(); removeCouponModal.close()">Remove</button>
         <button type="button" class="standard-btn standard-btn-primary"
             (click)="removeCouponModal.close()">Cancel</button>
     </div>
-</ng-template>
+</generic-modal>

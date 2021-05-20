@@ -1,5 +1,5 @@
 <form #form="ngForm" class="w-100" style="position: relative;" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
-    <div *ngIf="teamMember.person; else noPerson" class="row py-3">
+    <div *ngIf="teamMember?.person; else noPerson" class="row py-3">
         <div class="col-12 mb-2">
             <div class="px-3">
                 <a class="standard-link mr-3" placement="top" ngbTooltip="Unlink person" (click)="unlinkPerson()">

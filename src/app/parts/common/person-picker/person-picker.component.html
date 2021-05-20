@@ -1,13 +1,6 @@
-<ng-template #personPickerModal let-personPickerModal>
-    <div class="row">
-        <div class="col-12 d-flex flex-row-reverse">
-            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="personPickerModal.dismiss()">
-                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
-            </a>
-        </div>
-    </div>
-    <div class="container bg-white mt-2">
-        <div class="row py-4 px-4">
+<generic-modal #personPickerModal>
+    <div class="w-100" body>
+        <div class="row py-2 px-4">
             <div class="col-12" style="max-height: 80vh; overflow: auto; display:inline-block;">
                 <table class="table">
                     <thead>
@@ -27,11 +20,13 @@
                     </tbody>
                 </table>
             </div>
-            <div class="col-12 py-2 d-flex flex-row-reverse">
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex flex-row-reverse">
                 <button type="button" [disabled]="!selected" class="standard-btn standard-btn-primary"
                     style="padding-left: 30px; padding-right: 30px;"
                     (click)="close(); personPickerModal.close()">Ok</button>
             </div>
         </div>
     </div>
-</ng-template>
+</generic-modal>

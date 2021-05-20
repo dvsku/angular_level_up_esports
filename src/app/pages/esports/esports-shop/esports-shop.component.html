@@ -1,8 +1,8 @@
 <three-row-grid-layout>
-    <div class="container-fluid">
+    <div class="container-fluid px-4">
         <div class="row my-5 align-items-start">
-            <div class="col-12 col-lg-2 bg-white sticky">
-                <ul class="list-unstyled px-4 py-4">
+            <div class="col-12 col-lg-3 col-xl-2 sticky">
+                <ul class="list-unstyled py-4">
                     <li>
                         <a class="category-link fs-xlarge" (click)="changeCategory('all')">ALL</a>
                     </li>
@@ -13,8 +13,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-12 col-lg-10 ml-0 mt-5 mt-lg-0 bg-white">
-                <div id="info-row" class="row pb-2 pt-4 mx-4">
+            <div class="col-12 col-lg-9 col-xl-10 ml-0 mt-5 mt-lg-0">
+                <div id="info-row" class="row px-2 pb-2 pt-4">
                     <div class="col-12 col-lg-8 fw-500 d-flex flex-column text-center text-lg-left justify-content-end">
                         <span class="text-uppercase" *ngIf="displayedProducts?.length !== 1; else prodLenOne">
                             SHOWING {{ displayedProducts?.length }} {{ category }} RESULTS
@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="row mt-3">
-                    <div class="col-12 py-4 text-center">
+                    <div class="col-12 px-2 py-4 text-center">
                         <app-shop-item-deck [products]="displayedProducts"></app-shop-item-deck>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { faEdit, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeamMembersHandler } from 'src/app/models/interfaces/TeamMembersHandler';
 import { TeamMember } from 'src/app/models/TeamMember';
 
@@ -25,21 +24,10 @@ export class TeamMemberGroupComponent {
 
     parent: TeamMembersHandler;
 
-    private selectedTeamMember: TeamMember;
-
-    constructor(private modalService: NgbModal) {}
+    selectedTeamMember: TeamMember;
 
     public openEditWindow(teamMember: TeamMember): void {
         this.parent.openEditWindow(teamMember);
-    }
-
-    public removeTeamMember(teamMember: TeamMember): void {
-        this.selectedTeamMember = teamMember;
-        this.modalService.open(this.modal, {
-            ariaLabelledBy: 'modal-basic-title',
-            size: 'xl',
-            backdrop: 'static'
-        });
     }
 
     public onRemoveMemberOk(): void {

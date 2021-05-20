@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { Coupon } from 'src/app/models/Coupon';
@@ -20,11 +19,7 @@ export class CouponsComponent implements OnInit, OnDestroy {
     faPlus = faPlus;
     faTimes = faTimes;
 
-    constructor(
-        private couponService: CouponService,
-        private modalService: NgbModal,
-        private toastrService: ToastrService
-    ) {}
+    constructor(private couponService: CouponService, private toastrService: ToastrService) {}
 
     ngOnInit(): void {
         this.couponsSubscription = this.couponService.getCoupons().subscribe((coupons) => {
@@ -34,10 +29,6 @@ export class CouponsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         if (this.couponsSubscription) this.couponsSubscription.unsubscribe();
-    }
-
-    showModal(content: any): void {
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     }
 
     onRemoveOk(): void {

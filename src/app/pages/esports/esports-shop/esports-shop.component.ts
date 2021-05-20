@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { Location } from '@angular/common';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductCategory } from 'src/app/models/ProductCategory';
+import { CompareService } from 'src/app/services/compare.service';
 
 @Component({
     selector: 'app-esports-shop',
@@ -25,14 +26,38 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
     sort: string;
 
     private productsSubscription: Subscription;
+    private categoriesSubscription: Subscription;
 
     constructor(
         private productService: ProductService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private location: Location,
-        private productCategoryService: ProductCategoryService
+        private productCategoryService: ProductCategoryService,
+        private compareService: CompareService
     ) {}
+
+    ngOnInit(): void {
+        this.categoriesSubscription = this.productCategoryService.getProductCategories().subscribe((cats) => {
+            this.categories = cats;
+        });
+
+        this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
+            if (prods !== null && prods !== undefined) {
+                this.products = prods.filter((x) => x.productStatus === ProductStatus.Available);
+                this.displayedProducts = this.products;
+
+                this.getRouteParameters();
+                this.setRouteParameters();
+                this.updateShop();
+            }
+        });
+    }
+
+    ngOnDestroy(): void {
+        if (this.productsSubscription) this.productsSubscription.unsubscribe();
+        if (this.categoriesSubscription) this.categoriesSubscription.unsubscribe();
+    }
 
     changeCategory(category: string): void {
         this.category = category;
@@ -51,18 +76,20 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
         let products: ProductInfo[] = this.products.filter((x) => x);
         switch (this.sort) {
             case 'newest':
-                products = products.sort((a, b) => {
-                    return 0 - (new Date(a.createTime).getTime() - new Date(b.createTime).getTime() ? 1 : -1);
-                });
+                products = products.sort((a, b) => this.compareService.compareISODatesDESC(a.createTime, b.createTime));
                 break;
             case 'priceAsc':
-                products = products.sort((a, b) => 0 - (a.productPrice > b.productPrice ? -1 : 1));
+                products = products.sort((a, b) =>
+                    this.compareService.compareNumbersASC(a.productPrice, b.productPrice)
+                );
                 break;
             case 'priceDesc':
-                products = products.sort((a, b) => 0 - (a.productPrice > b.productPrice ? 1 : -1));
+                products = products.sort((a, b) =>
+                    this.compareService.compareNumbersDESC(a.productPrice, b.productPrice)
+                );
                 break;
             case 'popular':
-                products = products.sort((a, b) => 0 - (a.sold > b.sold ? 1 : -1));
+                products = products.sort((a, b) => this.compareService.compareNumbersDESC(a.sold, b.sold));
                 break;
         }
         if (this.category === 'all') {
@@ -98,26 +125,5 @@ export class EsportsShopComponent implements OnInit, OnDestroy {
                 this.sort = 'newest';
             }
         });
-    }
-
-    ngOnInit(): void {
-        this.productCategoryService.getProductCategories().subscribe((cats) => {
-            this.categories = cats;
-        });
-
-        this.productsSubscription = this.productService.getProducts().subscribe((prods) => {
-            if (prods !== null && prods !== undefined) {
-                this.products = prods.filter((x) => x.productStatus === ProductStatus.Available);
-                this.displayedProducts = this.products;
-
-                this.getRouteParameters();
-                this.setRouteParameters();
-                this.updateShop();
-            }
-        });
-    }
-
-    ngOnDestroy(): void {
-        this.productsSubscription.unsubscribe();
     }
 }

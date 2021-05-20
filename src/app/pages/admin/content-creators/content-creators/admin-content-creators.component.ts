@@ -1,6 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { faAngleDown, faEdit, faInfo, faTimes, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ContentCreator } from 'src/app/models/ContentCreator';
@@ -26,7 +25,6 @@ export class AdminContentCreatorsComponent implements OnInit, OnDestroy {
     constructor(
         private creatorService: ContentCreatorService,
         private toastrService: ToastrService,
-        private modalService: NgbModal,
         public imagesService: ImagesService
     ) {}
 
@@ -38,10 +36,6 @@ export class AdminContentCreatorsComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         if (this.creatorsSubscription) this.creatorsSubscription.unsubscribe();
-    }
-
-    showModal(content: any): void {
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     }
 
     onRemoveOk(): void {

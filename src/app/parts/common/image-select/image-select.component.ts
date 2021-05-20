@@ -1,8 +1,8 @@
 import { Component, ElementRef, Input, Output, ViewChild, EventEmitter } from '@angular/core';
 import { faEyeSlash, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ImagesService } from 'src/app/services/images.service';
+import { GenericModalComponent } from '../../modals/generic-modal/generic-modal.component';
 
 @Component({
     selector: 'image-select',
@@ -37,8 +37,8 @@ export class ImageSelectComponent {
     @ViewChild('fileInput')
     fileInput: ElementRef;
 
-    @ViewChild('modal')
-    modal: ElementRef;
+    @ViewChild('cropImageModal')
+    cropImageModal: GenericModalComponent;
 
     faTimes = faTimes;
     faEyeSlash = faEyeSlash;
@@ -46,7 +46,7 @@ export class ImageSelectComponent {
     cropperImageBase64 = '';
     croppedImage: any = '';
 
-    constructor(public imageService: ImagesService, private modalService: NgbModal) {}
+    constructor(public imageService: ImagesService) {}
 
     openFileSelectDialog(): void {
         this.fileInput.nativeElement.click();
@@ -64,11 +64,7 @@ export class ImageSelectComponent {
     resizeImage(imageBase64: string): void {
         if (imageBase64 !== '') {
             this.cropperImageBase64 = imageBase64;
-            this.modalService.open(this.modal, {
-                ariaLabelledBy: 'modal-basic-title',
-                size: 'xl',
-                backdrop: 'static'
-            });
+            this.cropImageModal.show();
         }
     }
 

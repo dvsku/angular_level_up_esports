@@ -41,7 +41,7 @@
                                 <fa-icon transform="grow-4" [icon]="faEdit"></fa-icon>
                             </a>
                             <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
-                                (click)="selectedCreator = creator; showModal(removeCreator)">
+                                (click)="selectedCreator = creator; removeCreatorModal.show()">
                                 <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
                             </a>
                         </div>
@@ -52,19 +52,14 @@
     </div>
 </div>
 
-<ng-template #removeCreator let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Remove Content Creator</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<generic-modal #removeCreatorModal>
+    <div body>
+        <h6>Are you sure that you want to remove this content creator?</h6>
     </div>
-    <div class="modal-body">
-        <h6>Are you sure that you you want to remove this content creator?</h6>
-    </div>
-    <div class="modal-footer">
+    <div footer>
+        <button type="button" class="standard-btn standard-btn-primary mr-2"
+            (click)="onRemoveOk(); removeCreatorModal.close()">Remove</button>
         <button type="button" class="standard-btn standard-btn-primary"
-            (click)="onRemoveOk(); modal.close()">Remove</button>
-        <button type="button" class="standard-btn standard-btn-primary" (click)="modal.close()">Cancel</button>
+            (click)="removeCreatorModal.close()">Cancel</button>
     </div>
-</ng-template>
+</generic-modal>

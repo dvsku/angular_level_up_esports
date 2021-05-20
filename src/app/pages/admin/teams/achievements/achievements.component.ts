@@ -1,7 +1,6 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { faArrowDown, faEdit, faPlus, faTimes, faUserPlus } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { Achievement } from 'src/app/models/Achievement';
 import { AchievementCategory } from 'src/app/models/AchievementCategory';
@@ -31,10 +30,7 @@ export class AchievementsComponent extends TeamMembersHandler implements OnInit,
     faPlus = faPlus;
     faUserPlus = faUserPlus;
 
-    @ViewChild('removeAchievementModal')
-    modal: ElementRef;
-
-    private selectedAchievement: Achievement;
+    selectedAchievement: Achievement;
 
     private hasChanges = false;
 
@@ -44,7 +40,6 @@ export class AchievementsComponent extends TeamMembersHandler implements OnInit,
         public imageService: ImagesService,
         private teamService: AchievementCategoryService,
         private toastrService: ToastrService,
-        private modalService: NgbModal,
         private achievementService: AchievementService
     ) {
         super();
@@ -111,15 +106,6 @@ export class AchievementsComponent extends TeamMembersHandler implements OnInit,
 
         return Promise.all(promises).then(() => {
             return true;
-        });
-    }
-
-    removeAchievement(achievement: Achievement): void {
-        this.selectedAchievement = achievement;
-        this.modalService.open(this.modal, {
-            ariaLabelledBy: 'modal-basic-title',
-            size: 'xl',
-            backdrop: 'static'
         });
     }
 

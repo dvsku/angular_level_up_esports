@@ -3,8 +3,5 @@
 .team-members-grid
     display: grid
     grid-gap: 1rem
-    grid-template-columns: repeat(auto-fit, minmax(16rem, 16rem))
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr))
     justify-items: center
-    justify-content: start
-    @include media-breakpoint-down(sm)
-        justify-content: center

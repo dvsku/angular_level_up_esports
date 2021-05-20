@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { NgbModal, NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProductInfoSize } from 'src/app/models/ProductInfoSize';
@@ -13,7 +13,7 @@ import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { ProductIcon } from 'src/app/models/ProductIcon';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-add-esports-product',
@@ -31,12 +31,13 @@ export class AddEsportsProductComponent implements OnInit, OnDestroy, AfterViewI
     title = 'Add Esports Product';
 
     faSave = faSave;
+    faPlus = faPlus;
+    faTimes = faTimes;
 
     private categoriesSubscription: Subscription;
 
     constructor(
         private config: NgbNavConfig,
-        private modalService: NgbModal,
         private categoriesService: ProductCategoryService,
         private productService: ProductService,
         private router: Router,
@@ -117,17 +118,6 @@ export class AddEsportsProductComponent implements OnInit, OnDestroy, AfterViewI
 
     addImageInput(): void {
         this.imageGroup.addImage();
-    }
-
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //	MODAL
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-    openModal(modal: any): void {
-        this.modalService.open(modal, {
-            ariaLabelledBy: 'modal-basic-title',
-            backdrop: 'static'
-        });
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

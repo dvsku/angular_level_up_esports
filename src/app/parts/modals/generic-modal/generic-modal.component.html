@@ -1,0 +1,19 @@
+<ng-template #genericModal let-genericModal>
+    <div class="row">
+        <div class="col-12 d-flex flex-row-reverse">
+            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="genericModal.dismiss()">
+                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
+            </a>
+        </div>
+    </div>
+    <div class="modal-container mt-4 w-50">
+        <div class="row py-3 bg-white">
+            <div class="col-12 px-4 py-2 d-flex justify-content-center">
+                <ng-content select="[body]"></ng-content>
+            </div>
+            <div class="col-12 d-flex flex-row-reverse">
+                <ng-content select="[footer]"></ng-content>
+            </div>
+        </div>
+    </div>
+</ng-template>

@@ -81,7 +81,8 @@
                                                 (click)="imagePreview.show(imageService.getImage(image.picture))">
                                                 <fa-icon transform="grow-14" [icon]="faImage"></fa-icon>
                                             </a>
-                                            <a class="standard-link-reverse" (click)="removeImage(image)">
+                                            <a class="standard-link-reverse"
+                                                (click)="selectedImage = image; removeImageModal.show()">
                                                 <fa-icon transform="grow-14" [icon]="faTimes"></fa-icon>
                                             </a>
                                         </div>
@@ -126,38 +127,20 @@
     </div>
 </form>
 
-<ng-template #removeImageModal let-removeImageModal>
-    <div class="row">
-        <div class="col-12 d-flex flex-row-reverse">
-            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="removeImageModal.dismiss()">
-                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
-            </a>
-        </div>
+<generic-modal #removeImageModal>
+    <div body>
+        <h6>Are you sure that you want to remove this image?</h6>
     </div>
-    <div class="container bg-white mt-2 w-50">
-        <div class="row py-3">
-            <div class="col-12 px-4 py-2 d-flex justify-content-center">
-                <h6>Are you sure that you want to remove this image?</h6>
-            </div>
-            <div class="col-12 d-flex flex-row-reverse">
-                <button type="button" class="standard-btn standard-btn-primary"
-                    (click)="removeImageModal.close()">Cancel</button>
-                <button type="button" class="standard-btn standard-btn-primary mr-2"
-                    (click)="onRemoveImageOk(); removeImageModal.close()">Remove</button>
-            </div>
-        </div>
+    <div footer>
+        <button type="button" class="standard-btn standard-btn-primary mr-2"
+            (click)="onRemoveImageOk(); removeImageModal.close()">Remove</button>
+        <button type="button" class="standard-btn standard-btn-primary"
+            (click)="removeImageModal.close()">Cancel</button>
     </div>
-</ng-template>
+</generic-modal>
 
-<ng-template #createTeamMemberModal let-createTeamMemberModal>
-    <div class="row">
-        <div class="col-12 d-flex flex-row-reverse">
-            <a class="standard-link-reverse" style="margin-right: 28px;" (click)="createTeamMemberModal.dismiss()">
-                <fa-icon transform="grow-10" [icon]="faTimes"></fa-icon>
-            </a>
-        </div>
-    </div>
-    <div class="container bg-white mt-2">
+<generic-modal #createTeamMemberModal>
+    <div class="w-100" body>
         <div class="row py-2 px-4">
             <div class="col-12">
                 <team-member-creator [teamMember]="teamMember" [people]="people" [subtract]="subtract" [edit]="edit"
@@ -166,4 +149,4 @@
             </div>
         </div>
     </div>
-</ng-template>
+</generic-modal>

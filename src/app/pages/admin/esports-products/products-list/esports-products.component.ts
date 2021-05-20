@@ -3,7 +3,6 @@ import { ProductStatus } from 'src/app/enums/ProductStatus';
 import { ProductInfo } from 'src/app/models/ProductInfo';
 import { ProductService } from 'src/app/services/product.service';
 import { faAngleDown, faEdit, faInfo, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { ProductCategory } from 'src/app/models/ProductCategory';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { Subscription } from 'rxjs';
@@ -35,14 +34,9 @@ export class EsportsProductsComponent implements OnInit, OnDestroy {
 
     constructor(
         private productService: ProductService,
-        private modalService: NgbModal,
-        private config: NgbModalConfig,
         private categoriesService: ProductCategoryService,
         public imagesService: ImagesService
-    ) {
-        config.backdrop = 'static';
-        config.keyboard = false;
-    }
+    ) {}
 
     ngOnInit(): void {
         this.getProducts();
@@ -52,10 +46,6 @@ export class EsportsProductsComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.productsSubscription.unsubscribe();
         this.categoriesSubscription.unsubscribe();
-    }
-
-    showModal(content: any): void {
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     }
 
     onRemoveOk(): void {

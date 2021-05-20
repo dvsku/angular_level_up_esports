@@ -1,8 +1,8 @@
-import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Person } from 'src/app/models/Person';
 import { ImagesService } from 'src/app/services/images.service';
+import { GenericModalComponent } from '../../modals/generic-modal/generic-modal.component';
 
 @Component({
     selector: 'person-picker',
@@ -23,11 +23,11 @@ export class PersonPickerComponent implements OnInit {
     selectedChange = new EventEmitter<Person>();
 
     @ViewChild('personPickerModal')
-    personPickerModal: ElementRef;
+    personPickerModal: GenericModalComponent;
 
     faTimes = faTimes;
 
-    constructor(public imageService: ImagesService, private modalService: NgbModal) {}
+    constructor(public imageService: ImagesService) {}
 
     ngOnInit(): void {
         if (this.people && this.subtract) {
@@ -38,11 +38,7 @@ export class PersonPickerComponent implements OnInit {
     }
 
     open(): void {
-        this.modalService.open(this.personPickerModal, {
-            ariaLabelledBy: 'modal-basic-title',
-            windowClass: 'modal-dialog-standard',
-            backdrop: 'static'
-        });
+        this.personPickerModal.show();
     }
 
     close() {

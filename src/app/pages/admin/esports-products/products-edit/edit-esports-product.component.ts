@@ -13,7 +13,7 @@ import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImageGroupComponent } from 'src/app/parts/common/image-group/image-group.component';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ProductIcon } from 'src/app/models/ProductIcon';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSave, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'app-edit-esports-product',
@@ -31,6 +31,8 @@ export class EditEsportsProductComponent implements OnInit, OnDestroy, AfterView
     imageGroup: ImageGroupComponent;
 
     faSave = faSave;
+    faPlus = faPlus;
+    faTimes = faTimes;
 
     private categoriesSubscription: Subscription;
 

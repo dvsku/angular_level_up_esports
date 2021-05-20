@@ -6,7 +6,7 @@
     </div>
     <div class="row py-3">
         <div class="col-12">
-            <image-select [(image)]="partner.image"></image-select>
+            <image-select [maintainAspectRatio]="false" [(image)]="partner.image"></image-select>
             <div class="form-group">
                 <label class="fs-small text-muted text-uppercase" for="partnerName">Name*</label>
                 <input [(ngModel)]="partner.name" type="text" class="form-control" id="partnerName" name="partnerName"

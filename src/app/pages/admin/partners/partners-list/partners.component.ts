@@ -5,7 +5,6 @@ import { PartnerService } from 'src/app/services/partner.service';
 import { faAngleDown, faEdit, faPlus, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
 import { ToastrService } from 'ngx-toastr';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ImagesService } from 'src/app/services/images.service';
 import { ChangeDetection } from 'src/app/models/interfaces/ChangeDetection';
 
@@ -29,7 +28,6 @@ export class AdminPartnersComponent implements OnInit, OnDestroy, ChangeDetectio
     constructor(
         private partnerService: PartnerService,
         private toastrService: ToastrService,
-        private modalService: NgbModal,
         public imagesService: ImagesService
     ) {}
 
@@ -55,10 +53,6 @@ export class AdminPartnersComponent implements OnInit, OnDestroy, ChangeDetectio
             partner.displayOrder = index + 1;
         });
         this.hasChanges = true;
-    }
-
-    showModal(content: any): void {
-        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' });
     }
 
     onRemoveOk(): void {

@@ -35,7 +35,7 @@
                                 <fa-icon transform="grow-4" [icon]="faEdit"></fa-icon>
                             </a>
                             <a class="standard-link mr-3" style="margin-top: 1px;" placement="top" ngbTooltip="Remove"
-                                (click)="selectedPerson = person; showModal(removePerson)">
+                                (click)="selectedPerson = person; removePersonModal.show()">
                                 <fa-icon transform="grow-6" [icon]="faTimes"></fa-icon>
                             </a>
                         </div>
@@ -46,19 +46,14 @@
     </div>
 </div>
 
-<ng-template #removePerson let-modal>
-    <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">Remove Person</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<generic-modal #removePersonModal>
+    <div body>
+        <h6>Are you sure that you want to remove this person?</h6>
     </div>
-    <div class="modal-body">
-        <h6>Are you sure that you you want to remove this person?</h6>
-    </div>
-    <div class="modal-footer">
+    <div footer>
+        <button type="button" class="standard-btn standard-btn-primary mr-2"
+            (click)="onRemoveOk(); removePersonModal.close()">Remove</button>
         <button type="button" class="standard-btn standard-btn-primary"
-            (click)="onRemoveOk(); modal.close()">Remove</button>
-        <button type="button" class="standard-btn standard-btn-primary" (click)="modal.close()">Cancel</button>
+            (click)="removePersonModal.close()">Cancel</button>
     </div>
-</ng-template>
+</generic-modal>

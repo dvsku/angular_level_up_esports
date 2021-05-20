@@ -1,12 +1,12 @@
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
-import { Component, Input, ViewChild, ViewContainerRef, ElementRef, ComponentFactoryResolver } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, ViewChild, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { ModelWithImage } from 'src/app/models/base/ModelWithImage';
 import { ImagesHandler } from 'src/app/models/interfaces/ImagesHandler';
 import { ImagesService } from 'src/app/services/images.service';
 import { ImageInputComponent } from '../image-input/image-input.component';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { GenericModalComponent } from '../../modals/generic-modal/generic-modal.component';
 
 @Component({
     selector: 'image-group',
@@ -38,8 +38,8 @@ export class ImageGroupComponent {
     @ViewChild('parent', { read: ViewContainerRef })
     container: ViewContainerRef;
 
-    @ViewChild('modal')
-    modal: ElementRef;
+    @ViewChild('cropImageModal')
+    cropImageModal: GenericModalComponent;
 
     cropperImageBase64 = '';
     croppedImage: any = '';
@@ -48,28 +48,17 @@ export class ImageGroupComponent {
 
     faRemove = faTimes;
 
-    constructor(
-        private _cfr: ComponentFactoryResolver,
-        private modalService: NgbModal,
-        public imagesService: ImagesService
-    ) {}
+    constructor(private _cfr: ComponentFactoryResolver, public imagesService: ImagesService) {}
 
     imageCropped(event: ImageCroppedEvent): void {
         this.parent.createImage(event.base64);
         this.parent.reorderImages();
-        //if(this.images instanceof HomeRotatingPicture[])
-        /*  this.images.push(new ProductIcon(null, event.base64, 0));
-        this.reorderImages(); */
     }
 
     resizeImage(imageBase64: string): void {
         if (imageBase64 !== '') {
             this.cropperImageBase64 = imageBase64;
-            this.modalService.open(this.modal, {
-                ariaLabelledBy: 'modal-basic-title',
-                size: 'xl',
-                backdrop: 'static'
-            });
+            this.cropImageModal.show();
         }
     }
 
@@ -89,10 +78,6 @@ export class ImageGroupComponent {
     removeImage(image: ModelWithImage): void {
         this.parent.removeImage(image);
         this.parent.reorderImages();
-        /* const index = this.images.indexOf(image);
-        if (index > -1) {
-            this.images.splice(index, 1);
-        } */
     }
 
     toggleAspectRatio() {

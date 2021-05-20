@@ -83,6 +83,7 @@ import { CardTeamMemberDeckComponent } from './parts/common/card-team-member-dec
 import { CardTeamMemberComponent } from './parts/common/card-team-member/card-team-member.component';
 import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
 import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
+import { GenericModalComponent } from './parts/modals/generic-modal/generic-modal.component';
 
 @NgModule({
     declarations: [
@@ -150,7 +151,8 @@ import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.
         CardTeamMemberDeckComponent,
         CardTeamMemberComponent,
         CouponsComponent,
-        AddCouponComponent
+        AddCouponComponent,
+        GenericModalComponent
     ],
     imports: [
         BrowserModule,

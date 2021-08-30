@@ -28,7 +28,7 @@ export class ResetPasswordComponent implements OnInit {
     ngOnInit(): void {
         const token: string = this.activatedRoute.snapshot.paramMap.get('token');
         if (token === null || token === undefined || token === '') {
-            this.router.navigate(['/esports']);
+            this.router.navigate(['/']);
         } else {
             this.token = token;
         }

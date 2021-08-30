@@ -123,7 +123,7 @@ export class HeaderComponent implements OnInit {
                 //this.model.password = '';
                 //this.model.remembered = false;
                 //this.currentUser = jwtResponse;
-                //this.router.navigateByUrl('/esports');
+                //this.router.navigateByUrl('/');
             } else {
                 this.isInvalid = true;
             }

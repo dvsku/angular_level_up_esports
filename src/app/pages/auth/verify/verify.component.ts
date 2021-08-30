@@ -15,13 +15,13 @@ export class VerifyComponent implements OnInit {
     ngOnInit(): void {
         const token: string = this.activatedRoute.snapshot.paramMap.get('token');
         if (token === null || token === undefined || token === '') {
-            this.router.navigate(['/esports']);
+            this.router.navigate(['/']);
         } else {
             this.userService.verify(token).then(
                 (status) => {
                     this.status = status;
                     if (this.status === 2) {
-                        this.router.navigate(['/esports']);
+                        this.router.navigate(['/']);
                     }
                 },
                 () => {

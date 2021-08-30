@@ -33,7 +33,7 @@ export class TeamComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe((data: { team: AchievementCategory }) => {
             if (data.team === undefined || data.team === null) {
-                this.router.navigate(['/esports']);
+                this.router.navigate(['/']);
                 return;
             } else {
                 this.loaderService.changeState(true);

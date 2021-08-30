@@ -1,0 +1,99 @@
+<three-row-grid-layout>
+    <div id="main-panel" class="custom-container my-2 my-lg-5">
+        <div class="row">
+            <div class="col-12 col-lg-3">
+                <ul class="list-unstyled sticky">
+                    <li>
+                        <a class="category-link" (click)="shopCollapse.toggle()"
+                            [attr.aria-expanded]="!isShopCollapsed">SHOP</a>
+                        <div class="pl-2" #shopCollapse="ngbCollapse" [(ngbCollapse)]="isShopCollapsed">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'shop/products' } }]"
+                                        skipLocationChange>PRODUCTS</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'coupons' } }]"
+                                        skipLocationChange>COUPONS</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'home-carousel' } }]"
+                            skipLocationChange>HOME ROTATING PICTURES</a>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'partners' } }]"
+                            skipLocationChange>PARTNERS</a>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'people' } }]"
+                            skipLocationChange>PEOPLE</a>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'content-creators' } }]"
+                            skipLocationChange>CONTENT CREATORS</a>
+                    </li>
+                    <li>
+                        <a class="category-link" (click)="teamsCollapse.toggle()"
+                            [attr.aria-expanded]="!isTeamsCollapsed">TEAMS</a>
+                        <div class="pl-2" #teamsCollapse="ngbCollapse" [(ngbCollapse)]="isTeamsCollapsed">
+                            <ul class="list-unstyled">
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/dota-2' } }]"
+                                        skipLocationChange>DOTA 2</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/csgo' } }]"
+                                        skipLocationChange>COUNTER-STRIKE: GLOBAL OFFENSIVE</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/league-of-legends' } }]"
+                                        skipLocationChange>LEAGUE OF LEGENDS</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/warcraft-3' } }]"
+                                        skipLocationChange>WARCRAFT III</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/fortnite' } }]"
+                                        skipLocationChange>FORTNITE</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/heroes-of-the-storm' } }]"
+                                        skipLocationChange>HEROES OF THE STORM</a>
+                                </li>
+                                <li>
+                                    <a class="subcategory-link"
+                                        [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'teams/hearthstone' } }]"
+                                        skipLocationChange>HEARTHSTONE</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li>
+                        <a class="category-link"
+                            [routerLink]="['/admin/dashboard', { outlets: { adminOutlet: 'settings' } }]"
+                            skipLocationChange>SETTINGS</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-12 col-lg-9">
+                <router-outlet name="adminOutlet"></router-outlet>
+            </div>
+        </div>
+    </div>
+</three-row-grid-layout>

@@ -21,7 +21,7 @@ export class SignUpComponent {
         this.userService.signUp(this.user).then(
             (success) => {
                 if (success) {
-                    this.router.navigate(['/esports'], {
+                    this.router.navigate(['/'], {
                         queryParams: { registered: 'true' }
                     });
                     this.toastrService.success('Account created. Please check your email to activate your account.');

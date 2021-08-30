@@ -23,7 +23,7 @@ export class ChangeInformationComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.data.subscribe((data: { user: User }) => {
             if (data.user === undefined || data.user === null) {
-                this.router.navigate(['/esports']);
+                this.router.navigate(['/']);
                 return;
             } else {
                 this.model = new UserWithoutPassDto(

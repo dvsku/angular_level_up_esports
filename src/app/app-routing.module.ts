@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
-import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
+import { AdminDashboardComponent } from './pages/admin/dashboard/admin-dashboard.component';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 import { ProductResolver } from './_resolvers/product.resolver';
 import { OrderResolver } from './_resolvers/order.resolver';
@@ -24,39 +23,40 @@ import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-pas
 import { VerifyResendComponent } from './pages/auth/verify-resend/verify-resend.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
 import { VerifyComponent } from './pages/auth/verify/verify.component';
-import { EsportsProductsComponent } from './pages/admin/esports-products/products-list/esports-products.component';
-import { AddEsportsProductComponent } from './pages/admin/esports-products/products-add/add-esports-product.component';
-import { EditEsportsProductComponent } from './pages/admin/esports-products/products-edit/edit-esports-product.component';
-import { AdminPartnersComponent } from './pages/admin/partners/partners-list/partners.component';
-import { AddPartnerComponent } from './pages/admin/partners/partners-add/add-partner.component';
-import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-partner.component';
+import { EditPartnerComponent } from './pages/admin/partners/partner/edit-partner.component';
 import { PeopleComponent } from './pages/admin/people/people/people.component';
-import { AddPersonComponent } from './pages/admin/people/add-person/add-person.component';
-import { EditPersonComponent } from './pages/admin/people/edit-person/edit-person.component';
+import { EditPersonComponent } from './pages/admin/people/person/edit-person.component';
 import { PersonResolver } from './_resolvers/person.resolver';
 import { AdminContentCreatorsComponent } from './pages/admin/content-creators/content-creators/admin-content-creators.component';
-import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
-import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
+import { EditContentCreatorComponent } from './pages/admin/content-creators/content-creator/edit-content-creator.component';
 import { ContentCreatorResolver } from './_resolvers/content-creator.resolver';
 import { ContentCreatorsComponent } from './pages/content-creators/content-creators.component';
 import { TeamResolver } from './_resolvers/team.resolver';
-import { AchievementsComponent } from './pages/admin/teams/achievements/achievements.component';
-import { AddRosterMemberComponent } from './pages/admin/teams/add-roster-member/add-roster-member.component';
-import { EditRosterMemberComponent } from './pages/admin/teams/edit-roster-member/edit-roster-member.component';
+import { EditRosterMemberComponent } from './pages/admin/teams/roster-members/edit-roster-member.component';
 import { TeamMemberResolver } from './_resolvers/team-member.resolver';
 import { HasChangesGuard } from './_guard/has-changes.guard';
-import { AddAchievementComponent } from './pages/admin/teams/add-achievement/add-achievement.component';
-import { EditAchievementComponent } from './pages/admin/teams/edit-achievement/edit-achievement.component';
+import { EditAchievementComponent } from './pages/admin/teams/achievements/single/edit-achievement.component';
 import { AchievementResolver } from './_resolvers/achievement.resolver';
 import { TeamComponent } from './pages/team/team.component';
-import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
-import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
 import { HomeComponent } from './pages/home/home.component';
 import { OrdersComponent } from './pages/orders/all/orders.component';
 import { OrderComponent } from './pages/orders/single/order.component';
 import { CheckoutComponent } from './pages/shop/checkout/checkout.component';
 import { ProductComponent } from './pages/shop/product/product.component';
 import { ShopComponent } from './pages/shop/shop/shop.component';
+import { ShopProductsComponent } from './pages/admin/shop/products/all/shop-products.component';
+import { AddShopProductComponent } from './pages/admin/shop/products/single/add-shop-product.component';
+import { EditShopProductComponent } from './pages/admin/shop/products/single/edit-shop-product.component';
+import { HomeCarouselComponent } from './pages/admin/home-carousel/home-carousel.component';
+import { CouponsComponent } from './pages/admin/shop/coupons/all/coupons.component';
+import { AddCouponComponent } from './pages/admin/shop/coupons/single/add-coupon.component';
+import { AddContentCreatorComponent } from './pages/admin/content-creators/content-creator/add-content-creator.component';
+import { AddPersonComponent } from './pages/admin/people/person/add-person.component';
+import { AchievementsComponent } from './pages/admin/teams/achievements/all/achievements.component';
+import { AddAchievementComponent } from './pages/admin/teams/achievements/single/add-achievement.component';
+import { AddRosterMemberComponent } from './pages/admin/teams/roster-members/add-roster-member.component';
+import { AdminPartnersComponent } from './pages/admin/partners/partners/partners.component';
+import { AddPartnerComponent } from './pages/admin/partners/partner/add-partner.component';
 
 const routes: Routes = [
     {
@@ -73,26 +73,26 @@ const routes: Routes = [
                 data: { title: 'LevelUp | Admin Dashboard | Settings' }
             },
             {
-                path: 'esports/products',
-                component: EsportsProductsComponent,
+                path: 'shop/products',
+                component: ShopProductsComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Esports Products' }
             },
             {
-                path: 'esports/add-product',
-                component: AddEsportsProductComponent,
+                path: 'shop/add-product',
+                component: AddShopProductComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Add Product' }
             },
             {
-                path: 'esports/edit-product/:id',
-                component: EditEsportsProductComponent,
+                path: 'shop/edit-product/:id',
+                component: EditShopProductComponent,
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Edit Product' }
             },
             {
-                path: 'esports/home-rotating-pictures',
-                component: EsportsHomeRotatingPicturesComponent,
+                path: 'home-carousel',
+                component: HomeCarouselComponent,
                 canDeactivate: [HasChangesGuard],
                 outlet: 'adminOutlet',
                 data: { title: 'LevelUp | Admin Dashboard | Home Rotating Pictures' }

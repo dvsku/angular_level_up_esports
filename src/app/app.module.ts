@@ -17,12 +17,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './parts/common/footer/footer.component';
 import { ShopItemComponent } from './parts/common/shop-item/shop-item.component';
 import { ShopItemDeckComponent } from './parts/common/shop-item-deck/shop-item-deck.component';
-import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
+import { AdminDashboardComponent } from './pages/admin/dashboard/admin-dashboard.component';
 import { ImageInputComponent } from './parts/common/image-input/image-input.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SwappableImageComponent } from './parts/common/swappable-image/swappable-image.component';
 import { ProductService } from './services/product.service';
-import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
 import { HomePictureService } from './services/home-picture.service';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
 import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
@@ -44,29 +43,19 @@ import { VerifyComponent } from './pages/auth/verify/verify.component';
 import { ForgotPasswordComponent } from './pages/auth/forgot-password/forgot-password.component';
 import { VerifyResendComponent } from './pages/auth/verify-resend/verify-resend.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
-import { AddEsportsProductComponent } from './pages/admin/esports-products/products-add/add-esports-product.component';
-import { EsportsProductsComponent } from './pages/admin/esports-products/products-list/esports-products.component';
-import { EditEsportsProductComponent } from './pages/admin/esports-products/products-edit/edit-esports-product.component';
-import { AdminPartnersComponent } from './pages/admin/partners/partners-list/partners.component';
-import { AddPartnerComponent } from './pages/admin/partners/partners-add/add-partner.component';
-import { EditPartnerComponent } from './pages/admin/partners/partners-edit/edit-partner.component';
+import { EditPartnerComponent } from './pages/admin/partners/partner/edit-partner.component';
 import { PeopleComponent } from './pages/admin/people/people/people.component';
-import { AddPersonComponent } from './pages/admin/people/add-person/add-person.component';
-import { EditPersonComponent } from './pages/admin/people/edit-person/edit-person.component';
+import { EditPersonComponent } from './pages/admin/people/person/edit-person.component';
 import { AdminContentCreatorsComponent } from './pages/admin/content-creators/content-creators/admin-content-creators.component';
-import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
-import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
+import { EditContentCreatorComponent } from './pages/admin/content-creators/content-creator/edit-content-creator.component';
 import { ContentCreatorsComponent } from './pages/content-creators/content-creators.component';
 import { CardContentCreatorComponent } from './parts/common/card-content-creator/card-content-creator.component';
 import { Ng2FittextModule } from 'ng2-fittext';
 import { CardContentCreatorDeckComponent } from './parts/common/card-content-creator-deck/card-content-creator-deck.component';
 import { ImageSelectComponent } from './parts/common/image-select/image-select.component';
-import { AchievementsComponent } from './pages/admin/teams/achievements/achievements.component';
-import { AddAchievementComponent } from './pages/admin/teams/add-achievement/add-achievement.component';
-import { EditAchievementComponent } from './pages/admin/teams/edit-achievement/edit-achievement.component';
+import { EditAchievementComponent } from './pages/admin/teams/achievements/single/edit-achievement.component';
 import { PersonPickerComponent } from './parts/common/person-picker/person-picker.component';
-import { AddRosterMemberComponent } from './pages/admin/teams/add-roster-member/add-roster-member.component';
-import { EditRosterMemberComponent } from './pages/admin/teams/edit-roster-member/edit-roster-member.component';
+import { EditRosterMemberComponent } from './pages/admin/teams/roster-members/edit-roster-member.component';
 import { ImagePreviewComponent } from './parts/common/image-preview/image-preview.component';
 import { TeamMemberGroupComponent } from './parts/common/team-member-group/team-member-group.component';
 import { TeamMemberCreatorComponent } from './parts/common/team-member-creator/team-member-creator.component';
@@ -74,8 +63,6 @@ import { NgbDateCustomParserFormatter } from './_formatters/date-formatter';
 import { TeamComponent } from './pages/team/team.component';
 import { CardTeamMemberDeckComponent } from './parts/common/card-team-member-deck/card-team-member-deck.component';
 import { CardTeamMemberComponent } from './parts/common/card-team-member/card-team-member.component';
-import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
-import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
 import { GenericModalComponent } from './parts/modals/generic-modal/generic-modal.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BarcraftComponent } from './pages/barcraft/barcraft.component';
@@ -84,6 +71,19 @@ import { OrdersComponent } from './pages/orders/all/orders.component';
 import { OrderComponent } from './pages/orders/single/order.component';
 import { ProductComponent } from './pages/shop/product/product.component';
 import { ShopComponent } from './pages/shop/shop/shop.component';
+import { CouponsComponent } from './pages/admin/shop/coupons/all/coupons.component';
+import { AddCouponComponent } from './pages/admin/shop/coupons/single/add-coupon.component';
+import { EditShopProductComponent } from './pages/admin/shop/products/single/edit-shop-product.component';
+import { AddShopProductComponent } from './pages/admin/shop/products/single/add-shop-product.component';
+import { HomeCarouselComponent } from './pages/admin/home-carousel/home-carousel.component';
+import { ShopProductsComponent } from './pages/admin/shop/products/all/shop-products.component';
+import { AddContentCreatorComponent } from './pages/admin/content-creators/content-creator/add-content-creator.component';
+import { AddPersonComponent } from './pages/admin/people/person/add-person.component';
+import { AchievementsComponent } from './pages/admin/teams/achievements/all/achievements.component';
+import { AddAchievementComponent } from './pages/admin/teams/achievements/single/add-achievement.component';
+import { AddRosterMemberComponent } from './pages/admin/teams/roster-members/add-roster-member.component';
+import { AddPartnerComponent } from './pages/admin/partners/partner/add-partner.component';
+import { AdminPartnersComponent } from './pages/admin/partners/partners/partners.component';
 
 @NgModule({
     declarations: [
@@ -98,12 +98,12 @@ import { ShopComponent } from './pages/shop/shop/shop.component';
         SignUpComponent,
         ProductComponent,
         AdminDashboardComponent,
-        AddEsportsProductComponent,
+        AddShopProductComponent,
         ImageInputComponent,
-        EsportsProductsComponent,
+        ShopProductsComponent,
         SwappableImageComponent,
-        EditEsportsProductComponent,
-        EsportsHomeRotatingPicturesComponent,
+        EditShopProductComponent,
+        HomeCarouselComponent,
         UnderConstructionComponent,
         CheckoutComponent,
         CartProductGroupComponent,

@@ -28,7 +28,7 @@
                         <div class="row pb-2 pt-4 pl-5">
                             <div class="wrapper-shop-items">
                                 <a class="shop-item-image scale-small" *ngFor="let product of featuredProducts"
-                                    href="/esports/shop/product/{{product.productId}}">
+                                    href="shop/product/{{product.productId}}">
                                     <img class="shop-item-image shop-item-image-fixed image-shadow"
                                         [src]="imagesService.getImage(product.productInfoIcons[0]?.image)">
                                 </a>
@@ -117,7 +117,7 @@
                     <div class="row mt-2 px-3 px-lg-5 pb-lg-3">
                         <div class="col-12 d-flex flex-row-reverse pb-2">
                             <a class="standard-btn standard-btn-primary" style="padding-left: 3rem; padding-right: 3rem"
-                                routerLink="/esports/shop/checkout">checkout</a>
+                                routerLink="shop/checkout">checkout</a>
                         </div>
                     </div>
                 </ng-container>

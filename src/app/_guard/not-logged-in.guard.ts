@@ -14,7 +14,7 @@ export class NotLoggedInGuard implements CanActivate {
         if (currentUser === null || currentUser === undefined) {
             return true;
         }
-        this.router.navigate(['/esports']);
+        this.router.navigate(['/']);
         return false;
     }
 }

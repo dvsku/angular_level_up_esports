@@ -21,7 +21,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
                         return;
                     case 403:
                         this.userService.signOut();
-                        this.router.navigate(['/esports']).then(() => {
+                        this.router.navigate(['/']).then(() => {
                             this.toastrService.error('Session expired, please sign in again.');
                         });
                     default:

@@ -1,18 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EsportsHomeComponent } from './pages/esports/esports-home/esports-home.component';
-import { EsportsShopComponent } from './pages/esports/esports-shop/esports-shop.component';
-import { ProductComponent } from './pages/esports/product/product.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
-import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { ProductResolver } from './_resolvers/product.resolver';
-import { OrdersComponent } from './pages/esports/orders/orders.component';
-import { OrderComponent } from './pages/esports/order/order.component';
 import { OrderResolver } from './_resolvers/order.resolver';
 import { PartnerResolver } from './_resolvers/partner.resolver';
-import { PartnersComponent } from './pages/esports/partners/partners.component';
+import { PartnersComponent } from './pages/partners/partners.component';
 import { MaintenanceComponent } from './pages/common/maintenance/maintenance.component';
 import { MaintenanceGuard } from './_guard/maintenance.guard';
 import { AuthGuard } from './_guard/auth.guard';
@@ -44,7 +38,7 @@ import { AdminContentCreatorsComponent } from './pages/admin/content-creators/co
 import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
 import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
 import { ContentCreatorResolver } from './_resolvers/content-creator.resolver';
-import { ContentCreatorsComponent } from './pages/esports/content-creators/content-creators.component';
+import { ContentCreatorsComponent } from './pages/content-creators/content-creators.component';
 import { TeamResolver } from './_resolvers/team.resolver';
 import { AchievementsComponent } from './pages/admin/teams/achievements/achievements.component';
 import { AddRosterMemberComponent } from './pages/admin/teams/add-roster-member/add-roster-member.component';
@@ -57,9 +51,14 @@ import { AchievementResolver } from './_resolvers/achievement.resolver';
 import { TeamComponent } from './pages/team/team.component';
 import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
 import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
+import { HomeComponent } from './pages/home/home.component';
+import { OrdersComponent } from './pages/orders/all/orders.component';
+import { OrderComponent } from './pages/orders/single/order.component';
+import { CheckoutComponent } from './pages/shop/checkout/checkout.component';
+import { ProductComponent } from './pages/shop/product/product.component';
+import { ShopComponent } from './pages/shop/shop/shop.component';
 
 const routes: Routes = [
-    { path: '', redirectTo: 'esports', pathMatch: 'full' },
     {
         path: 'admin/dashboard',
         component: AdminDashboardComponent,
@@ -265,38 +264,39 @@ const routes: Routes = [
         data: { title: 'LevelUp | Verify' }
     },
     {
-        path: 'esports',
-        component: EsportsHomeComponent,
+        path: '',
+        component: HomeComponent,
         canActivate: [MaintenanceGuard],
+        pathMatch: 'full',
         data: { title: 'LevelUp | Home' }
     },
     {
-        path: 'esports/shop',
-        component: EsportsShopComponent,
+        path: 'shop',
+        component: ShopComponent,
         canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Shop' }
     },
     {
-        path: 'esports/shop/checkout',
+        path: 'shop/checkout',
         component: CheckoutComponent,
         canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Checkout' }
     },
     {
-        path: 'esports/shop/orders',
+        path: 'shop/orders',
         component: OrdersComponent,
         canActivate: [MaintenanceGuard],
         data: { title: 'LevelUp | Orders' }
     },
     {
-        path: 'esports/shop/orders/:id',
+        path: 'shop/orders/:id',
         component: OrderComponent,
         canActivate: [MaintenanceGuard],
         resolve: { order: OrderResolver },
         data: { title: 'LevelUp | Order' }
     },
     {
-        path: 'esports/shop/product/:id',
+        path: 'shop/product/:id',
         component: ProductComponent,
         canActivate: [MaintenanceGuard],
         resolve: { product: ProductResolver },
@@ -337,7 +337,8 @@ const routes: Routes = [
         path: 'maintenance',
         component: MaintenanceComponent,
         data: { title: 'LevelUp | Maintenance' }
-    }
+    },
+    { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

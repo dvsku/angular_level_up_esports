@@ -51,11 +51,11 @@
                 <ul class="list-unstyled">
                     <li class="text-center">
                         <a class="standard-link-reverse text-uppercase"
-                            [routerLink]="['/esports/shop', { category: 'all' }]">ALL</a>
+                            [routerLink]="['shop', { category: 'all' }]">ALL</a>
                     </li>
                     <li class="text-center" *ngFor="let category of categories">
                         <a class="standard-link-reverse text-uppercase"
-                            [routerLink]="['/esports/shop', { category: category.categoryName.toLowerCase() }]">
+                            [routerLink]="['shop', { category: category.categoryName.toLowerCase() }]">
                             {{category.categoryName}}
                         </a>
                     </li>

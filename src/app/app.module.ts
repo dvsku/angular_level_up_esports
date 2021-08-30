@@ -12,15 +12,11 @@ import { CookieService } from 'ngx-cookie-service';
 import { LoaderInterceptorService } from './_interceptors/loader-interceptor.service';
 import { ErrorInterceptorService } from './_interceptors/error-interceptor.service';
 import { JwtInterceptorService } from './_interceptors/jwt-interceptor.service';
-import { EsportsHomeComponent } from './pages/esports/esports-home/esports-home.component';
-import { EsportsShopComponent } from './pages/esports/esports-shop/esports-shop.component';
-import { BarcraftHomeComponent } from './pages/barcraft/barcraft-home/barcraft-home.component';
 import { HeaderComponent } from './parts/common/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FooterComponent } from './parts/common/footer/footer.component';
 import { ShopItemComponent } from './parts/common/shop-item/shop-item.component';
 import { ShopItemDeckComponent } from './parts/common/shop-item-deck/shop-item-deck.component';
-import { ProductComponent } from './pages/esports/product/product.component';
 import { AdminDashboardComponent } from './pages/admin/admin-dashboard/admin-dashboard.component';
 import { ImageInputComponent } from './parts/common/image-input/image-input.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -29,15 +25,12 @@ import { ProductService } from './services/product.service';
 import { EsportsHomeRotatingPicturesComponent } from './pages/admin/esports-home-rotating-pictures/esports-home-rotating-pictures.component';
 import { HomePictureService } from './services/home-picture.service';
 import { UnderConstructionComponent } from './pages/common/under-construction/under-construction.component';
-import { CheckoutComponent } from './pages/esports/checkout/checkout.component';
 import { CartProductGroupComponent } from './parts/common/cart-product-group/cart-product-group.component';
 import { CartProductComponent } from './parts/common/cart-product/cart-product.component';
 import { ThreeRowGridLayoutComponent } from './parts/layout/three-row-grid-layout/three-row-grid-layout.component';
 import { CartService } from './services/cart.service';
-import { OrdersComponent } from './pages/esports/orders/orders.component';
-import { OrderComponent } from './pages/esports/order/order.component';
 import { ImageGroupComponent } from './parts/common/image-group/image-group.component';
-import { PartnersComponent } from './pages/esports/partners/partners.component';
+import { PartnersComponent } from './pages/partners/partners.component';
 import { MaintenanceComponent } from './pages/common/maintenance/maintenance.component';
 import { SettingsComponent } from './pages/admin/settings/settings.component';
 import { DashboardComponent } from './pages/dashboard/dashboard/dashboard.component';
@@ -63,7 +56,7 @@ import { EditPersonComponent } from './pages/admin/people/edit-person/edit-perso
 import { AdminContentCreatorsComponent } from './pages/admin/content-creators/content-creators/admin-content-creators.component';
 import { AddContentCreatorComponent } from './pages/admin/content-creators/add-content-creator/add-content-creator.component';
 import { EditContentCreatorComponent } from './pages/admin/content-creators/edit-content-creator/edit-content-creator.component';
-import { ContentCreatorsComponent } from './pages/esports/content-creators/content-creators.component';
+import { ContentCreatorsComponent } from './pages/content-creators/content-creators.component';
 import { CardContentCreatorComponent } from './parts/common/card-content-creator/card-content-creator.component';
 import { Ng2FittextModule } from 'ng2-fittext';
 import { CardContentCreatorDeckComponent } from './parts/common/card-content-creator-deck/card-content-creator-deck.component';
@@ -84,13 +77,20 @@ import { CardTeamMemberComponent } from './parts/common/card-team-member/card-te
 import { CouponsComponent } from './pages/admin/coupons/coupons/coupons.component';
 import { AddCouponComponent } from './pages/admin/coupons/add-coupon/add-coupon.component';
 import { GenericModalComponent } from './parts/modals/generic-modal/generic-modal.component';
+import { HomeComponent } from './pages/home/home.component';
+import { BarcraftComponent } from './pages/barcraft/barcraft.component';
+import { CheckoutComponent } from './pages/shop/checkout/checkout.component';
+import { OrdersComponent } from './pages/orders/all/orders.component';
+import { OrderComponent } from './pages/orders/single/order.component';
+import { ProductComponent } from './pages/shop/product/product.component';
+import { ShopComponent } from './pages/shop/shop/shop.component';
 
 @NgModule({
     declarations: [
         AppComponent,
-        EsportsHomeComponent,
-        EsportsShopComponent,
-        BarcraftHomeComponent,
+        HomeComponent,
+        ShopComponent,
+        BarcraftComponent,
         FooterComponent,
         HeaderComponent,
         ShopItemComponent,

@@ -2,7 +2,7 @@
     <button class="navbar-toggler" type="button" (click)="toggleMenu()">
         <fa-icon [icon]="faBars" class="navbar-toggler-icon"></fa-icon>
     </button>
-    <a class="navbar-brand" routerLink="/esports"><img class="logo" src="/assets/logo.png" /></a>
+    <a class="navbar-brand" routerLink="/"><img class="logo" src="/assets/logo.png" /></a>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse px-5 mt-5 mt-lg-0">
         <div class="navbar-nav">
             <a class="nav-link" (click)="toggleShop()">SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block">
@@ -15,11 +15,11 @@
                         </p>
                         <ul class="list-unstyled">
                             <li class="text-left">
-                                <a class="standard-link" [routerLink]="['/esports/shop', { category: 'all' }]">ALL</a>
+                                <a class="standard-link" [routerLink]="['shop', { category: 'all' }]">ALL</a>
                             </li>
                             <li class="text-left" *ngFor="let category of categories">
                                 <a class="standard-link text-uppercase"
-                                    [routerLink]="['/esports/shop', { category: category.categoryName.toLowerCase() }]">{{
+                                    [routerLink]="['shop', { category: category.categoryName.toLowerCase() }]">{{
                                     category.categoryName }}</a>
                             </li>
                         </ul>
@@ -176,9 +176,9 @@
                             routerLink="/dashboard">DASHBOARD</a>
                         <a *ngIf="currentUser && currentUser.role === 'ADMIN'" ngbDropdownItem class="dropdown-item"
                             routerLink="/admin/dashboard">ADMIN DASHBOARD</a>
-                        <a ngbDropdownItem class="dropdown-item" routerLink="/esports/shop/orders">ORDERS</a>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="shop/orders">ORDERS</a>
                         <div class="dropdown-divider d-none d-lg-block"></div>
-                        <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/esports">SIGN OUT</a>
+                        <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/">SIGN OUT</a>
                     </div>
                 </div>
             </ng-template>

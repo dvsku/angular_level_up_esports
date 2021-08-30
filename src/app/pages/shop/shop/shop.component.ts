@@ -10,11 +10,11 @@ import { ProductCategory } from 'src/app/models/ProductCategory';
 import { CompareService } from 'src/app/services/compare.service';
 
 @Component({
-    selector: 'app-esports-shop',
-    templateUrl: './esports-shop.component.html',
-    styleUrls: ['./esports-shop.component.sass']
+    selector: 'app-shop',
+    templateUrl: './shop.component.html',
+    styleUrls: ['./shop.component.sass']
 })
-export class EsportsShopComponent implements OnInit, OnDestroy {
+export class ShopComponent implements OnInit, OnDestroy {
     public isTopsCollapsed = true;
     public isBottomsCollapsed = true;
 

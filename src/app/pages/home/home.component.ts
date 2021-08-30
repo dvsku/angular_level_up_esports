@@ -9,11 +9,11 @@ import { Partner } from 'src/app/models/Partner';
 import { ImagesService } from 'src/app/services/images.service';
 
 @Component({
-    selector: 'app-esports-home',
-    templateUrl: './esports-home.component.html',
-    styleUrls: ['./esports-home.component.sass']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.sass']
 })
-export class EsportsHomeComponent implements OnInit, OnDestroy {
+export class HomeComponent implements OnInit, OnDestroy {
     faHeart = faHeart;
     rotatingImages: HomeRotatingPicture[];
     partners: Partner[];

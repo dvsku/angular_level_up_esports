@@ -1,5 +1,18 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+node_modules/
+
+.vscode/
+.eslintignore
+.eslintrc.json
+.prettierrc
+.prettierrcignore
+tslint.json
+
+dist/
+tmp/
+out-tsc/
+
 # compiled output
 /dist
 /tmp
@@ -25,7 +38,7 @@ speed-measure-plugin*.json
 
 # IDE - VSCode
 .vscode/*
-!.vscode/settings.json
+.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json

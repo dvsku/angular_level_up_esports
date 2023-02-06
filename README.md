@@ -8,6 +8,9 @@
   </p>
 </div></br></br>
 
+## Notes
+Website example with backend requirements removed
+
 ## Authors
 
 Nikola Stojšin<br/>

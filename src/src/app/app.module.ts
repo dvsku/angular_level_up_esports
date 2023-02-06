@@ -50,7 +50,6 @@ import { AdminContentCreatorsComponent } from './pages/admin/content-creators/co
 import { EditContentCreatorComponent } from './pages/admin/content-creators/content-creator/edit-content-creator.component';
 import { ContentCreatorsComponent } from './pages/content-creators/content-creators.component';
 import { CardContentCreatorComponent } from './parts/common/card-content-creator/card-content-creator.component';
-import { Ng2FittextModule } from 'ng2-fittext';
 import { CardContentCreatorDeckComponent } from './parts/common/card-content-creator-deck/card-content-creator-deck.component';
 import { ImageSelectComponent } from './parts/common/image-select/image-select.component';
 import { EditAchievementComponent } from './pages/admin/teams/achievements/single/edit-achievement.component';
@@ -84,6 +83,7 @@ import { AddAchievementComponent } from './pages/admin/teams/achievements/single
 import { AddRosterMemberComponent } from './pages/admin/teams/roster-members/add-roster-member.component';
 import { AddPartnerComponent } from './pages/admin/partners/partner/add-partner.component';
 import { AdminPartnersComponent } from './pages/admin/partners/partners/partners.component';
+import { AngularFittextModule } from 'angular-fittext';
 
 @NgModule({
     declarations: [
@@ -176,7 +176,7 @@ import { AdminPartnersComponent } from './pages/admin/partners/partners/partners
         DragDropModule,
         FontAwesomeModule,
         ImageCropperModule,
-        Ng2FittextModule
+        AngularFittextModule
     ],
     entryComponents: [CustomToastComponent],
     providers: [

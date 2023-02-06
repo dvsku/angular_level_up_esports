@@ -11,7 +11,7 @@
     </a>
     <div class="shop-item-details d-flex flex-column p-4">
         <div class="d-flex pb-4 d-flex flex-column align-items-center">
-            <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23" [modelToWatch]="product?.productName"
+            <div [fittext]="true" [activateOnResize]="true" [maxFontSize]="23"
                 class="fs-large fw-500 d-flex align-items-center justify-content-center" style="height: 34px;">
                 {{product?.productName}}</div>
             <div *ngIf="product?.priceInEuros; else noPriceInEuro" class="fs-big">{{product?.productPrice}} RSD /

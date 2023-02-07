@@ -84,6 +84,11 @@ import { AddRosterMemberComponent } from './pages/admin/teams/roster-members/add
 import { AddPartnerComponent } from './pages/admin/partners/partner/add-partner.component';
 import { AdminPartnersComponent } from './pages/admin/partners/partners/partners.component';
 import { AngularFittextModule } from 'angular-fittext';
+import { APP_BASE_HREF, PlatformLocation } from '@angular/common';
+
+export function getBaseHref(platformLocation: PlatformLocation): string {
+    return platformLocation.getBaseHrefFromDOM();
+}
 
 @NgModule({
     declarations: [
@@ -187,7 +192,12 @@ import { AngularFittextModule } from 'angular-fittext';
         { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
         { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptorService, multi: true },
         { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptorService, multi: true },
-        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true }
+        { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptorService, multi: true },
+        {
+            provide: APP_BASE_HREF,
+            useFactory: getBaseHref,
+            deps: [PlatformLocation]
+        }
     ],
     bootstrap: [AppComponent]
 })

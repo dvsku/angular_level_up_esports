@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { environment } from '../../environments/environment';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Injectable({
     providedIn: 'root'
@@ -7,7 +8,9 @@ import { environment } from '../../environments/environment';
 export class ImagesService {
     environment = environment;
 
+    constructor(@Inject(APP_BASE_HREF) private baseHref: string) {}
+
     getImage(image: string): string {
-        return '/assets/' + image;
+        return this.baseHref + 'assets/' + image;
     }
 }

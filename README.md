@@ -9,7 +9,8 @@
 </div></br></br>
 
 ## Notes
-Website example with backend requirements removed
+Website example with backend requirements removed (all data is hardcoded and forms always succeed). <br />
+You can use ``user/user`` for a user account or ``admin/admin`` for an admin account to sign in and view features.
 
 ## Authors
 

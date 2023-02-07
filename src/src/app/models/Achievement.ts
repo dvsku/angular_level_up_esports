@@ -11,11 +11,7 @@ export class Achievement {
     pictures: AchievementPicture[] = [];
     teamMembers: TeamMember[] = [];
 
-    constructor(title?: string, description?: string, place?: string, location?: string, timeWhenFinished?: string) {
-        this.title = title;
-        this.description = description;
-        this.place = place;
-        this.location = location;
-        this.timeWhenFinished = timeWhenFinished;
+    public constructor(init?: Partial<Achievement>) {
+        Object.assign(this, init);
     }
 }

@@ -4,7 +4,7 @@ export class ProductCategory {
     categoryType?: number;
     categoryOrder?: number;
 
-    constructor(categoryName?: string) {
-        this.categoryName = categoryName;
+    public constructor(init?: Partial<ProductCategory>) {
+        Object.assign(this, init);
     }
 }

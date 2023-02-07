@@ -15,16 +15,7 @@ export class ProductInfo {
     productInfoSizes: ProductInfoSize[];
     sold: number;
 
-    constructor() {
-        this.productId = null;
-        this.productName = '';
-        this.productPrice = 1000;
-        this.priceInEuros = 10;
-        this.productDescription = '';
-        this.productInfoIcons = [];
-        this.productStatus = 0;
-        this.categoryType = 0;
-        this.productInfoSizes = [];
-        this.sold = 0;
+    public constructor(init?: Partial<ProductInfo>) {
+        Object.assign(this, init);
     }
 }

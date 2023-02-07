@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from '../models/User';
-import { environment } from '../../environments/environment';
 import { UserWithoutPassDto } from '../models/UserWithoutPassDto';
 import { PasswordDto } from '../models/PasswordDto';
 import { JwtResponse } from '../models/JwtResponse';
+import { UserRole } from '../enums/UserRole';
 
 @Injectable({
     providedIn: 'root'
@@ -45,18 +45,33 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public getUserProfile(email: string): Promise<User> {
-        const url = environment.apiURL + `auth/profile/${email}`;
-        return this.httpClient
-            .get<User>(url)
-            .toPromise()
-            .then(
-                (user) => {
-                    return user;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        const user = new User();
+        if (email === 'user@user.com') {
+            user.email = 'user@user.com';
+            user.password = 'secret';
+            user.firstName = 'John';
+            user.lastName = 'Smith';
+            user.phone = '+38134343434';
+            user.city = 'Novi Sad';
+            user.streetAndNumber = 'Grčkoškolska 1';
+            user.zip = 21000;
+            user.country = 'Serbia';
+            user.userRole = UserRole.USER;
+        } else if (email === 'admin@admin.com') {
+            user.email = 'admin@admin.com';
+            user.password = 'secret';
+            user.firstName = 'John';
+            user.lastName = 'Smith';
+            user.phone = '+38134343434';
+            user.city = 'Novi Sad';
+            user.streetAndNumber = 'Grčkoškolska 1';
+            user.zip = 21000;
+            user.country = 'Serbia';
+            user.userRole = UserRole.ADMIN;
+        } else {
+            return Promise.reject();
+        }
+        return Promise.resolve(user);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -64,50 +79,36 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public signIn(model: any): Promise<boolean> {
-        const url = environment.apiURL + `auth/login`;
-        return this.httpClient
-            .post<JwtResponse>(url, model)
-            .toPromise()
-            .then(
-                (jwtResponse) => {
-                    if (jwtResponse && jwtResponse.token) {
-                        this.cookieService.set(
-                            'currentUser',
-                            JSON.stringify(jwtResponse),
-                            undefined,
-                            '/',
-                            undefined,
-                            false,
-                            'Lax'
-                        );
-                        if (model.remembered) {
-                            localStorage.setItem('currentUser', JSON.stringify(jwtResponse));
-                        }
-                        this.jwtUser = jwtResponse;
-                        this.jwtUserSubject.next(this.jwtUser);
-                    }
-                    return true;
-                },
-                () => {
-                    return false;
-                }
-            );
+        let jwt: JwtResponse;
+
+        if (model.username === 'user') {
+            jwt = new JwtResponse();
+            jwt.account = 'user@user.com';
+            jwt.name = 'User';
+            jwt.role = 'USER';
+            jwt.token = 'abcdefg';
+        } else if (model.username === 'admin') {
+            jwt = new JwtResponse();
+            jwt.account = 'admin@admin.com';
+            jwt.name = 'Admin';
+            jwt.role = 'ADMIN';
+            jwt.token = 'abcdefg';
+        } else {
+            return Promise.resolve(false);
+        }
+
+        this.cookieService.set('currentUser', JSON.stringify(jwt), undefined, '/', undefined, false, 'Lax');
+        if (model.remembered) {
+            localStorage.setItem('currentUser', JSON.stringify(jwt));
+        }
+        this.jwtUser = jwt;
+        this.jwtUserSubject.next(this.jwtUser);
+
+        return Promise.resolve(true);
     }
 
     public signUp(newUser: User): Promise<boolean> {
-        const url = environment.apiURL + `auth/register`;
-        return this.httpClient
-            .post<User>(url, newUser)
-            .toPromise()
-            .then(
-                (user) => {
-                    if (user) return true;
-                    return false;
-                },
-                () => {
-                    return false;
-                }
-            );
+        return Promise.resolve(true);
     }
 
     public signOut(): void {
@@ -122,33 +123,26 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public updateInformation(existingUser: UserWithoutPassDto): Promise<User> {
-        const url = environment.apiURL + `auth/profile`;
-        return this.httpClient
-            .put<User>(url, existingUser)
-            .toPromise()
-            .then(
-                (success) => {
-                    return success;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        const user = new User();
+        if (existingUser.email === 'user@user.com' || existingUser.email === 'admin@admin.com') {
+            user.email = existingUser.email;
+            user.password = 'secret';
+            user.firstName = existingUser.firstName;
+            user.lastName = existingUser.lastName;
+            user.phone = existingUser.phone;
+            user.city = existingUser.city;
+            user.streetAndNumber = existingUser.streetAndNumber;
+            user.zip = existingUser.zip;
+            user.country = existingUser.country;
+            user.userRole = existingUser.userRole;
+        } else {
+            return Promise.reject();
+        }
+        return Promise.resolve(user);
     }
 
     public updatePassword(passwordDto: PasswordDto): Promise<boolean> {
-        const url = environment.apiURL + `auth/profile/password-update`;
-        return this.httpClient
-            .put<boolean>(url, passwordDto)
-            .toPromise()
-            .then(
-                (success) => {
-                    return success;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -156,33 +150,11 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public verify(token: string): Promise<number> {
-        const url = environment.apiURL + `auth/register/confirm/${token}`;
-        return this.httpClient
-            .get<number>(url)
-            .toPromise()
-            .then(
-                (status) => {
-                    return status;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(2);
     }
 
     public resendVerificationToken(email: string): Promise<boolean> {
-        const url = environment.apiURL + `auth/register/resendToken/${email}`;
-        return this.httpClient
-            .post<boolean>(url, null)
-            .toPromise()
-            .then(
-                (status) => {
-                    return status;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -190,50 +162,17 @@ export class UserService {
     ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     public resetPassword(token: string, password: string): Promise<boolean> {
-        const url = environment.apiURL + `auth/user/resetPassword/${token}`;
-        return this.httpClient
-            .put<boolean>(url, password)
-            .toPromise()
-            .then(
-                (success) => {
-                    return success;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     // 0 -> Valid
     // 1 -> Expired
     // 2 -> Doesn't exist
     public verifyPasswordResetToken(token: string): Promise<number> {
-        const url = environment.apiURL + `auth/user/resetPassword/validate/${token}`;
-        return this.httpClient
-            .get<number>(url)
-            .toPromise()
-            .then(
-                (status) => {
-                    return status;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(0);
     }
 
     public sendPasswordTokenToEmail(email: string): Promise<boolean> {
-        const url = environment.apiURL + `auth/user/resetPassword/${email}`;
-        return this.httpClient
-            .post<boolean>(url, null)
-            .toPromise()
-            .then(
-                (success) => {
-                    return success;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 }

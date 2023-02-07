@@ -5,7 +5,7 @@
     <a class="navbar-brand" routerLink="/"><img class="logo" src="/assets/logo.png" /></a>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse px-5 mt-5 mt-lg-0">
         <div class="navbar-nav">
-            <a class="nav-link" (click)="toggleShop()">BOOTCAMP <fa-icon [icon]="faArrowDown" class="d-inline-block">
+            <a class="nav-link" (click)="toggleShop()">SHOP <fa-icon [icon]="faArrowDown" class="d-inline-block">
                 </fa-icon></a>
             <div [ngbCollapse]="isShopCollapsed" class="navbar-collapse-details">
                 <div class="row py-0 px-3 py-lg-4 px-lg-5">
@@ -15,11 +15,11 @@
                         </p>
                         <ul class="list-unstyled">
                             <li class="text-left">
-                                <a class="standard-link" [routerLink]="['shop', { category: 'all' }]">ALL</a>
+                                <a class="standard-link" [routerLink]="['/shop', { category: 'all' }]">ALL</a>
                             </li>
                             <li class="text-left" *ngFor="let category of categories">
                                 <a class="standard-link text-uppercase"
-                                    [routerLink]="['shop', { category: category.categoryName.toLowerCase() }]">{{
+                                    [routerLink]="['/shop', { category: category.categoryName.toLowerCase() }]">{{
                                     category.categoryName }}</a>
                             </li>
                         </ul>
@@ -117,7 +117,7 @@
                     <div class="row mt-2 px-3 px-lg-5 pb-lg-3">
                         <div class="col-12 d-flex flex-row-reverse pb-2">
                             <a class="standard-btn standard-btn-primary" style="padding-left: 3rem; padding-right: 3rem"
-                                routerLink="shop/checkout">checkout</a>
+                                routerLink="/shop/checkout">checkout</a>
                         </div>
                     </div>
                 </ng-container>
@@ -135,6 +135,7 @@
                         class="d-inline-block"></fa-icon></a>
                 <div id="sign-in-dropdown" ngbDropdownMenu class="dropdown-menu dropdown-menu-right"
                     aria-labelledby="sign-in-dropdown">
+                    <div class="px-4">user/user for a user account <br /> admin/admin for an admin account </div>
                     <form id="sign-in-form" class="px-3 py-2 w-100" #form="ngForm" (ngSubmit)="onSubmit()">
                         <div class="form-group">
                             <label for="email-signin">Email</label>
@@ -176,7 +177,7 @@
                             routerLink="/dashboard">DASHBOARD</a>
                         <a *ngIf="currentUser && currentUser.role === 'ADMIN'" ngbDropdownItem class="dropdown-item"
                             routerLink="/admin/dashboard">ADMIN DASHBOARD</a>
-                        <a ngbDropdownItem class="dropdown-item" routerLink="shop/orders">ORDERS</a>
+                        <a ngbDropdownItem class="dropdown-item" routerLink="/shop/orders">ORDERS</a>
                         <div class="dropdown-divider d-none d-lg-block"></div>
                         <a ngbDropdownItem class="dropdown-item" (click)="logout()" routerLink="/">SIGN OUT</a>
                     </div>

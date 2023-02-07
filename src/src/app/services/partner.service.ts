@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { publishReplay, refCount, tap } from 'rxjs/operators';
 import { Partner } from '../models/Partner';
 import { environment } from '../../environments/environment';
 
@@ -12,31 +11,32 @@ export class PartnerService {
     private partnerUrl = environment.apiURL + `partner`;
     private adminPartnerUrl = environment.apiURL + `admin/partner`;
 
-    private partners: Partner[] = null;
+    private partners: Partner[] = [
+        new Partner(1, 'SoccerBet', 'partners/partner_1.png', '', 0, 'https://soccerbet.rs/'),
+        new Partner(
+            2,
+            'Gizmo',
+            'partners/partner_2.png',
+            'Take control and manage your products according to your specific business requirements. Whether it’s a simple or time-based sale, your product and product bundles are fully supported with our easy-to- use software.',
+            1,
+            'https://www.gizmopowered.net/'
+        ),
+        new Partner(
+            3,
+            'White Shark',
+            'partners/partner_3.png',
+            'White Shark was made for those who have a deep passion for gaming but lack the budget for expensive gaming equipment.',
+            1,
+            'https://whiteshark.gg/'
+        )
+    ];
     private partnersSubject: BehaviorSubject<Partner[]> = new BehaviorSubject<Partner[]>(this.partners);
     private partnersObs: Observable<Partner[]> = this.partnersSubject.asObservable();
 
     constructor(private httpClient: HttpClient) {}
 
     public getPartners(): Observable<Partner[]> {
-        if (this.partners === null) {
-            this.fetchPartners().subscribe((products) => {
-                this.partners = products;
-                this.partners.sort((a, b) => a.displayOrder - b.displayOrder);
-                this.partnersSubject.next(this.partners);
-                this.partnersObs.pipe(publishReplay(1), refCount());
-            });
-        }
         return this.partnersObs;
-    }
-
-    private fetchPartners(): Observable<Partner[]> {
-        const url = `${this.partnerUrl}/list`;
-        return this.httpClient.get<Partner[]>(url).pipe(
-            tap(() => {
-                // LOGOVANJE
-            })
-        );
     }
 
     public getPartner(partnerId: number): Promise<Partner> {

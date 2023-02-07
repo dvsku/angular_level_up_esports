@@ -25,7 +25,7 @@
                             <td class="align-middle text-center">{{OrderStatus[order.orderStatus]}}</td>
                             <td class="align-middle text-center d-flex justify-content-center align-items-center">
                                 <a class="standard-link mr-3" placement="top" ngbTooltip="View"
-                                    routerLink="shop/orders/{{order?.orderId}}">
+                                    routerLink="/shop/orders/{{order?.orderId}}">
                                     <fa-icon transform="grow-6" [icon]="faFileInvoice"></fa-icon>
                                 </a>
                                 <a class="standard-link mr-3" (click)="cancelOrder(order)" placement="top"

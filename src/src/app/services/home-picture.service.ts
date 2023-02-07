@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { publishReplay, refCount } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { HomeRotatingPicture } from '../models/HomeRotatingPicture';
 import { environment } from '../../environments/environment';
@@ -13,26 +12,16 @@ export class HomePictureService {
     private homePictureUrl = environment.apiURL + `homePicture`;
     private homePictureAdminUrl = environment.apiURL + `admin/homePicture`;
 
-    private hrps: HomeRotatingPicture[] = null;
+    private hrps: HomeRotatingPicture[] = [
+        new HomeRotatingPicture({ id: 1, image: 'carousel/carousel_1.jpg', displayOrder: 0 })
+    ];
     private hrpsSubject: BehaviorSubject<HomeRotatingPicture[]> = new BehaviorSubject<HomeRotatingPicture[]>(this.hrps);
     private hrpsObs = this.hrpsSubject.asObservable();
 
     constructor(private httpClient: HttpClient) {}
 
     getHomeRotatingPictures(): Observable<HomeRotatingPicture[]> {
-        if (this.hrps === null) {
-            this.fetchHomeRotatingPictures().subscribe((pictures) => {
-                this.hrps = pictures;
-                this.hrpsSubject.next(this.hrps);
-                this.hrpsObs.pipe(publishReplay(1), refCount());
-            });
-        }
         return this.hrpsObs;
-    }
-
-    private fetchHomeRotatingPictures(): Observable<HomeRotatingPicture[]> {
-        const url = `${this.homePictureUrl}/list`;
-        return this.httpClient.get<HomeRotatingPicture[]>(url);
     }
 
     createHomeRotatingPicture(picture: HomeRotatingPicture): Promise<boolean> {

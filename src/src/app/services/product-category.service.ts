@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { publishReplay, refCount } from 'rxjs/operators';
 import { ProductCategory } from '../models/ProductCategory';
 import { environment } from '../../environments/environment';
 
@@ -13,30 +12,20 @@ export class ProductCategoryService {
     private categoryUrl = environment.apiURL + `productCategory`;
     private categoryAdminUrl = environment.apiURL + `admin/productCategory`;
 
-    private categories: ProductCategory[] = null;
-    private categoriesSubject: BehaviorSubject<ProductCategory[]> = new BehaviorSubject<ProductCategory[]>(null);
+    private categories: ProductCategory[] = [
+        new ProductCategory({ categoryId: 1, categoryName: 'TOPS', categoryType: 0 }),
+        new ProductCategory({ categoryId: 2, categoryName: 'BOTTOMS', categoryType: 1 }),
+        new ProductCategory({ categoryId: 3, categoryName: 'ACCESSORIES', categoryType: 2 })
+    ];
+    private categoriesSubject: BehaviorSubject<ProductCategory[]> = new BehaviorSubject<ProductCategory[]>(
+        this.categories
+    );
     private categoriesObs: Observable<ProductCategory[]> = this.categoriesSubject.asObservable();
 
     constructor(private httpClient: HttpClient) {}
 
     getProductCategories(): Observable<ProductCategory[]> {
-        if (this.categories === null) {
-            this.fetchProductCategories().subscribe((categories) => {
-                this.categories = categories;
-                this.categoriesSubject.next(this.categories);
-                this.categoriesObs.pipe(publishReplay(1), refCount());
-            });
-        }
         return this.categoriesObs;
-    }
-
-    private fetchProductCategories(): Observable<ProductCategory[]> {
-        const url = `${this.categoryUrl}/list`;
-        return this.httpClient.get<ProductCategory[]>(url).pipe(
-            tap(() => {
-                // LOGOVANJE
-            })
-        );
     }
 
     getProductCategory(productCategoryId: number): ProductCategory {

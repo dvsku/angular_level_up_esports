@@ -50,19 +50,21 @@ export class HomeCarouselComponent implements OnInit, OnDestroy, AfterViewInit, 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     createImage(image: string): void {
-        this.homePictureService.createHomeRotatingPicture(new HomeRotatingPicture(image, 0)).then(
-            (success) => {
-                if (success) {
-                    this.reorderImages();
-                    this.toastrService.success('Home rotating picture created.');
-                } else {
+        this.homePictureService
+            .createHomeRotatingPicture(new HomeRotatingPicture({ image: image, displayOrder: 0 }))
+            .then(
+                (success) => {
+                    if (success) {
+                        this.reorderImages();
+                        this.toastrService.success('Home rotating picture created.');
+                    } else {
+                        this.toastrService.error('Failed to create home rotating picture.');
+                    }
+                },
+                () => {
                     this.toastrService.error('Failed to create home rotating picture.');
                 }
-            },
-            () => {
-                this.toastrService.error('Failed to create home rotating picture.');
-            }
-        );
+            );
     }
 
     removeImage(image: ModelWithImage): void {

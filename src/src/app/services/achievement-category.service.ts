@@ -6,17 +6,506 @@ import { AchievementCategory } from '../models/AchievementCategory';
 import { environment } from '../../environments/environment';
 import { TeamMember } from '../models/TeamMember';
 import { CompareService } from './compare.service';
+import { Achievement } from '../models/Achievement';
+import { Person } from '../models/Person';
+import { AchievementPicture } from '../models/AchievementPicture';
 
 @Injectable({
     providedIn: 'root'
 })
 export class AchievementCategoryService {
-    private achievementCategoryUrl = environment.apiURL + `achievementCategory`;
-    private achievementCategoryAdminUrl = environment.apiURL + `admin/achievementCategory`;
-    private teamMemberUrl = environment.apiURL + 'team-member';
-    private teamMemberAdminUrl = environment.apiURL + 'admin/team-member';
-
-    private teams: AchievementCategory[] = null;
+    private teams: AchievementCategory[] = [
+        new AchievementCategory(
+            1,
+            'DOTA 2',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    'Support',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'The International',
+                    description: '',
+                    place: '1st',
+                    location: 'Berlin, Germany',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'The International',
+                    description: '',
+                    place: '3rd',
+                    location: 'Berlin, Germany',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            2,
+            'LEAGUE OF LEGENDS',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    'Support',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'EBL',
+                    description: '',
+                    place: '1st',
+                    location: 'Belgrade, Serbia',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'EBL',
+                    description: '',
+                    place: '2nd',
+                    location: 'Belgrade, Serbia',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            3,
+            'COUNTER-STRIKE: GLOBAL OFFENSIVE',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    'IGL',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'Major',
+                    description: '',
+                    place: '1st',
+                    location: 'Boston, USA',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'Major',
+                    description: '',
+                    place: '2nd',
+                    location: 'Boston, USA',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            4,
+            'WARCRAFT III',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    '',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '1st',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '2nd',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            5,
+            'HEROES OF THE STORM',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    'Support',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '1st',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '2nd',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            6,
+            'FORTNITE',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    '',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '1st',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '2nd',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        ),
+        new AchievementCategory(
+            7,
+            'HEARTHSTONE',
+            [
+                new TeamMember(
+                    1,
+                    'Panj',
+                    '',
+                    '',
+                    '',
+                    'https://www.twitch.tv/',
+                    '',
+                    'https://www.youtube.com/',
+                    '',
+                    new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                )
+            ],
+            [
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '1st',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2021',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                }),
+                new Achievement({
+                    title: 'Minor tournament',
+                    description: '',
+                    place: '2nd',
+                    location: 'London, UK',
+                    timeWhenFinished: '21/05/2020',
+                    pictures: [
+                        new AchievementPicture(1, 'achievements/achievements_1.jpg'),
+                        new AchievementPicture(2, 'achievements/achievements_2.jpg')
+                    ],
+                    teamMembers: [
+                        new TeamMember(
+                            1,
+                            'Panj',
+                            'Support',
+                            '',
+                            '',
+                            'https://www.twitch.tv/',
+                            '',
+                            'https://www.youtube.com/',
+                            '',
+                            new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+                        )
+                    ]
+                })
+            ]
+        )
+    ];
     private teamsSubject: BehaviorSubject<AchievementCategory[]> = new BehaviorSubject<AchievementCategory[]>(
         this.teams
     );
@@ -25,25 +514,7 @@ export class AchievementCategoryService {
     constructor(private httpClient: HttpClient, private compareService: CompareService) {}
 
     public getTeams(): Observable<AchievementCategory[]> {
-        if (this.teams === null) {
-            this.fetchTeams().subscribe((teams) => {
-                this.teams = teams;
-                this.teams.forEach((team) => {
-                    team.teamMembers = team.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
-                    team.achievements = team.achievements.sort((a, b) =>
-                        this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
-                    );
-                });
-                this.teamsSubject.next(this.teams);
-                this.teamsObs.pipe(publishReplay(1), refCount());
-            });
-        }
         return this.teamsObs;
-    }
-
-    private fetchTeams(): Observable<AchievementCategory[]> {
-        const url = `${this.achievementCategoryUrl}/list`;
-        return this.httpClient.get<AchievementCategory[]>(url);
     }
 
     public getTeam(id: number): Promise<AchievementCategory> {
@@ -52,19 +523,8 @@ export class AchievementCategoryService {
             team = this.teams.find((x) => x.categoryId === +id);
         }
         if (team === undefined) {
-            return this.fetchTeam(id)
-                .then((t) => {
-                    t.teamMembers = t.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
-                    t.achievements = t.achievements.sort((a, b) =>
-                        this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
-                    );
-                    return t;
-                })
-                .catch(() => {
-                    return undefined;
-                });
+            return Promise.reject();
         } else {
-            console.log(1);
             team.teamMembers = team.teamMembers.sort((a, b) => a.displayOrder - b.displayOrder);
             team.achievements = team.achievements.sort((a, b) =>
                 this.compareService.compareDatesDESC(a.timeWhenFinished, b.timeWhenFinished)
@@ -73,56 +533,8 @@ export class AchievementCategoryService {
         }
     }
 
-    private fetchTeam(id: number): Promise<AchievementCategory> {
-        const url = `${this.achievementCategoryUrl}/${id}`;
-        return this.httpClient
-            .get<AchievementCategory>(url)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
-    }
-
     public updateTeam(team: AchievementCategory): Promise<boolean> {
-        return this.updateDatabaseTeam(team).then(
-            (success) => {
-                if (success) {
-                    if (this.teamsObs) {
-                        if (this.teams !== null && this.teams !== undefined) {
-                            const index = this.teams.findIndex((x) => x.categoryId === team.categoryId);
-                            if (index !== -1) {
-                                this.teams[index] = team;
-                                this.teamsSubject.next(this.teams);
-                            }
-                        }
-                    }
-                }
-                return success;
-            },
-            () => {
-                return false;
-            }
-        );
-    }
-
-    private updateDatabaseTeam(team: AchievementCategory): Promise<boolean> {
-        const url = `${this.achievementCategoryAdminUrl}/${team.categoryId}/edit`;
-        return this.httpClient
-            .put<boolean>(url, team)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     public getIdFromName(name: string): number {
@@ -168,175 +580,31 @@ export class AchievementCategoryService {
     ////////////////////////////////////////////////////////////////////////////
 
     public getTeamMember(id: number): Promise<TeamMember> {
-        return this.fetchTeamMember(id)
-            .then((member) => {
-                return member;
-            })
-            .catch(() => {
-                return undefined;
-            });
-    }
-
-    private fetchTeamMember(id: number): Promise<TeamMember> {
-        const url = `${this.teamMemberUrl}/${id}`;
-        return this.httpClient
-            .get<TeamMember>(url)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(
+            new TeamMember(
+                1,
+                'Panj',
+                'Support',
+                '',
+                '',
+                'https://www.twitch.tv/',
+                '',
+                'https://www.youtube.com/',
+                '',
+                new Person(1, 'Luka', 'Čiča', 'people/panj.jpg', 'Serbian')
+            )
+        );
     }
 
     public createActiveRosterTeamMember(teamId: number, personId: number, teamMember: TeamMember): Promise<boolean> {
-        return this.createDatabaseActiveRosterTeamMember(teamId, personId, teamMember).then(
-            (memberId) => {
-                if (memberId !== -1) {
-                    if (this.teamsObs && this.teams) {
-                        const index = this.teams.findIndex((x) => x.categoryId === teamId);
-                        if (index !== -1) {
-                            teamMember.id = memberId;
-                            this.teams[index].teamMembers.push(teamMember);
-                            this.teamsSubject.next(this.teams);
-                        }
-                    }
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            () => {
-                return false;
-            }
-        );
-    }
-
-    private createDatabaseActiveRosterTeamMember(
-        teamId: number,
-        personId: number,
-        teamMember: TeamMember
-    ): Promise<number> {
-        const url = `${this.teamMemberAdminUrl}/add/categoryId/${teamId}/personId/${personId}`;
-        return this.httpClient
-            .post<number>(url, teamMember)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     public updateTeamMember(teamMember: TeamMember): Promise<boolean> {
-        return this.updateDatabaseTeamMember(teamMember).then(
-            (success) => {
-                if (success) {
-                    if (this.teamsObs && this.teams) {
-                        const teamIndex = this.teams.findIndex((x) =>
-                            x.teamMembers.findIndex((y) => y.id === teamMember.id)
-                        );
-                        if (teamIndex !== -1) {
-                            const memberIndex = this.teams[teamIndex].teamMembers.findIndex(
-                                (x) => x.id === teamMember.id
-                            );
-                            if (memberIndex !== -1) {
-                                this.teams[teamIndex].teamMembers[memberIndex] = teamMember;
-                                this.teamsSubject.next(this.teams);
-                            }
-                        }
-                    }
-                }
-                return success;
-            },
-            () => {
-                return false;
-            }
-        );
-    }
-
-    private updateDatabaseTeamMember(teamMember: TeamMember): Promise<boolean> {
-        const url = `${this.teamMemberAdminUrl}/edit/${teamMember.id}`;
-        return this.httpClient
-            .put<boolean>(url, teamMember)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 
     public removeActiveRosterTeamMember(teamId: number, teamMemberId: number): Promise<boolean> {
-        return this.removeDatabaseActiveRosterTeamMember(teamId, teamMemberId).then(
-            (success) => {
-                if (success) {
-                    if (this.teamsObs && this.teams) {
-                        const teamIndex = this.teams.findIndex((x) =>
-                            x.teamMembers.findIndex((y) => y.id === teamMemberId)
-                        );
-                        if (teamIndex !== -1) {
-                            const memberIndex = this.teams[teamIndex].teamMembers.findIndex(
-                                (x) => x.id === teamMemberId
-                            );
-                            if (memberIndex !== -1) {
-                                this.teams[teamIndex].teamMembers.splice(memberIndex, 1);
-                                this.teamsSubject.next(this.teams);
-                            }
-                        }
-                    }
-                }
-                return success;
-            },
-            () => {
-                return false;
-            }
-        );
-    }
-
-    private removeDatabaseActiveRosterTeamMember(teamId: number, teamMemberId: number): Promise<boolean> {
-        const url = `${this.teamMemberAdminUrl}/delete-from-category/categoryId/${teamId}/memberId/${teamMemberId}`;
-        return this.httpClient
-            .delete<boolean>(url)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
-    }
-
-    ////////////////////////////////////////////////////////////////////////////
-    // NOT USED
-    ////////////////////////////////////////////////////////////////////////////
-
-    private addNewAchievementCategory(achievementCategory: AchievementCategory): Observable<boolean> {
-        const url = `${this.achievementCategoryAdminUrl}/new`;
-        return this.httpClient.post<boolean>(url, achievementCategory).pipe(
-            tap((data) => {
-                console.log('Added new achievement category -> ' + data);
-            })
-        );
-    }
-
-    private deleteExistingAchievementCategory(id: number): Observable<any> {
-        const url = `${this.achievementCategoryAdminUrl}/${id}`;
-        return this.httpClient.delete<any>(url).pipe(
-            tap((data) => {
-                console.log(data);
-            })
-        );
+        return Promise.resolve(true);
     }
 }

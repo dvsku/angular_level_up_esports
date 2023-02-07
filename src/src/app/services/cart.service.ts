@@ -69,17 +69,6 @@ export class CartService {
     }
 
     checkout(order: OrderDto): Promise<any> {
-        const url = `${this.cartUrl}/checkout`;
-        return this.httpClient
-            .post(url, order)
-            .toPromise()
-            .then(
-                (response) => {
-                    return response;
-                },
-                (error) => {
-                    return Promise.reject(error.message || error);
-                }
-            );
+        return Promise.resolve(true);
     }
 }
